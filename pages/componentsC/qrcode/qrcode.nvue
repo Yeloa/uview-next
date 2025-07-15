@@ -1,0 +1,40 @@
+<template>
+	<view class="u-page">
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">基础使用</text>
+			<view class="u-demo-block__content">
+				<u-qrcode value="https://uveiw.bdxmz.cn/"></u-qrcode>
+			</view>
+		</view>
+
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">增加logo</text>
+			<view class="u-demo-block__content">
+				<u-qrcode value="https://uveiw.bdxmz.cn/" :options="{ foregroundImageSrc:'https://uveiw.bdxmz.cn/common/logo.png', foregroundImageBackgroundColor:'none' }"></u-qrcode>
+			</view>
+		</view>
+		
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">改变颜色和样式</text>
+			<view class="u-demo-block__content">
+				<u-qrcode value="https://uveiw.bdxmz.cn/" :options="{ foregroundColor: '#3eaf7c' }"></u-qrcode>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				index: 0,
+			}
+		},
+		methods: {
+			
+		},
+	}
+</script>
+
+<style lang="scss">
+</style>

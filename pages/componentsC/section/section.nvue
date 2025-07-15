@@ -1,0 +1,55 @@
+<template>
+	<view class="u-page">
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">基础使用</text>
+			<view class="u-demo-block__content">
+				<u-section title="红豆生南国"></u-section>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">隐藏右边</text>
+			<view class="u-demo-block__content">
+				<u-section title="红豆生南国" :right="false"></u-section>
+			</view>
+		</view>
+
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">主题颜色</text>
+			<view class="u-demo-block__content">
+				<u-section title="红豆生南国" color="primary"></u-section>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				
+			}
+		},
+		methods: {
+			titleChange(index) {
+				if(index == 0) this.title = '春来发几枝';
+				else  this.title = '红豆生南国';
+			},
+			rightChange(index) {
+				this.right = index == 0 ? true : false;
+			},
+			boldChange(index) {
+				this.bold = index == 0 ? true : false;
+			},
+			colorChange(index) {
+				this.color = index == 0 ? this.$u.color['mainColor'] : this.$u.color['primary'];
+			},
+			showLineChange(index) {
+				this.showLine = !index;
+			}
+		}
+	}
+</script>
+
+<style lang="scss" scoped>
+	.u-demo {}
+</style>

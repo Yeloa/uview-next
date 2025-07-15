@@ -1,0 +1,407 @@
+<template>
+	<view class="u-page">
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">基础使用</text>
+			<view class="u-demo-block__content">
+				<view class="demo-item" @click="showBasic = true">
+					<text>地区</text>
+					<text class="selected-text">{{ basicLabel }}</text>
+				</view>
+				<u-cascader :show="showBasic" v-model="basicValue" :options="areaOptions" @close="showBasic = false" @confirm="onBasicConfirm" />
+			</view>
+		</view>
+
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">预设值</text>
+			<view class="u-demo-block__content">
+				<view class="demo-item" @click="showPreset = true">
+					<text>地区</text>
+					<text class="selected-text">{{ presetLabel }}</text>
+				</view>
+				<u-cascader :show="showPreset" v-model="presetValue" :options="areaOptions" @close="showPreset = false" @confirm="onPresetConfirm" />
+			</view>
+		</view>
+
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义样式</text>
+			<view class="u-demo-block__content">
+				<view class="demo-item" @click="showCustomStyle = true" >
+					<text>地区</text>
+					<text class="selected-text">{{ customStyleLabel }}</text>
+				</view>
+				<u-cascader 
+					:show="showCustomStyle" 
+					:options="areaOptions"
+					:round="10"
+					v-model="customStyleValue" 
+					title="请选择地区"
+					active-color="#ff6b6b" 
+					@close="showCustomStyle = false" 
+					@change="onCustomStyleConfirm" />
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title"></text>
+			
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+			// 基础使用
+			showBasic: false,
+			basicValue: '',
+			basicLabel: '',
+			
+			// 预设值
+			showPreset: false,
+			presetValue: ['110000', '110100', '110105','110105003'],
+			presetLabel: '',
+			
+			// 自定义样式
+			showCustomStyle: false,
+			customStyleValue: '',
+			customStyleLabel: '',
+
+			// 地区数据
+			areaOptions: [
+				{
+					label: '北京市',
+					value: '110000',
+					children: [
+						{
+							value: '110100',
+							label: '北京市',
+							children: [
+								{
+									value: '110101',
+									label: '东城区',
+									children: [
+										{ value: '110101001', label: '东华门街道' },
+										{ value: '110101002', label: '景山街道' },
+										{ value: '110101003', label: '交道口街道' },
+										{ value: '110101004', label: '安定门街道' },
+										{ value: '110101005', label: '北新桥街道' },
+										{ value: '110101006', label: '东四街道' },
+										{ value: '110101007', label: '朝阳门街道' },
+										{ value: '110101008', label: '建国门街道' },
+										{ value: '110101009', label: '东直门街道' },
+										{ value: '110101010', label: '和平里街道' },
+										{ value: '110101011', label: '前门街道' },
+										{ value: '110101012', label: '崇文门外街道' },
+										{ value: '110101013', label: '东花市街道' },
+										{ value: '110101014', label: '龙潭街道' },
+										{ value: '110101015', label: '体育馆路街道' },
+										{ value: '110101016', label: '天坛街道' },
+										{ value: '110101017', label: '永定门外街道' },
+										{ value: '110101018', label: '东城商务区' },
+										{ value: '110101019', label: '王府井大街' },
+										{ value: '110101020', label: '南锣鼓巷' }
+									]
+								},
+								{
+									value: '110102',
+									label: '西城区',
+									children: [
+										{ value: '110102001', label: '西长安街街道' },
+										{ value: '110102002', label: '新街口街道' },
+										{ value: '110102003', label: '月坛街道' },
+										{ value: '110102004', label: '展览路街道' },
+										{ value: '110102005', label: '德胜街道' },
+										{ value: '110102006', label: '金融街街道' },
+										{ value: '110102007', label: '什刹海街道' },
+										{ value: '110102008', label: '大栅栏街道' },
+										{ value: '110102009', label: '天桥街道' },
+										{ value: '110102010', label: '椿树街道' },
+										{ value: '110102011', label: '陶然亭街道' },
+										{ value: '110102012', label: '广安门内街道' },
+										{ value: '110102013', label: '牛街街道' },
+										{ value: '110102014', label: '白纸坊街道' },
+										{ value: '110102015', label: '广安门外街道' },
+										{ value: '110102016', label: '北京金融街' },
+										{ value: '110102017', label: '中南海周边' },
+										{ value: '110102018', label: '西单商业区' },
+										{ value: '110102019', label: '护国寺街道' },
+										{ value: '110102020', label: '官园街道' }
+									]
+								},
+								{
+									value: '110105',
+									label: '朝阳区',
+									children: [
+										{ value: '110105001', label: '建外街道' },
+										{ value: '110105002', label: '朝外街道' },
+										{ value: '110105003', label: '呼家楼街道' },
+										{ value: '110105004', label: '三里屯街道' },
+										{ value: '110105005', label: '左家庄街道' },
+										{ value: '110105006', label: '香河园街道' },
+										{ value: '110105007', label: '和平街街道' },
+										{ value: '110105008', label: '安贞街道' },
+										{ value: '110105009', label: '亚运村街道' },
+										{ value: '110105010', label: '小关街道' },
+										{ value: '110105011', label: '酒仙桥街道' },
+										{ value: '110105012', label: '麦子店街道' },
+										{ value: '110105013', label: '团结湖街道' },
+										{ value: '110105014', label: '六里屯街道' },
+										{ value: '110105015', label: '八里庄街道' },
+										{ value: '110105016', label: '双井街道' },
+										{ value: '110105017', label: '劲松街道' },
+										{ value: '110105018', label: '潘家园街道' },
+										{ value: '110105019', label: '垡头街道' },
+										{ value: '110105020', label: '南磨房街道' }
+									]
+								},
+								{
+									value: '110106',
+									label: '丰台区',
+									children: [
+										{ value: '110106001', label: '右安门街道' },
+										{ value: '110106002', label: '太平桥街道' },
+										{ value: '110106003', label: '西罗园街道' },
+										{ value: '110106004', label: '大红门街道' },
+										{ value: '110106005', label: '南苑街道' },
+										{ value: '110106006', label: '东高地街道' },
+										{ value: '110106007', label: '东铁匠营街道' },
+										{ value: '110106008', label: '卢沟桥街道' },
+										{ value: '110106009', label: '丰台街道' },
+										{ value: '110106010', label: '新村街道' },
+										{ value: '110106011', label: '长辛店街道' },
+										{ value: '110106012', label: '云岗街道' },
+										{ value: '110106013', label: '方庄街道' },
+										{ value: '110106014', label: '宛平城街道' },
+										{ value: '110106015', label: '马家堡街道' },
+										{ value: '110106016', label: '和义街道' },
+										{ value: '110106017', label: '北京南站' },
+										{ value: '110106018', label: '科技园区' },
+										{ value: '110106019', label: '总部基地' },
+										{ value: '110106020', label: '丽泽商务区' }
+									]
+								},
+								{ value: '110107', label: '石景山区' },
+								{ value: '110108', label: '海淀区' },
+								{ value: '110109', label: '门头沟区' },
+								{ value: '110111', label: '房山区' },
+								{ value: '110112', label: '通州区' },
+								{ value: '110113', label: '顺义区' },
+								{ value: '110114', label: '昌平区' },
+								{ value: '110115', label: '大兴区' },
+								{ value: '110116', label: '怀柔区' },
+								{ value: '110117', label: '平谷区' },
+								{ value: '110118', label: '密云区' },
+								{ value: '110119', label: '延庆区' },
+							],
+						},
+					],
+				},
+				{
+					label: '天津市',
+					value: '120000',
+					children: [
+						{
+							value: '120100',
+							label: '天津市',
+							children: [
+								{
+									value: '120101',
+									label: '和平区',
+									children: [
+										{ value: '120101001', label: '劝业场街道' },
+										{ value: '120101002', label: '小白楼街道' },
+										{ value: '120101003', label: '五大道街道' },
+										{ value: '120101004', label: '新兴街道' },
+										{ value: '120101005', label: '南营门街道' },
+										{ value: '120101006', label: '体育馆街道' },
+										{ value: '120101007', label: '和平路商业街' },
+										{ value: '120101008', label: '解放北路' },
+										{ value: '120101009', label: '南京路步行街' },
+										{ value: '120101010', label: '津湾广场' },
+										{ value: '120101011', label: '音乐厅街道' },
+										{ value: '120101012', label: '天津之眼周边' },
+										{ value: '120101013', label: '海河沿岸' },
+										{ value: '120101014', label: '金融城' },
+										{ value: '120101015', label: '历史文化街区' },
+										{ value: '120101016', label: '商务中心区' },
+										{ value: '120101017', label: '民园体育场' },
+										{ value: '120101018', label: '瓷房子周边' },
+										{ value: '120101019', label: '张学良故居' },
+										{ value: '120101020', label: '庆王府' }
+									]
+								},
+								{ value: '120102', label: '河东区' },
+								{ value: '120103', label: '河西区' },
+								{ value: '120104', label: '南开区' },
+								{ value: '120105', label: '河北区' },
+								{ value: '120106', label: '红桥区' },
+								{ value: '120110', label: '东丽区' },
+								{ value: '120111', label: '西青区' },
+								{ value: '120112', label: '津南区' },
+								{ value: '120113', label: '北辰区' },
+								{ value: '120114', label: '武清区' },
+								{ value: '120115', label: '宝坻区' },
+								{ value: '120116', label: '滨海新区' },
+								{ value: '120117', label: '宁河区' },
+								{ value: '120118', label: '静海区' },
+								{ value: '120119', label: '蓟州区' },
+							],
+						},
+					],
+				},
+				{
+					label: '上海市',
+					value: '310000',
+					children: [
+						{
+							value: '310100',
+							label: '上海市',
+							children: [
+								{
+									value: '310101',
+									label: '黄浦区',
+									children: [
+										{ value: '310101001', label: '南京东路街道' },
+										{ value: '310101002', label: '外滩街道' },
+										{ value: '310101003', label: '半淞园路街道' },
+										{ value: '310101004', label: '小东门街道' },
+										{ value: '310101005', label: '豫园街道' },
+										{ value: '310101006', label: '老西门街道' },
+										{ value: '310101007', label: '五里桥街道' },
+										{ value: '310101008', label: '打浦桥街道' },
+										{ value: '310101009', label: '淮海中路街道' },
+										{ value: '310101010', label: '瑞金二路街道' },
+										{ value: '310101011', label: '人民广场' },
+										{ value: '310101012', label: '新天地' },
+										{ value: '310101013', label: '田子坊' },
+										{ value: '310101014', label: '思南公馆' },
+										{ value: '310101015', label: '上海老街' },
+										{ value: '310101016', label: '城隍庙' },
+										{ value: '310101017', label: '南京路步行街' },
+										{ value: '310101018', label: '外滩源' },
+										{ value: '310101019', label: '黄浦滨江' },
+										{ value: '310101020', label: '世博浦西' }
+									]
+								},
+								{ value: '310104', label: '徐汇区' },
+								{ value: '310105', label: '长宁区' },
+								{ value: '310106', label: '静安区' },
+								{ value: '310107', label: '普陀区' },
+								{ value: '310109', label: '虹口区' },
+								{ value: '310110', label: '杨浦区' },
+								{ value: '310112', label: '闵行区' },
+								{ value: '310113', label: '宝山区' },
+								{ value: '310114', label: '嘉定区' },
+								{ value: '310115', label: '浦东新区' },
+								{ value: '310116', label: '金山区' },
+								{ value: '310117', label: '松江区' },
+								{ value: '310118', label: '青浦区' },
+								{ value: '310120', label: '奉贤区' },
+								{ value: '310151', label: '崇明区' },
+							],
+						},
+					],
+				}
+			],
+
+			// 商品分类数据
+			categoryOptions: [
+				{
+					label: '数码电器',
+					value: 'digital',
+					children: [
+						{
+							label: '手机',
+							value: 'phone',
+							children: [
+								{ label: 'iPhone', value: 'iphone' },
+								{ label: 'Android', value: 'android' }
+							]
+						},
+						{
+							label: '电脑',
+							value: 'computer',
+							children: [
+								{ label: '笔记本', value: 'laptop' },
+								{ label: '台式机', value: 'desktop' }
+							]
+						}
+					]
+				},
+				{
+					label: '服装鞋帽',
+					value: 'clothing',
+					children: [
+						{
+							label: '男装',
+							value: 'mens',
+							children: [
+								{ label: 'T恤', value: 'tshirt' },
+								{ label: '衬衫', value: 'shirt' }
+							]
+						},
+						{
+							label: '女装',
+							value: 'womens',
+							children: [
+								{ label: '连衣裙', value: 'dress' },
+								{ label: '半身裙', value: 'skirt' }
+							]
+						}
+					]
+				}
+			]
+			}
+		},
+		methods: {
+		// 基础使用事件
+		onBasicConfirm({ label }) {
+			this.basicLabel = label.join('/');
+		},
+
+		// 自定义样式事件
+		onCustomStyleConfirm({ label }) {
+			this.customStyleLabel = label.join('/');
+		},
+
+		// 预设值事件
+		onPresetConfirm({ label }) {
+			this.presetLabel = label.join('/');
+		},
+	}
+	}
+</script>
+
+<style lang="scss">
+.u-page {
+	padding: 0;
+}
+
+.u-demo-block {
+	margin-bottom: 10px;
+}
+
+.u-demo-block__title {
+	background-color: #f5f5f5;
+	padding: 10px;
+	font-size: 16px;
+	color: #333;
+}
+
+.u-demo-block__content {
+	padding: 0 10px;
+}
+
+.demo-item {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.selected-text {
+	font-size: 14px;
+	color: #666;
+}
+
+</style>
