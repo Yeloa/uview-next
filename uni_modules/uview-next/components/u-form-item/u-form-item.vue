@@ -68,7 +68,7 @@
 		</slot>
 		<u-line
 			v-if="elBorderBottom"
-			:color="message && parentData.errorType === 'border-bottom' ? $u.color.error : propsLine.color"
+			:color="message && parentData.errorType === 'border-bottom' ? $u.theme.error : propsLine.color"
 			:customStyle="`margin-top: ${message && parentData.errorType === 'message' ? '5px' : 0}`"
 		></u-line>
 	</view>

@@ -23,8 +23,10 @@
 		@confirm="confirm"
 		@change="change"
 	>
-		<template #trigger>
-			<slot name="trigger" />
+		<template v-slot:trigger>
+			<slot name="trigger">
+				<u-input v-if="showInput" :value="inputValue" v-bind="inputPropsInner" />
+			</slot>
 		</template>
 	</u-picker>
 </template>
@@ -41,9 +43,29 @@ export default {
 	mixins: [mpMixin, mixin, props],
 	data() {
 		return {
+			inputValue: '',
 			columns: [],
 			innerDefaultIndex: [],
 			selectedValue:[]
+		}
+	},
+	computed: {
+		inputPropsInner() {
+			let props = {
+				clearable: this.clearable,
+				placeholder: this.placeholder,
+				disabled: this.disabled,
+				round: this.borderRadius,
+				border: this.border,
+				...this.inputProps
+			}
+			if (this.disabled) {
+				props.disabledColor = this.backgroundColor;
+			} else {
+				props.backgroundColor = this.backgroundColor;
+			}
+
+			return props
 		}
 	},
 	watch: {
@@ -73,10 +95,11 @@ export default {
 		init() {
 			const columns = [];
 			const innerDefaultIndex = [];
+			const innerDefaultLabel = []
 			
 			// 获取当前值
-			const currentValue = this.getCurrentValue() || [];
-			
+			const currentValue = this.getCurrentValue();
+		
 			// 处理省份列
 			let selectedProvince;
 			if (this.province) {
@@ -86,6 +109,7 @@ export default {
 				selectedProvince = this.getSelectedValue(0, province);
 				let provinceIndex = province.findIndex(item => item.value == selectedProvince);
 				innerDefaultIndex.push(provinceIndex >= 0 ? provinceIndex : 0);
+				innerDefaultLabel.push(province[provinceIndex].label)
 			}
 
 			// 处理城市列
@@ -98,6 +122,7 @@ export default {
 				selectedCity = this.getSelectedValue(cityIndex, city);
 				let cityIndexValue = city.findIndex(item => item.value == selectedCity);
 				innerDefaultIndex.push(cityIndexValue >= 0 ? cityIndexValue : 0);
+				innerDefaultLabel.push(city[cityIndexValue].label)
 			}
 			
 			// 处理县区列
@@ -109,11 +134,15 @@ export default {
 				const selectedCounty = this.getSelectedValue(countyIndex, county);
 				let countyIndexValue = county.findIndex(item => item.value == selectedCounty);
 				innerDefaultIndex.push(countyIndexValue >= 0 ? countyIndexValue : 0);
+				innerDefaultLabel.push(county[countyIndexValue].label)
 			}
 			
 			// 设置列数据
 			this.columns = columns;
 			this.innerDefaultIndex = innerDefaultIndex;
+			if(this.showInput && currentValue.length > 0){
+				this.inputValue = innerDefaultLabel.join(this.separator)
+			}
 		},
 		
 		// 获取选中值
@@ -220,6 +249,12 @@ export default {
 		confirm(e) {
 			this.$emit('confirm', e);
 			let value = e.value.map(item => item.value)
+
+			if(this.showInput){
+				let label = e.value.map(item => item.label)
+				this.inputValue = label.join(this.separator)
+			}
+			
 			// #ifdef VUE2
 			this.$emit('input', value)
 			// #endif

@@ -1,6 +1,10 @@
+## 3.2.5（2025-07-17）
+1. 新增`datetimePicker`组件新增showInput属性
+1. 新增`areaPicker`组件新增showInput属性
+3. 修复`calendar`组件`readonly`属性错误
 ## 3.2.4（2025-07-16）
 1. 新增`Ellipsis 文本省略`组件
-2. 修复`button`组件错误
+2. 修复`Button`组件主题色问题
 
 ## 3.2.3（2025-07-15）
 1. 新增`Fab 悬浮按钮`组件

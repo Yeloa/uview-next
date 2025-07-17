@@ -30,5 +30,14 @@ export default {
         closeOnClickOverlay: false,
 		immediateChange: false,
         round: '',
+        showInput: false,
+        border: 'surround',
+        borderRadius: '4px',
+        backgroundColor: '',
+        disabled: true,
+		separator: '/',
+        placeholder: '请选择地区',
+        inputProps: {},
+        clearable: true,
     }
 }

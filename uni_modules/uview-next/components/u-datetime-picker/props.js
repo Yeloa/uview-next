@@ -173,6 +173,69 @@ export default {
             default() {
                 return uni.$u.props.datetimePicker.round
             }
+        },
+		showInput: {
+			type: Boolean,
+			default() {
+                return uni.$u.props.datetimePicker.showInput
+            }
+		},
+		format: {
+            type: String,
+            default() {
+                return uni.$u.props.datetimePicker.format
+            }
+        },
+		valueFormat: {
+            type: String,
+            default() {
+                return uni.$u.props.datetimePicker.valueFormat
+            }
+        },
+        placeholder: {
+            type: String,
+            default() {
+                return uni.$u.props.datetimePicker.placeholder
+            }
+        },
+        disabled: {
+            type: Boolean,
+            default() {
+                return uni.$u.props.datetimePicker.disabled
+            }
+        },
+        // 背景颜色
+		backgroundColor: {
+			type: String,
+			default() {
+				return uni.$u.props.datetimePicker.backgroundColor
+			}
+		},
+		// 边框圆角
+		borderRadius: {
+			type: String,
+			default() {
+				return uni.$u.props.datetimePicker.borderRadius
+			}
+		},
+        // 边框类型，surround-四周边框，bottom-底部边框，none-无边框
+		border: {
+			type: String,
+			default() {
+				return uni.$u.props.datetimePicker.border
+			}
+		},
+        clearable: {
+            type: Boolean,
+            default() {
+                return uni.$u.props.datetimePicker.clearable
+            }
+        },
+        inputProps:{
+            type: Object,
+            default() {
+                return uni.$u.props.datetimePicker.inputProps
+            }
         }
     }
 }

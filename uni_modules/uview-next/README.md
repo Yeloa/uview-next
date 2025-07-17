@@ -40,7 +40,7 @@ uView Next支持vue2和vue3，是[uni-app](https://uniapp.dcloud.io/)全面兼�
 
 ## 交流反馈
 
-欢迎加入我们的QQ群交流反馈：[点此跳转](https://uview-next.netlify.app/components/addQQGroup.html)
+欢迎<img src="https://pub.idqqimg.com/wpa/images/group.png">交流反馈：[点此跳转](https://uview-next.netlify.app/components/addQQGroup.html)
 
 ## 关于PR
 

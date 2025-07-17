@@ -128,6 +128,63 @@ export default {
 			default() {
 				return uni.$u.props.areaPicker.round
 			}
-		}
+		},
+		showInput: {
+			type: Boolean,
+			default() {
+                return uni.$u.props.areaPicker.showInput
+            }
+		},
+		separator: {
+            type: String,
+            default() {
+                return uni.$u.props.areaPicker.separator
+            }
+        },
+        placeholder: {
+            type: String,
+            default() {
+                return uni.$u.props.areaPicker.placeholder
+            }
+        },
+        disabled: {
+            type: Boolean,
+            default() {
+                return uni.$u.props.areaPicker.disabled
+            }
+        },
+        // 背景颜色
+		backgroundColor: {
+			type: String,
+			default() {
+				return uni.$u.props.areaPicker.backgroundColor
+			}
+		},
+		// 边框圆角
+		borderRadius: {
+			type: String,
+			default() {
+				return uni.$u.props.areaPicker.borderRadius
+			}
+		},
+        // 边框类型，surround-四周边框，bottom-底部边框，none-无边框
+		border: {
+			type: String,
+			default() {
+				return uni.$u.props.areaPicker.border
+			}
+		},
+        clearable: {
+            type: Boolean,
+            default() {
+                return uni.$u.props.areaPicker.clearable
+            }
+        },
+        inputProps:{
+            type: Object,
+            default() {
+                return uni.$u.props.areaPicker.inputProps
+            }
+        }
     }
 }

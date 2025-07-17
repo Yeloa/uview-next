@@ -110,7 +110,7 @@ import mpMixin from '../../libs/mixin/mpMixin';
 export default {
     name: "u-action-sheet",
     // 一些props参数和methods方法，通过mixin混入，因为其他文件也会用到
-    mixins: [openType, button, uni.$u.mixin, props],
+    mixins: [openType, button, mixin,mpMixin, props],
     data() {
         return {
 

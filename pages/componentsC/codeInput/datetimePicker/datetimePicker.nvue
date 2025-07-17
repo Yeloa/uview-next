@@ -7,7 +7,6 @@
 			fixed
 			placeholder
 		></u-navbar>
-
 		<u-cell-group>
 			<u-cell
 				@click="showDatetimePicker(index)"
@@ -22,21 +21,6 @@
 					:src="item.iconUrl"
 					mode="widthFix"
 				></image>
-			</u-cell>
-			
-			<u-cell title="默认Input">
-				<template v-slot:value>
-					<u-datetime-picker mode="datetime" v-model="value11" closeOnClickOverlay showInput></u-datetime-picker>
-				</template>
-			</u-cell>
-			<u-cell title="使用触发器">
-				<template v-slot:value>
-					<u-datetime-picker mode="datetime" closeOnClickOverlay @confirm="confirm10">
-						<template v-slot:trigger>
-							<u-input :value="value10" placeholder="请选择日期时间" disabled-color="#fff" disabled clearable />
-						</template>
-					</u-datetime-picker>
-				</template>
 			</u-cell>
 		</u-cell-group>
 		<u-datetime-picker
@@ -134,8 +118,16 @@
 			@change="change"
 			@close="close"
 		></u-datetime-picker>
-	
-		
+		<view style="padding:15px">
+			<view style="font-size:14px;margin-bottom:10px">使用触发器</view>
+			<u-datetime-picker mode="datetime" closeOnClickOverlay @confirm="confirm10">
+				<template #trigger>
+					<u-input :value="value10" placeholder="请选择日期时间" disabled-color="#fff" disabled clearable />
+				</template>
+			</u-datetime-picker>
+		</view>
+
+		<u-datetime-picker mode="datetime" v-model="value11" closeOnClickOverlay showInput ></u-datetime-picker>
 	</view>
 </template>
 <script>

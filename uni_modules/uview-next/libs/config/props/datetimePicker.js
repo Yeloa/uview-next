@@ -34,6 +34,16 @@ export default {
         closeOnClickOverlay: false,
 		immediateChange: false,
         round: '',
-        defaultIndex: []
+        defaultIndex: [],
+		showInput: false,
+        border: 'surround',
+        borderRadius: '4px',
+        backgroundColor: '',
+        disabled: true,
+		format: '',
+        valueFormat: '',
+        placeholder: '请选择日期时间',
+        inputProps: {},
+        clearable: true,
     }
 }
