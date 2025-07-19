@@ -18,7 +18,7 @@ export default {
         placeholder: {
             type: String,
             default() {
-                return uni.$u.props.search.placeholder
+                return uni.$u.$t('uSearch.placeholder')
             }
         },
         // 是否启用清除控件
@@ -53,7 +53,7 @@ export default {
         actionText: {
             type: String,
             default() {
-                return uni.$u.props.search.actionText
+                return uni.$u.$t('uSearch.actionText')
             }
         },
         // 输入框内容对齐方式，可选值为 left|center|right

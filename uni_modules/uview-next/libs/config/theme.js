@@ -3,7 +3,7 @@ export default {
 	contentColor: '#606266',
 	tipsColor: '#909193',
 	lightColor: '#c0c4cc',
-	borderColor: '#dadbde',
+	borderColor: '#e4e7ed',
 	borderColorLight: '#dcdfe6',
 	bgColor: '#f3f4f6',
 	disabledColor: '#c8c9cc',

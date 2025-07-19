@@ -1,5 +1,6 @@
 <template>
 	<view class="u-page" ref="page">
+	
 		<u-navbar
 			title="地区选择器"
 			safeAreaInsetTop

@@ -183,22 +183,22 @@ export default {
 				this.popoverWidth = uni.$u.addUnit(this.width)
 			} else {
 				this.$uGetRect('#popover-trigger').then(size => {
-
 					// 确保popover宽度不超出屏幕范围
 					let targetWidth = size.width
-					if(this.actualPosition.startsWith('left')) {
-						targetWidth = windowInfo.windowWidth - (size.right + size.width)
-					} else if(this.actualPosition.startsWith('right')) {
-						targetWidth = windowInfo.windowWidth - (size.left + size.width)
+					 if(this.actualPosition.startsWith('left')) {
+					 	targetWidth = size.left
+					 } else if(this.actualPosition.startsWith('right')) {
+					 	targetWidth = windowInfo.windowWidth - size.right
 					}
-					targetWidth -= 10;
 
+					targetWidth -= 10;
+		
 					// 如果position为auto，自动计算最佳位置
 					if(this.position == 'auto') {
 						this.autoPosition = this.calculateBestPosition(targetWidth,size, windowInfo)
 					}
 
-					this.popoverWidth = uni.$u.addUnit(targetWidth )
+					this.popoverWidth = uni.$u.addUnit(targetWidth)
 				})
 			}
 		},

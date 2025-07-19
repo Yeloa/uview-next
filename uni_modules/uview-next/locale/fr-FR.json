@@ -1,0 +1,58 @@
+{
+	"uAreaPicker.cancelText": "Annuler",
+	"uAreaPicker.confirmText": "Confirmer",
+	"uAreaPicker.placeholder": "Veuillez sélectionner une région",
+	
+	"uCalendar.title": "Sélectionner une date",
+	"uCalendar.startText": "Début",
+	"uCalendar.endText": "Fin",
+	"uCalendar.confirmText": "Confirmer",
+	"uCalendar.confirmDisabledText": "Confirmer",
+	"uCalendar.weekdays": "lun,mar,mer,jeu,ven,sam,dim",
+
+	"uCascader.title": "Veuillez sélectionner",
+	"uCascader.placeholder": "Veuillez sélectionner",
+
+	"uCode.startText": "Obtenir le code de vérification",
+	"uCode.changeText": "Récupérer à nouveau dans X secondes",
+	"uCode.endText": "Récupérer à nouveau",
+
+	"uDatetimePicker.cancelText": "Annuler",
+	"uDatetimePicker.confirmText": "Confirmer",
+	"uDatetimePicker.placeholder": "Veuillez sélectionner la date et l'heure",
+
+	"uKeyboard.cancelText": "Annuler",
+	"uKeyboard.confirmText": "Confirmer",
+
+	"uLink.mpTips": "Lien copié, veuillez l'ouvrir dans le navigateur",
+
+	"uLoadingPage.loadingText": "Chargement en cours",
+
+	"uLoadmore.loadmoreText": "Charger plus",
+	"uLoadmore.loadingText": "Chargement en cours...",
+	"uLoadmore.nomoreText": "Il n'y a plus de contenu",
+
+	"uModal.confirmText": "Confirmer",
+	"uModal.cancelText": "Annuler",
+
+	"uNoNetwork.tips": "Oups, perte du signal réseau",
+
+	"uPagination.prevText": "Page précédente",
+	"uPagination.nextText": "Page suivante",
+
+	"uPicker.cancelText": "Annuler",
+	"uPicker.confirmText": "Confirmer",
+
+	"uReadMore.closeText": "Déplier pour lire tout",
+	"uReadMore.openText": "Replier",
+
+	"uSearch.placeholder": "Veuillez entrer des mots-clés",
+	"uSearch.actionText": "Rechercher",
+
+	"uSection.subTitle": "Plus",
+
+	"uTable.emptyText": "Aucune donnée disponible",
+
+	"uToolbar.cancelText": "Annuler",
+	"uToolbar.confirmText": "Confirmer"
+}

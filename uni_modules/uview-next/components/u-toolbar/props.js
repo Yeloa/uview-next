@@ -11,14 +11,14 @@ export default {
         cancelText: {
             type: String,
             default() {
-                return uni.$u.props.toolbar.cancelText
+                return uni.$u.$t('uToolbar.cancelText')
             }
         },
         // 确认按钮的文字
         confirmText: {
             type: String,
             default() {
-                return uni.$u.props.toolbar.confirmText
+                return uni.$u.$t('uToolbar.confirmText')
             }
         },
         // 取消按钮的颜色

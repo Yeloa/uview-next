@@ -13,12 +13,12 @@ import theme from '../theme.js'
 export default {
     // calendar 组件
     calendar: {
-        title: '日期选择',
+        title: '',
         showTitle: true,
         showSubtitle: true,
         mode: 'single',
-        startText: '开始',
-        endText: '结束',
+        startText: '',
+        endText: '',
         customList: [],
         shape: 'square',
         color: theme.primary,
@@ -29,10 +29,10 @@ export default {
         rowHeight: 56,
         showLunar: false,
         showMark: true,
-        confirmText: '确定',
-        confirmDisabledText: '确定',
+        confirmText: '',
+        confirmDisabledText: '',
         show: false,
-        closeOnClickOverlay: false,
+        closeOnClickOverlay: true,
         readonly: false,
         showConfirm: true,
         maxRange: Number.MAX_SAFE_INTEGER, // Infinity

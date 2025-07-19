@@ -4,7 +4,7 @@ export default {
         tips: {
             type: String,
             default() {
-                return uni.$u.props.noNetwork.tips
+                return uni.$u.$t('uNoNetwork.tips')
             }
         },
         // 一个z-index值，用于设置没有网络这个组件的层次，因为页面可能会有其他定位的元素层级过高，导致此组件被覆盖

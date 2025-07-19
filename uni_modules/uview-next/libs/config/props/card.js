@@ -28,7 +28,7 @@ export default {
 		// 副标题字体大小，单位rpx
 		subTitleSize: 13,
 		// 是否显示外部边框，只对full=false时有效(卡片与边框有空隙时)
-		border: true,
+		border: false,
 		// 用于标识点击了第几个
 		index: '',
 		// 用于隔开上下左右的边距，带单位的写法，如："30rpx 30rpx"，"20rpx 20rpx 30rpx 30rpx"
@@ -51,6 +51,8 @@ export default {
 		thumbWidth: 30,
 		// 缩略图是否为圆形
 		thumbCircle: false,
+		// 缩略图圆角值
+		thumbRadius: 3,
 		// 给head，body，foot的内边距
 		padding: 10,
 		// 是否显示头部

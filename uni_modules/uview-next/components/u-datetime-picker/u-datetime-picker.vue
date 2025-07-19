@@ -1,12 +1,37 @@
 <template>
-	<u-picker ref="picker" :show="show" :closeOnClickOverlay="closeOnClickOverlay" :columns="columns" :title="title"
-		:itemHeight="itemHeight" :showToolbar="showToolbar" :visibleItemCount="visibleItemCount"
-		:defaultIndex="innerDefaultIndex" :cancelText="cancelText" :confirmText="confirmText" :cancelColor="cancelColor"
-		:confirmColor="confirmColor" :immediateChange="immediateChange" :round="round" @close="close" @cancel="cancel"
-		@confirm="confirm" @change="change">
+	<u-picker ref="picker" 
+		:show="show" 
+		:closeOnClickOverlay="closeOnClickOverlay" 
+		:columns="columns" 
+		:title="title"
+		:itemHeight="itemHeight"
+		:showToolbar="showToolbar"
+		:visibleItemCount="visibleItemCount"
+		:defaultIndex="innerDefaultIndex" 
+		:cancelText="cancelText" 
+		:confirmText="confirmText"
+		:cancelColor="cancelColor"
+		:confirmColor="confirmColor" 
+		:immediateChange="immediateChange"
+		:round="round" 
+		@close="close" 
+		@cancel="cancel"
+		@confirm="confirm" 
+		@change="change"
+	>
 		<template v-slot:trigger>
 			<slot name="trigger">
-				<u-input v-if="showInput" :value="inputValue" v-bind="inputPropsInner" />
+				<u-input 
+					v-if="showInput"
+					:value="inputValue"
+					:clearable="clearable"
+					:placeholder="placeholder"
+					:disabled="disabled"
+					:border="border"
+					:round="borderRadius"
+					:backgroundColor="disabled ? '' : backgroundColor"
+					:disabledColor="disabled ? backgroundColor : ''"
+				 />
 			</slot>
 		</template>
 	</u-picker>
@@ -86,23 +111,6 @@ export default {
 		// 如果以下这些变量发生了变化，意味着需要重新初始化各列的值
 		propsChange() {
 			return [this.mode, this.maxDate, this.minDate, this.minHour, this.maxHour, this.minMinute, this.maxMinute, this.filter, this.value,]
-		},
-		inputPropsInner() {
-			let props = {
-				clearable: this.clearable,
-				placeholder: this.placeholder,
-				disabled: this.disabled,
-				round: this.borderRadius,
-				border: this.border,
-				...this.inputProps
-			}
-			if (this.disabled) {
-				props.disabledColor = this.backgroundColor;
-			} else {
-				props.backgroundColor = this.backgroundColor;
-			}
-
-			return props
 		}
 	},
 	mounted() {
@@ -299,7 +307,7 @@ export default {
 			}
 			
 			const isDateMode = this.mode !== 'time'
-			if (isDateMode && (!value || !dayjs.unix(value).isValid())) {
+			if (isDateMode && (!value || !dayjs(value).isValid())) {
 				// 获取当前时间
 				const now = Date.now()
 				// 检查当前时间是否在最大最小时间范围内
@@ -328,18 +336,22 @@ export default {
 			}
 
 			// 时间类型
-			if (!isDateMode) {
+			if (isDateMode) {
+				if(/^\d{10}$/.test(value?.toString().trim())){
+					value = value * 1000
+				}
+			
+				// 如果是日期格式，控制在最小日期和最大日期之间
+				value = dayjs(value).isBefore(dayjs(this.minDate)) ? this.minDate : value
+				value = dayjs(value).isAfter(dayjs(this.maxDate)) ? this.maxDate : value
+				return value
+				} else {
 				if (String(value).indexOf(':') === -1) return uni.$u.error('时间错误，请传递如12:24的格式')
 				let [hour, minute] = value.split(':')
 				// 对时间补零，同时控制在最小值和最大值之间
 				hour = uni.$u.padZero(uni.$u.range(this.minHour, this.maxHour, Number(hour)))
 				minute = uni.$u.padZero(uni.$u.range(this.minMinute, this.maxMinute, Number(minute)))
 				return `${hour}:${minute}`
-			} else {
-				// 如果是日期格式，控制在最小日期和最大日期之间
-				value = dayjs(value).isBefore(dayjs(this.minDate)) ? this.minDate : value
-				value = dayjs(value).isAfter(dayjs(this.maxDate)) ? this.maxDate : value
-				return value
 			}
 		},
 		// 获取每列的最大和最小值

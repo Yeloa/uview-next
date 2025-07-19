@@ -35,7 +35,6 @@
 				subTitle: '2020-05-15',
 				thumb: 'https://img12.360buyimg.com/n7/jfs/t1/102191/19/9072/330688/5e0af7cfE17698872/c91c00d713bf729a.jpg',
 				bottomSlot: true,
-				border: true
 			}
 		},
 		methods: {

@@ -14,8 +14,6 @@ export default {
     // toolbar 组件
     toolbar: {
         show: true,
-        cancelText: '取消',
-        confirmText: '确认',
         cancelColor: theme.lightColor,
         confirmColor: theme.primary,
         title: ''

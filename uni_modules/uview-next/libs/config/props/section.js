@@ -14,7 +14,7 @@ export default {
     // u-section组件
     section: {
         title: '',
-        subTitle: '更多',
+        subTitle: '',
         right: true,
         fontSize: 15,
         bold: true,

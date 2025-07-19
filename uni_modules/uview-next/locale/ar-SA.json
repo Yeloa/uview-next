@@ -1,0 +1,58 @@
+{
+	"uAreaPicker.cancelText": "إلغاء",
+	"uAreaPicker.confirmText": "تأكيد",
+	"uAreaPicker.placeholder": "الرجاء اختيار المنطقة",
+	
+	"uCalendar.title": "اختيار التاريخ",
+	"uCalendar.startText": "البداية",
+	"uCalendar.endText": "النهاية",
+	"uCalendar.confirmText": "تأكيد",
+	"uCalendar.confirmDisabledText": "تأكيد",
+	"uCalendar.weekdays": "الإثنين,الثلاثاء,الأربعاء,الخميس,الجمعة,السبت,الأحد",
+
+	"uCascader.title": "الرجاء الاختيار",
+	"uCascader.placeholder": "الرجاء الاختيار",
+
+	"uCode.startText": "الحصول على رمز التحقق",
+	"uCode.changeText": "إعادة الحصول بعد X ثانية",
+	"uCode.endText": "إعادة الحصول",
+
+	"uDatetimePicker.cancelText": "إلغاء",
+	"uDatetimePicker.confirmText": "تأكيد",
+	"uDatetimePicker.placeholder": "الرجاء اختيار التاريخ والوقت",
+
+	"uKeyboard.cancelText": "إلغاء",
+	"uKeyboard.confirmText": "تأكيد",
+
+	"uLink.mpTips": "الرابط تم نسخه، الرجاء فتحه في المتصفح",
+
+	"uLoadingPage.loadingText": "جاري التحميل",
+
+	"uLoadmore.loadmoreText": "تحميل المزيد",
+	"uLoadmore.loadingText": "جاري التحميل...",
+	"uLoadmore.nomoreText": "لا يوجد المزيد",
+
+	"uModal.confirmText": "تأكيد",
+	"uModal.cancelText": "إلغاء",
+
+	"uNoNetwork.tips": "أو๊ه، فقدت إشارة الشبكة",
+
+	"uPagination.prevText": "الصفحة السابقة",
+	"uPagination.nextText": "الصفحة التالية",
+
+	"uPicker.cancelText": "إلغاء",
+	"uPicker.confirmText": "تأكيد",
+
+	"uReadMore.closeText": "توسع لقراءة الكل",
+	"uReadMore.openText": "تصغير",
+
+	"uSearch.placeholder": "الرجاء إدخال الكلمات المفتاحية",
+	"uSearch.actionText": "بحث",
+
+	"uSection.subTitle": "المزيد",
+
+	"uTable.emptyText": "لا توجد بيانات",
+
+	"uToolbar.cancelText": "إلغاء",
+	"uToolbar.confirmText": "تأكيد"
+}

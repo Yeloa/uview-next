@@ -16,7 +16,7 @@ export default {
         // 是否显示级联选择器
         show: false,
         // 选择器标题
-        title: '请选择',
+        title: '',
         // 选项数据
         options: [],
         // 当前选中值
@@ -24,7 +24,7 @@ export default {
         // v-model 的别名
         value: '',
         // 占位符文本
-        placeholder: '请选择',
+        placeholder: '',
         // 自定义字段名
         field: {
             text: 'label',
@@ -53,8 +53,6 @@ export default {
         titleFontSize: '18px',
         // 标题颜色
         titleColor: theme.mainColor,
-        // 标题加粗
-        closeable: true,
         // 圆角值
         round: 0,
         // 层级

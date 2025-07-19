@@ -11,7 +11,7 @@
 				</text>
 			</text>
 		</view>
-		<text class="measureBox" v-if="measureBoxVisible" :class="[measureId]" :style="[textStyle]"> {{ measureContent }}</text>
+		<text class="measureBox"  :class="[measureId]" :style="[textStyle]"> {{ measureContent }}</text>
 	</view>
 </template>
 
@@ -107,11 +107,12 @@ export default {
 			try {
 				// 计算基准行高和最大允许高度
 				const sampleText = this.content.slice(0, 1)
-				const { height } = await this.measureTextHeight(sampleText)
+				const { height, width } = await this.measureTextHeight(sampleText)
 				const maxAllowedHeight = (height || 20) * Number(this.rows)
-				
+				console.log(height, width)
 				// 检查原文本是否需要省略
 				const originalTextHeight = await this.measureTextHeight(this.content)
+				
 				if (originalTextHeight <= maxAllowedHeight) {
 					this.text = this.content
 					this.hasAction = false
@@ -139,14 +140,10 @@ export default {
 
 		// 执行文本截断处理
 		async performTextTruncation(maxHeight) {
-			const ellipsisSymbol = this.symbol || '...'
-			const actionText = this.expandText || ''
-			const truncateDirection = this.position || 'end'
-			
-			if (truncateDirection === 'middle') {
-				return await this.truncateMiddle(maxHeight, ellipsisSymbol, actionText)
+			if (this.position === 'middle') {
+				return await this.truncateMiddle(maxHeight, this.symbol, this.expandText)
 			} else {
-				return await this.truncateEdge(maxHeight, ellipsisSymbol, actionText, truncateDirection)
+				return await this.truncateEdge(maxHeight, this.symbol, this.expandText, this.position)
 			}
 		},
 

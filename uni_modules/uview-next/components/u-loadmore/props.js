@@ -53,21 +53,21 @@ export default {
         loadmoreText: {
             type: String,
             default() {
-                return uni.$u.props.loadmore.loadmoreText
+                return uni.$u.$t('uLoadmore.loadmoreText')
             }
         },
         // 加载中提示语
         loadingText: {
             type: String,
             default() {
-                return uni.$u.props.loadmore.loadingText
+                return uni.$u.$t('uLoadmore.loadingText')
             }
         },
         // 没有更多的提示语
         nomoreText: {
             type: String,
             default() {
-                return uni.$u.props.loadmore.nomoreText
+                return uni.$u.$t('uLoadmore.nomoreText')
             }
         },
         // 在“没有更多”状态下，是否显示粗点

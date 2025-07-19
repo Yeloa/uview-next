@@ -1,5 +1,21 @@
 import App from './App';
-import uView from '@/uni_modules/uview-next';
+import zhCN from './locale/zh-CN.json';
+import enUS from './locale/en-US.json';
+import uView, { VueI18n, createI18n } from '@/uni_modules/uview-next';
+
+// #ifndef VUE3
+Vue.use(VueI18n)
+// #endif
+
+const i18n = createI18n({
+	locale: 'zh-CN', // 默认显示语言
+	fallbackLocale: 'en-US',
+	messages: {
+		'zh-CN': zhCN,
+		'en-US': enUS
+	}
+})
+
 
 // #ifndef VUE3
 import Vue from 'vue';
@@ -13,6 +29,7 @@ Vue.use(uView);
 Vue.mixin(mixin);
 App.mpType = 'app';
 const app = new Vue({
+	i18n,
 	...App
 });
 app.$mount();
@@ -24,8 +41,10 @@ require('./util/request/index')(app);
 import { createSSRApp } from 'vue';
 export function createApp() {
 	const app = createSSRApp(App);
-	app.use(uView);
 
+	app.use(uView);
+	app.use(i18n);
+	
 	return {
 		app
 	};

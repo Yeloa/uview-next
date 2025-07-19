@@ -61,14 +61,14 @@ export default {
         cancelText: {
             type: String,
             default() {
-                return uni.$u.props.picker.cancelText
+                return uni.$u.$t('uPicker.cancelText')
             }
         },
         // 确认按钮的文字
         confirmText: {
             type: String,
             default() {
-                return uni.$u.props.picker.confirmText
+                return uni.$u.$t('uPicker.confirmText')
             }
         },
         // 取消按钮的颜色

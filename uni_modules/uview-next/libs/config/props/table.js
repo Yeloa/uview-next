@@ -21,7 +21,7 @@ export default {
 		rowHeight: 40,
 		showHeader: true,
 		ellipsis: true,
-		emptyText: '暂无数据',
+		emptyText: '',
 		emptyHeight: 200,
 		rowKey: 'id',
 		defaultSelection: [],

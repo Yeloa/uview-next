@@ -1,0 +1,58 @@
+{
+	"uAreaPicker.cancelText": "取消",
+	"uAreaPicker.confirmText": "確定",
+	"uAreaPicker.placeholder": "請選擇地區",
+	
+	"uCalendar.title": "日期選擇",
+	"uCalendar.startText": "開始",
+	"uCalendar.endText": "結束",
+	"uCalendar.confirmText": "確定",
+	"uCalendar.confirmDisabledText": "確定",
+	"uCalendar.weekdays": "一,二,三,四,五,六,日",
+
+	"uCascader.title": "請選擇",
+	"uCascader.placeholder": "請選擇",
+
+	"uCode.startText": "獲取驗證碼",
+	"uCode.changeText": "X秒重新獲取",
+	"uCode.endText": "重新獲取",
+
+	"uDatetimePicker.cancelText": "取消",
+	"uDatetimePicker.confirmText": "確定",
+	"uDatetimePicker.placeholder": "請選擇日期時間",
+
+	"uKeyboard.cancelText": "取消",
+	"uKeyboard.confirmText": "確定",
+
+	"uLink.mpTips": "連結已複製，請在瀏覽器打開",
+
+	"uLoadingPage.loadingText": "正在加載",
+
+	"uLoadmore.loadmoreText": "加載更多",
+	"uLoadmore.loadingText": "正在加載...",
+	"uLoadmore.nomoreText": "沒有更多了",
+
+	"uModal.confirmText": "確定",
+	"uModal.cancelText": "取消",
+
+	"uNoNetwork.tips": "哎呀，網絡信號丟失",
+
+	"uPagination.prevText": "上一頁",
+	"uPagination.nextText": "下一頁",
+
+	"uPicker.cancelText": "取消",
+	"uPicker.confirmText": "確定",
+
+	"uReadMore.closeText": "展開閱讀全文",
+	"uReadMore.openText": "收起",
+
+	"uSearch.placeholder": "請輸入關鍵字",
+	"uSearch.actionText": "搜索",
+
+	"uSection.subTitle": "更多",
+
+	"uTable.emptyText": "暫無數據",
+
+	"uToolbar.cancelText": "取消",
+	"uToolbar.confirmText": "確定"
+}

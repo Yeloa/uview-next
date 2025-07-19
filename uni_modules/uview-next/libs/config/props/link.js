@@ -17,7 +17,7 @@ export default {
         fontSize: 15,
         underLine: false,
         href: '',
-        mpTips: '链接已复制，请在浏览器打开',
+        mpTips: '',
         lineColor: '',
         text: ''
     }

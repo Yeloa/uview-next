@@ -4,7 +4,7 @@ export default {
         loadingText: {
             type: [String, Number],
             default() {
-                return uni.$u.props.loadingPage.loadingText
+                return uni.$u.$t('uLoadingPage.loadingText')
             }
         },
         // 文字上方用于替换loading动画的图片

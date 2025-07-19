@@ -32,7 +32,7 @@ export default {
         mpTips: {
             type: String,
             default() {
-                return uni.$u.props.link.mpTips
+                return uni.$u.$t('uLink.mpTips')
             }
         },
         // 下划线颜色

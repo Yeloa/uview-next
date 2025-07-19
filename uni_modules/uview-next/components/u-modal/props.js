@@ -25,14 +25,14 @@ export default {
         confirmText: {
             type: String,
             default() {
-                return uni.$u.props.modal.confirmText
+                return uni.$u.$t('uModal.confirmText')
             }
         },
         // 取消文案
         cancelText: {
             type: String,
             default() {
-                return uni.$u.props.modal.cancelText
+                return uni.$u.$t('uModal.cancelText')
             }
         },
         // 是否显示确认按钮

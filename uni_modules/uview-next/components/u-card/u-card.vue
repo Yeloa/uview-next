@@ -28,7 +28,7 @@
 						:style="{ 
 							height: $u.addUnit(thumbWidth), 
 							width: $u.addUnit(thumbWidth), 
-							borderRadius: thumbCircle ? '50px' : '3px' 
+							borderRadius: thumbCircle ? '50px' : $u.addUnit(thumbRadius)
 						}"
 					></image>
 					<text

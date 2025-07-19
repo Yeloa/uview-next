@@ -1,0 +1,58 @@
+{
+	"uAreaPicker.cancelText": "Abbrechen",
+	"uAreaPicker.confirmText": "Bestätigen",
+	"uAreaPicker.placeholder": "Bitte wählen Sie eine Region aus",
+	
+	"uCalendar.title": "Datum auswählen",
+	"uCalendar.startText": "Start",
+	"uCalendar.endText": "Ende",
+	"uCalendar.confirmText": "Bestätigen",
+	"uCalendar.confirmDisabledText": "Bestätigen",
+	"uCalendar.weekdays": "Mo,Di,Mi,Do,Fr,Sa,So",
+
+	"uCascader.title": "Bitte auswählen",
+	"uCascader.placeholder": "Bitte auswählen",
+
+	"uCode.startText": "Bestätigungscode abrufen",
+	"uCode.changeText": "Erneut abrufen in X Sekunden",
+	"uCode.endText": "Erneut abrufen",
+
+	"uDatetimePicker.cancelText": "Abbrechen",
+	"uDatetimePicker.confirmText": "Bestätigen",
+	"uDatetimePicker.placeholder": "Bitte Datum und Uhrzeit auswählen",
+
+	"uKeyboard.cancelText": "Abbrechen",
+	"uKeyboard.confirmText": "Bestätigen",
+
+	"uLink.mpTips": "Link wurde kopiert, bitte in Browser öffnen",
+
+	"uLoadingPage.loadingText": "Lädt...",
+
+	"uLoadmore.loadmoreText": "Mehr laden",
+	"uLoadmore.loadingText": "Lädt...",
+	"uLoadmore.nomoreText": "Keine weiteren Daten",
+
+	"uModal.confirmText": "Bestätigen",
+	"uModal.cancelText": "Abbrechen",
+
+	"uNoNetwork.tips": "Oh, Netzwerksignal verloren",
+
+	"uPagination.prevText": "Vorherige Seite",
+	"uPagination.nextText": "Nächste Seite",
+
+	"uPicker.cancelText": "Abbrechen",
+	"uPicker.confirmText": "Bestätigen",
+
+	"uReadMore.closeText": "Ganzen Text anzeigen",
+	"uReadMore.openText": "Einklappen",
+
+	"uSearch.placeholder": "Bitte Stichwörter eingeben",
+	"uSearch.actionText": "Suchen",
+
+	"uSection.subTitle": "Mehr",
+
+	"uTable.emptyText": "Keine Daten verfügbar",
+
+	"uToolbar.cancelText": "Abbrechen",
+	"uToolbar.confirmText": "Bestätigen"
+}

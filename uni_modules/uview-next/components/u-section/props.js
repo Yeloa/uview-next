@@ -11,7 +11,7 @@ export default {
         subTitle: {
             type: String,
             default() {
-                return uni.$u.props.section.subTitle
+                return uni.$u.$t('uSection.subTitle')
             }
         },
         // 是否显示右边的内容

@@ -18,14 +18,14 @@ export default {
         closeText: {
             type: String,
             default() {
-                return uni.$u.props.readMore.closeText
+                return uni.$u.$t('uReadMore.closeText')
             }
         },
         // 展开时的提示文字
         openText: {
             type: String,
             default() {
-                return uni.$u.props.readMore.openText
+                return uni.$u.$t('uReadMore.openText')
             }
         },
         // 提示的文字颜色

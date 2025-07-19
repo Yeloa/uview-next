@@ -1,0 +1,58 @@
+{
+	"uAreaPicker.cancelText": "Cancelar",
+	"uAreaPicker.confirmText": "Confirmar",
+	"uAreaPicker.placeholder": "Por favor, seleccione una región",
+	
+	"uCalendar.title": "Seleccionar fecha",
+	"uCalendar.startText": "Inicio",
+	"uCalendar.endText": "Fin",
+	"uCalendar.confirmText": "Confirmar",
+	"uCalendar.confirmDisabledText": "Confirmar",
+	"uCalendar.weekdays": "lu,ma,mi,ju,vi,sa,do",
+
+	"uCascader.title": "Por favor, seleccione",
+	"uCascader.placeholder": "Por favor, seleccione",
+
+	"uCode.startText": "Obtener código de verificación",
+	"uCode.changeText": "Volver a obtener en X segundos",
+	"uCode.endText": "Volver a obtener",
+
+	"uDatetimePicker.cancelText": "Cancelar",
+	"uDatetimePicker.confirmText": "Confirmar",
+	"uDatetimePicker.placeholder": "Por favor, seleccione fecha y hora",
+
+	"uKeyboard.cancelText": "Cancelar",
+	"uKeyboard.confirmText": "Confirmar",
+
+	"uLink.mpTips": "Enlace copiado, por favor ábralo en el navegador",
+
+	"uLoadingPage.loadingText": "Cargando",
+
+	"uLoadmore.loadmoreText": "Cargar más",
+	"uLoadmore.loadingText": "Cargando...",
+	"uLoadmore.nomoreText": "No hay más",
+
+	"uModal.confirmText": "Confirmar",
+	"uModal.cancelText": "Cancelar",
+
+	"uNoNetwork.tips": "¡Oh, se perdió la señal de red",
+
+	"uPagination.prevText": "Página anterior",
+	"uPagination.nextText": "Página siguiente",
+
+	"uPicker.cancelText": "Cancelar",
+	"uPicker.confirmText": "Confirmar",
+
+	"uReadMore.closeText": "Expandir para leer todo",
+	"uReadMore.openText": "Contraer",
+
+	"uSearch.placeholder": "Por favor, ingrese palabras clave",
+	"uSearch.actionText": "Buscar",
+
+	"uSection.subTitle": "Más",
+
+	"uTable.emptyText": "No hay datos disponibles",
+
+	"uToolbar.cancelText": "Cancelar",
+	"uToolbar.confirmText": "Confirmar"
+}

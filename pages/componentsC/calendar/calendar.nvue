@@ -1,5 +1,6 @@
 <template>
 	<view class="u-page">
+		
 		<u-navbar
 			title="日历"
 			@leftClick="navigateBack"

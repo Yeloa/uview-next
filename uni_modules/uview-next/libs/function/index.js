@@ -1,5 +1,6 @@
 import test from './test.js';
 import { round } from './digit.js';
+
 /**
  * @description 如果value小于min，取min；如果value大于max，取max
  * @param {number} min
@@ -702,7 +703,7 @@ function getHistoryPage(back = 0) {
  * @param {object} color 修改内置color属性
  * @param {object} zIndex 修改内置zIndex属性
  */
-function setConfig({ props = {}, config = {}, color = {}, zIndex = {} }) {
+function setConfig({ props = {}, config = {}, color = {} }) {
 	const { deepMerge } = uni.$u;
 	uni.$u.config = deepMerge(uni.$u.config, config);
 	uni.$u.props = deepMerge(uni.$u.props, props);

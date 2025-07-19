@@ -76,15 +76,15 @@ export default {
         // 取消按钮的文字
         cancelText: {
             type: String,
-            default() {
-				return uni.$u.props.areaPicker.cancelText
+            default() {	
+                return uni.$u.$t('uAreaPicker.cancelText')
 			}
         },
         // 确认按钮的文字
         confirmText: {
             type: String,
             default() {
-				return uni.$u.props.areaPicker.confirmText
+                return uni.$u.$t('uAreaPicker.confirmText')
 			}
         },
         // 取消按钮的颜色
@@ -144,7 +144,7 @@ export default {
         placeholder: {
             type: String,
             default() {
-                return uni.$u.props.areaPicker.placeholder
+                return uni.$u.$t('uAreaPicker.placeholder')
             }
         },
         disabled: {

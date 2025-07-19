@@ -1,0 +1,58 @@
+{
+	"uAreaPicker.cancelText": "Cancel",
+	"uAreaPicker.confirmText": "Confirm",
+	"uAreaPicker.placeholder": "Please select a region",
+	
+	"uCalendar.title": "Date Selection",
+	"uCalendar.startText": "Start",
+	"uCalendar.endText": "End",
+	"uCalendar.confirmText": "Confirm",
+	"uCalendar.confirmDisabledText": "Confirm",
+	"uCalendar.weekdays": "Mon,Tue,Wed,Thu,Fri,Sat,Sun",
+
+	"uCascader.title": "Please select",
+	"uCascader.placeholder": "Please select",
+
+	"uCode.startText": "Get verification code",
+	"uCode.changeText": "Re-obtain in X seconds",
+	"uCode.endText": "Re-obtain",
+
+	"uDatetimePicker.cancelText": "Cancel",
+	"uDatetimePicker.confirmText": "Confirm",
+	"uDatetimePicker.placeholder": "Please select date and time",
+
+	"uKeyboard.cancelText": "Cancel",
+	"uKeyboard.confirmText": "Confirm",
+
+	"uLink.mpTips": "Link copied, please open in browser",
+
+	"uLoadingPage.loadingText": "Loading",
+
+	"uLoadmore.loadmoreText": "Load more",
+	"uLoadmore.loadingText": "Loading...",
+	"uLoadmore.nomoreText": "No more data",
+
+	"uModal.confirmText": "Confirm",
+	"uModal.cancelText": "Cancel",
+
+	"uNoNetwork.tips": "Oops, network signal lost",
+
+	"uPagination.prevText": "Previous page",
+	"uPagination.nextText": "Next page",
+
+	"uPicker.cancelText": "Cancel",
+	"uPicker.confirmText": "Confirm",
+
+	"uReadMore.closeText": "Expand to read full text",
+	"uReadMore.openText": "Collapse",
+
+	"uSearch.placeholder": "Please enter keywords",
+	"uSearch.actionText": "Search",
+
+	"uSection.subTitle": "More",
+
+	"uTable.emptyText": "No data available",
+
+	"uToolbar.cancelText": "Cancel",
+	"uToolbar.confirmText": "Confirm"
+}

@@ -10,7 +10,7 @@
 export default {
     // loading-page组件
     loadingPage: {
-        loadingText: '正在加载',
+        loadingText: '',
         image: '',
         loadingMode: 'circle',
         loading: false,

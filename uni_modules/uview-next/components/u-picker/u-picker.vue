@@ -3,7 +3,12 @@
 		<view v-if="$slots['trigger']" @click="openPicker">
 			<slot name="trigger" :indexs="innerIndex" :values="innerColumns" :value="innerColumns.map((item, index) => item[innerIndex[index]])"></slot>
 		</view>
-		<u-popup :show="showPopup" :round="round" @close="closeHandler">
+		<u-popup 
+			:show="showPopup"
+			:round="round" 
+			:closeable="false"
+			:closeOnClickOverlay="closeOnClickOverlay"
+			@close="closeHandler">
 			<view class="u-picker">
 				<u-toolbar
 					v-if="showToolbar"
@@ -75,7 +80,7 @@
  * @property {String | Number}	visibleItemCount	每列中可见选项的数量（默认 5 ）
  * @property {String}			keyName				选项对象中，需要展示的属性键名（默认 'text' ）
  * @property {String}			valueName			选项对象中，需要展示的属性键名（默认 'value' ）
- * @property {Boolean}			closeOnClickOverlay	是否允许点击遮罩关闭选择器（默认 false ）
+ * @property {Boolean}			closeOnClickOverlay	是否允许点击遮罩关闭选择器（默认 true ）
  * @property {Array}			defaultIndex		各列的默认索引
  * @property {Boolean}			immediateChange		是否在手指松开时立即触发change事件（默认 false ）
  * @property {String}			round				设置圆角值
@@ -179,10 +184,8 @@ export default {
 		},
 		// 关闭选择器
 		closeHandler() {
-			if (this.closeOnClickOverlay) {
-				this.showPopup = false
-				this.$emit('close')
-			}
+			this.showPopup = false
+			this.$emit('close')
 		},
 		// 点击工具栏的取消按钮
 		cancel() {

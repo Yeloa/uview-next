@@ -117,14 +117,14 @@ export default {
         cancelText: {
             type: String,
             default() {
-                return uni.$u.props.datetimePicker.cancelText
+                return uni.$u.$t('uDatetimePicker.cancelText')
             }
         },
         // 确认按钮的文字
         confirmText: {
             type: String,
             default() {
-                return uni.$u.props.datetimePicker.confirmText
+                return uni.$u.$t('uDatetimePicker.confirmText')
             }
         },
         // 取消按钮的颜色
@@ -195,7 +195,7 @@ export default {
         placeholder: {
             type: String,
             default() {
-                return uni.$u.props.datetimePicker.placeholder
+                return uni.$u.$t('uDatetimePicker.placeholder')
             }
         },
         disabled: {

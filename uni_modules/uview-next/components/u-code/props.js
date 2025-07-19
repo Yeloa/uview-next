@@ -11,21 +11,21 @@ export default {
         startText: {
             type: String,
             default() {
-                return uni.$u.props.code.startText
+                return uni.$u.$t('uCode.startText')
             }
         },
         // 正在倒计时中的提示
         changeText: {
             type: String,
             default() {
-                return uni.$u.props.code.changeText
+                return uni.$u.$t('uCode.changeText')
             }
         },
         // 倒计时结束时的提示
         endText: {
             type: String,
             default() {
-                return uni.$u.props.code.endText
+                return uni.$u.$t('uCode.endText')
             }
         },
         // 是否在H5刷新或各端返回再进入时继续倒计时

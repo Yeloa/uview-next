@@ -76,7 +76,7 @@ export default {
         emptyText: {
             type: String,
             default() {
-                return uni.$u.props.table.emptyText
+                return uni.$u.$t('uTable.emptyText')
             }
         },
         // 空数据区域高度，单位为px

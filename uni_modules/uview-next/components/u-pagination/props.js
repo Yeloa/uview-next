@@ -76,14 +76,14 @@ export default {
         prevText: {
             type: String,
             default() {
-                return uni.$u.props.pagination.prevText
+                return uni.$u.$t('uPagination.prevText')
             }
         },
         // 下一页按钮文字
         nextText: {
             type: String,
             default() {
-                return uni.$u.props.pagination.nextText
+                return uni.$u.$t('uPagination.nextText')
             }
         },
         // 背景色

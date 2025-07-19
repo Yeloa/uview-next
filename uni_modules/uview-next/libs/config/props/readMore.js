@@ -12,8 +12,8 @@ export default {
     readMore: {
         showHeight: 400,
         toggle: false,
-        closeText: '展开阅读全文',
-        openText: '收起',
+        closeText: '',
+        openText: '',
         color: '#2979ff',
         fontSize: 14,
         textIndent: '2em',

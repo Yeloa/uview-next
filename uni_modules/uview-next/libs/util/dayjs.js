@@ -1,13 +1,13 @@
 'undefined' != typeof globalThis
 	? globalThis
 	: 'undefined' != typeof window
-		? window
-		: 'undefined' != typeof global
-			? global
-			: 'undefined' != typeof self && self;
-let t = { exports: {} },
+	? window
+	: 'undefined' != typeof global
+	? global
+	: 'undefined' != typeof self && self;
+var t = { exports: {} },
 	e = (t.exports = (function () {
-		let t = 1e3,
+		var t = 1e3,
 			e = 6e4,
 			n = 36e5,
 			r = 'millisecond',
@@ -28,19 +28,19 @@ let t = { exports: {} },
 				weekdays: 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_'),
 				months: 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
 				ordinal: function (t) {
-					let e = ['th', 'st', 'nd', 'rd'],
+					var e = ['th', 'st', 'nd', 'rd'],
 						n = t % 100;
 					return '[' + t + (e[(n - 20) % 10] || e[n] || e[0]) + ']';
 				}
 			},
 			g = function (t, e, n) {
-				let r = String(t);
+				var r = String(t);
 				return !r || r.length >= e ? t : '' + Array(e + 1 - r.length).join(n) + t;
 			},
 			v = {
 				s: g,
 				z: function (t) {
-					let e = -t.utcOffset(),
+					var e = -t.utcOffset(),
 						n = Math.abs(e),
 						r = Math.floor(n / 60),
 						s = n % 60;
@@ -48,7 +48,7 @@ let t = { exports: {} },
 				},
 				m: function t(e, n) {
 					if (e.date() < n.date()) return -t(n, e);
-					let r = 12 * (n.year() - e.year()) + (n.month() - e.month()),
+					var r = 12 * (n.year() - e.year()) + (n.month() - e.month()),
 						s = e.clone().add(r, c),
 						i = n - s < 0,
 						u = e.clone().add(r + (i ? -1 : 1), c);
@@ -72,27 +72,27 @@ let t = { exports: {} },
 			m = 'en',
 			D = {};
 		D[m] = M;
-		let p = '$isDayjsObject',
+		var p = '$isDayjsObject',
 			S = function (t) {
 				return t instanceof _ || !(!t || !t[p]);
 			},
 			w = function t(e, n, r) {
-				let s;
+				var s;
 				if (!e) return m;
 				if ('string' == typeof e) {
-					let i = e.toLowerCase();
+					var i = e.toLowerCase();
 					D[i] && (s = i), n && ((D[i] = n), (s = i));
-					let u = e.split('-');
+					var u = e.split('-');
 					if (!s && u.length > 1) return t(u[0]);
 				} else {
-					let a = e.name;
+					var a = e.name;
 					(D[a] = e), (s = a);
 				}
 				return !r && s && (m = s), s || (!r && m);
 			},
 			b = function (t, e) {
 				if (S(t)) return t.clone();
-				let n = 'object' == typeof e ? e : {};
+				var n = 'object' == typeof e ? e : {};
 				return (n.date = t), (n.args = arguments), new _(n);
 			},
 			O = v;
@@ -105,19 +105,19 @@ let t = { exports: {} },
 				function M(t) {
 					(this.$L = w(t.locale, null, !0)), this.parse(t), (this.$x = this.$x || t.x || {}), (this[p] = !0);
 				}
-				let g = M.prototype;
+				var g = M.prototype;
 				return (
 					(g.parse = function (t) {
 						(this.$d = (function (t) {
-							let e = t.date,
+							var e = t.date,
 								n = t.utc;
 							if (null === e) return new Date(NaN);
 							if (O.u(e)) return new Date();
 							if (e instanceof Date) return new Date(e);
 							if ('string' == typeof e && !/Z$/i.test(e)) {
-								let r = e.match($);
+								var r = e.match($);
 								if (r) {
-									let s = r[2] - 1 || 0,
+									var s = r[2] - 1 || 0,
 										i = (r[7] || '0').substring(0, 3);
 									return n
 										? new Date(Date.UTC(r[1], s, r[3] || 1, r[4] || 0, r[5] || 0, r[6] || 0, i))
@@ -129,7 +129,7 @@ let t = { exports: {} },
 							this.init();
 					}),
 					(g.init = function () {
-						let t = this.$d;
+						var t = this.$d;
 						(this.$y = t.getFullYear()),
 							(this.$M = t.getMonth()),
 							(this.$D = t.getDate()),
@@ -146,7 +146,7 @@ let t = { exports: {} },
 						return !(this.$d.toString() === l);
 					}),
 					(g.isSame = function (t, e) {
-						let n = b(t);
+						var n = b(t);
 						return this.startOf(e) <= n && n <= this.endOf(e);
 					}),
 					(g.isAfter = function (t, e) {
@@ -165,11 +165,11 @@ let t = { exports: {} },
 						return this.$d.getTime();
 					}),
 					(g.startOf = function (t, e) {
-						let n = this,
+						var n = this,
 							r = !!O.u(e) || e,
 							f = O.p(t),
 							l = function (t, e) {
-								let s = O.w(n.$u ? Date.UTC(n.$y, e, t) : new Date(n.$y, e, t), n);
+								var s = O.w(n.$u ? Date.UTC(n.$y, e, t) : new Date(n.$y, e, t), n);
 								return r ? s : s.endOf(a);
 							},
 							$ = function (t, e) {
@@ -205,7 +205,7 @@ let t = { exports: {} },
 						return this.startOf(t, !1);
 					}),
 					(g.$set = function (t, e) {
-						let n,
+						var n,
 							o = O.p(t),
 							f = 'set' + (this.$u ? 'UTC' : ''),
 							l = ((n = {}),
@@ -220,7 +220,7 @@ let t = { exports: {} },
 							n)[o],
 							$ = o === a ? this.$D + (e - this.$W) : e;
 						if (o === c || o === h) {
-							let y = this.clone().set(d, 1);
+							var y = this.clone().set(d, 1);
 							y.$d[l]($), y.init(), (this.$d = y.set(d, Math.min(this.$D, y.daysInMonth())).$d);
 						} else l && this.$d[l]($);
 						return this.init(), this;
@@ -232,19 +232,19 @@ let t = { exports: {} },
 						return this[O.p(t)]();
 					}),
 					(g.add = function (r, f) {
-						let d,
+						var d,
 							l = this;
 						r = Number(r);
-						let $ = O.p(f),
+						var $ = O.p(f),
 							y = function (t) {
-								let e = b(l);
+								var e = b(l);
 								return O.w(e.date(e.date() + Math.round(t * r)), l);
 							};
 						if ($ === c) return this.set(c, this.$M + r);
 						if ($ === h) return this.set(h, this.$y + r);
 						if ($ === a) return y(1);
 						if ($ === o) return y(7);
-						let M = ((d = {}), (d[i] = e), (d[u] = n), (d[s] = t), d)[$] || 1,
+						var M = ((d = {}), (d[i] = e), (d[u] = n), (d[s] = t), d)[$] || 1,
 							g = this.$d.getTime() + r * M;
 						return O.w(g, this);
 					}),
@@ -252,10 +252,10 @@ let t = { exports: {} },
 						return this.add(-1 * t, e);
 					}),
 					(g.format = function (t) {
-						let e = this,
+						var e = this,
 							n = this.$locale();
 						if (!this.isValid()) return n.invalidDate || l;
-						let r = t || 'YYYY-MM-DDTHH:mm:ssZ',
+						var r = t || 'YYYY-MM-DDTHH:mm:ssZ',
 							s = O.z(this),
 							i = this.$H,
 							u = this.$m,
@@ -272,7 +272,7 @@ let t = { exports: {} },
 							$ =
 								f ||
 								function (t, e, n) {
-									let r = t < 12 ? 'AM' : 'PM';
+									var r = t < 12 ? 'AM' : 'PM';
 									return n ? r.toLowerCase() : r;
 								};
 						return r.replace(y, function (t, r) {
@@ -339,7 +339,7 @@ let t = { exports: {} },
 						return 15 * -Math.round(this.$d.getTimezoneOffset() / 15);
 					}),
 					(g.diff = function (r, d, l) {
-						let $,
+						var $,
 							y = this,
 							M = O.p(d),
 							g = b(r),
@@ -386,7 +386,7 @@ let t = { exports: {} },
 					}),
 					(g.locale = function (t, e) {
 						if (!t) return this.$L;
-						let n = this.clone(),
+						var n = this.clone(),
 							r = w(t, e, !0);
 						return r && (n.$L = r), n;
 					}),

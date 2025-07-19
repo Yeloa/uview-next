@@ -1,0 +1,58 @@
+{
+	"uAreaPicker.cancelText": "Отмена",
+	"uAreaPicker.confirmText": "Подтвердить",
+	"uAreaPicker.placeholder": "Пожалуйста, выберите регион",
+	
+	"uCalendar.title": "Выбор даты",
+	"uCalendar.startText": "Начало",
+	"uCalendar.endText": "Конец",
+	"uCalendar.confirmText": "Подтвердить",
+	"uCalendar.confirmDisabledText": "Подтвердить",
+	"uCalendar.weekdays": "пн,вт,ср,чт,пт,сб,вс",
+
+	"uCascader.title": "Пожалуйста, выберите",
+	"uCascader.placeholder": "Пожалуйста, выберите",
+
+	"uCode.startText": "Получить код подтверждения",
+	"uCode.changeText": "Получить снова через X секунд",
+	"uCode.endText": "Получить снова",
+
+	"uDatetimePicker.cancelText": "Отмена",
+	"uDatetimePicker.confirmText": "Подтвердить",
+	"uDatetimePicker.placeholder": "Пожалуйста, выберите дату и время",
+
+	"uKeyboard.cancelText": "Отмена",
+	"uKeyboard.confirmText": "Подтвердить",
+
+	"uLink.mpTips": "Ссылка скопирована, пожалуйста, откройте в браузере",
+
+	"uLoadingPage.loadingText": "Загрузка...",
+
+	"uLoadmore.loadmoreText": "Загрузить больше",
+	"uLoadmore.loadingText": "Загрузка...",
+	"uLoadmore.nomoreText": "Больше нет данных",
+
+	"uModal.confirmText": "Подтвердить",
+	"uModal.cancelText": "Отмена",
+
+	"uNoNetwork.tips": "Ой, потерян сигнал сети",
+
+	"uPagination.prevText": "Предыдущая страница",
+	"uPagination.nextText": "Следующая страница",
+
+	"uPicker.cancelText": "Отмена",
+	"uPicker.confirmText": "Подтвердить",
+
+	"uReadMore.closeText": "Раскрыть для чтения всего текста",
+	"uReadMore.openText": "Свернуть",
+
+	"uSearch.placeholder": "Пожалуйста, введите ключевые слова",
+	"uSearch.actionText": "Поиск",
+
+	"uSection.subTitle": "Больше",
+
+	"uTable.emptyText": "Нет данных",
+
+	"uToolbar.cancelText": "Отмена",
+	"uToolbar.confirmText": "Подтвердить"
+}

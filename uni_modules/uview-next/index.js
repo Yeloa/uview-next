@@ -31,6 +31,9 @@ import theme from './libs/config/theme.js';
 // 平台
 import platform from './libs/function/platform';
 
+// 国际化
+import { $t, VueI18n, createI18n } from './locale';
+
 const $u = {
 	route,
 	date: index.timeFormat, // 另名date
@@ -49,6 +52,7 @@ const $u = {
 	props,
 	theme,
 	platform,
+	$t,
 	...index
 };
 
@@ -56,12 +60,16 @@ const $u = {
 uni.$u = $u;
 
 const install = (Vue, Params) => {
+
 	// #ifdef VUE2
 	// 时间格式化，同时两个名称，date和timeFormat
 	Vue.filter('timeFormat', (timestamp, format) => uni.$u.timeFormat(timestamp, format));
 	Vue.filter('date', (timestamp, format) => uni.$u.timeFormat(timestamp, format));
 	// 将多久以前的方法，注入到全局过滤器
 	Vue.filter('timeFrom', (timestamp, format) => uni.$u.timeFrom(timestamp, format));
+	
+	Vue.prototype.$t = uni.$u.$t;
+
 	// 同时挂载到uni和Vue.prototype中
 	// #ifndef APP-NVUE
 	Vue.prototype.$u = $u;
@@ -75,7 +83,7 @@ const install = (Vue, Params) => {
 	Vue.config.globalProperties.$date = (timestamp, format) => uni.$u.timeFormat(timestamp, format);
 	Vue.config.globalProperties.$timeFrom = (timestamp, format) => uni.$u.timeFrom(timestamp, format);
 	// #ifndef APP-NVUE
-	Vue.config.globalProperties.$u = $u;
+	
 	Vue.mixin(mixin);
 	// #endif
 	// #endif
@@ -84,6 +92,8 @@ const install = (Vue, Params) => {
 		uni.$u.setConfig(Params);
 	}
 };
+
+export { VueI18n, createI18n };
 
 export default {
 	install

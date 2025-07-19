@@ -6,13 +6,16 @@
 			<view class="nav-info">
 				<view class="nav-info__title" @tap="jumpToWx">
 					<text class="nav-info__title__text">uView {{version}}</text>
-					<!-- #ifdef MP-WEIXIN -->
-					<!-- uni-app不支持text内部的text组件的tap事件，所以放到外部响应tap -->
-					<text class="nav-info__title__jump">查看1.x演示</text>
-					<!-- #endif -->
 				</view>
 				<text class="nav-slogan">多平台快速开发的UI框架</text>
+				<view class="nav-info__title__language">
+					<view>切换语言：</view>
+					<view @click="changeLanguage('zh-CN')"><text>中文</text></view>
+					<view style="margin:0 10px;">|</view>
+					<view @click="changeLanguage('en-US')"><text>英文</text></view>
+				</view>
 			</view>
+			
 		</view>
 		<text class="nav-desc">{{desc}}</text>
 	</view>
@@ -30,6 +33,10 @@
 			}
 		},
 		methods: {
+			changeLanguage(lang) {
+				uni.$u.setLocale(lang)
+				uni.$u.toast('语言切换成功')
+			},
 			jumpToWx() {
 				// #ifdef MP-WEIXIN
 				uni.navigateToMiniProgram({
@@ -71,6 +78,15 @@
 			/* #endif */
 			flex-direction: row;
 			align-items: center;
+			justify-content: space-between;
+			
+			&__language {
+				margin-top: 15px;
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: flex-start;
+			}
 			
 			&__text {
 				/* #ifndef APP-NVUE */

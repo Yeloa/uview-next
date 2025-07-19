@@ -4,7 +4,7 @@ export default {
         title: {
             type: String,
             default() {
-                return uni.$u.props.calendar.title
+                return uni.$u.$t('uCalendar.title')
             }
         },
         // 是否显示标题
@@ -39,14 +39,14 @@ export default {
         startText: {
             type: String,
             default() {
-                return uni.$u.props.calendar.startText
+                return uni.$u.$t('uCalendar.startText')
             }
         },
         // mode=range时，最后一个日期底部的提示文字
         endText: {
             type: String,
             default() {
-                return uni.$u.props.calendar.endText
+                return uni.$u.$t('uCalendar.endText')
             }
         },
         // 自定义列表
@@ -122,14 +122,21 @@ export default {
         confirmText: {
             type: String,
             default() {
-                return uni.$u.props.calendar.confirmText
+                return uni.$u.$t('uCalendar.confirmText')
             }
         },
         // 确认按钮处于禁用状态时的文字
         confirmDisabledText: {
             type: String,
             default() {
-                return uni.$u.props.calendar.confirmDisabledText
+                return uni.$u.$t('uCalendar.confirmDisabledText')
+            }
+        },
+        // 星期几
+        weekdays: {
+            type: String,
+            default(){
+                return uni.$u.$t('uCalendar.weekdays')
             }
         },
         // 是否显示日历弹窗

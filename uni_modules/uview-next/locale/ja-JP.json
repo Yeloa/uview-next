@@ -1,0 +1,58 @@
+{
+	"uAreaPicker.cancelText": "キャンセル",
+	"uAreaPicker.confirmText": "確定",
+	"uAreaPicker.placeholder": "地域を選択してください",
+	
+	"uCalendar.title": "日付選択",
+	"uCalendar.startText": "開始",
+	"uCalendar.endText": "終了",
+	"uCalendar.confirmText": "確定",
+	"uCalendar.confirmDisabledText": "確定",
+	"uCalendar.weekdays": "月,火,水,木,金,土,日",
+
+	"uCascader.title": "選択してください",
+	"uCascader.placeholder": "選択してください",
+
+	"uCode.startText": "認証コードを取得",
+	"uCode.changeText": "X秒後に再取得",
+	"uCode.endText": "再取得",
+
+	"uDatetimePicker.cancelText": "キャンセル",
+	"uDatetimePicker.confirmText": "確定",
+	"uDatetimePicker.placeholder": "日付と時間を選択してください",
+
+	"uKeyboard.cancelText": "キャンセル",
+	"uKeyboard.confirmText": "確定",
+
+	"uLink.mpTips": "リンクがコピーされました。ブラウザで開いてください",
+
+	"uLoadingPage.loadingText": "読み込み中",
+
+	"uLoadmore.loadmoreText": "さらに読み込む",
+	"uLoadmore.loadingText": "読み込み中...",
+	"uLoadmore.nomoreText": "これ以上データはありません",
+
+	"uModal.confirmText": "確定",
+	"uModal.cancelText": "キャンセル",
+
+	"uNoNetwork.tips": "あら、ネットワーク信号が失われました",
+
+	"uPagination.prevText": "前のページ",
+	"uPagination.nextText": "次のページ",
+
+	"uPicker.cancelText": "キャンセル",
+	"uPicker.confirmText": "確定",
+
+	"uReadMore.closeText": "全文を展開して読む",
+	"uReadMore.openText": "折りたたむ",
+
+	"uSearch.placeholder": "キーワードを入力してください",
+	"uSearch.actionText": "検索",
+
+	"uSection.subTitle": "さらに",
+
+	"uTable.emptyText": "データがありません",
+
+	"uToolbar.cancelText": "キャンセル",
+	"uToolbar.confirmText": "確定"
+}

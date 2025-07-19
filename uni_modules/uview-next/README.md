@@ -13,6 +13,7 @@
 uView Next支持vue2和vue3，是[uni-app](https://uniapp.dcloud.io/)全面兼容nvue的uni-app生态框架，全面的组件和便捷的工具会让您信手拈来，如鱼得水
 
 ## [官方文档：https://uview-next.netlify.app](https://uview-next.netlify.app/)
+## [备用文档：https://118.25.198.98](https://118.25.198.98)
 
 ## 特性
 

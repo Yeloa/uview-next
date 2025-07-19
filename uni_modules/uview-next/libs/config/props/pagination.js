@@ -45,10 +45,10 @@ export default {
         // 圆角
         round: '4px',
         // 描边色
-        borderColor: '#e4e7ed',
+        borderColor: '',
         // 每项宽度
-        itemWidth: '40px',
+        itemWidth: '34px',
         // 每项高度
-        itemHeight: '40px'
+        itemHeight: '34px'
     }
 }

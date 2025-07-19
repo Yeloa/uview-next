@@ -133,6 +133,13 @@ export default {
                 return uni.$u.props.card.thumbCircle
             }
 		},
+		// 缩略图圆角值
+		thumbRadius: {
+			type: [String, Number],
+			default() {
+                return uni.$u.props.card.thumbRadius
+            }
+		},
 		// 给head，body，foot的内边距
 		padding: {
 			type: [String, Number],

@@ -27,6 +27,7 @@
 		:shape="shape" 
 		:disabledDate="disabledDate"
 		:disabledFun="disabledFun" 
+		:weekdays="weekdays"
 		@monthSelected="monthSelected"
 	/>
 
@@ -58,6 +59,7 @@
 			:shape="shape" 
 			:disabledDate="disabledDate"
 			:disabledFun="disabledFun"
+			:weekdays="weekdays"
 			@monthSelected="monthSelected"
 		/>
 		<slot name="footer" v-if="showConfirm">

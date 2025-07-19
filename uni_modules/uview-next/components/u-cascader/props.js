@@ -11,7 +11,7 @@ export default {
         title: {
             type: String,
             default() {
-                return uni.$u.props.cascader.title
+                return uni.$u.$t('uCascader.title')
             }
         },
         // 选项数据
@@ -41,7 +41,7 @@ export default {
         placeholder: {
             type: String,
             default() {
-                return uni.$u.props.cascader.placeholder
+                return uni.$u.$t('uCascader.placeholder')
             }
         },
         // 自定义字段名
@@ -126,13 +126,6 @@ export default {
             type: String,
             default() {
                 return uni.$u.props.cascader.titleColor
-            }
-        },
-        // 显示关闭按钮
-        closeable: {
-            type: Boolean,
-            default() {
-                return uni.$u.props.cascader.closeable
             }
         },
         // 圆角

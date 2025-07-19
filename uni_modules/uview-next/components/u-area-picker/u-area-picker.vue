@@ -25,7 +25,17 @@
 	>
 		<template v-slot:trigger>
 			<slot name="trigger">
-				<u-input v-if="showInput" :value="inputValue" v-bind="inputPropsInner" />
+				<u-input 
+					v-if="showInput" 
+					:value="inputValue"
+					:clearable="clearable"
+					:placeholder="placeholder"
+					:disabled="disabled"
+					:border="border"
+					:round="borderRadius"
+					:backgroundColor="disabled ? '' : backgroundColor"
+					:disabledColor="disabled ? backgroundColor : ''"
+				/>
 			</slot>
 		</template>
 	</u-picker>
@@ -47,25 +57,6 @@ export default {
 			columns: [],
 			innerDefaultIndex: [],
 			selectedValue:[]
-		}
-	},
-	computed: {
-		inputPropsInner() {
-			let props = {
-				clearable: this.clearable,
-				placeholder: this.placeholder,
-				disabled: this.disabled,
-				round: this.borderRadius,
-				border: this.border,
-				...this.inputProps
-			}
-			if (this.disabled) {
-				props.disabledColor = this.backgroundColor;
-			} else {
-				props.backgroundColor = this.backgroundColor;
-			}
-
-			return props
 		}
 	},
 	watch: {
@@ -143,6 +134,7 @@ export default {
 			if(this.showInput && currentValue.length > 0){
 				this.inputValue = innerDefaultLabel.join(this.separator)
 			}
+		
 		},
 		
 		// 获取选中值

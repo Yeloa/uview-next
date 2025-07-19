@@ -5,6 +5,7 @@
 			:subtitle="subtitle"
 			:showSubtitle="showSubtitle"
 			:showTitle="showTitle"
+			:weekdays="weekdays"
 		></uHeader>
 		<scroll-view
 			:style="{
@@ -212,6 +213,11 @@ export default {
 			type: [Function, null],
 			default: null
 		},
+		// 星期几
+		weekdays: {
+			type: String,
+			default: ''
+		}
 	},
 	components: {
 		uHeader,

@@ -4,8 +4,7 @@
 	    custom-class="u-overlay"
 	    :duration="duration"
 	    :custom-style="overlayStyle"
-	    @click="clickHandler"
-		@tap.stop="noop"
+		@tap.stop="clickHandler"
 		@touchmove.stop.prevent="noop"
 	>
 		<slot />

@@ -1,0 +1,58 @@
+{
+	"uAreaPicker.cancelText": "취소",
+	"uAreaPicker.confirmText": "확인",
+	"uAreaPicker.placeholder": "지역을 선택해 주세요",
+	
+	"uCalendar.title": "날짜 선택",
+	"uCalendar.startText": "시작",
+	"uCalendar.endText": "종료",
+	"uCalendar.confirmText": "확인",
+	"uCalendar.confirmDisabledText": "확인",
+	"uCalendar.weekdays": "월,화,수,목,금,토,일",
+
+	"uCascader.title": "선택해 주세요",
+	"uCascader.placeholder": "선택해 주세요",
+
+	"uCode.startText": "인증번호 받기",
+	"uCode.changeText": "X초 후 다시 받기",
+	"uCode.endText": "다시 받기",
+
+	"uDatetimePicker.cancelText": "취소",
+	"uDatetimePicker.confirmText": "확인",
+	"uDatetimePicker.placeholder": "날짜와 시간을 선택해 주세요",
+
+	"uKeyboard.cancelText": "취소",
+	"uKeyboard.confirmText": "확인",
+
+	"uLink.mpTips": "링크가 복사되었습니다. 브라우저에서 열어주세요",
+
+	"uLoadingPage.loadingText": "로딩 중",
+
+	"uLoadmore.loadmoreText": "더 불러오기",
+	"uLoadmore.loadingText": "로딩 중...",
+	"uLoadmore.nomoreText": "더 이상 데이터가 없습니다",
+
+	"uModal.confirmText": "확인",
+	"uModal.cancelText": "취소",
+
+	"uNoNetwork.tips": "아이쿠, 네트워크 신호가 끊겼어요",
+
+	"uPagination.prevText": "이전 페이지",
+	"uPagination.nextText": "다음 페이지",
+
+	"uPicker.cancelText": "취소",
+	"uPicker.confirmText": "확인",
+
+	"uReadMore.closeText": "전체 내용 펼쳐보기",
+	"uReadMore.openText": "접기",
+
+	"uSearch.placeholder": "키워드를 입력해 주세요",
+	"uSearch.actionText": "검색",
+
+	"uSection.subTitle": "더 보기",
+
+	"uTable.emptyText": "데이터가 없습니다",
+
+	"uToolbar.cancelText": "취소",
+	"uToolbar.confirmText": "확인"
+}

@@ -9,13 +9,9 @@
 			v-if="showSubtitle"
 		>{{ subtitle }}</text>
 		<view class="u-calendar-header__weekdays">
-			<text class="u-calendar-header__weekdays__weekday">一</text>
-			<text class="u-calendar-header__weekdays__weekday">二</text>
-			<text class="u-calendar-header__weekdays__weekday">三</text>
-			<text class="u-calendar-header__weekdays__weekday">四</text>
-			<text class="u-calendar-header__weekdays__weekday">五</text>
-			<text class="u-calendar-header__weekdays__weekday">六</text>
-			<text class="u-calendar-header__weekdays__weekday">日</text>
+			<text  v-for="(item, index) in weekdaysList" :key="index" class="u-calendar-header__weekdays__weekday">
+				{{ item }}
+			</text>
 		</view>
 	</view>
 </template>
@@ -47,10 +43,20 @@
 				type: Boolean,
 				default: true
 			},
+			// 星期几
+			weekdays: {
+				type: String,
+				default: ''
+			}
 		},
 		data() {
 			return {
 
+			}
+		},
+		computed: {
+			weekdaysList() {
+				return this.weekdays.split(',')
 			}
 		},
 		methods: {

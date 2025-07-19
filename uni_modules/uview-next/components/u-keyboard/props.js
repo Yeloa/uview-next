@@ -95,14 +95,14 @@ export default {
         cancelText: {
             type: String,
             default() {
-                return uni.$u.props.keyboard.cancelText
+                return uni.$u.$t('uKeyboard.cancelText')
             }
         },
         // 确认按钮的文字
         confirmText: {
             type: String,
             default() {
-                return uni.$u.props.keyboard.confirmText
+                return uni.$u.$t('uKeyboard.confirmText')
             }
         },
         // 输入一个中文后，是否自动切换到英文
