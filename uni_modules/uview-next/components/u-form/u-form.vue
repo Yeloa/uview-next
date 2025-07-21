@@ -53,11 +53,9 @@
 			},
 			// 监听属性的变化，通知子组件u-form-item重新获取信息
 			parentData(n) {
-				if (this.children?.length) {
+				if (this.children.length) {
 					this.children.map((child) => {
-						// 判断子组件(u-form-item)如果有updateParentData方法的话，就就执行(执行的结果是子组件重新从父组件拉取了最新的值)
-						typeof child.updateParentData == "function" &&
-							child.updateParentData();
+						this.$u.test.func(child.updateParentData) && child.updateParentData();
 					});
 				}
 			},
@@ -173,7 +171,7 @@
 											errorsRes.push(...errors);
 											childErrors.push(...errors);
 										}
-										child.message = childErrors[0]?.message ?? null;
+										child.message = childErrors[0].message;
 									}
 								);
 							}

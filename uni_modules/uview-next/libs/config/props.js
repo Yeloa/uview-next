@@ -34,6 +34,7 @@ import Cropper from './props/cropper'
 import Cascader from './props/cascader'
 import DatetimePicker from './props/datetimePicker'
 import Divider from './props/divider'
+import Draggable from './props/draggable'
 import Empty from './props/empty'
 import Ellipsis from './props/ellipsis'
 import Form from './props/form'
@@ -140,6 +141,7 @@ export default {
     ...Cropper,
     ...Cascader,
     ...DatetimePicker,
+    ...Draggable,
     ...Divider,
     ...Empty,
     ...Ellipsis,

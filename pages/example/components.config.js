@@ -2,6 +2,7 @@ export default [{
     groupName: '基础组件',
     groupName_en: 'Basic components',
     list: [
+        
     {
         path: '/pages/componentsB/color/color',
         icon: 'color',
@@ -425,7 +426,13 @@ export default [{
 }, {
     groupName: '其他组件',
     groupName_en: 'Other components',
-    list: [{
+    list: [
+	{
+            path: '/pages/componentsC/draggable/draggable',
+            icon: 'draggable',
+            title: 'Draggable 拖拽排序',
+            title_en: 'Draggable'
+    },{
         path: '/pages/componentsB/parse/parse',
         icon: 'parse',
         title: 'Parse 富文本解析器',

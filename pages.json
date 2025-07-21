@@ -350,6 +350,12 @@
 					}
 				},
 				{
+					"path": "draggable/draggable",
+					"style": {
+						"navigationBarTitleText": "拖拽排序"
+					}
+				},
+				{
 					"path": "amount/amount",
 					"style": {
 						"navigationBarTitleText": "金融数字"

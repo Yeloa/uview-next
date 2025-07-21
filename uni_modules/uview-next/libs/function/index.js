@@ -180,7 +180,7 @@ function addStyle(customStyle, target = 'object') {
  * @param {string|number} value 需要添加单位的值
  * @param {string} unit 添加的单位名 比如px
  */
-function addUnit(value = 'auto', unit = uni?.$u?.config?.unit ?? 'px') {
+function addUnit(value = 'auto', unit = uni.$u.config.unit || 'px') {
 
 	if (unit == 'rpx' && test.number(String(value))) {
 		value = value * 2
@@ -675,7 +675,7 @@ function setProperty(obj, key, value) {
 function page() {
 	const pages = getCurrentPages();
 	// 某些特殊情况下(比如页面进行redirectTo时的一些时机)，pages可能为空数组
-	return `/${pages[pages.length - 1]?.route ?? ''}`;
+	return `/${pages[pages.length - 1]?.route || ''}`;
 }
 
 /**
