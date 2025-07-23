@@ -1,4 +1,13 @@
-## 3.2.7（2025-07-19）
+## 3.2.8（2025-07-22）
+1. 优化`$u.os()`方法，去除小程序下的警告
+2. 优化`areaPicker`组件input相关属性
+3. 优化`datetimePicker`组件input相关属性，以及小程序new Date()再ios设备无效的警告
+4. 优化一些组件在小程序下报数据错误类型的警告
+5. 修复`overlay`由组件引发的一些异常
+6. 修复`cropper`组件方法报错，以及缺失showGrid属性
+7. 其他一些细节优化
+
+## 3.2.7（2025-07-21）
 1. 新增`draggable`拖拽排序组件
 2. 修复`popover`组件边界计算不准确的问题
 3. 修复几处语法错误导致的小程序无法上传
@@ -11,7 +20,7 @@
 
 ## 3.2.5（2025-07-17）
 1. 新增`datetimePicker`组件新增showInput属性
-1. 新增`areaPicker`组件新增showInput属性
+2. 新增`areaPicker`组件新增showInput属性
 3. 修复`calendar`组件`readonly`属性错误
 
 ## 3.2.4（2025-07-16）

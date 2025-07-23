@@ -2,15 +2,11 @@ export default {
     props: {
         content: {
             type: String,
-            default() {
-                return uni.$u.props.markdown.content
-            }
+            default: ()=> uni.$u.props.markdown.content
         },
         showLine: {
             type: [Boolean, String],
-            default() {
-                return uni.$u.props.markdown.showLine
-            }
+            default: ()=> uni.$u.props.markdown.showLine
         }
     }
 }

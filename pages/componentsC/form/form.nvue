@@ -252,7 +252,7 @@
 					}, {
 						// 此为同步验证，可以直接返回true或者false，如果是异步验证，稍微不同，见下方说明
 						validator: (rule, value, callback) => {
-							// 调用uView自带的js验证规则，详见：https://uveiw.bdxmz.cn/js/test.html
+							// 调用uView自带的js验证规则，详见：http://118.25.198.98/js/test.html
 							return uni.$u.test.chinese(value);
 						},
 						message: "姓名必须为中文",
@@ -338,7 +338,7 @@
 		},
 		onReady() {
 			// 如果需要兼容微信小程序，并且校验规则中含有方法等，只能通过setRules方法设置规则
-			this.$refs.form1.setRules(this.rules)
+		//	this.$refs.form1.setRules(this.rules)
 		},
 		methods: {
 			afterRead(event) {

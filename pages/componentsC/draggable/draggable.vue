@@ -1,7 +1,8 @@
 <template>
 	<view class="u-page">
-	
-		<view class="u-demo-block">
+		<u-alert type="error" description="PC端需开启仿真模式测试"></u-alert>
+
+		<view class="u-demo-block" style="margin-top: 10px;">
 			<text class="u-demo-block__title">基础使用 - 禁用</text>
 			<view class="u-demo-block__content">
 				<u-draggable :list="dragList" >
@@ -157,13 +158,6 @@ export default {
 		},
 		onLongpressChange(changeInfo) {
 			console.log('长按拖拽变化:', changeInfo)
-		},
-		onDeleteUpdate(newList) {
-			console.log('带删除按钮列表更新:', newList)
-			this.deleteList = newList
-		},
-		onDeleteChange(changeInfo) {
-			console.log('带删除按钮拖拽变化:', changeInfo)
 		}
 		
 	}
@@ -204,15 +198,14 @@ export default {
 }
 
 .vertical-item {
-	width: 100%;
-	height: 100%;
+	height: 55px;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	background-color: white;
 	border: 1rpx solid #eee;
 	border-radius: 12rpx;
-	padding: 20rpx;
+	padding:0 20rpx;
 	transition: all 300ms ease;
 	position: relative;
 }

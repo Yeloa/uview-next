@@ -3,71 +3,51 @@ export default {
         // 文本内容
         content: {
             type: String,
-            default() {
-                return uni.$u.props.ellipsis.content
-            }
+            default: ()=> uni.$u.props.ellipsis.content
         },
         // 省略位置：start, end, middle
         position: {
             type: String,
-            default() {
-                return uni.$u.props.ellipsis.position
-            }
+            default: ()=> uni.$u.props.ellipsis.position
         },
-        lineHeight:{
+        lineHeight: {
             type: [Number, String],
-            default() {
-                return uni.$u.props.ellipsis.lineHeight
-            }
+            default: ()=> uni.$u.props.ellipsis.lineHeight
         },
         // 行数
         rows: {
             type: [Number, String],
-            default() {
-                return uni.$u.props.ellipsis.rows
-            }
+            default: ()=> uni.$u.props.ellipsis.rows
         },
         // 展开文本
         expandText: {
             type: String,
-            default() {
-                return uni.$u.props.ellipsis.expandText
-            }
+            default: ()=> uni.$u.props.ellipsis.expandText
         },
         // 收起文本
         collapseText: {
             type: String,
-            default() {
-                return uni.$u.props.ellipsis.collapseText
-            }
+            default: ()=> uni.$u.props.ellipsis.collapseText
         },
         // 省略符号
         symbol: {
             type: String,
-            default() {
-                return uni.$u.props.ellipsis.symbol
-            }
+            default: ()=> uni.$u.props.ellipsis.symbol
         },
         // 文本颜色
         color: {
             type: String,
-            default() {
-                return uni.$u.props.ellipsis.color
-            }
+            default: ()=> uni.$u.props.ellipsis.color
         },
         // 文本大小
         fontSize: {
             type: [String, Number],
-            default() {
-                return uni.$u.props.ellipsis.fontSize
-            }
+            default: ()=> uni.$u.props.ellipsis.fontSize
         },
         // 展开/收起按钮颜色
         actionColor: {
             type: String,
-            default() {
-                return uni.$u.props.ellipsis.actionColor
-            }
+            default: ()=> uni.$u.props.ellipsis.actionColor
         }
     }
 }

@@ -6,7 +6,6 @@
             @touchend.prevent="handleTouchEnd">
             <!-- 遮罩层和裁剪框 -->
             <view class="u-cropper__mask">
-
                 <!-- 裁剪框边框 -->
                 <view class="u-cropper__cropbox" :class="[showGrid && 'u-cropper__cropbox_grid', `u-cropper__cropbox_${shape}`]" :style="cropBoxStyle">
                     <view v-if="shape === 'square'" class="u-cropper__edge u-cropper__edge--1"></view>
@@ -34,10 +33,10 @@
                 <text>取消</text>
             </view>
             <view class="cropper__button__choose" @click="chooseImage">
-                <u-icon name="photo" size="36" color="#fff" @click="handleChooseImage"/>
+                <u-icon name="photo" size="36" color="#fff"/>
             </view>
             <view class="cropper__button__rotate" @click="rotateImage">
-                <u-icon name="rotate" size="36" color="#fff" @click="handleRotate"/>
+                <u-icon name="rotate" size="36" color="#fff"/>
             </view>
             <view class="u-cropper__button__confirm" @click="confirmCrop(false)">
                 <text>确定</text>

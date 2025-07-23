@@ -15,12 +15,11 @@
 	>
 		<view
 			class="u-modal"
-			:style="{
+			:style="[{
 				width: $u.addUnit(width),
-			}"
-		>
+			}]">
 			<text class="u-modal__title" v-if="title">{{ title }}</text>
-			<view class="u-modal__content" :style="{paddingTop: $u.addUnit(title ? 12 : 25)}">
+			<view class="u-modal__content" :style="[{paddingTop: $u.addUnit(title ? 12 : 25)}]">
 				<slot>
 					<text class="u-modal__content__text">{{ content }}</text>
 				</slot>
@@ -33,24 +32,22 @@
 				<view
 					class="u-modal__button"
 					:class="[`u-modal__button__${buttonModel}`]"
-					:style="{
+					:style="[{
 						flexDirection: buttonReverse ? 'row-reverse' : 'row'
-					}"
-				>
+					}]">
 					<view v-if="showCancelButton"
 						class="u-modal__button--cancel"
 						:class="[`u-modal__button__${buttonModel}--cancel`]"
 						:hover-class="`u-modal__button__${buttonModel}--hover`"
 						:hover-stay-time="150"
-						:style="cancelButtonStyle"
+						:style="[cancelButtonStyle]"
 						@tap="cancelHandler"
 					>
-                        
 						<text
 							class="u-modal__button__text"
-							:style="{
+							:style="[{
 								color: cancelColor
-							}"
+							}]"
 						>{{ cancelText }}</text>
 					</view>
 					<u-line direction="column" v-if="buttonModel == 'text' && showConfirmButton && showCancelButton"></u-line>
@@ -59,16 +56,16 @@
 						:class="[`u-modal__button__${buttonModel}--confirm`]"
 						:hover-class="`u-modal__button__${buttonModel}--hover`"
 						:hover-stay-time="150"
-						:style="confirmButtonStyle"
+						:style="[confirmButtonStyle]"
 						@tap="confirmHandler"
 					>
 						<u-loading-icon v-if="loading"></u-loading-icon>
 						<text
 							v-else
 							class="u-modal__button__text"
-							:style="{
+							:style="[{
 								color: buttonModel == 'text' ? confirmColor : '#ffffff'
-							}"
+							}]"
 						>{{ confirmText }}</text>
 					</view>
 				</view>

@@ -3,21 +3,21 @@
 		<view class="u-demo-block">
 			<text class="u-demo-block__title">基础使用</text>
 			<view class="u-demo-block__content">
-				<u-qrcode value="https://uveiw.bdxmz.cn/"></u-qrcode>
+				<u-qrcode value="http://118.25.198.98/"></u-qrcode>
 			</view>
 		</view>
 
 		<view class="u-demo-block">
 			<text class="u-demo-block__title">增加logo</text>
 			<view class="u-demo-block__content">
-				<u-qrcode value="https://uveiw.bdxmz.cn/" :options="{ foregroundImageSrc:'https://uveiw.bdxmz.cn/common/logo.png', foregroundImageBackgroundColor:'none' }"></u-qrcode>
+				<u-qrcode value="http://118.25.198.98/" :options="{ foregroundImageSrc:'http://118.25.198.98/common/logo.png', foregroundImageBackgroundColor:'none' }"></u-qrcode>
 			</view>
 		</view>
 		
 		<view class="u-demo-block">
 			<text class="u-demo-block__title">改变颜色和样式</text>
 			<view class="u-demo-block__content">
-				<u-qrcode value="https://uveiw.bdxmz.cn/" :options="{ foregroundColor: '#3eaf7c' }"></u-qrcode>
+				<u-qrcode value="http://118.25.198.98/" :options="{ foregroundColor: '#3eaf7c' }"></u-qrcode>
 			</view>
 		</view>
 	</view>

@@ -22,6 +22,21 @@
 					mode="widthFix"
 				></image>
 			</u-cell>
+			<u-cell title="使用触发器">
+				<image
+					slot="icon"
+					class="u-cell-icon"
+					src="https://cdn.uviewui.com/uview/demo/picker/2.png"
+					mode="widthFix"
+				></image>
+				<template v-slot:value>
+					<u-picker :columns="columns6" closeOnClickOverlay @confirm="confirm8">
+						<template v-slot:trigger="{ indexs, values, value }">
+							<u-input :value="value8" placeholder="请输入内容" disabled-color="#fff" disabled clearable />
+						</template>
+					</u-picker>
+				</template>
+			</u-cell>
 		</u-cell-group>
 		<u-picker
 			:show="show1"
@@ -80,15 +95,6 @@
 			@close="close"
 			@change="change"
 		></u-picker>
-
-		<view style="padding:15px">
-			<view style="font-size:14px;margin-bottom:10px">使用触发器</view>
-			<u-picker :columns="columns6" closeOnClickOverlay @confirm="confirm8">
-				<template #trigger="{ indexs, values, value }">
-					<u-input :modelValue="value8" placeholder="请输入内容" disabled-color="#fff" disabled clearable />
-				</template>
-			</u-picker>
-		</view>
 	</view>
 </template>
 

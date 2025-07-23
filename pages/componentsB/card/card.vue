@@ -2,7 +2,7 @@
 	<view class="">
 		<view class="u-card-wrap">
 			<u-card @click="click" @head-click="headClick" :title="title" :sub-title="subTitle" :thumb="thumb" :padding="padding" :border="border">
-				<template #body> 
+				<template v-slot:body> 
 					<view class="u-body-item">
 						<view class="u-body-item-title u-line-2" style="flex: 1;">
 							瓶身描绘的牡丹一如你初妆，冉冉檀香透过窗心事我了然，宣纸上走笔至此搁一半
@@ -18,7 +18,7 @@
 						<image src="https://img12.360buyimg.com/n7/jfs/t1/102191/19/9072/330688/5e0af7cfE17698872/c91c00d713bf729a.jpg" mode="aspectFill"></image>
 					</view>
 				</template>
-				<template #foot>
+				<template v-slot:foot>
 					<u-icon v-if="bottomSlot" name="chat-fill" size="20" label="30评论"></u-icon>
 				</template>
 			</u-card>
@@ -30,6 +30,7 @@
 	export default {
 		data() {
 			return {
+				border:false,
 				padding:10,
 				title: '素胚勾勒出青花，笔锋浓转淡素胚勾勒出青花，笔锋浓转淡',
 				subTitle: '2020-05-15',

@@ -4,46 +4,34 @@ export default {
         // #ifdef VUE2
         value: {
             type: [Number, String, Array],
-            default() {
-                return uni.$u.props.dropdownItem.value
-            }
+            default: ()=> uni.$u.props.dropdownItem.value
         },
         // #endif
         // #ifdef VUE3
         modelValue: {
             type: [Number, String, Array],
-            default() {
-                return uni.$u.props.dropdownItem.value
-            }
+            default: ()=> uni.$u.props.dropdownItem.value
         },
         // #endif
         // 菜单项标题
         title: {
             type: [String, Number],
-            default() {
-                return uni.$u.props.dropdownItem.title
-            }
+            default: ()=> uni.$u.props.dropdownItem.title
         },
         // 选项数据，如果传入了默认slot，此参数无效
         options: {
             type: Array,
-            default() {
-                return uni.$u.props.dropdownItem.options
-            }
+            default: ()=> uni.$u.props.dropdownItem.options
         },
         // 是否禁用此菜单项
         disabled: {
             type: Boolean,
-            default() {
-                return uni.$u.props.dropdownItem.disabled
-            }
+            default: ()=> uni.$u.props.dropdownItem.disabled
         },
         // 下拉弹窗的高度
         height: {
             type: [Number, String],
-            default() {
-                return uni.$u.props.dropdownItem.height
-            }
+            default: ()=> uni.$u.props.dropdownItem.height
         }
     }
 }

@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view v-if="$slots['trigger']" @click="openPicker">
+		<view class="u-picker-trigger" @click="openPicker">
 			<slot name="trigger" :indexs="innerIndex" :values="innerColumns" :value="innerColumns.map((item, index) => item[innerIndex[index]])"></slot>
 		</view>
 		<u-popup 
@@ -90,8 +90,9 @@
  * @event {Function} confirm	点击确定按钮，返回当前选择的值
  */
 import props from './props.js';
-	import mixin from '../../libs/mixin/mixin'
-	import mpMixin from '../../libs/mixin/mpMixin';
+import mixin from '../../libs/mixin/mixin'
+import mpMixin from '../../libs/mixin/mpMixin';
+
 export default {
 	name: 'u-picker',
 	mixins: [mpMixin, mixin, props],

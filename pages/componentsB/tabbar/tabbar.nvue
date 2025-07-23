@@ -36,10 +36,10 @@
 				activeColor="#d81e06" :safeAreaInsetBottom="false">
 				<u-tabbar-item text="首页">
 					<template #active-icon>
-						<image class="u-page__item__slot-icon" src="https://uveiw.bdxmz.cn/demo/static/uview/common/bell-selected.png"></image>
+						<image class="u-page__item__slot-icon" src="http://118.25.198.98/web/static/uview/common/bell-selected.png"></image>
 					</template>
 					<template #inactive-icon>
-						<image class="u-page__item__slot-icon" src="https://uveiw.bdxmz.cn/demo/static/uview/common/bell.png"></image>
+						<image class="u-page__item__slot-icon" src="http://118.25.198.98/web/static/uview/common/bell.png"></image>
 					</template>
 				</u-tabbar-item>
 				<u-tabbar-item text="放映厅" icon="photo"></u-tabbar-item>

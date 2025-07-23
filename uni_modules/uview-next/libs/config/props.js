@@ -99,6 +99,7 @@ import Switch from './props/switch'
 import Tabbar from './props/tabbar'
 import TabbarItem from './props/tabbarItem'
 import Tabs from './props/tabs'
+import TabsItem from './props/tabsItem'
 import Tag from './props/tag'
 import Text from './props/text'
 import Textarea from './props/textarea'
@@ -207,6 +208,7 @@ export default {
     ...Tabbar,
     ...TabbarItem,
     ...Tabs,
+    ...TabsItem,
     ...Tag,
     ...Text,
     ...Textarea,

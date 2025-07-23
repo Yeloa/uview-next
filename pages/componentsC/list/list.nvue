@@ -30,16 +30,16 @@
 			return {
 				indexList: [],
 				urls: [
-					'https://uveiw.bdxmz.cn/demo/static/uview/album/1.jpg',
-					'https://uveiw.bdxmz.cn/demo/static/uview/album/2.jpg',
-					'https://uveiw.bdxmz.cn/demo/static/uview/album/3.jpg',
-					'https://uveiw.bdxmz.cn/demo/static/uview/album/4.jpg',
-					'https://uveiw.bdxmz.cn/demo/static/uview/album/5.jpg',
-					'https://uveiw.bdxmz.cn/demo/static/uview/album/6.jpg',
-					'https://uveiw.bdxmz.cn/demo/static/uview/album/7.jpg',
-					'https://uveiw.bdxmz.cn/demo/static/uview/album/8.jpg',
-					'https://uveiw.bdxmz.cn/demo/static/uview/album/9.jpg',
-					'https://uveiw.bdxmz.cn/demo/static/uview/album/10.jpg',
+					'http://118.25.198.98/web/static/uview/album/1.jpg',
+					'http://118.25.198.98/web/static/uview/album/2.jpg',
+					'http://118.25.198.98/web/static/uview/album/3.jpg',
+					'http://118.25.198.98/web/static/uview/album/4.jpg',
+					'http://118.25.198.98/web/static/uview/album/5.jpg',
+					'http://118.25.198.98/web/static/uview/album/6.jpg',
+					'http://118.25.198.98/web/static/uview/album/7.jpg',
+					'http://118.25.198.98/web/static/uview/album/8.jpg',
+					'http://118.25.198.98/web/static/uview/album/9.jpg',
+					'http://118.25.198.98/web/static/uview/album/10.jpg',
 				]
 			}
 		},

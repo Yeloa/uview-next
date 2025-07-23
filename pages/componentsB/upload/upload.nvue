@@ -91,7 +91,7 @@
 						width="250"
 						height="150"
 					>
-						<image src="https://uveiw.bdxmz.cn/demo/static/uview/demo/upload/positive.png" mode="widthFix" style="width: 250px;height: 150px;"></image>
+						<image src="http://118.25.198.98/web/static/uview/demo/upload/positive.png" mode="widthFix" style="width: 250px;height: 150px;"></image>
 					</u-upload>
 				</view>
 			</view>
@@ -106,13 +106,13 @@
 				fileList1: [],
 				fileList2: [],
 				fileList3: [{
-					url: 'https://uveiw.bdxmz.cn/demo/static/uview/album/1.jpg',
+					url: 'http://118.25.198.98/web/static/uview/album/1.jpg',
 				}],
 				fileList4: [{
-						url: 'https://uveiw.bdxmz.cn/demo/static/uview/album/1.jpg',
+						url: 'http://118.25.198.98/web/static/uview/album/1.jpg',
 					},
 					{
-						url: 'https://uveiw.bdxmz.cn/demo/static/uview/album/1.jpg',
+						url: 'http://118.25.198.98/web/static/uview/album/1.jpg',
 					}
 				],
 				fileList5: [],

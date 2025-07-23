@@ -3,9 +3,7 @@ export default {
         // 用于滚动到指定item
         anchor: {
             type: [String, Number],
-            default() {
-                return uni.$u.props.listItem.anchor
-            }
+            default: ()=> uni.$u.props.listItem.anchor
         }
     }
 }

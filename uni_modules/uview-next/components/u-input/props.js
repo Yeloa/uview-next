@@ -3,16 +3,12 @@ export default {
 		// 输入的值
 		value: {
 			type: [String, Number],
-			default() {
-				return uni.$u.props.input.value
-			}
+			default: ()=> uni.$u.props.input.value
 		},
 		// #ifdef VUE3
 		modelValue: {
 			type: [String, Number],
-			default() {
-				return uni.$u.props.input.value
-			}
+			default: ()=> uni.$u.props.input.value
 		},
 		// #endif
 		// 输入框类型
@@ -22,230 +18,166 @@ export default {
 		// text-文本输入键盘
 		type: {
 			type: String,
-			default() {
-				return uni.$u.props.input.type
-			}
+			default: ()=> uni.$u.props.input.type
 		},
 		// 如果 textarea 是在一个 position:fixed 的区域，需要显示指定属性 fixed 为 true，
 		// 兼容性：微信小程序、百度小程序、字节跳动小程序、QQ小程序
 		fixed: {
 			type: Boolean,
-			default() {
-				return uni.$u.props.input.fixed
-			}
+			default: ()=> uni.$u.props.input.fixed
 		},
 		// 是否禁用输入框
 		disabled: {
 			type: Boolean,
-			default() {
-				return uni.$u.props.input.disabled
-			}
+			default: ()=> uni.$u.props.input.disabled
 		},
 		// 禁用状态时的背景色
 		disabledColor: {
 			type: String,
-			default() {
-				return uni.$u.props.input.disabledColor
-			}
+			default: ()=> uni.$u.props.input.disabledColor
 		},
 		// 是否显示清除控件
 		clearable: {
 			type: Boolean,
-			default() {
-				return uni.$u.props.input.clearable
-			}
+			default: ()=> uni.$u.props.input.clearable
 		},
 		// 是否密码类型
 		password: {
 			type: Boolean,
-			default() {
-				return uni.$u.props.input.password
-			}
+			default: ()=> uni.$u.props.input.password
 		},
 		// 最大输入长度，设置为 -1 的时候不限制最大长度
 		maxlength: {
 			type: [String, Number],
-			default() {
-				return uni.$u.props.input.maxlength
-			}
+			default: ()=> uni.$u.props.input.maxlength
 		},
 		// 	输入框为空时的占位符
 		placeholder: {
 			type: String,
-			default() {
-				return uni.$u.props.input.placeholder
-			}
+			default: ()=> uni.$u.props.input.placeholder
 		},
 		// 指定placeholder的样式类，注意页面或组件的style中写了scoped时，需要在类名前写/deep/
 		placeholderClass: {
 			type: String,
-			default() {
-				return uni.$u.props.input.placeholderClass
-			}
+			default: ()=> uni.$u.props.input.placeholderClass
 		},
 		// 指定placeholder的样式
 		placeholderStyle: {
 			type: [String, Object],
-			default() {
-				return uni.$u.props.input.placeholderStyle
-			}
+			default: ()=> uni.$u.props.input.placeholderStyle
 		},
 		// 设置右下角按钮的文字，有效值：send|search|next|go|done，兼容性详见uni-app文档
 		// https://uniapp.dcloud.io/component/input
 		// https://uniapp.dcloud.io/component/textarea
 		confirmType: {
 			type: String,
-			default() {
-				return uni.$u.props.input.confirmType
-			}
+			default: ()=> uni.$u.props.input.confirmType
 		},
 		// 点击键盘右下角按钮时是否保持键盘不收起，H5无效
 		confirmHold: {
 			type: Boolean,
-			default() {
-				return uni.$u.props.input.confirmHold
-			}
+			default: ()=> uni.$u.props.input.confirmHold
 		},
 		// focus时，点击页面的时候不收起键盘，微信小程序有效
 		holdKeyboard: {
 			type: Boolean,
-			default() {
-				return uni.$u.props.input.holdKeyboard
-			}
+			default: ()=> uni.$u.props.input.holdKeyboard
 		},
 		// 自动获取焦点
 		// 在 H5 平台能否聚焦以及软键盘是否跟随弹出，取决于当前浏览器本身的实现。nvue 页面不支持，需使用组件的 focus()、blur() 方法控制焦点
 		focus: {
 			type: Boolean,
-			default() {
-				return uni.$u.props.input.focus
-			}
+			default: ()=> uni.$u.props.input.focus
 		},
 		// 键盘收起时，是否自动失去焦点，目前仅App3.0.0+有效
 		autoBlur: {
 			type: Boolean,
-			default() {
-				return uni.$u.props.input.autoBlur
-			}
+			default: ()=> uni.$u.props.input.autoBlur
 		},
 		// 是否去掉 iOS 下的默认内边距，仅微信小程序，且type=textarea时有效
 		disableDefaultPadding: {
 			type: Boolean,
-			default() {
-				return uni.$u.props.input.disableDefaultPadding
-			}
+			default: ()=> uni.$u.props.input.disableDefaultPadding
 		},
 		// 强制 input 处于同层状态，默认 focus 时 input 会切到非同层状态 （ 默认 false ）
 		alwaysEmbed: {
 			type: [Boolean],
-			default() {
-				return uni.$u.props.input.alwaysEmbed
-			}
+			default: ()=> uni.$u.props.input.alwaysEmbed
 		},
 		// 指定focus时光标的位置
 		cursor: {
 			type: [String, Number],
-			default() {
-				return uni.$u.props.input.cursor
-			}
+			default: ()=> uni.$u.props.input.cursor
 		},
 		// 输入框聚焦时底部与键盘的距离
 		cursorSpacing: {
 			type: [String, Number],
-			default() {
-				return uni.$u.props.input.cursorSpacing
-			}
+			default: ()=> uni.$u.props.input.cursorSpacing
 		},
 		// 光标起始位置，自动聚集时有效，需与selection-end搭配使用
 		selectionStart: {
 			type: [String, Number],
-			default() {
-				return uni.$u.props.input.selectionStart
-			}
+			default: ()=> uni.$u.props.input.selectionStart
 		},
 		// 光标结束位置，自动聚集时有效，需与selection-start搭配使用
 		selectionEnd: {
 			type: [String, Number],
-			default() {
-				return uni.$u.props.input.selectionEnd
-			}
+			default: ()=> uni.$u.props.input.selectionEnd
 		},
 		// 键盘弹起时，是否自动上推页面
 		adjustPosition: {
 			type: Boolean,
-			default() {
-				return uni.$u.props.input.adjustPosition
-			}
+			default: ()=> uni.$u.props.input.adjustPosition
 		},
 		// 输入框内容对齐方式，可选值为：left|center|right
 		inputAlign: {
 			type: String,
-			default() {
-				return uni.$u.props.input.inputAlign
-			}
+			default: ()=> uni.$u.props.input.inputAlign
 		},
 		// 输入框字体的大小
 		fontSize: {
 			type: [String, Number],
-			default() {
-				return uni.$u.props.input.fontSize
-			}
+			default: ()=> uni.$u.props.input.fontSize
 		},
 		// 输入框字体颜色
 		color: {
 			type: String,
-			default() {
-				return uni.$u.props.input.color
-			}
+			default: ()=> uni.$u.props.input.color
 		},
 		// 输入框前置图标
 		prefixIcon: {
 			type: String,
-			default() {
-				return uni.$u.props.input.prefixIcon
-			}
+			default: ()=> uni.$u.props.input.prefixIcon
 		},
 		// 前置图标样式，对象或字符串
 		prefixIconStyle: {
 			type: [String, Object],
-			default() {
-				return uni.$u.props.input.prefixIconStyle
-			}
+			default: ()=> uni.$u.props.input.prefixIconStyle
 		},
 		// 输入框后置图标
 		suffixIcon: {
 			type: String,
-			default() {
-				return uni.$u.props.input.suffixIcon
-			}
+			default: ()=> uni.$u.props.input.suffixIcon
 		},
 		// 后置图标样式，对象或字符串
 		suffixIconStyle: {
 			type: [String, Object],
-			default() {
-				return uni.$u.props.input.suffixIconStyle
-			}
+			default: ()=> uni.$u.props.input.suffixIconStyle
 		},
 		// 边框类型，surround-四周边框，bottom-底部边框，none-无边框
 		border: {
 			type: String,
-			default() {
-				return uni.$u.props.input.border
-			}
+			default: ()=> uni.$u.props.input.border
 		},
 		// 是否只读，与disabled不同之处在于disabled会置灰组件，而readonly则不会
 		readonly: {
 			type: Boolean,
-			default() {
-				return uni.$u.props.input.readonly
-			}
+			default: ()=> uni.$u.props.input.readonly
 		},
 		// 输入框形状，circle-圆形，square-方形
 		shape: {
 			type: String,
-			default() {
-				return uni.$u.props.input.shape
-			}
+			default: ()=> uni.$u.props.input.shape
 		},
 		// 用于处理或者过滤输入框内容的方法
 		formatter: {
@@ -255,30 +187,22 @@ export default {
 		// 是否忽略组件内对文本合成系统事件的处理
 		ignoreCompositionEvent: {
 			type: Boolean,
-			default() {
-				return uni.$u.props.input.ignoreCompositionEvent
-			}
+			default: ()=> uni.$u.props.input.ignoreCompositionEvent
 		},
 		// 背景颜色
 		backgroundColor: {
 			type: String,
-			default() {
-				return uni.$u.props.input.backgroundColor
-			}
+			default: ()=> uni.$u.props.input.backgroundColor
 		},
 		// 边框圆角
 		round: {
 			type: String,
-			default() {
-				return uni.$u.props.input.round
-			}
+			default: ()=> uni.$u.props.input.round
 		},
 		// 边框颜色
 		borderColor: {	
 			type: String,
-			default() {
-				return uni.$u.props.input.borderColor
-			}
+			default: ()=> uni.$u.props.input.borderColor
 		}
 	}
 }

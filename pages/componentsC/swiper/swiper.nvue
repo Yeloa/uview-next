@@ -104,67 +104,67 @@
 				current: 0,
 				currentNum: 0,
 				list: [{
-						// image: 'https://uveiw.bdxmz.cn/demo/static/uview/resources/video.mp4',
-						image: 'https://uveiw.bdxmz.cn/demo/static/uview/album/1.jpg',
+						// image: 'http://118.25.198.98/web/static/uview/resources/video.mp4',
+						image: 'http://118.25.198.98/web/static/uview/album/1.jpg',
 						title: '昨夜星辰昨夜风，画楼西畔桂堂东',
-						poster: 'https://uveiw.bdxmz.cn/demo/static/uview/album/1.jpg'
+						poster: 'http://118.25.198.98/web/static/uview/album/1.jpg'
 					},
 					{
-						image: 'https://uveiw.bdxmz.cn/demo/static/uview/album/2.jpg',
+						image: 'http://118.25.198.98/web/static/uview/album/2.jpg',
 						title: '身无彩凤双飞翼，心有灵犀一点通'
 					},
 					{
-						image: 'https://uveiw.bdxmz.cn/demo/static/uview/album/3.jpg',
+						image: 'http://118.25.198.98/web/static/uview/album/3.jpg',
 						title: '谁念西风独自凉，萧萧黄叶闭疏窗，沉思往事立残阳'
 					}
 				],
 				list1: [
-					'https://uveiw.bdxmz.cn/demo/static/uview/album/1.jpg',
-					'https://uveiw.bdxmz.cn/demo/static/uview/album/2.jpg',
-					'https://uveiw.bdxmz.cn/demo/static/uview/album/3.jpg',
+					'http://118.25.198.98/web/static/uview/album/1.jpg',
+					'http://118.25.198.98/web/static/uview/album/2.jpg',
+					'http://118.25.198.98/web/static/uview/album/3.jpg',
 				],
 				list2: [{
-						image: 'https://uveiw.bdxmz.cn/demo/static/uview/album/2.jpg',
+						image: 'http://118.25.198.98/web/static/uview/album/2.jpg',
 						title: '昨夜星辰昨夜风，画楼西畔桂堂东',
 						type: 'image',
 					},
 					{
-						image: 'https://uveiw.bdxmz.cn/demo/static/uview/album/1.jpg',
+						image: 'http://118.25.198.98/web/static/uview/album/1.jpg',
 						title: '身无彩凤双飞翼，心有灵犀一点通'
 					},
 					{
-						image: 'https://uveiw.bdxmz.cn/demo/static/uview/album/3.jpg',
+						image: 'http://118.25.198.98/web/static/uview/album/3.jpg',
 						title: '谁念西风独自凉，萧萧黄叶闭疏窗，沉思往事立残阳'
 					}
 				],
 				list3: [
-					'https://uveiw.bdxmz.cn/demo/static/uview/album/3.jpg',
-					'https://uveiw.bdxmz.cn/demo/static/uview/album/2.jpg',
-					'https://uveiw.bdxmz.cn/demo/static/uview/album/1.jpg',
+					'http://118.25.198.98/web/static/uview/album/3.jpg',
+					'http://118.25.198.98/web/static/uview/album/2.jpg',
+					'http://118.25.198.98/web/static/uview/album/1.jpg',
 				],
 				list4: [{
-						url: 'https://uveiw.bdxmz.cn/demo/static/uview/resources/video.mp4',
+						url: 'http://118.25.198.98/web/static/uview/resources/video.mp4',
 						title: '昨夜星辰昨夜风，画楼西畔桂堂东',
-						poster: 'https://uveiw.bdxmz.cn/demo/static/uview/album/1.jpg',
+						poster: 'http://118.25.198.98/web/static/uview/album/1.jpg',
 					},
 					{
-						url: 'https://uveiw.bdxmz.cn/demo/static/uview/album/2.jpg',
+						url: 'http://118.25.198.98/web/static/uview/album/2.jpg',
 						title: '身无彩凤双飞翼，心有灵犀一点通'
 					},
 					{
-						url: 'https://uveiw.bdxmz.cn/demo/static/uview/album/3.jpg',
+						url: 'http://118.25.198.98/web/static/uview/album/3.jpg',
 						title: '谁念西风独自凉，萧萧黄叶闭疏窗，沉思往事立残阳'
 					}
 				],
 				list5: [
-					'https://uveiw.bdxmz.cn/demo/static/uview/album/3.jpg',
-					'https://uveiw.bdxmz.cn/demo/static/uview/album/2.jpg',
-					'https://uveiw.bdxmz.cn/demo/static/uview/album/1.jpg',
+					'http://118.25.198.98/web/static/uview/album/3.jpg',
+					'http://118.25.198.98/web/static/uview/album/2.jpg',
+					'http://118.25.198.98/web/static/uview/album/1.jpg',
 				],
 				list6: [
-					'https://uveiw.bdxmz.cn/demo/static/uview/album/2.jpg',
-					'https://uveiw.bdxmz.cn/demo/static/uview/album/3.jpg',
-					'https://uveiw.bdxmz.cn/demo/static/uview/album/1.jpg',
+					'http://118.25.198.98/web/static/uview/album/2.jpg',
+					'http://118.25.198.98/web/static/uview/album/3.jpg',
+					'http://118.25.198.98/web/static/uview/album/1.jpg',
 				]
 			}
 		},

@@ -4,7 +4,7 @@
 	    custom-class="u-overlay"
 	    :duration="duration"
 	    :custom-style="overlayStyle"
-		@tap.stop="clickHandler"
+	    @tap.stop="clickHandler"
 		@touchmove.stop.prevent="noop"
 	>
 		<slot />
@@ -40,11 +40,9 @@
 					right: 0,
 					zIndex: this.zIndex,
 					bottom: 0,
-					width: '100%',
-					height: '100%',
-					'background-color': `rgba(0, 0, 0, ${this.opacity})`
+					backgroundColor: `rgba(0, 0, 0, ${this.opacity})`
 				}
-				return uni.$u.deepMerge(style)
+				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
 			}
 		},
 		// #ifdef VUE3
@@ -62,6 +60,8 @@
 	@import "../../libs/css/components.scss";
      $u-overlay-top:0 !default;
      $u-overlay-left:0 !default;
+	 $u-overlay-bottom:0 !default;
+     $u-overlay-right:0 !default;
      $u-overlay-width:100% !default;
      $u-overlay-height:100% !default;
      $u-overlay-background-color:rgba(0, 0, 0, .7) !default;
@@ -69,8 +69,8 @@
 		position: fixed;
 		top:$u-overlay-top;
 		left:$u-overlay-left;
-		right: 0;
-		bottom: 0;
+		right:$u-overlay-right;
+		bottom:$u-overlay-bottom;
 		width: $u-overlay-width;
 		height:$u-overlay-height;
 		background-color:$u-overlay-background-color;

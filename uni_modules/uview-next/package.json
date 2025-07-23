@@ -2,7 +2,7 @@
   "id": "uview-next",
   "name": "uview-next",
   "displayName": "uView Next领航发布，兼容Vue3，组件生态新基建",
-  "version": "3.2.6",
+  "version": "3.2.7",
   "description": "基于uView UI 2.0，支持vue2和vue3，80+精选组件，搭配便捷工具助力，让开发如鱼得水",
   "keywords": [
     "uview",
@@ -25,7 +25,7 @@
       }
     },
     "contact": {
-      "qq": "335062722"
+      "qq": ""
     },
     "declaration": {
       "ads": "无",

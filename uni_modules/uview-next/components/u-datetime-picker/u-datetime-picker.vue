@@ -24,13 +24,27 @@
 				<u-input 
 					v-if="showInput"
 					:value="inputValue"
-					:clearable="clearable"
-					:placeholder="placeholder"
-					:disabled="disabled"
-					:border="border"
-					:round="borderRadius"
-					:backgroundColor="disabled ? '' : backgroundColor"
-					:disabledColor="disabled ? backgroundColor : ''"
+					:clearable="inputProps.clearable"
+					:placeholder="inputProps.placeholder"
+					:disabled="inputProps.disabled"
+					:border="inputProps.border"
+					:round="inputProps.round"
+					:backgroundColor="inputProps.disabled ? '' : inputProps.backgroundColor"
+					:disabledColor="inputProps.disabled ? inputProps.backgroundColor : ''"
+					:placeholderClass="inputProps.placeholderClass"
+					:placeholderStyle="inputProps.placeholderStyle"
+					:confirmType="inputProps.confirmType"
+					:focus="inputProps.focus"
+					:inputAlign="inputProps.inputAlign"
+					:fontSize="inputProps.fontSize"
+					:color="inputProps.color"
+					:borderColor="inputProps.borderColor"
+					:prefixIcon="inputProps.prefixIcon"
+					:suffixIcon="inputProps.suffixIcon"
+					:suffixIconStyle="inputProps.suffixIconStyle"
+					:prefixIconStyle="inputProps.prefixIconStyle"
+					:shape="inputProps.shape"
+					:customStyle="inputProps.customStyle"
 				 />
 			</slot>
 		</template>
@@ -123,13 +137,16 @@ export default {
 	// #endif
 	methods: {
 		init() {
-			
+			let value = ''
 			// #ifdef VUE2
-			this.innerValue = this.correctValue(this.value)
+			value = this.value;
 			// #endif
 			// #ifdef VUE3
-			this.innerValue = this.correctValue(this.modelValue)
+			value = this.modelValue;
 			// #endif
+
+			value = this.$u.os() === 'ios' && this.mode === 'datetime' ? value.toString().replace(/-/g, "/") : value
+			this.innerValue = this.correctValue(value)
 			this.updateColumnValue(this.innerValue)
 		},
 		// 在微信小程序中，不支持将函数当做props参数，故只能通过ref形式调用

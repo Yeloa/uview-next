@@ -73,8 +73,8 @@
 export default {
 	data() {
 		return {
-			goodsBaseUrl: 'https://uveiw.bdxmz.cn/demo/static/uview/goods/',
-			menuBaseUrl: 'https://uveiw.bdxmz.cn/demo/static/uview/menu/',
+			goodsBaseUrl: 'http://118.25.198.98/web/static/uview/goods/',
+			menuBaseUrl: 'http://118.25.198.98/web/static/uview/menu/',
 			goodsArr: [{
 					price: '230.5',
 					thumbnail: '1.jpg'

@@ -77,7 +77,7 @@
 	export default {
 		data() {
 			return {
-				src: 'https://uveiw.bdxmz.cn/demo/static/uview/album/1.jpg',
+				src: 'http://118.25.198.98/web/static/uview/album/1.jpg',
 				src1:''
 			}
 		},

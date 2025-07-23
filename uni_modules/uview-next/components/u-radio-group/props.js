@@ -3,135 +3,97 @@ export default {
         // 绑定的值
         value: {
             type: [String, Number, Boolean],
-            default() {
-                return uni.$u.props.radioGroup.value
-            }
+            default: () => uni.$u.props.radioGroup.value
         },
         // #ifdef VUE3
 		modelValue: {
 			type: [String, Number, Boolean],
-			default() {
-                return uni.$u.props.radioGroup.value
-		    }
+			default: () => uni.$u.props.radioGroup.value
         },
 		// #endif
         // 是否禁用全部radio
         disabled: {
             type: Boolean,
-            default() {
-                return uni.$u.props.radioGroup.disabled
-            }
+            default: () => uni.$u.props.radioGroup.disabled
         },
         // 形状，circle-圆形，square-方形
         shape: {
             type: String,
-            default() {
-                return uni.$u.props.radioGroup.shape
-            }
+            default: () => uni.$u.props.radioGroup.shape
         },
         // 选中状态下的颜色，如设置此值，将会覆盖parent的activeColor值
         activeColor: {
             type: String,
-            default() {
-                return uni.$u.props.radioGroup.activeColor
-            }
+            default: () => uni.$u.props.radioGroup.activeColor
         },
         // 未选中的颜色
         inactiveColor: {
             type: String,
-            default() {
-                return uni.$u.props.radioGroup.inactiveColor
-            }
+            default: () => uni.$u.props.radioGroup.inactiveColor
         },
         // 标识符
         name: {
             type: String,
-            default() {
-                return uni.$u.props.radioGroup.name
-            }
+            default: () => uni.$u.props.radioGroup.name
         },
         // 整个组件的尺寸，默认px
         size: {
             type: [String, Number],
-            default() {
-                return uni.$u.props.radioGroup.size
-            }
+            default: () => uni.$u.props.radioGroup.size
         },
         // 布局方式，row-横向，column-纵向
         placement: {
             type: String,
-            default() {
-                return uni.$u.props.radioGroup.placement
-            }
+            default: () => uni.$u.props.radioGroup.placement
         },
         // label的文本
         label: {
             type: [String],
-            default() {
-                return uni.$u.props.radioGroup.label
-            }
+            default: () => uni.$u.props.radioGroup.label
         },
         // label的颜色 （默认 '#303133' ）
         labelColor: {
             type: [String],
-            default() {
-                return uni.$u.props.radioGroup.labelColor
-            }
+            default: () => uni.$u.props.radioGroup.labelColor
         },
         // label的字体大小，px单位
         labelSize: {
             type: [String, Number],
-            default() {
-                return uni.$u.props.radioGroup.labelSize
-            }
+            default: () => uni.$u.props.radioGroup.labelSize
         },
         // 是否禁止点击文本操作checkbox(默认 false )
         labelDisabled: {
             type: Boolean,
-            default() {
-                return uni.$u.props.radioGroup.labelDisabled
-            }
+            default: () => uni.$u.props.radioGroup.labelDisabled
         },
         // 图标颜色
         iconColor: {
             type: String,
-            default() {
-                return uni.$u.props.radioGroup.iconColor
-            }
+            default: () => uni.$u.props.radioGroup.iconColor
         },
         // 图标的大小，单位px
         iconSize: {
             type: [String, Number],
-            default() {
-                return uni.$u.props.radioGroup.iconSize
-            }
+            default: () => uni.$u.props.radioGroup.iconSize
         },
         // 竖向配列时，是否显示下划线
         borderBottom: {
             type: Boolean,
-            default() {
-                return uni.$u.props.radioGroup.borderBottom
-            }
+            default: () => uni.$u.props.radioGroup.borderBottom
         },
         // 图标与文字的对齐方式
         iconPlacement: {
             type: String,
-            default() {
-                return uni.$u.props.radioGroup.iconPlacement
-            }
+            default: () => uni.$u.props.radioGroup.iconPlacement
         },
         // label的颜色
         activeLabelColor: {
             type: String,
-            default() {
-                return uni.$u.props.radioGroup.activeLabelColor
-            }
+            default: () => uni.$u.props.radioGroup.activeLabelColor
         },
         plain: {
             type: Boolean,
-            default() {
-                return uni.$u.props.radioGroup.plain
-            }
+            default: () => uni.$u.props.radioGroup.plain
         }
     }
 }

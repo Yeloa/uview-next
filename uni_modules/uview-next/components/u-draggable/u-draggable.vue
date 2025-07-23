@@ -533,7 +533,7 @@ export default {
 		justify-content: center;
 		right: 0;
 		top: 0;
-
+		
 		&-inner {
 			display: flex;
 			align-items: center;
@@ -569,6 +569,7 @@ export default {
 		z-index: 2;
 		transition: opacity 300ms ease;
 		box-sizing: border-box;
+		
 	}
 
 	&__active {

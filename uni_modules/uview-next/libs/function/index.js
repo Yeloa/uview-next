@@ -46,7 +46,7 @@ function sleep(value = 30) {
  * @link 运行期判断平台 https://uniapp.dcloud.io/frame?id=判断平台
  */
 function os() {
-	return uni.getSystemInfoSync().osName.toLowerCase();
+	return uni.getDeviceInfo().osName.toLowerCase();
 }
 /**
  * @description 获取系统信息同步接口

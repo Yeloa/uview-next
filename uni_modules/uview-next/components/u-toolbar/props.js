@@ -3,44 +3,32 @@ export default {
         // 是否展示工具条
         show: {
             type: Boolean,
-            default() {
-                return uni.$u.props.toolbar.show
-            }
+            default: () => uni.$u.props.toolbar.show
         },
         // 取消按钮的文字
         cancelText: {
             type: String,
-            default() {
-                return uni.$u.$t('uToolbar.cancelText')
-            }
+            default: () => uni.$u.$t('uToolbar.cancelText')
         },
         // 确认按钮的文字
         confirmText: {
             type: String,
-            default() {
-                return uni.$u.$t('uToolbar.confirmText')
-            }
+            default: () => uni.$u.$t('uToolbar.confirmText')
         },
         // 取消按钮的颜色
         cancelColor: {
             type: String,
-            default() {
-                return uni.$u.props.toolbar.cancelColor
-            }
+            default: () => uni.$u.props.toolbar.cancelColor
         },
         // 确认按钮的颜色
         confirmColor: {
             type: String,
-            default() {
-                return uni.$u.props.toolbar.confirmColor
-            }
+            default: () => uni.$u.props.toolbar.confirmColor
         },
         // 标题文字
         title: {
             type: String,
-            default() {
-                return uni.$u.props.toolbar.title
-            }
+            default: () => uni.$u.props.toolbar.title
         }
     }
 }

@@ -72,9 +72,9 @@ function hello() {
 
 #### 链接和图片
 
-[uView Next官网](https://uveiw.bdxmz.cn/)
+[uView Next官网](http://118.25.198.98/)
 
-![示例图片](https://uveiw.bdxmz.cn/common/logo.png)
+![示例图片](http://118.25.198.98/common/logo.png)
 
 ---
 

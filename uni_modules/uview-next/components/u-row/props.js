@@ -3,23 +3,17 @@ export default {
         // 给col添加间距，左右边距各占一半
         gutter: {
             type: [String, Number],
-            default() {
-                return uni.$u.props.row.gutter
-            }
+            default: () => uni.$u.props.row.gutter
         },
         // 水平排列方式，可选值为`start`(或`flex-start`)、`end`(或`flex-end`)、`center`、`around`(或`space-around`)、`between`(或`space-between`)
         justify: {
             type: String,
-            default() {
-                return uni.$u.props.row.justify
-            }
+            default: () => uni.$u.props.row.justify
         },
         // 垂直对齐方式，可选值为top、center、bottom
         align: {
             type: String,
-            default() {
-                return uni.$u.props.row.align
-            }
+            default: () => uni.$u.props.row.align
         }
     }
 }

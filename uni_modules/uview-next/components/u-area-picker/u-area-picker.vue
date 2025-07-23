@@ -26,16 +26,30 @@
 		<template v-slot:trigger>
 			<slot name="trigger">
 				<u-input 
-					v-if="showInput" 
+					v-if="showInput"
 					:value="inputValue"
-					:clearable="clearable"
-					:placeholder="placeholder"
-					:disabled="disabled"
-					:border="border"
-					:round="borderRadius"
-					:backgroundColor="disabled ? '' : backgroundColor"
-					:disabledColor="disabled ? backgroundColor : ''"
-				/>
+					:clearable="inputProps.clearable"
+					:placeholder="inputProps.placeholder"
+					:disabled="inputProps.disabled"
+					:border="inputProps.border"
+					:round="inputProps.round"
+					:backgroundColor="inputProps.disabled ? '' : inputProps.backgroundColor"
+					:disabledColor="inputProps.disabled ? inputProps.backgroundColor : ''"
+					:placeholderClass="inputProps.placeholderClass"
+					:placeholderStyle="inputProps.placeholderStyle"
+					:confirmType="inputProps.confirmType"
+					:focus="inputProps.focus"
+					:inputAlign="inputProps.inputAlign"
+					:fontSize="inputProps.fontSize"
+					:color="inputProps.color"
+					:borderColor="inputProps.borderColor"
+					:prefixIcon="inputProps.prefixIcon"
+					:suffixIcon="inputProps.suffixIcon"
+					:suffixIconStyle="inputProps.suffixIconStyle"
+					:prefixIconStyle="inputProps.prefixIconStyle"
+					:shape="inputProps.shape"
+					:customStyle="inputProps.customStyle"
+				 />
 			</slot>
 		</template>
 	</u-picker>
@@ -132,7 +146,7 @@ export default {
 			this.columns = columns;
 			this.innerDefaultIndex = innerDefaultIndex;
 			if(this.showInput && currentValue.length > 0){
-				this.inputValue = innerDefaultLabel.join(this.separator)
+				this.inputValue = innerDefaultLabel.join(this.inputProps.separator)
 			}
 		
 		},
@@ -244,7 +258,7 @@ export default {
 
 			if(this.showInput){
 				let label = e.value.map(item => item.label)
-				this.inputValue = label.join(this.separator)
+				this.inputValue = label.join(this.inputProps.separator)
 			}
 			
 			// #ifdef VUE2
