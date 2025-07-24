@@ -43,8 +43,8 @@ export default {
             show: false,
             style: {
                 position: "fixed",
-                top: `${uni.$u.sys().windowHeight / 2 - 50}px`,
-                left: `${uni.$u.sys().windowWidth / 2 - 50}px`,
+                top: `${uni.$u.window().windowHeight / 2 - 50}px`,
+                left: `${uni.$u.window().windowWidth / 2 - 50}px`,
                 width: "120px",
                 height: "120px",
                 backgroundColor: "#1989fa",

@@ -2,7 +2,7 @@ export default {
     props: {
         // 显示的内容，字符串
         text: {
-            type: String,
+            type: [String, Array],
             default: () => uni.$u.props.rowNotice.text
         },
         // 是否显示左侧的音量图标

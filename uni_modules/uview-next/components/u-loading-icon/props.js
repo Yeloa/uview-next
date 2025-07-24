@@ -7,7 +7,7 @@ export default {
         },
         // 颜色
         color: {
-            type: [String, null],
+            type: String,
             default: () => uni.$u.props.loadingIcon.color
         },
         // 提示文字颜色

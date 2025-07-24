@@ -1,5 +1,5 @@
 import enUS from './en-US.json'
-import zhCN from './zh-CN.json'
+import zhCN from './zh-Hans.json'
 import zhHK from './zh-HK.json'
 
 // #ifdef VUE2

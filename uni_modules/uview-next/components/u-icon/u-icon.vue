@@ -120,7 +120,11 @@
 			},
 			// 判断传入的name属性，是否图片路径，只要带有"/"均认为是图片形式
 			isImg() {
-				return this.name.indexOf('/') !== -1
+				if(this.name){
+					return this.name.includes('/')
+				}else{
+					return false
+				}
 			},
 			imgStyle() {
 				let style = {}

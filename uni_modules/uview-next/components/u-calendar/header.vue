@@ -30,7 +30,7 @@
 			},
 			// 副标题
 			subtitle: {
-				type: [String, null],
+				type: String,
 				default: ''
 			},
 			// 是否显示标题

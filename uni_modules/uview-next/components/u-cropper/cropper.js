@@ -14,7 +14,7 @@ export default class ImageCropper {
         this.fileType = options.fileType || 'jpg';
         this.quality = options.quality || 0.8;
 
-        const { windowWidth, windowHeight, pixelRatio } = uni.getSystemInfoSync();
+        const { windowWidth, windowHeight } = uni.$u.window();
 
         // 画布尺寸（显示区域）
         this.canvasWidth = options.canvasWidth || windowWidth;

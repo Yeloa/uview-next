@@ -2,12 +2,12 @@ export default {
     props: {
         // 图标类名
         name: {
-            type: [String, null],
+            type: String,
             default: ()=> uni.$u.props.icon.name
         },
         // 图标颜色，可接受主题色
         color: {
-            type: [String, null],
+            type: String,
             default: ()=> uni.$u.props.icon.color
         },
         // 字体大小，单位px

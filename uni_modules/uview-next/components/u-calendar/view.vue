@@ -11,6 +11,7 @@
 			:style="{
 				height: $u.addUnit(listHeight)
 			}"
+			enable-flex
 			scroll-y
 			@scroll="onScroll"
 			:scroll-top="scrollTop"

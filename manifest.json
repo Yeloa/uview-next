@@ -60,11 +60,13 @@
     "uniStatistics" : {
         "enable" : false
     },
-    "vueVersion" : "2",
+    "vueVersion" : "3",
     "h5" : {
         "router" : {
             "mode" : "hash",
             "base" : "/web/"
         }
-    }
+    },
+    "fallbackLocale" : "zh-Hans",
+    "locale" : "zh-Hans"
 }

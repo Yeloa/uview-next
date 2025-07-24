@@ -109,7 +109,7 @@ export default {
 				const sampleText = this.content.slice(0, 1)
 				const { height, width } = await this.measureTextHeight(sampleText)
 				const maxAllowedHeight = (height || 20) * Number(this.rows)
-				console.log(height, width)
+				
 				// 检查原文本是否需要省略
 				const originalTextHeight = await this.measureTextHeight(this.content)
 				

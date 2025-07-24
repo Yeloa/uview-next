@@ -42,7 +42,7 @@
 				:class="[`u-tag__close--${size}`]"
 				v-if="closable"
 				@tap.stop="closeHandler"
-				:style="{backgroundColor: closeColor}"
+				:style="[{backgroundColor: closeColor}]"
 			>
 				<u-icon
 					name="close"
@@ -86,7 +86,7 @@
 		mixins: [mpMixin, mixin, props],
 		data() {
 			return {
-
+				elIconColor: ''
 			}
 		},
 		computed: {
@@ -130,15 +130,14 @@
 			iconSize() {
 				const size = this.size === 'large' ? 21 : this.size === 'medium' ? 19 : 16
 				return size
-			},
-			// 图标颜色
-			elIconColor() {
-				return this.iconColor ? this.iconColor : this.plain ? this.type : '#ffffff'
 			}
 		},
 		// #ifdef VUE3
 		emits: ["click", "close"],
 		// #endif
+		mounted() {
+			this.elIconColor = this.iconColor ? this.iconColor : this.plain ? this.type : '#ffffff'
+		},
 		methods: {
 			// 点击关闭按钮
 			closeHandler() {

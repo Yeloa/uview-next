@@ -62,8 +62,8 @@ const modal = weex.requireModule('modal');
 // #endif
 
 import props from './props.js';
-	import mixin from '../../libs/mixin/mixin'
-	import mpMixin from '../../libs/mixin/mpMixin';
+import mixin from '../../libs/mixin/mixin'
+import mpMixin from '../../libs/mixin/mpMixin';
 import UQRCode from './qrcode.js';
 import { queueDraw, queueLoadImage} from './queue.js';
 import { cacheImageList } from './cache.js';
@@ -304,7 +304,7 @@ export default {
 				this.templateOptions.canvasHeight = qr.size;
 				this.templateOptions.canvasTransform = '';
 				/* 使用dynamicSize+scale，可以解决小块间出现白线问题，dpr可以解决模糊问题 */
-				const dpr = uni.getSystemInfoSync().pixelRatio;
+				const dpr = uni.$u.window().pixelRatio;
 				canvas.width = qr.dynamicSize * dpr;
 				canvas.height = qr.dynamicSize * dpr;
 				canvasContext.scale(dpr, dpr);
@@ -617,7 +617,7 @@ export default {
 			}
 			// #endif
 			// #ifdef APP-NVUE
-			const dpr = uni.getSystemInfoSync().pixelRatio;
+			const dpr = uni.$u.window().pixelRatio;
 			this.canvasContext.toTempFilePath(
 				0,
 				0,

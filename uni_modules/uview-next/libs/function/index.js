@@ -46,7 +46,19 @@ function sleep(value = 30) {
  * @link 运行期判断平台 https://uniapp.dcloud.io/frame?id=判断平台
  */
 function os() {
-	return uni.getDeviceInfo().osName.toLowerCase();
+	let osName = ''
+	// #ifdef MP-WEIXIN
+	let deviceInfo = uni.getDeviceInfo()
+	if(deviceInfo.osName){
+		osName = deviceInfo.osName;
+	}else{
+		osName = deviceInfo.system.split(' ')[0];
+	}
+	// #endif
+	// #ifndef MP-WEIXIN
+	osName = sys().osName;
+	// #endif
+	return osName.toLowerCase();
 }
 /**
  * @description 获取系统信息同步接口

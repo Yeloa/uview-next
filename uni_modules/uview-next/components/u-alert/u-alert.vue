@@ -87,40 +87,45 @@
 		mixins: [mpMixin, mixin, props],
 		data() {
 			return {
-				show: true
+				show: true,
+				iconColor:'',
+				iconName:'',
 			}
 		},
-		computed: {
-			iconColor() {
-				return this.effect === 'light' ? this.type : '#fff'
-			},
-			// 不同主题对应不同的图标
-			iconName() {
-				switch (this.type) {
-					case 'success':
-						return 'checkmark-circle-fill';
-						break;
-					case 'error':
-						return 'close-circle-fill';
-						break;
-					case 'warning':
-						return 'error-circle-fill';
-						break;
-					case 'info':
-						return 'info-circle-fill';
-						break;
-					case 'primary':
-						return 'more-circle-fill';
-						break;
-					default: 
-						return 'error-circle-fill';
-				}
-			}
+		created() {
+			this.getIconColor()
+			this.getIconName()
 		},
+
 		// #ifdef VUE3
 		emits: ["click", "close"],
 		// #endif
 		methods: {
+			getIconColor() {
+				this.iconColor = this.effect === 'light' ? this.type : '#fff'
+			},
+			// 不同主题对应不同的图标
+			getIconName() {
+				switch (this.type) {
+					case 'success':
+						this.iconName = 'checkmark-circle-fill';
+						break;
+					case 'error':
+						this.iconName = 'close-circle-fill';
+						break;
+					case 'warning':
+						this.iconName = 'error-circle-fill';
+						break;
+					case 'info':
+						this.iconName = 'info-circle-fill';
+						break;
+					case 'primary':
+						this.iconName = 'more-circle-fill';
+						break;
+					default: 
+						this.iconName = 'error-circle-fill';
+				}
+			},
 			// 点击内容
 			clickHandler(e) {
 				this.$emit('click', e)

@@ -90,7 +90,7 @@
 					closeOnClickOverlay: true,
 					closeIcon:'',
 					closeIconColor:'',
-					width:'200px',
+					//width:'200px',
 					closeIconSize:'',
 				},
 				list: [{
@@ -202,7 +202,7 @@
 		},
 		methods: {
 			openPopup(popupData) {
-				this.popupData = popupData
+				this.popupData = Object.assign({}, this.popupData, popupData)
 				uni.$u.sleep().then(() => {
 					this.show = !this.show
 				})

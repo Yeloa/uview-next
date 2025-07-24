@@ -46,14 +46,7 @@ export default {
         };
     },
     mounted() {
-        // #ifdef MP-WEIXIN
-        this.isIOS = (uni.getSystemSetting().platform === 'ios');
-        // #endif
-
-        // #ifndef MP-WEIXIN
-        this.isIOS = (uni.getSystemInfoSync().platform === 'ios');
-        // #endif
-
+        this.isIOS = uni.$u.os() === 'ios';
         uni.onNetworkStatusChange((res) => {
             this.isConnected = res.isConnected;
             this.networkType = res.networkType;

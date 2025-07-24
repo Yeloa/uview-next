@@ -1,5 +1,5 @@
 import App from './App';
-import zhCN from './locale/zh-CN.json';
+import zhCN from './locale/zh-Hans.json';
 import enUS from './locale/en-US.json';
 import uView, { VueI18n, createI18n } from '@/uni_modules/uview-next';
 

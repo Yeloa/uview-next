@@ -14,7 +14,7 @@
 				<slot name="icon">
 					<u-icon
 						v-if="['success', 'warning', 'error'].includes(tmpConfig.type)"
-						:name="tmpConfig.icon"
+						:name="icon"
 						:color="tmpConfig.color"
 						:size="1.3 * tmpConfig.fontSize"
 						:customStyle="{marginRight: '4px'}"

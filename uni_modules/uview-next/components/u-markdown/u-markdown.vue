@@ -1,6 +1,6 @@
 <template>
 	<view class="u-markdown">
-		<rich-text space="nbsp" :nodes="parseNodes(content)" @itemclick="handleItemClick"></rich-text>
+		<rich-text space="nbsp" :nodes="parsedNodes" @itemclick="handleItemClick"></rich-text>
 	</view>
 </template>
 <script>
@@ -36,13 +36,17 @@ export default {
 			latex: null,
 		}
 	},
+	computed: {
+		parsedNodes() {
+			return this.parseNodes(this.content)
+		}
+	},
 	created() {
 		this.init()
 	},
 	methods: {
 		init() {
 			let that = this;
-			let tempData = []
 			that.markdown = MarkdownIt({
 				html: true,
 				highlight: function (str, lang) {
@@ -74,13 +78,12 @@ export default {
 						html = '<ol style="padding: 0px 7px;list-style:none;">' + html + '</ol>'
 					}
 					
-					tempData.push(str)
-					that.copyCodeData = tempData
+					that.copyCodeData = str
 
 					let htmlCode = `<div class="markdown-wrap">`
 					// #ifndef MP-WEIXIN
 					htmlCode += `<div style="color: #aaa;text-align: right;font-size: 12px;padding:8px;">`
-					htmlCode += `${lang}<a class="copy-btn" code-data-index="${tempData.length - 1}" style="margin-left: 8px;">复制代码</a>`
+					htmlCode += `${lang}<a class="copy-btn" code-data-index="${that.copyCodeData.length - 1}" style="margin-left: 8px;">复制代码</a>`
 					htmlCode += `</div>`
 					// #endif
 					htmlCode += `<pre class="hljs"><code>${html}</code></pre>`

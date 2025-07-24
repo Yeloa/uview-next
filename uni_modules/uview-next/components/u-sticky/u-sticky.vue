@@ -145,9 +145,11 @@
 				// #endif
 
 				// 如果安卓版本高于8.0，依然认为是支持css sticky的(因为安卓7在某些机型，可能不支持sticky)
+				// #ifdef APP-PLUS
 				if (uni.$u.os() === 'android' && Number(uni.$u.sys().system) > 8) {
 					this.cssSticky = true
 				}
+				// #endif
 
 				// APP-Vue和微信平台，通过computedStyle判断是否支持css sticky
 				// #ifdef APP-VUE || MP-WEIXIN

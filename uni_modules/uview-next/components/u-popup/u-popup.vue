@@ -119,7 +119,7 @@
 
 				style[this.mode] = 0
 
-				let margin = uni.$u.addUnit(this.margin)
+				let margin = uni.$u.addUnit(this.margin || 0)
 				if (this.mode === 'left') {
 					return uni.$u.deepMerge(style, {
 						bottom: 0,

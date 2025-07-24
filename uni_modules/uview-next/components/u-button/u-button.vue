@@ -28,12 +28,12 @@
         @tap="clickHandler" 
     >
         <template v-if="loading">
-            <u-loading-icon :mode="loadingMode" :size="loadingSize * 1.15" :color="loadingColor"></u-loading-icon>
+            <u-loading-icon :mode="loadingMode" :size="loadingSize * 1.15" :color="elLoadingColor"></u-loading-icon>
             <text class="u-button__loading-text" :style="[{ fontSize: textSize + 'px' }]">{{ loadingText || text
                 }}</text>
         </template>
         <template v-else>
-            <u-icon v-if="icon" :name="icon" :color="iconColorCom" :size="textSize * 1.35"
+            <u-icon v-if="icon" :name="icon" :color="elIconColor" :size="textSize * 1.35"
                 :customStyle="{ marginRight: '2px' }"></u-icon>
             <slot>
                 <text class="u-button__text" :style="[{ fontSize: textSize + 'px' }]">{{ text }}</text>
@@ -57,12 +57,12 @@
         @tap="clickHandler" 
         >
         <template v-if="loading">
-            <u-loading-icon :mode="loadingMode" :size="loadingSize * 1.15" :color="loadingColor"></u-loading-icon>
+            <u-loading-icon :mode="loadingMode" :size="loadingSize * 1.15" :color="elLoadingColor"></u-loading-icon>
             <text class="u-button__loading-text" :style="[nvueTextStyle]"
                 :class="[plain && `u-button__text--plain--${type}`]">{{ loadingText || text }}</text>
         </template>
         <template v-else>
-            <u-icon v-if="icon" :name="icon" :color="iconColorCom" :size="textSize * 1.35"></u-icon>
+            <u-icon v-if="icon" :name="icon" :color="elIconColor" :size="textSize * 1.35"></u-icon>
             <text class="u-button__text" :class="[plain && `u-button__text--plain--${type}`]" 
             :style="[
                 { marginLeft: icon ? '2px' : 0 },
@@ -137,7 +137,10 @@ export default {
         // #endif
     ],
     data() {
-        return {};
+        return {
+            loadingColor:'',
+            elIconColor:''
+        };
     },
     computed: {
         // 生成bem风格的类名
@@ -158,26 +161,7 @@ export default {
                 );
             }
         },
-        loadingColor() {
-            if (this.plain) {
-                // 如果有设置color值，则用color值，否则使用type主题颜色
-                return this.color ? this.color : this.$u.theme[this.type];
-            }
-            if (this.type === "info") {
-                return "#c9c9c9";
-            }
-            return "rgb(200, 200, 200)";
-        },
-        iconColorCom() {
-            // 如果是镂空状态，设置了color就用color值，否则使用主题颜色，
-            // u-icon的color能接受一个主题颜色的值
-            if (this.iconColor) return this.iconColor;
-            if (this.plain) {
-                return this.color ? this.color : this.type;
-            } else {
-                return this.type === "info" ? "#000000" : "#ffffff";
-            }
-        },
+        
         baseColor() {
             let style = {};
             if (this.color) {
@@ -242,10 +226,35 @@ export default {
             return fontSize;
         },
     },
+    created() {
+        this.loadingColorCom()
+        this.iconColorCom()
+    },
     // #ifdef VUE3
     emits: ['click', 'error', 'launchapp', 'opensetting', 'getuserinfo', 'getphonenumber', 'agreeprivacyauthorization', 'chooseavatar'],
     // #endif
     methods: {
+        
+        iconColorCom() {
+            // 如果是镂空状态，设置了color就用color值，否则使用主题颜色，
+            // u-icon的color能接受一个主题颜色的值
+            if (this.iconColor) this.elIconColor = this.iconColor;
+            if (this.plain) {
+                this.elIconColor = this.color ? this.color : this.type;
+            } else {
+                this.elIconColor = this.type === "info" ? "#000000" : "#ffffff";
+            }
+        },
+        loadingColorCom() {
+            if (this.plain) {
+                // 如果有设置color值，则用color值，否则使用type主题颜色
+                this.elLoadingColor =  this.color ? this.color : this.$u.theme[this.type];
+            }
+            if (this.type === "info") {
+                this.elLoadingColor = "#c9c9c9";
+            }
+            this.elLoadingColor = "rgb(200, 200, 200)";
+        },
         clickHandler(e) {
             // 非禁止并且非加载中，才能点击
             if (!this.disabled && !this.loading) {
