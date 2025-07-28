@@ -30,6 +30,8 @@ export default {
         color: '#323233',
         buttonSize: 30,
         bgColor: '#EBECEE',
+        disableBgColor: '#f7f8fa',
+        disableColor: '#c8c9cc',
         inputBgColor: '',
         cursorSpacing: 100,
         disableMinus: false,

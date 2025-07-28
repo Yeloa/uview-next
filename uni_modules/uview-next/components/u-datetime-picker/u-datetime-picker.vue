@@ -19,7 +19,7 @@
 		@confirm="confirm" 
 		@change="change"
 	>
-		<template v-slot:trigger>
+		<template #trigger>
 			<slot name="trigger">
 				<u-input 
 					v-if="showInput"
@@ -45,7 +45,7 @@
 					:prefixIconStyle="inputProps.prefixIconStyle"
 					:shape="inputProps.shape"
 					:customStyle="inputProps.customStyle"
-				 />
+				/>
 			</slot>
 		</template>
 	</u-picker>

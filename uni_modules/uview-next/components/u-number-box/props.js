@@ -93,6 +93,16 @@ export default {
             type: String,
             default: () => uni.$u.props.numberBox.bgColor
         },
+        // 按钮禁用后的背景颜色
+        disableBgColor: {
+            type: String,
+            default: () => uni.$u.props.numberBox.disableBgColor
+        },
+        // 按钮禁用后的字体颜色
+        disableColor: {
+            type: String,
+            default: () => uni.$u.props.numberBox.disableColor
+        },
         // 指定光标于键盘的距离，避免键盘遮挡输入框，单位px
         cursorSpacing: {
             type: [String, Number],
@@ -108,6 +118,7 @@ export default {
             type: Boolean,
             default: () => uni.$u.props.numberBox.disableMinus
         },
+        
         // 加减按钮图标的样式
         iconStyle: {
             type: [Object, String],

@@ -20,7 +20,6 @@
 					<u-form-item
 						label="姓名"
 						prop="userInfo.name"
-						
 						ref="item1"
 					>
 						<u--input
@@ -244,21 +243,23 @@
 					},
 				],
 				rules: {
-					'userInfo.name': [{
-						type: 'string',
-						required: true,
-						message: '请填写姓名',
-						trigger: ['blur', 'change']
-					}, {
-						// 此为同步验证，可以直接返回true或者false，如果是异步验证，稍微不同，见下方说明
-						validator: (rule, value, callback) => {
-							// 调用uView自带的js验证规则，详见：http://118.25.198.98/js/test.html
-							return uni.$u.test.chinese(value);
-						},
-						message: "姓名必须为中文",
-						// 触发器可以同时用blur和change，二者之间用英文逗号隔开
-						trigger: ["change", "blur"],
-					}],
+					'userInfo.name': [
+						{
+							type: 'string',
+							required: true,
+							message: '请填写姓名',
+							trigger: ['blur', 'change']
+						}, {
+							// 此为同步验证，可以直接返回true或者false，如果是异步验证，稍微不同，见下方说明
+							validator: (rule, value, callback) => {
+								// 调用uView自带的js验证规则，详见：http://118.25.198.98/js/test.html
+								return uni.$u.test.chinese(value);
+							},
+							message: "姓名必须为中文",
+							// 触发器可以同时用blur和change，二者之间用英文逗号隔开
+							trigger: ["change", "blur"],
+						}
+					],
 					code: {
 						type: 'string',
 						required: true,
@@ -338,9 +339,18 @@
 		},
 		onReady() {
 			// 如果需要兼容微信小程序，并且校验规则中含有方法等，只能通过setRules方法设置规则
-		//	this.$refs.form1.setRules(this.rules)
+			this.$refs.form1.setRules(this.rules)
 		},
 		methods: {
+			// 此为同步验证，可以直接返回true或者false，如果是异步验证，稍微不同，见下方说明
+			validator: (rule, value, callback) => {
+				// 调用uView自带的js验证规则，详见：http://118.25.198.98/js/test.html
+				setTimeout(() => {
+					callback('姓名重复1133');
+					// 如果校验通过，也要执行callback()回调
+					//callback();
+				}, 2000)
+			},
 			afterRead(event) {
 				this.fileList1.push({
 					url: event.file,
@@ -417,6 +427,7 @@
 				this.$refs.form1.validate().then(res => {
 					uni.$u.toast('校验通过')
 				}).catch(errors => {
+					console.log(errors)
 					uni.$u.toast(errors[0].message || '校验失败')
 				})
 			},

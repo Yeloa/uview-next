@@ -29,9 +29,9 @@
 					src="https://cdn.uviewui.com/uview/demo/picker/2.png"
 					mode="widthFix"
 				></image>
-				<template v-slot:value>
+				<template #value>
 					<u-picker :columns="columns6" closeOnClickOverlay @confirm="confirm8">
-						<template v-slot:trigger="{ indexs, values, value }">
+						<template #trigger>
 							<u-input :value="value8" placeholder="请输入内容" disabled-color="#fff" disabled clearable />
 						</template>
 					</u-picker>

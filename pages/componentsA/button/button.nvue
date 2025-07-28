@@ -223,6 +223,16 @@
 				</view>
 				<view class="u-page__button-item">
 					<u-button
+					    text="图标在右侧"
+					    size="normal"
+					    icon="map"
+						iconPosition="right"
+					    plain
+					    type="warning"
+					></u-button>
+				</view>
+				<view class="u-page__button-item">
+					<u-button
 					    text="按钮图标"
 					    size="normal"
 					    plain

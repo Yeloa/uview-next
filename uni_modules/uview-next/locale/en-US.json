@@ -37,8 +37,8 @@
 
 	"uNoNetwork.tips": "Oops, network signal lost",
 
-	"uPagination.prevText": "Previous page",
-	"uPagination.nextText": "Next page",
+	"uPagination.prevText": "Prev",
+	"uPagination.nextText": "Next",
 
 	"uPicker.cancelText": "Cancel",
 	"uPicker.confirmText": "Confirm",

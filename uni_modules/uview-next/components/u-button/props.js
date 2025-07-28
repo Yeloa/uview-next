@@ -157,6 +157,11 @@ export default {
             type: String,
             default: ()=> uni.$u.props.button.iconColor
         },
+        // 按钮图标位置：left, right
+        iconPosition: {
+            type: String,
+            default: ()=> uni.$u.props.button.iconPosition
+        },
         // 按钮颜色，支持传入linear-gradient渐变色
         color: {
             type: String,

@@ -11,7 +11,7 @@ export default {
     // form 组件
     form: {
         model: {},
-        rules: {},
+        rules: [],
         errorType: 'message',
         borderBottom: true,
         labelPosition: 'left',

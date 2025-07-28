@@ -26,7 +26,7 @@
 			
 			<u-cell title="默认Input">
 				<template v-slot:value>
-					<u-datetime-picker mode="datetime" v-model="value11" closeOnClickOverlay showInput></u-datetime-picker>
+					<u-datetime-picker mode="date" v-model="value11" closeOnClickOverlay showInput></u-datetime-picker>
 				</template>
 			</u-cell>
 			<u-cell title="使用触发器">
@@ -237,7 +237,7 @@
 				this.value10 = uni.$u.timeFormat(e.value, 'yyyy-mm-dd hh:MM')
 			},
 			change(e) {
-				// console.log('change', e)
+				 console.log('change', e)
 			},
 			navigateBack() {
 				uni.navigateBack()

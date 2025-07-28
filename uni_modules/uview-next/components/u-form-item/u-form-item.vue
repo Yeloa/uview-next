@@ -84,6 +84,7 @@
 	 * @tutorial https://uveiw.bdxmz.cn/components/form.html
 	 * @property {String}			label			input的label提示语
 	 * @property {String}			prop			绑定的值
+	 * @property {Array}			rules			绑定的校验规则
 	 * @property {String | Boolean}	borderBottom	是否显示表单域的下划线边框
 	 * @property {String | Number}	labelWidth		label的宽度，单位px
 	 * @property {String}			rightIcon		右侧图标
@@ -100,6 +101,7 @@
 			return {
 				// 错误提示语
 				message: '',
+				itemRules: [],
 				parentData: {
 					// 提示文本的位置
 					labelPosition: 'left',
@@ -128,6 +130,15 @@
 		mounted() {
 			this.init()
 		},
+		watch: {
+			// 监听规则的变化
+			rules: {
+				immediate: true,
+				handler(n) {
+					this.setRules(n);
+				},
+			},
+		},
 		// #ifdef VUE3
 		emits: ["click"],
 		// #endif
@@ -138,6 +149,11 @@
 				if (!this.parent) {
 					uni.$u.error('u-form-item需要结合u-form组件使用')
 				}
+			},
+			// 手动设置校验的规则，vue2中如果规则中有函数的话，微信小程序中会过滤掉，所以只能手动调用设置规则
+			setRules(rules) {
+				if (Object.keys(rules).length === 0) return;
+				this.itemRules = rules;
 			},
 			// 获取父组件的参数
 			updateParentData() {
@@ -185,11 +201,11 @@
 					position: relative;
 					@include flex;
 					align-items: center;
-					padding-right: 10rpx;
+					padding-right: 5px;
 					flex: 1;
 
 					&__icon {
-						margin-right: 8rpx;
+						margin-right: 4px;
 					}
 
 					&__required {
@@ -221,16 +237,14 @@
 
 					&__slot {
 						flex: 1;
-						/* #ifndef MP */
 						@include flex;
 						align-items: center;
-						/* #endif */
 					}
 
 					&__icon {
 						margin-left: 10rpx;
 						color: $u-light-color;
-						font-size: 30rpx;
+						font-size: 15px;
 					}
 				}
 

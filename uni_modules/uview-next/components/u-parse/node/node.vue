@@ -127,7 +127,7 @@ export default {
     return {
       ctrl: {},
       // #ifdef MP-WEIXIN
-      isiOS: uni.getSystemInfoSync().system.includes('iOS')
+      isiOS: uni.$u.os() === 'ios'
       // #endif
     }
   },

@@ -37,6 +37,7 @@ export default {
         hoverStayTime: 200,
         text: '',
         icon: '',
+        iconPosition: 'left',
         iconColor: '',
         color: ''
     }

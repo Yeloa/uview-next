@@ -241,7 +241,14 @@ export default {
     // #endif
 	methods: {
 		init(newVal){
+
+			if (this.changeFromInner || this.innerValue === newVal) {
+				this.changeFromInner = false;
+				return;
+			}
+
 			this.innerValue = newVal;
+			
 			if (this.firstChange === false && this.changeFromInner === false) {
 				this.valueChange();
 			}

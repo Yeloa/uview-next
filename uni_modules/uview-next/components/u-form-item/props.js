@@ -43,6 +43,11 @@ export default {
         leftIconStyle: {
             type: [String, Object],
             default: ()=> uni.$u.props.formItem.leftIconStyle
+        },
+        // 验证规则
+        rules: {
+            type: [Object, Function, Array],
+            default: ()=> uni.$u.props.formItem.rules
         }
     }
 }

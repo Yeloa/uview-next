@@ -1,6 +1,6 @@
 <template>
 	<view class="u-popup">
-		<view v-if="$slots['trigger']" @click="openPopup">
+		<view v-if="$slots.trigger || $slots.$trigger" class="u-popup__trigger" @click="openPopup">
 			<slot name="trigger"></slot>
 		</view>
 		<u-overlay

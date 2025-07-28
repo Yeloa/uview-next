@@ -48,6 +48,15 @@
 				<u-divider text="分割线" textColor="#2979ff" lineColor="#2979ff"></u-divider>
 			</view>
 		</view>
+
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">插槽模式</text>
+			<view>
+				<u-divider>
+					<text style="font-size: 14px;color: #2979ff;">分割线</text>
+				</u-divider>
+			</view>
+		</view>
 	</view>
 </template>
 

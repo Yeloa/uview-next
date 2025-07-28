@@ -88,7 +88,7 @@
 			this.children = [];
 		},
 		methods: {
-			// 手动设置校验的规则，如果规则中有函数的话，微信小程序中会过滤掉，所以只能手动调用设置规则
+			// 手动设置校验的规则，vue2中如果规则中有函数的话，微信小程序中会过滤掉，所以只能手动调用设置规则
 			setRules(rules) {
 				// 判断是否有规则
 				if (Object.keys(rules).length === 0) return;
@@ -123,69 +123,93 @@
 					}
 				});
 			},
+			// 执行校验
+			async asyncSchema(propertyName, propertyVal, ruleItem){
+				return new Promise(async (resolve, reject) => {
+					const validator = new Schema({
+						[propertyName]: ruleItem
+					});
+					
+					validator.validate({ [propertyName]: propertyVal }, (errors, fields) => {
+						resolve({errors, fields})
+					});
+				});
+			},
 			// 对部分表单字段进行校验
 			async validateField(value, callback, event = null) {
 				// $nextTick是必须的，否则model的变更，可能会延后于此方法的执行
-				this.$nextTick(() => {
-					// 校验错误信息，返回给回调方法，用于存放所有form-item的错误信息
-					const errorsRes = [];
-					// 如果为字符串，转为数组
-					value = [].concat(value);
-					// 历遍children所有子form-item
-					this.children.map((child) => {
+				await this.$nextTick();
+				// 如果为字符串，转为数组
+				value = [].concat(value);
+				// 历遍children所有子form-item
+				let promises = this.children.map((child) => {
+					return new Promise(async (resolve, reject) => {
+				
+						if (value.includes(child.prop) === false) {
+							return resolve()
+						}
+
 						// 用于存放form-item的错误信息
 						const childErrors = [];
-						if (value.includes(child.prop)) {
-							// 获取对应的属性，通过类似'a.b.c'的形式
-							const propertyVal = uni.$u.getProperty(
-								this.model,
-								child.prop
-							);
-							// 属性链数组
-							const propertyChain = child.prop.split(".");
-							const propertyName =
-								propertyChain[propertyChain.length - 1];
+						// 获取对应的属性，通过类似'a.b.c'的形式
+						const propertyVal = uni.$u.getProperty(
+							this.model,
+							child.prop
+						);
+						// 属性链数组
+						const propertyChain = child.prop.split(".");
+						const propertyName = propertyChain[propertyChain.length - 1];
 
-							const rule = this.formRules[child.prop];
-							// 如果不存在对应的规则，直接返回，否则校验器会报错
-							if (!rule) return;
-							// rule规则可为数组形式，也可为对象形式，此处拼接成为数组
-							const rules = [].concat(rule);
+						let rule = this.formRules[child.prop];
+						if(child.itemRules && Object.keys(child.itemRules).length > 0){
+							rule = child.itemRules;
+						}
 
-							// 对rules数组进行校验
-							for (let i = 0; i < rules.length; i++) {
-								const ruleItem = rules[i];
-								// 将u-form-item的触发器转为数组形式
-								const trigger = [].concat(ruleItem?.trigger);
-								// 如果是有传入触发事件，但是此form-item却没有配置此触发器的话，不执行校验操作
-								if (event && !trigger.includes(event)) continue;
-								// 实例化校验对象，传入构造规则
-								const validator = new Schema({
-									[propertyName]: ruleItem,
-								});
-								validator.validate({
-										[propertyName]: propertyVal,
-									},
-									(errors, fields) => {
-										if (uni.$u.test.array(errors)) {
-											errorsRes.push(...errors);
-											childErrors.push(...errors);
-										}
-										child.message = childErrors[0].message;
-									}
-								);
+						// 如果不存在对应的规则，直接返回，否则校验器会报错
+						if (!rule){
+							return resolve()
+						}
+						// rule规则可为数组形式，也可为对象形式，此处拼接成为数组
+						const rules = [].concat(rule);
+						
+						if(!rules.length){
+							return resolve()
+						}
+						
+						// 对rules数组进行校验
+						for (let i = 0; i < rules.length; i++) {
+							const ruleItem = rules[i];
+							// 将u-form-item的触发器转为数组形式
+							const trigger = [].concat(ruleItem?.trigger);
+							// 如果是有传入触发事件，但是此form-item却没有配置此触发器的话，不执行校验操作
+							if (event && !trigger.includes(event)) continue;
+							
+							const { errors } = await this.asyncSchema(propertyName, propertyVal, ruleItem);
+							if (uni.$u.test.array(errors)) {
+								
+								errors.forEach(item => {
+									item.prop = child.prop;
+									childErrors.push(item);
+								})
+								
+								child.message = childErrors[0].message;
 							}
 						}
+
+						resolve(childErrors)
 					});
-					// 执行回调函数
-					typeof callback === "function" && callback(errorsRes);
 				});
+				
+				Promise.all(promises).then(results => {
+					const flatResults = [].concat.apply([], results);
+					uni.$u.test.func(callback) && callback(flatResults);
+				})
 			},
 			// 校验全部数据
 			validate(callback) {
 				// 开发环境才提示，生产环境不会提示
 				if (process.env.NODE_ENV === 'development' && Object.keys(this.formRules).length === 0) {
-					uni.$u.error('111未设置rules，请看文档说明！如果已经设置，请刷新页面。');
+					uni.$u.error('未设置rules，请看文档说明！如果已经设置，请刷新页面。');
 					return;
 				}
 				return new Promise((resolve, reject) => {

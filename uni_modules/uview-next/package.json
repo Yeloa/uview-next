@@ -1,13 +1,14 @@
 {
   "id": "uview-next",
   "name": "uview-next",
-  "displayName": "uView Next领航发布，兼容Vue3，组件生态新基建",
-  "version": "3.2.7",
-  "description": "基于uView UI 2.0，支持vue2和vue3，80+精选组件，搭配便捷工具助力，让开发如鱼得水",
+  "displayName": "uView Next全面适配Vue3，组件库更丰富，让开发更得心应手",
+  "version": "3.3.0",
+  "description": "基于uView UI 2.0，80+精选组件库，支持vue2和vue3，支持多语言，搭配便捷工具助力，让开发更得心应手",
   "keywords": [
     "uview",
     "ui",
-    "框架"
+    "框架",
+    "组件库"
 ],
   "repository": "https://gitee.com/wakge/uview-next",
   "engines": {
@@ -43,9 +44,9 @@
     "encrypt": [],
     "platforms": {
       "cloud": {
-        "tcb": "x",
-        "aliyun": "x",
-        "alipay": "x"
+        "tcb": "y",
+        "aliyun": "y",
+        "alipay": "y"
       },
       "client": {
         "uni-app": {
@@ -95,10 +96,10 @@
           }
         },
         "App": {
-          "app-harmony": "y",
-          "app-nvue": "y",
-          "app-uvue": "n",
-          "app-vue": "y"
+            "app-harmony": "y",
+            "app-nvue": "y",
+            "app-uvue": "n",
+            "app-vue": "y"
         }
       }
     }

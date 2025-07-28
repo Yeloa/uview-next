@@ -29,14 +29,12 @@
     >
         <template v-if="loading">
             <u-loading-icon :mode="loadingMode" :size="loadingSize * 1.15" :color="elLoadingColor"></u-loading-icon>
-            <text class="u-button__loading-text" :style="[{ fontSize: textSize + 'px' }]">{{ loadingText || text
-                }}</text>
+            <text class="u-button__loading-text" :style="[textStyle]">{{ loadingText || text}}</text>
         </template>
         <template v-else>
-            <u-icon v-if="icon" :name="icon" :color="elIconColor" :size="textSize * 1.35"
-                :customStyle="{ marginRight: '2px' }"></u-icon>
+            <u-icon v-if="icon" :name="icon" :color="elIconColor" :size="textSize * 1.35"></u-icon>
             <slot>
-                <text class="u-button__text" :style="[{ fontSize: textSize + 'px' }]">{{ text }}</text>
+                <text class="u-button__text" :style="[textStyle]">{{ text }}</text>
             </slot>
         </template>
     </button>
@@ -58,16 +56,13 @@
         >
         <template v-if="loading">
             <u-loading-icon :mode="loadingMode" :size="loadingSize * 1.15" :color="elLoadingColor"></u-loading-icon>
-            <text class="u-button__loading-text" :style="[nvueTextStyle]"
+            <text class="u-button__loading-text" :style="[textStyle]"
                 :class="[plain && `u-button__text--plain--${type}`]">{{ loadingText || text }}</text>
         </template>
         <template v-else>
             <u-icon v-if="icon" :name="icon" :color="elIconColor" :size="textSize * 1.35"></u-icon>
             <text class="u-button__text" :class="[plain && `u-button__text--plain--${type}`]" 
-            :style="[
-                { marginLeft: icon ? '2px' : 0 },
-                nvueTextStyle,
-            ]">{{ text }}</text>
+            :style="[textStyle]">{{ text }}</text>
         </template>
     </view>
     <!-- #endif -->
@@ -200,11 +195,26 @@ export default {
 				style.borderBottomRightRadius = radius
             }
 
+            if(this.icon && this.iconPosition === 'right'){
+                style.flexDirection = 'row-reverse';
+            }
+
             return style;
         },
         // nvue版本按钮的字体不会继承父组件的颜色，需要对每一个text组件进行单独的设置
-        nvueTextStyle() {
+        textStyle() {
             let style = {};
+            style.fontSize = uni.$u.addUnit(this.textSize);
+
+            if(this.icon){
+                if(this.iconPosition === 'left'){
+                    style.marginLeft =  uni.$u.addUnit(2);
+                }else{
+                    style.marginRight = uni.$u.addUnit(2);
+                }
+            }
+
+            //#ifdef APP-NVUE
             // 针对自定义了color颜色的情况，镂空状态下，就是用自定义的颜色
             if (this.type === "info") {
                 style.color = this.$u.theme.mainColor;
@@ -212,7 +222,8 @@ export default {
             if (this.color) {
                 style.color = this.plain ? this.color : "white";
             }
-            style.fontSize = uni.$u.addUnit(this.textSize);
+            // #endif
+            
             return style;
         },
         // 字体大小

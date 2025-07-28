@@ -1,14 +1,15 @@
 <template>
 	<view>
-		<view class="u-picker-trigger" @click="openPicker">
-			<slot name="trigger" :indexs="innerIndex" :values="innerColumns" :value="innerColumns.map((item, index) => item[innerIndex[index]])"></slot>
+		<view v-if="$slots.trigger || $slots.$trigger" class="u-picker-trigger" @click="openPicker">
+			<slot name="trigger"></slot>
 		</view>
 		<u-popup 
 			:show="showPopup"
 			:round="round" 
 			:closeable="false"
 			:closeOnClickOverlay="closeOnClickOverlay"
-			@close="closeHandler">
+			@close="closeHandler"
+		>
 			<view class="u-picker">
 				<u-toolbar
 					v-if="showToolbar"

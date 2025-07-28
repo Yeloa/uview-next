@@ -22,7 +22,7 @@
 		>
 			<u-icon
 			    name="minus"
-			    :color="isDisabled('minus') ? '#c8c9cc' : '#323233'"
+			    :color="isDisabled('minus') ? disableColor : color"
 				:size="iconSize"
 				:customStyle="iconStyle"
 			></u-icon>
@@ -64,7 +64,7 @@
 		>
 			<u-icon
 			    name="plus"
-			    :color="isDisabled('plus') ? '#c8c9cc' : '#323233'"
+			    :color="isDisabled('plus') ? disableColor : color"
 				:size="iconSize"
 				:customStyle="iconStyle"
 			></u-icon>
@@ -162,20 +162,26 @@
 						color: this.color
 					}
 					if (this.isDisabled(type)) {
-						style.backgroundColor = '#f7f8fa'
+						style.color = this.disableColor
+						style.backgroundColor = this.disableBgColor
 					}
 					return style
 				}
 			},
 			// 输入框的样式
 			inputStyle() {
-				const disabled = this.disabled || this.disabledInput
 				const style = {
 					color: this.color,
 					backgroundColor: this.inputBgColor || this.bgColor,
 					height: uni.$u.addUnit(this.buttonSize),
 					width: uni.$u.addUnit(this.inputWidth)
 				}
+
+				if(this.disabled){
+					style.color = this.disableColor
+					style.backgroundColor = this.disableBgColor
+				}
+
 				return style
 			},
 			// 用于监听多个值发生变化
@@ -383,7 +389,6 @@
 <style lang="scss" scoped>
 	@import '../../libs/css/components.scss';
 
-	$u-numberBox-hover-bgColor: #E6E6E6 !default;
 	$u-numberBox-disabled-color: #c8c9cc !default;
 	$u-numberBox-disabled-bgColor: #f7f8fa !default;
 	$u-numberBox-plus-radius: 4px !default;
@@ -414,10 +419,6 @@
 			/* #ifndef APP-NVUE */
 			touch-action: none;
 			/* #endif */
-
-			&--hover {
-				background-color: $u-numberBox-hover-bgColor !important;
-			}
 
 			&--disabled {
 				color: $u-numberBox-disabled-color;
