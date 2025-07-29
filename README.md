@@ -1,22 +1,22 @@
 <div align="center">
-    <img alt="logo" src="https://uviewui.com/common/logo.png" width="120" height="120" style="margin-bottom: 10px;">
+    <img alt="logo" src="http://uviewui.com/common/logo.png" width="120" height="120" style="margin-bottom: 10px;">
     <h1 style="margin: 30px 0 30px;font-weight: bold;font-size:40px;">uView Next</h1>
     <h3>多平台快速开发的UI框架</h3>
 </div>
 
 
-[![stars](https://gitee.com/wakge/uview-next/badge/star.svg?theme=dark)](https://gitee.com/wakge/uview-next)
-[![forks](https://gitee.com/wakge/uview-next/badge/fork.svg?theme=dark)](wakge/uview-next)
-[![license](https://img.shields.io/badge/license-mit-red)](https://en.wikipedia.org/wiki/MIT_License)
+[![stars](http://gitee.com/wakge/uview-next/badge/star.svg?theme=dark)](http://gitee.com/wakge/uview-next)
+[![forks](http://gitee.com/wakge/uview-next/badge/fork.svg?theme=dark)](wakge/uview-next)
+[![license](http://img.shields.io/badge/license-mit-red)](http://en.wikipedia.org/wiki/MIT_License)
 
 
 ## 📖 简介
 
-uView Next 支持 Vue2 和 Vue3，支持国际化，是[uni-app](https://uniapp.dcloud.io/)全面兼容 nvue 的 uni-app 生态框架，提供了更丰富的组件和便捷的工具，让开发更得心应手。
+uView Next 支持 Vue2 和 Vue3，支持国际化，是[uni-app](http://uniapp.dcloud.io/)全面兼容 nvue 的 uni-app 生态框架，提供了更丰富的组件和便捷的工具，让开发更得心应手。
 
 ## 📚 文档
 
-- [🌐 **官方文档** https://uview-next.netlify.app](https://uview-next.netlify.app)
+- [🌐 **官方文档** http://uview-next.netlify.app](http://uview-next.netlify.app)
 - [📄 **备用文档** http://118.25.198.98](http://118.25.198.98)
 
 
@@ -35,11 +35,11 @@ uView Next 支持 Vue2 和 Vue3，支持国际化，是[uni-app](https://uniapp.
 您可以通过**微信**扫码，查看最佳的演示效果。
 <br>
 <br>
-<img width="200" height="200" src="https://118.25.198.98/common/h5_qrcode.png" alt=""/>
+<img width="200" height="200" src="http://118.25.198.98/common/h5_qrcode.png" alt=""/>
 
 ## 💬 交流反馈
 
-<p style="display:flex;align-items: center;">欢迎<img style="margin:0 5px" src="https://pub.idqqimg.com/wpa/images/group.png">交流反馈：[点此跳转](http://118.25.198.98/components/addQQGroup.html)
+<p style="display:flex;align-items: center;">欢迎<img style="margin:0 5px" src="http://pub.idqqimg.com/wpa/images/group.png">交流反馈：[点此跳转](http://118.25.198.98/components/addQQGroup.html)
 </p>
 
 ## 🔗 重要链接
@@ -55,7 +55,7 @@ uView Next 支持 Vue2 和 Vue3，支持国际化，是[uni-app](https://uniapp.
 
 ### 📦 快速安装
 
-请通过[官网安装文档](https://118.25.198.98/components/downloadSetting.html)了解更详细的内容
+请通过[官网安装文档](http://118.25.198.98/components/downloadSetting.html)了解更详细的内容
 
 ### 🚀 快速上手
 
@@ -73,4 +73,4 @@ uView Next 支持 Vue2 和 Vue3，支持国际化，是[uni-app](https://uniapp.
 
 ## 📄 版权信息
 
-uView 遵循[MIT](https://en.wikipedia.org/wiki/MIT_License)开源协议，意味着您无需支付任何费用，也无需授权，即可将 uView 应用到您的产品中。
+uView 遵循[MIT](http://en.wikipedia.org/wiki/MIT_License)开源协议，意味着您无需支付任何费用，也无需授权，即可将 uView 应用到您的产品中。

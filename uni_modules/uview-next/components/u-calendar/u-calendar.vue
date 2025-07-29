@@ -37,6 +37,7 @@
         mode="bottom"
         closeable
         @close="close"
+        @open="open"
         :round="round"
         :closeOnClickOverlay="closeOnClickOverlay"
     >
@@ -145,19 +146,6 @@
                 selected: [],
             };
         },
-        watch: {
-            // 打开弹窗时，设置月份数据
-            show: {
-                immediate: true,
-                handler(n) {
-                    this.$nextTick(() => {
-                        if (n) {
-                            this.$refs.calendarView.setMonth();
-                        }
-                    });
-                },
-            },
-        },
         computed: {
             buttonDisabled() {
                 // 如果为range类型，且选择的日期个数不足1个时，让底部的按钮出于disabled状态
@@ -178,6 +166,11 @@
         methods: {
             close() {
                 this.$emit('close');
+            },
+            open(){
+                this.$nextTick(() => {
+                    this.$refs.calendarView.setMonth();
+                });
             },
             // 点击确定按钮
             confirm() {

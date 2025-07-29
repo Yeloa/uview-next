@@ -182,7 +182,6 @@
 		methods: {
 			// 监听输入框的值发生变化
 			inputHandler(e) {
-				console.log(111,e)
 				const value = e.detail.value
 				this.inputValue = value
 				// 是否允许输入“.”符号
