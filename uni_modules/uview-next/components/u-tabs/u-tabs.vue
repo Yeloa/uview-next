@@ -201,12 +201,12 @@
 		},
 		async mounted() {
 			this.init()
-			//#ifndef MP-ALIPAY && MP-BAIDU && MP-TOUTIAO && MP-HARMONY
+			//#ifndef MP-ALIPAY || MP-BAIDU || MP-TOUTIAO || MP-HARMONY
 			uni.onWindowResize(this.windowResize)
 			//#endif
 		},
 		beforeUnmount() {
-			//#ifndef MP-ALIPAY && MP-BAIDU && MP-TOUTIAO && MP-HARMONY
+			//#ifndef MP-ALIPAY || MP-BAIDU || MP-TOUTIAO || MP-HARMONY
 			uni.offWindowResize(this.windowResize)
 			//#endif
 		},

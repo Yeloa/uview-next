@@ -37,18 +37,19 @@
 						:key="index"
 						class="u-picker__view__column"
 					>
-						<text
+						<view
 							v-if="$u.test.array(item)"
 							class="u-picker__view__column__item u-line-1"
 							v-for="(item1, index1) in item"
 							:key="index1"
-							:style="{
+						>
+							<text :style="{
 								height: $u.addUnit(itemHeight),
 								lineHeight: $u.addUnit(itemHeight),
 								fontWeight: index1 === innerIndex[index] ? 'bold' : 'normal',
 								display: 'block'
-							}"
-						>{{ getItemText(item1) }}</text>
+							}">{{ getItemText(item1) }}</text>
+						</view>
 					</picker-view-column>
 				</picker-view>
 				<view
@@ -232,11 +233,11 @@ export default {
 			this.setIndexs(value)
 
 			this.$emit('change', {
-				// #ifndef MP-WEIXIN || MP-LARK || MP-TOUTIAO
+				// #ifndef MP-WEIXIN || MP-LARK || MP-TOUTIAO || MP-ALIPAY
 				// 微信小程序不能传递this，会因为循环引用而报错
 				picker: this,
 				// #endif
-				value: this.innerColumns.map((item, index) => item[value[index]]),
+				value: values.map((item, index) => item[value[index]]),
 				index,
 				indexs: value,
 				// values为当前变化列的数组内容
@@ -333,7 +334,6 @@ export default {
 
 <style lang="scss" scoped>
 	@import "../../libs/css/components.scss";
-
 	.u-picker {
 		position: relative;
 

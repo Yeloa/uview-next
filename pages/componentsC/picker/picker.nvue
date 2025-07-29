@@ -220,7 +220,7 @@
 				uni.navigateBack()
 			},
 			change(e) {
-				console.log('change', e);
+			//	console.log('change', e);
 			},
 			confirm8(e) {
 				this.value8 = e.value.join('')

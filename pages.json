@@ -341,7 +341,7 @@
 			]
 		},
 		{
-			"root": "pages/componentsC/",
+			"root": "pages/componentsC",
 			"pages": [
 				{
 					"path": "table/table",

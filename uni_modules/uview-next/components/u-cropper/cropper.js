@@ -315,7 +315,7 @@ export default class ImageCropper {
     }
 
     canvasToTempFilePath(resolve, reject, canvas) {
-        uni.canvasToTempFilePath({
+        let params = {
             canvas: canvas,
             canvasId: this.canvasId,
             fileType: this.fileType,
@@ -329,7 +329,13 @@ export default class ImageCropper {
                 console.error('导出图片失败:', err);
                 reject(err);
             }
-        }, this.context);
+        };
+        // #ifdef MP-ALIPAY
+        uni.canvasToTempFilePath(params);
+        // #endif
+        // #ifndef MP-ALIPAY
+        uni.canvasToTempFilePath(params, this.context);
+        // #endif
     }
     
     // 导出裁剪图片
@@ -354,7 +360,12 @@ export default class ImageCropper {
             const scaleY = this.height / this.rectHeight;
 
             let canvas = null;
+            // #ifdef MP-ALIPAY
+            let ctx = uni.createCanvasContext(this.canvasId);
+            // #endif
+            // #ifndef MP-ALIPAY
             let ctx = uni.createCanvasContext(this.canvasId, this.context);
+            // #endif
 
             if(this.options.type == '2d'){
                 canvas = await new Promise(resolve => {

@@ -323,9 +323,19 @@ export default {
 					});
 				});
 				// #endif
+
+				
+
 				// #ifndef MP-WEIXIN
 				/* 非微信小程序不支持2d，切换回uniapp获取canvas上下文方式 */
+				
+				// #ifdef MP-ALIPAY
+				canvasContext = this.canvasContext = uni.createCanvasContext(this.canvasId);
+				// #endif
+				// #ifndef MP-ALIPAY
 				canvasContext = this.canvasContext = uni.createCanvasContext(this.canvasId, this);
+				// #endif
+				
 				/* 使用dynamicSize，可以解决小块间出现白线问题，再通过scale缩放至size，使其达到所设尺寸 */
 				this.templateOptions.canvasWidth = qr.dynamicSize;
 				this.templateOptions.canvasHeight = qr.dynamicSize;
@@ -357,7 +367,12 @@ export default {
 				// #endif
 			} else {
 				/* uniapp获取canvas上下文方式 */
+				// #ifdef MP-ALIPAY
+				canvasContext = this.canvasContext = uni.createCanvasContext(this.canvasId);
+				// #endif
+				// #ifndef MP-ALIPAY
 				canvasContext = this.canvasContext = uni.createCanvasContext(this.canvasId, this);
+				// #endif
 				/* 使用dynamicSize，可以解决小块间出现白线问题，再通过scale缩放至size，使其达到所设尺寸 */
 				this.templateOptions.canvasWidth = qr.dynamicSize;
 				this.templateOptions.canvasHeight = qr.dynamicSize;

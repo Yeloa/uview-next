@@ -114,7 +114,14 @@ export default {
 			// #endif
 
 			// #ifndef APP-NVUE
+
+			// #ifdef MP-ALIPAY
+			let ctx = uni.createCanvasContext(this.elBgId);
+			// #endif
+			// #ifndef MP-ALIPAY
 			let ctx = uni.createCanvasContext(this.elBgId, this);
+			// #endif
+			
 			// #endif
 
 			ctx.setLineWidth(this.borderWidthPx); // 设置圆环宽度
@@ -139,7 +146,14 @@ export default {
 				// #endif
 
 				// #ifndef APP-NVUE
+				
+				// #ifdef MP-ALIPAY
+				ctx = uni.createCanvasContext(this.elId);
+				// #endif
+				// #ifndef MP-ALIPAY
 				ctx = uni.createCanvasContext(this.elId, this);
+				// #endif
+
 				// #endif
 				this.progressContext = ctx;
 			}

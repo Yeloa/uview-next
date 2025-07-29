@@ -25,7 +25,7 @@ export default {
         labelSize: '15px',
         labelColor: theme.mainColor,
         space: '3px',
-        imgMode: '',
+        imgMode: 'scaleToFill',
         width: '',
         height: '',
         top: 0,
