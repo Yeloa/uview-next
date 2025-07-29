@@ -34,7 +34,10 @@
 			<!-- #ifdef APP-NVUE -->
 			<view class="u-swipe-action-item__content" ref="u-swipe-action-item__content" @panstart="onTouchstart"
 				@tap="clickHandler">
-				<!-- #endif -->
+			<!-- #endif -->
+			<!-- #ifndef APP-NVUE -->
+			<view>
+			<!-- #endif -->
 				<slot />
 			</view>
 		</view>
