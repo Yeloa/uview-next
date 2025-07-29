@@ -2,8 +2,9 @@
 1. 修复`icon`组件使用图片时支付宝显示不全
 2. 修复`picker`组件支付宝传递this引发的报错
 3. 修复一些组件由于`canvas`问题引起的支付宝报错
-4. 修复`calendar`, `swipe-action-item`组件抖音小程序报错
-5. 其他一些细节优化
+4. 修复`calendar`组件, `swipe-action-item`组件抖音小程序报错
+5. 修复`swipe-action-item`组件不支持支付宝小程序的问题
+6. 其他一些细节优化
 
 ## 3.3.1（2025-07-28）
 1. 新增`u-divider` 组件插槽模式

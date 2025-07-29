@@ -27,19 +27,26 @@
 				</view>
 			</slot>
 		</view>
-		<!-- #ifdef APP-VUE || MP-WEIXIN || H5 || MP-QQ -->
+		
+		<!-- #ifdef APP-VUE || MP-WEIXIN || MP-ALIPAY || H5 || MP-QQ -->
 		<view class="u-swipe-action-item__content" @touchstart="wxs.touchstart" @touchmove="wxs.touchmove"
 			@touchend="wxs.touchend" :status="status" :change:status="wxs.statusChange" :size="size"
 			:change:size="wxs.sizeChange">
-			<!-- #ifdef APP-NVUE -->
-			<view class="u-swipe-action-item__content" ref="u-swipe-action-item__content" @panstart="onTouchstart"
-				@tap="clickHandler">
-			<!-- #endif -->
-			<!-- #ifndef APP-NVUE -->
-			<view>
-			<!-- #endif -->
-				<slot />
-			</view>
+			<slot />
+		</view>
+		<!-- #endif -->
+		
+		<!-- #ifdef MP-BAIDU || MP-TOUTIAO || MP-LARK -->
+		<view class="u-swipe-action-item__content" @touchstart="touchStartHandler" @touchmove="touchMoveHandler"
+			@touchend="touchEndHandler">
+			<slot />
+		</view>
+		<!-- #endif -->
+
+		<!-- #ifdef APP-NVUE -->
+		<view class="u-swipe-action-item__content" ref="u-swipe-action-item__content" @panstart="onTouchstart"
+			@tap="clickHandler">
+			<slot></slot>
 		</view>
 		<!-- #endif -->
 	</view>
@@ -47,16 +54,16 @@
 <!-- #ifdef APP-VUE || MP-WEIXIN || H5 || MP-QQ -->
 <script src="./index.wxs" module="wxs" lang="wxs"></script>
 <!-- #endif -->
+<!-- #ifdef MP-ALIPAY -->
+<script src="./index.sjs" module="wxs" lang="sjs"></script>
+<!-- #endif -->
 <script>
-	import touch from '../../libs/mixin/touch.js'
+
 	import props from './props.js';
 	import mixin from '../../libs/mixin/mixin'
 	import mpMixin from '../../libs/mixin/mpMixin';
 	// #ifdef APP-NVUE
 	import nvue from './nvue.js';
-	// #endif
-	// #ifdef APP-VUE || MP-WEIXIN || H5 || MP-QQ
-	import wxs from './wxs.js';
 	// #endif
 	
 	/**
@@ -80,12 +87,8 @@
 			mpMixin, 
 			mixin, 
 			props, 
-			touch,
 			// #ifdef APP-NVUE
 			nvue,
-			// #endif
-			// #ifdef APP-VUE || MP-WEIXIN || H5 || MP-QQ
-			wxs,
 			// #endif
 		],
 		data() {
@@ -98,10 +101,18 @@
 				},
 				// 当前状态，open-打开，close-关闭
 				status: 'close',
+				// #ifdef MP-BAIDU || MP-TOUTIAO || MP-LARK
+				// 其他小程序平台的状态管理
+				startX: 0,
+				startY: 0,
+				moving: false,
+				currentX: 0,
+				buttonsWidth: 0,
+				// #endif
 			}
 		},
 		watch: {
-			// 由于wxs无法直接读取外部的值，需要在外部值变化时，重新执行赋值逻辑
+			// 由于wxs/sjs无法直接读取外部的值，需要在外部值变化时，重新执行赋值逻辑
 			wxsInit(newValue, oldValue) {
 				this.$nextTick(() => {
 					this.queryRect()
@@ -136,6 +147,20 @@
 			// #ifndef APP-NVUE
 			// 查询节点
 			queryRect() {
+				// #ifdef MP-ALIPAY
+				// 支付宝小程序使用特殊的查询方式
+				uni.createSelectorQuery().in(this).selectAll('.u-swipe-action-item__right__button').boundingClientRect().exec((res) => {
+					const buttons = res[0] || [];
+					this.size = {
+						buttons,
+						show: this.show,
+						disabled: this.disabled,
+						threshold: this.threshold,
+						duration: this.duration
+					}
+				})
+				// #endif
+				// #ifndef MP-ALIPAY
 				this.$uGetRect('.u-swipe-action-item__right__button', true).then(buttons => {
 					this.size = {
 						buttons,
@@ -145,8 +170,91 @@
 						duration: this.duration
 					}
 				})
+				// #endif
 			},
 			// #endif
+
+			// #ifdef APP-VUE || MP-WEIXIN || MP-ALIPAY || H5 || MP-QQ
+			closeHandler() {
+				this.status = 'close'
+			},
+			setState(status) {
+				this.status = status
+			},
+			closeOther() {
+				// 尝试关闭其他打开的单元格
+				this.parent && this.parent.closeOther(this)
+			},
+			// #endif
+
+			// #ifdef MP-BAIDU || MP-TOUTIAO || MP-LARK
+			// 其他小程序平台的原生JavaScript实现
+			touchStartHandler(e) {
+				if (this.disabled) return;
+				const touch = e.touches[0];
+				this.startX = touch.pageX;
+				this.startY = touch.pageY;
+				this.moving = true;
+				this.closeOther();
+			},
+			
+			touchMoveHandler(e) {
+				if (!this.moving || this.disabled) return;
+				const touch = e.touches[0];
+				const moveX = touch.pageX - this.startX;
+				const moveY = touch.pageY - this.startY;
+				
+				// 判断是否为水平滑动
+				if (Math.abs(moveX) < Math.abs(moveY)) return;
+				
+				// 阻止默认滚动
+				e.preventDefault && e.preventDefault();
+				
+				this.currentX = moveX;
+				this.updateTransform(moveX);
+			},
+			
+			touchEndHandler(e) {
+				if (!this.moving || this.disabled) return;
+				this.moving = false;
+				
+				const moveX = this.currentX;
+				if (Math.abs(moveX) < this.threshold) {
+					this.close();
+				} else {
+					if (moveX < 0) {
+						this.open();
+					} else {
+						this.close();
+					}
+				}
+			},
+			
+			updateTransform(translateX) {
+				// 限制滑动范围
+				if (translateX > 0) translateX = 0;
+				if (Math.abs(translateX) > this.buttonsWidth) translateX = -this.buttonsWidth;
+				
+				// 更新样式
+				const content = this.$refs['u-swipe-action-item'];
+				if (content) {
+					content.style.transform = `translateX(${translateX}px)`;
+				}
+			},
+			
+			open() {
+				this.status = 'open';
+				this.updateTransform(-this.buttonsWidth);
+				this.$emit('open', this.index);
+			},
+			
+			close() {
+				this.status = 'close';
+				this.updateTransform(0);
+				this.$emit('close', this.index);
+			},
+			// #endif
+			
 			// 按钮被点击
 			buttonClickHandler(item, index) {
 				this.$emit('click', {

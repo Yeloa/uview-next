@@ -217,9 +217,9 @@ function sizeChange(newValue, oldValue, ownerInstance, instance) {
 }
 
 module.exports = {
-	touchstart: touchstart,
-	touchmove: touchmove,
-	touchend: touchend,
-	sizeChange: sizeChange,
-	statusChange: statusChange
+	touchstart,
+	touchmove,
+	touchend,
+	sizeChange,
+	statusChange
 };
