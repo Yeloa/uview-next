@@ -26,6 +26,8 @@ export default {
         height: 400,
         // 输出的图片类型，如果发现裁剪的图片很大，可能是因为设置为了"png"，改成"jpg"即可
         fileType: 'jpg',
+        // 图片的质量，取值范围为 (0, 1]，不在范围内时当作1.0处理
+        quality: 1,
         // 是否显示网格线
         showGrid: true,
     }

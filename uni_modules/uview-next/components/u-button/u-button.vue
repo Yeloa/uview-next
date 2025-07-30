@@ -364,7 +364,6 @@ $u-button-hairline-border-width: 0.5px !default;
     position: relative;
     align-items: center;
     justify-content: center;
-    border:1px solid #f00;
     @include flex;
     /* #ifndef APP-NVUE */
     box-sizing: border-box;
