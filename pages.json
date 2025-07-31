@@ -117,7 +117,11 @@
 				{
 					"path": "swipeAction/swipeAction",
 					"style": {
-						"navigationBarTitleText": "滑动单元格"
+						"navigationBarTitleText": "滑动单元格",
+						// 支付宝小程序禁用页面回弹
+						"mp-alipay": {
+							"allowsBounceVertical": "NO"
+						}
 					}
 				},
 				{
@@ -337,6 +341,12 @@
 					"style": {
 						"navigationBarTitleText": "Tabbar"
 					}
+				},
+				{
+					"path": "signature/signature",
+					"style": {
+						"navigationBarTitleText": "签名"
+					}
 				}
 			]
 		},
@@ -352,7 +362,11 @@
 				{
 					"path": "draggable/draggable",
 					"style": {
-						"navigationBarTitleText": "拖拽排序"
+						"navigationBarTitleText": "拖拽排序",
+						// 支付宝小程序禁用页面回弹
+						"mp-alipay": {
+							"allowsBounceVertical": "NO"
+						}
 					}
 				},
 				{

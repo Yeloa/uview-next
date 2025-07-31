@@ -426,6 +426,12 @@ export default [{
     groupName: '其他组件',
     groupName_en: 'Other components',
     list: [
+    {
+        path: '/pages/componentsB/signature/signature',
+        icon: 'signature',
+        title: 'Signature 签名',
+        title_en: 'Signature'
+    },
 	{
             path: '/pages/componentsC/draggable/draggable',
             icon: 'draggable',

@@ -111,6 +111,7 @@ import Table from './props/table'
 import TableColumn from './props/tableColumn'
 import Upload from './props/upload'
 import Waterfall from './props/waterfall'
+import Signature from './props/signature'
 
 export default {
     ...ActionSheet,
@@ -219,5 +220,6 @@ export default {
     ...Table,
     ...TableColumn,
     ...Upload,
-    ...Waterfall
+    ...Waterfall,
+    ...Signature
 }

@@ -214,6 +214,8 @@ export default {
     'uicon-rmb': '\ue611',
     'uicon-douyin': '\ue6d7',
     'uicon-douyin-circle-fill': '\ue6d4',
-    'uicon-rotate': '\ue6d6'
+    'uicon-rotate': '\ue6d6',
+    'uicon-back': '\ue6d5',
+    'uicon-revoke': '\ue6d8'
 }
 

@@ -48,7 +48,7 @@
 	const domModule = weex.requireModule('dom')
 	domModule.addRule('fontFace', {
 		"fontFamily": "uicon-iconfont",
-		"src": "url('https://at.alicdn.com/t/c/font_4956259_21qkjfwq7lb.ttf')"
+		"src": "url('https://at.alicdn.com/t/c/font_4988109_wo593loqwzq.ttf')"
 	})
 	// #endif
 
@@ -165,7 +165,7 @@
 	
 	@font-face {
 		font-family: 'uicon-iconfont';
-		src: url('https://at.alicdn.com/t/c/font_4956259_21qkjfwq7lb.ttf') format('truetype');
+		src: url('https://at.alicdn.com/t/c/font_4988109_wo593loqwzq.ttf') format('truetype');
 	}
 
 	.u-icon {
