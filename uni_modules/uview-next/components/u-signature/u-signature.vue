@@ -1,22 +1,25 @@
 <template>
     <view
         class="u-signature"
+        :class="[landscape ? 'u-signature-landscape' : '']"
         :style="[containerStyle, $u.addStyle(customStyle)]"
         @touchmove.prevent.stop
         @wheel.prevent.stop
     >
 		<view v-if="showTitle" class="u-signature__title" :class="[{'u-signature__title-fixed': fixed}]">
             <slot name="title">
-                {{ title }}
+               <text class="u-signature__title-text">{{ title }}</text>
             </slot>
         </view>
 
 		<view class="u-signature__canvas">
 			<canvas
+                <!-- #ifdef MP-WEIXIN -->
 				:type="type"
+                <!-- #endif -->
 				:canvas-id="canvasId" 
 				:id="canvasId" 
-				:style="canvasStyle"
+				:style="[canvasStyle]"
 				:class="['u-signature__canvas']" 
 				:disable-scroll="disableScroll"
 				@touchstart="onCanvasTouchStart" 
@@ -53,7 +56,6 @@
                 <view class="u-signature__toolbar-right">
                     <view class="u-signature__toolbar-item">
                         <u-button
-                            size="small"
                             type="info"
                             icon="trash"
                             @click="handleClear"
@@ -63,7 +65,6 @@
                     </view>
                     <view class="u-signature__toolbar-item">
                         <u-button
-                            size="small"
                             type="info"
                             icon="back"
                             @click="handleUndo"
@@ -73,7 +74,6 @@
                     </view>
                     <view class="u-signature__toolbar-item">
                         <u-button
-                            size="small"
                             type="primary"
                             @click="handleConfirm"
                         >
@@ -203,6 +203,7 @@
                                 size: true,
                             })
                             .exec((res) => {
+                               
                                 this.canvasWidth = parseInt(res[0].width);
                                 this.canvasHeight = parseInt(res[0].height);
                                 resolve(res[0].node);
@@ -246,7 +247,6 @@
             // 开始绘制
             onCanvasTouchStart(e) {
                 if (this.disabled) return;
-
                 const touch = e.touches[0];
                 const point = this.getTouchPoint(touch);
 
@@ -631,13 +631,20 @@
 		display: flex;
 		flex-direction: column;
 
+        // 横屏模式
+        &-landscape {
+            flex-direction: row-reverse;
+        }
+
 		&__title{
 			text-align: center;
 			font-size: 15px;
 			color: #333;
 			padding: 10px;
-			z-index: 9999;
-
+			display: flex;
+			align-items: center;
+			justify-content: center;
+            
             &-fixed{
                 position: absolute;
                 top: 0;
@@ -645,6 +652,21 @@
                 right: 0;
                 z-index: 9999;
                 background-color: rgba(255, 255, 255, 0.8);
+            }
+
+            // 横屏模式标题样式
+            .u-signature-landscape & {
+                width: 26px;
+                height: 100%;
+                flex-direction: column;
+                align-items: center;
+                flex-shrink: 0;
+
+                &-text {
+                    width: 100vh;
+                    transform: rotate(90deg);
+                    transform-origin: center center;
+                }
             }
 		}
 
@@ -660,7 +682,7 @@
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
-            padding: 10px;
+            padding: 10px 10px 20px 10px;
 
             &-fixed{
                 position: absolute;
@@ -671,39 +693,76 @@
                 background-color: rgba(255, 255, 255, 0.8);
             }
 
+            // 横屏模式工具栏样式
+            .u-signature-landscape & {
+                padding: 10px;
+                width: 34px;
+                height: 100%;
+                flex-direction: column;
+                align-items: center;
+                flex-shrink: 0;
+            }
+
             &-color-list{
                 display: flex;
                 flex-direction: row;
                 align-items: center;
+
+                // 横屏模式颜色列表样式
+                .u-signature-landscape & {
+                    flex-direction: column;
+                    margin-bottom: 10px;
+                }
             }
 
             &-color{
-                width: 10px;
-                height: 10px;
+                width: 15px;
+                height: 15px;
                 border-radius: 100px;
                 margin: 0 3px;
                 border: 6px solid #fff;
 				box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+                // 横屏模式下的颜色选择器样式
+                .u-signature-landscape & {
+                    margin: 5px 0;
+                }
             }
-
-			&-color_active{
-				border: 2px solid #000;
-			}
 
             &-left {
                 display: flex;
                 flex-direction: row;
                 align-items: center;
+
+                // 横屏模式左侧工具栏样式
+                .u-signature-landscape & {
+                    flex-direction: column;
+                    margin-top: 50px;
+                }
             }
 
             &-right {
                 display: flex;
                 flex-direction: row;
-                align-items: center;
+                //align-items: center;
+                
+                // 横屏模式右侧工具栏样式
+                .u-signature-landscape & {
+                    flex-direction: column;
+                    margin-bottom: 30px;
+
+                    .u-signature__toolbar-item {
+                        margin-right: 0;
+                        margin-left: -40px;
+                        height: 100px;
+                        transform: rotate(90deg);
+                        transform-origin: center center;
+                    }
+                }
             }
 
             &-item {
                 margin-right: 10px;
+               
             }
 
             &-item:last-child {

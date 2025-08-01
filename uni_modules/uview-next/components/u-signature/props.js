@@ -1,149 +1,145 @@
 export default {
     props: {
         // 标题
-        title:{
+        title: {
             type: String,
-            default: uni.$u.props.signature.title
+            default: () => uni.$u.$t('uSignature.title'),
         },
         // 是否显示标题
-        showTitle:{
+        showTitle: {
             type: Boolean,
-            default: uni.$u.props.signature.showTitle
+            default: () => uni.$u.props.signature.showTitle,
         },
         // 是否显示工具栏
-        showToolbar:{
+        showToolbar: {
             type: Boolean,
-            default: uni.$u.props.signature.showToolbar
+            default: () => uni.$u.props.signature.showToolbar,
         },
         // 是否显示颜色列表
-        showColorList:{
+        showColorList: {
             type: Boolean,
-            default: uni.$u.props.signature.showColorList
+            default: () => uni.$u.props.signature.showColorList,
         },
         // 是否显示清空按钮
-        showClear:{
+        showClear: {
             type: Boolean,
-            default: uni.$u.props.signature.showClear
+            default: () => uni.$u.props.signature.showClear,
         },
         // 是否显示撤销按钮
-        showUndo:{  
+        showUndo: {
             type: Boolean,
-            default: uni.$u.props.signature.showUndo
+            default: () => uni.$u.props.signature.showUndo,
         },
         // 清空按钮的文本
-        clearText:{
+        clearText: {
             type: String,
-            default: uni.$u.props.signature.clearText
+            default: () => uni.$u.$t('uSignature.clearText'),
         },
         // 撤销按钮的文本
-        undoText:{      
+        undoText: {
             type: String,
-            default: uni.$u.props.signature.undoText
+            default: () => uni.$u.$t('uSignature.undoText'),
         },
         // 完成按钮的文本
-        confirmText:{
+        confirmText: {
             type: String,
-            default: uni.$u.props.signature.confirmText
+            default: () => uni.$u.$t('uSignature.confirmText'),
         },
         // 工具栏对齐方式
-        toolbarStyle:{
+        toolbarStyle: {
             type: Object,
-            default: uni.$u.props.signature.toolbarStyle
+            default: () => uni.$u.props.signature.toolbarStyle,
         },
         // 是否固定标题栏和工具栏
-        fixed:{
+        fixed: {
             type: Boolean,
-            default: uni.$u.props.signature.fixed
+            default: () => uni.$u.props.signature.fixed,
         },
         // 线条最小宽度
         minLineWidth: {
             type: [String, Number],
-            default: uni.$u.props.signature.minLineWidth
+            default: () => uni.$u.props.signature.minLineWidth,
         },
         // 线条最大宽度
         maxLineWidth: {
             type: [String, Number],
-            default: uni.$u.props.signature.maxLineWidth
+            default: () => uni.$u.props.signature.maxLineWidth,
         },
         // 画笔颜色
         penColor: {
             type: String,
-            default: uni.$u.props.signature.penColor
+            default: () => uni.$u.props.signature.penColor,
         },
         // 画笔颜色列表
         penColorList: {
             type: Array,
-            default: uni.$u.props.signature.penColorList
+            default: () => uni.$u.props.signature.penColorList,
         },
         // 画笔大小
         penSize: {
             type: [String, Number],
-            default: uni.$u.props.signature.penSize
+            default: () => uni.$u.props.signature.penSize,
         },
         // 背景颜色
         backgroundColor: {
             type: String,
-            default: uni.$u.props.signature.backgroundColor
+            default: () => uni.$u.props.signature.backgroundColor,
         },
         // canvas类型
         type: {
             type: String,
-            default: uni.$u.props.signature.type
+            default: () => uni.$u.props.signature.type,
         },
         // 是否开启压感
         openSmooth: {
             type: Boolean,
-            default: uni.$u.props.signature.openSmooth
+            default: () => uni.$u.props.signature.openSmooth,
         },
         // 最大历史记录数
         maxHistoryLength: {
             type: [String, Number],
-            default: uni.$u.props.signature.maxHistoryLength
+            default: () => uni.$u.props.signature.maxHistoryLength,
         },
         // 是否横屏
         landscape: {
             type: Boolean,
-            default: uni.$u.props.signature.landscape
+            default: () => uni.$u.props.signature.landscape,
         },
         // 是否禁用滚动
         disableScroll: {
             type: Boolean,
-            default: uni.$u.props.signature.disableScroll
+            default: () => uni.$u.props.signature.disableScroll,
         },
         // 是否禁用
         disabled: {
             type: Boolean,
-            default: uni.$u.props.signature.disabled
+            default: () => uni.$u.props.signature.disabled,
         },
         // 只生成内容区域
         boundingBox: {
             type: Boolean,
-            default: uni.$u.props.signature.boundingBox
+            default: () => uni.$u.props.signature.boundingBox,
         },
-        // 自定义样式
-        customStyle: {
-            type: [Object, String],
-            default: uni.$u.props.signature.customStyle
-        },
+
         // 输出的图片类型，如果发现裁剪的图片很大，可能是因为设置为了"png"，改成"jpg"即可
         fileType: {
-        	type: String,
-        	default: ()=> uni.$u.props.cropper.fileType
+            type: String,
+            default: () => uni.$u.props.signature.fileType,
         },
         // 图片的质量，取值范围为 (0, 1]，不在范围内时当作1.0处理
         quality: {
             type: Number,
-            default: uni.$u.props.signature.quality
+            default: () => uni.$u.props.signature.quality,
         },
         // 是否显示水印
         showWatermark: {
             type: Boolean,
-            default: uni.$u.props.signature.showWatermark
+            default: () => uni.$u.props.signature.showWatermark,
         },
         // 水印配置对象
         watermark: {
             type: Object,
-            default: uni.$u.props.signature.watermark
-        }
-    }
-}
+            default: () => uni.$u.props.signature.watermark,
+        },
+    },
+};

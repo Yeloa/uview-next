@@ -54,5 +54,10 @@
 	"uTable.emptyText": "No hay datos disponibles",
 
 	"uToolbar.cancelText": "Cancelar",
-	"uToolbar.confirmText": "Confirmar"
+	"uToolbar.confirmText": "Confirmar",
+	
+	"uSignature.title": "Por favor, firme",
+	"uSignature.clearText": "Limpiar",
+	"uSignature.undoText": "Deshacer",
+	"uSignature.confirmText": "Confirmar"
 }

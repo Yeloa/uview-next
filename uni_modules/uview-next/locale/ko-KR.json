@@ -54,5 +54,10 @@
 	"uTable.emptyText": "데이터가 없습니다",
 
 	"uToolbar.cancelText": "취소",
-	"uToolbar.confirmText": "확인"
+	"uToolbar.confirmText": "확인",
+	
+	"uSignature.title": "서명해 주세요",
+	"uSignature.clearText": "지우기",
+	"uSignature.undoText": "되돌리기",
+	"uSignature.confirmText": "확인"
 }

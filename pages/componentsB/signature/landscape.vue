@@ -1,37 +1,16 @@
 <template>
-	<view class="u-page">
-		<u-alert type="error" description="PC端需开启仿真模式测试"></u-alert>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">基础功能</text>
-			<view class="u-demo-block__content">
-				<view class="signature-container">
-					<u-signature
-						ref="signatureRef"
-						:showWatermark="showWatermark"
-						:watermark="watermark"
-						:penSize="penSize"
-						:openSmooth="openSmooth"
-						:disableScroll="true"
-						:backgroundColor="backgroundColor"
-						@confirm="onConfirm"
-					></u-signature>
-				</view>
-			</view>
-		</view>
-		
-		<view class="button-container">
-			<u-button size="small" type="primary" @click="clear">清空</u-button>
-			<u-button size="small" type="primary" @click="undo">撤销</u-button>
-			<u-button size="small" type="primary" @click="confirm">完成</u-button>
-		</view>
-		
-		<view class="button-container">
-			<u-button size="small" type="error" @click="goLandscape">横屏模式</u-button>
-		</view>
-		<view class="preview-container">
-			<view class="preview-title">预览</view>
-			<image :src="basicResult" class="result-image" mode="widthFix"></image>
-		</view>
+	<view class="" style="height: 100vh;">
+		<u-signature
+			landscape
+			ref="signatureRef"
+			:showWatermark="showWatermark"
+			:watermark="watermark"
+			:penSize="penSize"
+			:openSmooth="openSmooth"
+			:disableScroll="true"
+			:backgroundColor="backgroundColor"
+			@confirm="onConfirm"
+		></u-signature>
 	</view>
 </template>
 
@@ -51,18 +30,13 @@
 					color: 'rgba(0, 0, 0, 0.1)',
 					fontSize: 15,
 					fontFamily: 'Arial',
-					rotate: -30,
+					rotate: 60,
 					spacing: 100,
 					single: false
 				}
 			}
 		},
 		methods: {
-			goLandscape(){
-				uni.navigateTo({
-					url: '/pages/componentsB/signature/landscape'
-				})
-			},
 			clear(){
 				this.$refs.signatureRef.clear()
 			},
@@ -77,25 +51,6 @@
 			onConfirm(res){
 				this.basicResult = res
 				this.showImageModal = true
-			},
-			// 水印相关方法
-			onFontSizeChange(e) {
-				this.watermark.fontSize = e.detail.value;
-			},
-			onRotateChange(e) {
-				this.watermark.rotate = e.detail.value;
-			},
-			onSpacingChange(e) {
-				this.watermark.spacing = e.detail.value;
-			},
-			onShowWatermarkChange(e) {
-				this.showWatermark = e.detail.value;
-			},
-			onSingleWatermarkChange(e) {
-				this.watermark.single = e.detail.value;
-			},
-			onWatermarkConfirm(res){
-				this.watermarkResult = res
 			}
 		}
 	}

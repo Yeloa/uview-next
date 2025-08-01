@@ -2,7 +2,7 @@ export default {
     // signature组件
     signature: {
         // 标题
-        title: '请签名',
+        title: '',
         // 是否显示标题
         showTitle: true,
         // 是否显示工具栏
@@ -14,11 +14,11 @@ export default {
         // 是否显示撤销按钮
         showUndo: true,
         // 清空按钮的文本
-        clearText: '清空',
+        clearText: '',
         // 撤销按钮的文本
-        undoText: '撤销',
+        undoText: '',
         // 完成按钮的文本
-        confirmText: '完成',
+        confirmText: '',
         //是否固定标题栏和工具栏
         fixed: false,
         // 画笔大小
@@ -28,9 +28,9 @@ export default {
         // 线条最大宽度
         maxLineWidth: 6,
         // 画笔颜色
-        penColor: '#4D4D4D',
+        penColor: '#333333',
         // 画笔颜色列表
-        penColorList: ['#4D4D4D', '#FF1E10', '#FFBE00', '#1A9BFF', '#1AAD19'],
+        penColorList: ['#333333', '#FF1E10', '#FFBE00', '#1A9BFF', '#1AAD19'],
         // 背景颜色
         backgroundColor: '#ffffff',
         // canvas类型
@@ -56,8 +56,6 @@ export default {
         preferToDataURL: false,
         // 工具栏自定义样式
         toolbarStyle: {},
-        // 自定义样式
-        customStyle: {},
         // 图片的质量，取值范围为 (0, 1]，不在范围内时当作1.0处理
         quality: 1,
         // 输出图片类型，png-png格式，jpg-jpg格式
@@ -68,7 +66,7 @@ export default {
         watermark: {
             showOnSave: true,
             text: '',
-            color: 'rgba(0, 0, 0, 0.1)',
+            color: 'rgba(0, 0, 0, 0.2)',
             fontSize: 16,
             fontFamily: 'Arial',
             rotate: -30,

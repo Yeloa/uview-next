@@ -54,5 +54,10 @@
 	"uTable.emptyText": "暂无数据",
 
 	"uToolbar.cancelText": "取消",
-	"uToolbar.confirmText": "确定"
+	"uToolbar.confirmText": "确定",
+	
+	"uSignature.title": "请签名",
+	"uSignature.clearText": "清空",
+	"uSignature.undoText": "撤销",
+	"uSignature.confirmText": "完成"
 }

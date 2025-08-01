@@ -54,5 +54,10 @@
 	"uTable.emptyText": "Keine Daten verfügbar",
 
 	"uToolbar.cancelText": "Abbrechen",
-	"uToolbar.confirmText": "Bestätigen"
+	"uToolbar.confirmText": "Bestätigen",
+	
+	"uSignature.title": "Bitte unterschreiben",
+	"uSignature.clearText": "Löschen",
+	"uSignature.undoText": "Rückgängig",
+	"uSignature.confirmText": "Bestätigen"
 }

@@ -54,5 +54,10 @@
 	"uTable.emptyText": "Нет данных",
 
 	"uToolbar.cancelText": "Отмена",
-	"uToolbar.confirmText": "Подтвердить"
+	"uToolbar.confirmText": "Подтвердить",
+	
+	"uSignature.title": "Пожалуйста, подпишите",
+	"uSignature.clearText": "Очистить",
+	"uSignature.undoText": "Отменить",
+	"uSignature.confirmText": "Подтвердить"
 }

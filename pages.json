@@ -345,7 +345,20 @@
 				{
 					"path": "signature/signature",
 					"style": {
-						"navigationBarTitleText": "签名"
+						"navigationBarTitleText": "签名",
+						"mp-alipay": {
+							"allowsBounceVertical": "NO"
+						}
+					}
+				},
+				{
+					"path": "signature/landscape",
+					"style": {
+						"navigationBarTitleText": "签名-横屏",
+						"navigationStyle": "custom",
+						"mp-alipay": {
+							"allowsBounceVertical": "NO"
+						}
 					}
 				}
 			]
