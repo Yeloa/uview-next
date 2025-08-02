@@ -100,7 +100,12 @@ export default [{
         icon: 'datetimePicker',
         title: 'DatetimePicker 时间选择器',
         title_en: 'Picker'
-    }, {
+    },{
+        path: '/pages/componentsB/select/select',
+        icon: 'select',
+        title: 'Select 下拉列表',
+        title_en: 'Select'
+    },{
         path: '/pages/componentsA/rate/rate',
         icon: 'rate',
         title: 'Rate 评分',

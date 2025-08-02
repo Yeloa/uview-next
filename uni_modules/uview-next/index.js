@@ -41,6 +41,7 @@ const $u = {
 	hexToRgb: colorGradient.hexToRgb,
 	rgbToHex: colorGradient.rgbToHex,
 	colorToRgba: colorGradient.colorToRgba,
+	darkenColor: colorGradient.darkenColor,
 	test,
 	type: ['primary', 'success', 'error', 'warning', 'info'],
 	http: new Request(),

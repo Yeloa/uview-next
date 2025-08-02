@@ -126,9 +126,60 @@ function colorToRgba(color, alpha) {
     return sColor
 }
 
+/**
+ * 将颜色暗化指定比例
+ * @param {string} color 原始颜色值（支持十六进制和rgb格式）
+ * @param {number} factor 暗化因子，范围0-1，0表示不暗化，1表示完全暗化
+ * @returns {string} 暗化后的十六进制颜色值
+ */
+function darkenColor(color, factor = 0.1) {
+    try {
+        // 处理颜色值，支持带#和不带#的十六进制
+        let hexColor = color.trim()
+        if (!hexColor.startsWith('#')) {
+            hexColor = '#' + hexColor
+        }
+        
+        // 确保是6位十六进制
+        if (hexColor.length === 4) {
+            // 处理3位十六进制 #fff -> #ffffff
+            hexColor = '#' + hexColor[1] + hexColor[1] + hexColor[2] + hexColor[2] + hexColor[3] + hexColor[3]
+        }
+        
+        // 验证颜色格式
+        if (!/^#[0-9A-Fa-f]{6}$/.test(hexColor)) {
+            console.warn('Invalid color format:', color)
+            return '#e4e7ed' // 默认边框色
+        }
+        
+        // 将十六进制颜色转换为RGB
+        const hex = hexColor.substring(1)
+        const r = parseInt(hex.substr(0, 2), 16)
+        const g = parseInt(hex.substr(2, 2), 16)
+        const b = parseInt(hex.substr(4, 2), 16)
+        
+        // 计算较深的颜色（减少亮度）
+        const newR = Math.max(0, Math.floor(r * (1 - factor)))
+        const newG = Math.max(0, Math.floor(g * (1 - factor)))
+        const newB = Math.max(0, Math.floor(b * (1 - factor)))
+        
+        // 转换回十六进制
+        const toHex = (n) => {
+            const hex = n.toString(16)
+            return hex.length === 1 ? '0' + hex : hex
+        }
+        
+        return `#${toHex(newR)}${toHex(newG)}${toHex(newB)}`
+    } catch (error) {
+        console.warn('Error darkening color:', error)
+        return '#e4e7ed' // 默认边框色
+    }
+}
+
 export default {
     colorGradient,
     hexToRgb,
     rgbToHex,
-    colorToRgba
+    colorToRgba,
+    darkenColor
 }

@@ -360,6 +360,12 @@
 							"allowsBounceVertical": "NO"
 						}
 					}
+				},
+				{
+					"path": "select/select",
+					"style": {
+						"navigationBarTitleText": "下拉列表"
+					}
 				}
 			]
 		},

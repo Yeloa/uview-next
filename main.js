@@ -16,7 +16,6 @@ const i18n = createI18n({
 	}
 })
 
-
 // #ifndef VUE3
 import Vue from 'vue';
 import './uni.promisify.adaptor';
