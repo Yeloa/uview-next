@@ -34,6 +34,8 @@ import platform from './libs/function/platform';
 // 国际化
 import { $t, VueI18n, createI18n } from './locale';
 
+const http = new Request();
+
 const $u = {
 	route,
 	date: index.timeFormat, // 另名date
@@ -44,7 +46,7 @@ const $u = {
 	darkenColor: colorGradient.darkenColor,
 	test,
 	type: ['primary', 'success', 'error', 'warning', 'info'],
-	http: new Request(),
+	http: http,
 	config, // uView配置信息相关，比如版本号
 	debounce,
 	throttle,
@@ -94,7 +96,7 @@ const install = (Vue, Params) => {
 	}
 };
 
-export { VueI18n, createI18n };
+export { VueI18n, createI18n, http, route, debounce, throttle, theme, platform};
 
 export default {
 	install

@@ -366,6 +366,12 @@
 					"style": {
 						"navigationBarTitleText": "下拉列表"
 					}
+				},
+				{
+					"path": "barcode/barcode",
+					"style": {
+						"navigationBarTitleText": "条码"
+					}
 				}
 			]
 		},

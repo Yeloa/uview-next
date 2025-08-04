@@ -14,6 +14,7 @@ import Amount from './props/amount'
 import Backtop from './props/backtop'
 import Badge from './props/badge'
 import Button from './props/button'
+import Barcode from './props/barcode'
 import Calendar from './props/calendar'
 import CarKeyboard from './props/carKeyboard'
 import Card from './props/card'
@@ -96,6 +97,8 @@ import SwipeActionItem from './props/swipeActionItem'
 import Swiper from './props/swiper'
 import SwipterIndicator from './props/swipterIndicator'
 import Switch from './props/switch'
+import Signature from './props/signature'
+import Select from './props/select'
 import Tabbar from './props/tabbar'
 import TabbarItem from './props/tabbarItem'
 import Tabs from './props/tabs'
@@ -111,8 +114,6 @@ import Table from './props/table'
 import TableColumn from './props/tableColumn'
 import Upload from './props/upload'
 import Waterfall from './props/waterfall'
-import Signature from './props/signature'
-import Select from './props/select'
 
 export default {
     ...ActionSheet,
@@ -125,6 +126,7 @@ export default {
     ...Backtop,
     ...Badge,
     ...Button,
+    ...Barcode,
     ...Calendar,
     ...CarKeyboard,
     ...Card,
@@ -207,6 +209,8 @@ export default {
     ...Swiper,
     ...SwipterIndicator,
     ...Switch,
+    ...Signature,
+    ...Select,
     ...Tabbar,
     ...TabbarItem,
     ...Tabs,
@@ -221,7 +225,5 @@ export default {
     ...Table,
     ...TableColumn,
     ...Upload,
-    ...Waterfall,
-    ...Signature,
-    ...Select
+    ...Waterfall
 }

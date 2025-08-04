@@ -16,6 +16,8 @@
 
 <script >
 	import list from "./components.config.js";
+	import { fetchTest } from '@/common/api.js';
+
 	export default {
 		data() {
 			return {
@@ -30,10 +32,14 @@
 				}
 			},
 		},
+		onLoad(){
+			fetchTest().then((res)=>{
+				console.log('fetchTest 请求示例',res)
+			})
+		},
 		methods: {
 			
 			openPage(detail) {
-			
 				const path = detail.name
 				// #ifdef APP-NVUE
 				// 目前安卓nvue下，由于overflow只能为hidden，所以布局上的原因，暂不支持steps和tooltip等组件

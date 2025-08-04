@@ -63,7 +63,7 @@
 			
 			<!-- 下拉列表 -->
 			<view 
-				v-show="showDropdown"
+				v-if="showDropdown"
 				class="u-select__dropdown" 
 				:class="[
 					`u-select__dropdown--${placement}`,

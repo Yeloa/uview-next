@@ -466,6 +466,12 @@ export default [{
         title: 'Qrcode 二维码',
         title_en: 'Qrcode'
     },
+	{
+	    path: '/pages/componentsB/barcode/barcode',
+	    icon: 'barcode',
+	    title: 'Barcode 条码',
+	    title_en: 'Barcode'
+	},
     {
     	path: '/pages/componentsC/cropper/cropper',
     	icon: 'cropper',
