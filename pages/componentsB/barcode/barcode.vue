@@ -126,6 +126,7 @@
 		background-color: #fff;
 		padding: 20px;
 		border-radius: 10px;
+		text-align: center;
 	}
 
 	.barcode-item {

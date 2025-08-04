@@ -408,7 +408,12 @@ export default {
 						} else if (href.includes('://')) {
 							// 打开外链
 							if (this.copyLink) {
-								plus.runtime.openWeb(href)
+								// #ifdef APP-PLUS
+                                plus.runtime.openWeb(href)
+                                // #endif
+                                // #ifdef APP-HARMONY
+                                plus.runtime.openURL(href)
+                                // #endif
 							}
 						} else {
 							uni.navigateTo({

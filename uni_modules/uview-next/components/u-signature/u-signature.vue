@@ -1,6 +1,6 @@
 <template>
-    <view
-        class="u-signature"
+	<view 
+		class="u-signature" 
         :class="[landscape ? 'u-signature-landscape' : '']"
         :style="[containerStyle, $u.addStyle(customStyle)]"
         @touchmove.prevent.stop
@@ -13,20 +13,18 @@
         </view>
 
 		<view class="u-signature__canvas">
-			<canvas
-                <!-- #ifdef MP-WEIXIN -->
-				:type="type"
-                <!-- #endif -->
-				:canvas-id="canvasId" 
-				:id="canvasId" 
-				:style="[canvasStyle]"
-				:class="['u-signature__canvas']" 
-				:disable-scroll="disableScroll"
-				@touchstart="onCanvasTouchStart" 
-				@touchmove="onCanvasTouchMove"
-				@touchend="onCanvasTouchEnd" 
-				@touchcancel="onCanvasTouchCancel" >
-			</canvas>
+            <canvas
+                :type="type"
+                :canvas-id="canvasId"
+                :id="canvasId"
+                :style="[canvasStyle]"
+                :class="['u-signature__canvas']"
+                :disable-scroll="disableScroll"
+                @touchstart="onCanvasTouchStart"
+                @touchmove="onCanvasTouchMove"
+                @touchend="onCanvasTouchEnd"
+                @touchcancel="onCanvasTouchCancel" >
+            </canvas>
 		</view>
 
 		<view v-if="showToolbar" 
@@ -83,45 +81,45 @@
                 </view>
             </slot>
         </view>
-    </view>
+	</view>
 </template>
 
 <script>
-    import props from './props.js';
+	import props from './props.js';
     import mixin from '../../libs/mixin/mixin';
-    import mpMixin from '../../libs/mixin/mpMixin';
+	import mpMixin from '../../libs/mixin/mpMixin';
 
-    /**
-     * Signature 签名组件
+	/**
+	 * Signature 签名组件
      * @description 可用于业务签名等场景
      * @tutorial https://uveiw.bdxmz.cn/components/signature.html
-     *
-     * @property {Number}			penSize         画笔大小  （默认 2 ）
-     * @property {Number}			minLineWidth    线条最小宽度  （默认 2 ）
-     * @property {Number}			maxLineWidth    线条最大宽度  （默认 6 ）
-     * @property {String}			penColor        画笔颜色  （默认 'black' ）
-     * @property {String}			backgroundColor 背景颜色  （默认 '' ）
-     * @property {String}			type            canvas类型  （默认 '2d' ）
-     * @property {Boolean}			openSmooth      是否开启压感  （默认 false ）
-     * @property {Number}			maxHistoryLength 最大历史记录数  （默认 20 ）
-     * @property {Boolean}			landscape       是否横屏  （默认 false ）
-     * @property {Boolean}			disableScroll   是否禁用滚动  （默认 true ）
-     * @property {Boolean}			disabled        是否禁用  （默认 false ）
-     * @property {Boolean}			boundingBox     只生成内容区域  （默认 false ）
-     * @property {Object}			customStyle     自定义样式
+	 * 
+	 * @property {Number}			penSize         画笔大小  （默认 2 ）
+	 * @property {Number}			minLineWidth    线条最小宽度  （默认 2 ）
+	 * @property {Number}			maxLineWidth    线条最大宽度  （默认 6 ）
+	 * @property {String}			penColor        画笔颜色  （默认 'black' ）
+	 * @property {String}			backgroundColor 背景颜色  （默认 '' ）
+	 * @property {String}			type            canvas类型  （默认 '2d' ）
+	 * @property {Boolean}			openSmooth      是否开启压感  （默认 false ）
+	 * @property {Number}			maxHistoryLength 最大历史记录数  （默认 20 ）
+	 * @property {Boolean}			landscape       是否横屏  （默认 false ）
+	 * @property {Boolean}			disableScroll   是否禁用滚动  （默认 true ）
+	 * @property {Boolean}			disabled        是否禁用  （默认 false ）
+	 * @property {Boolean}			boundingBox     只生成内容区域  （默认 false ）
+	 * @property {Object}			customStyle     自定义样式
      * @event    {Function}        undo            撤销方法
      * @event    {Function}        clear           清空方法
      * @event    {Function}        getImage        保存方法
-     * @example  <u-signature :penColor="penColor" :penSize="penSize" ref="signatureRef"></u-signature>
-     */
+	 * @example  <u-signature :penColor="penColor" :penSize="penSize" ref="signatureRef"></u-signature>
+	 */
 
     let canvasObj = {};
 
-    export default {
-        name: 'u-signature',
-        mixins: [mpMixin, mixin, props],
-        data() {
-            return {
+	export default {
+		name: 'u-signature',
+		mixins: [mpMixin, mixin, props],
+		data() {
+			return {
                 canvasId: 'signatureId_' + uni.$u.guid(),
                 ctx: null,
                 canvas: null,
@@ -623,11 +621,11 @@
 <style lang="scss" scoped>
     @import '../../libs/css/components.scss';
 
-    .u-signature {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
+	.u-signature {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
 		display: flex;
 		flex-direction: column;
 
@@ -669,11 +667,11 @@
                 }
             }
 		}
-
-        &__canvas {
-            width: 100%;
-            display: block;
-            touch-action: none;
+		
+		&__canvas {
+			width: 100%;
+			display: block;
+			touch-action: none;
 			flex: 1;
         }
 
@@ -768,6 +766,6 @@
             &-item:last-child {
                 margin-right: 0;
             }
-        }
-    }
+		}
+	}
 </style>

@@ -1,15 +1,13 @@
 <template>
-	<view class="u-barcode"  :style="[$u.addStyle(customStyle)]">
+	<view class="u-barcode"  :style="[{
+		width: uni.$u.addUnit(barcodeWidth),
+		height: uni.$u.addUnit(barcodeHeight)
+	},$u.addStyle(customStyle)]">
 		<canvas
-			<!-- #ifdef MP-WEIXIN -->
+			class="u-barcode__canvas"
 			:type="canvasType"
-			<!-- #endif -->
 			:canvas-id="canvasId" 
 			:id="canvasId"
-			:style="[{
-				width: uni.$u.addUnit(barcodeWidth),
-				height: uni.$u.addUnit(barcodeHeight)
-			}]"
 		></canvas>
 	</view>
 </template>
@@ -23,7 +21,7 @@
 	/**
 	 * Barcode 条形码组件
 	 * @description 支持生成条形码和二维码的组件，基于JsBarcode.js库
-	 * @tutorial https://limex.qcoon.cn/components/barcode.html
+	 * @tutorial https://uviewui.com/components/barcode.html
 	 * 
 	 * @property {String}			value			条形码内容
 	 * @property {String}			type			条形码类型，支持code128、code39、ean13、qr等
@@ -242,5 +240,10 @@
 		flex-direction: row;
 		align-items: center;
 		justify-content: center;
+		
+		&__canvas {
+			width: 100%;
+			height: 100%;
+		}
 	}
 </style>

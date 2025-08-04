@@ -34,11 +34,11 @@ export default {
         // 背景颜色
         backgroundColor: '#ffffff',
         // canvas类型
-        // #ifdef MP-WEIXIN
+        // #ifdef MP-WEIXIN || MP-TOUTIAO
         type: '2d',
         // #endif
-        // #ifndef MP-WEIXIN
-        type: '',
+        //#ifndef MP-WEIXIN || MP-TOUTIAO
+        type: 'webgl',
         // #endif
         // 是否开启压感
         openSmooth: false,

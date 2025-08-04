@@ -344,6 +344,7 @@ export default {
         innerText: this.root.getText(node.children || []) // 链接内的文本内容
       }, attrs))
       if (href) {
+       
         if (href[0] === '#') {
           // 跳转锚点
           this.root.navigateTo(href.substring(1)).catch(() => { })
@@ -364,6 +365,9 @@ export default {
             // #endif
             // #ifdef APP-PLUS
             plus.runtime.openWeb(href)
+            // #endif
+            // #ifdef APP-HARMONY
+            plus.runtime.openURL(href)
             // #endif
           }
         } else {

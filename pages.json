@@ -621,7 +621,9 @@
 		}
 	},
 	"easycom": {
-		"^u-(.*)": "@/uni_modules/uview-next/components/u-$1/u-$1.vue"
+		"custom": {
+			"^u-(.*)": "@/uni_modules/uview-next/components/u-$1/u-$1.vue"
+		}
 	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

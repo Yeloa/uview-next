@@ -37,16 +37,16 @@ import { $t, VueI18n, createI18n } from './locale';
 const http = new Request();
 
 const $u = {
-	route,
 	date: index.timeFormat, // 另名date
 	colorGradient: colorGradient.colorGradient,
 	hexToRgb: colorGradient.hexToRgb,
 	rgbToHex: colorGradient.rgbToHex,
 	colorToRgba: colorGradient.colorToRgba,
 	darkenColor: colorGradient.darkenColor,
+	route,
 	test,
 	type: ['primary', 'success', 'error', 'warning', 'info'],
-	http: http,
+	http,
 	config, // uView配置信息相关，比如版本号
 	debounce,
 	throttle,
@@ -96,7 +96,7 @@ const install = (Vue, Params) => {
 	}
 };
 
-export { VueI18n, createI18n, http, route, debounce, throttle, theme, platform};
+export { VueI18n, createI18n, http, route, debounce, throttle, theme, platform };
 
 export default {
 	install

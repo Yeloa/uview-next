@@ -37,12 +37,12 @@ export default {
         textMargin: 2,
         // 字体大小
         fontSize: 20,
-        //#ifdef MP-WEIXIN
+        //#ifdef MP-WEIXIN || MP-TOUTIAO
         // 画布类型
         canvasType: '2d',
         //#endif
-        //#ifndef MP-WEIXIN
-        canvasType: ''
+        //#ifndef MP-WEIXIN || MP-TOUTIAO
+        canvasType: 'webgl'
         //#endif
     }
 }
