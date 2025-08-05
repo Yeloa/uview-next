@@ -15,6 +15,8 @@ export default {
         value: '',
         // 本地数据，格式 [{text:'',value:''}]
         list: [],
+        keyName: 'text',
+        valueName: 'value',
         // 是否显示清除控件
         clearable: true,
         // 没有数据时显示的文字，本地数据无效

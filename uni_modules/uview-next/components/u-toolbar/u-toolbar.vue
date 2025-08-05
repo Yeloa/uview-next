@@ -42,7 +42,7 @@
 	/**
 	 * Toolbar 工具条
 	 * @description 
-	 * @tutorial https://uveiw.bdxmz.cn/components/toolbar.html
+	 * @tutorial https://uview.d3u.cn/components/toolbar.html
 	 * @property {Boolean}	show			是否展示工具条（默认 true ）
 	 * @property {String}	cancelText		取消按钮的文字（默认 '取消' ）
 	 * @property {String}	confirmText		确认按钮的文字（默认 '确认' ）

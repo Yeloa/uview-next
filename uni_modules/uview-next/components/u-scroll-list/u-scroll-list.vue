@@ -84,7 +84,7 @@ var barElement = ownerInstance<template>
 /**
  * scrollList 横向滚动列表
  * @description 该组件一般用于同时展示多个商品、分类的场景，也可以完成左右滑动的列表。
- * @tutorial https://uveiw.bdxmz.cn/components/scrollList.html
+ * @tutorial https://uview.d3u.cn/components/scrollList.html
  * @property {String | Number}	indicatorWidth			指示器的整体宽度 (默认 50 )
  * @property {String | Number}	indicatorBarWidth		滑块的宽度 (默认 20 )
  * @property {Boolean}			scroll				    是否允许滚动 (默认 true )

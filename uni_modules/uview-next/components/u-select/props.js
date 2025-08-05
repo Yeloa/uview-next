@@ -10,6 +10,16 @@ export default {
             type: Array,
             default: () => uni.$u.props.select.list
         },
+        // 选项对象中，需要展示的属性键名
+        keyName: {
+            type: String,
+            default: ()=> uni.$u.props.select.keyName
+        },
+        // 选项对象中，需要展示的属性键名
+        valueName: {
+            type: String,
+            default: ()=> uni.$u.props.select.valueName
+        },
         // 是否显示清除控件
         clearable: {
             type: Boolean,

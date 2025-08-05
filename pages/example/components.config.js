@@ -2,6 +2,12 @@ export default [{
     groupName: '基础组件',
     groupName_en: 'Basic components',
     list: [
+        {
+            path: '/pages/componentsB/paging/paging',
+            icon: 'paging',
+            title: 'Paging 分页',
+            title_en: 'Paging'
+        },
     {
         path: '/pages/componentsB/color/color',
         icon: 'color',

@@ -26,7 +26,7 @@ import mpMixin from '../../libs/mixin/mpMixin';
 /**
  * ellipsis 文本省略
  * @description 文本过长时，自动省略多余的文本。支持展开/收起功能。
- * @tutorial https://uveiw.bdxmz.cn/components/ellipsis.html
+ * @tutorial https://uview.d3u.cn/components/ellipsis.html
  * @property {String}			content			文本内容
  * @property {String}			position		省略位置，可选值为 start、end、middle （默认 'end' ）
  * @property {String | Number}	rows			行数 （默认 1 ）

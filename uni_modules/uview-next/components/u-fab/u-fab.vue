@@ -46,7 +46,7 @@ import mpMixin from '../../libs/mixin/mpMixin';
 /**
  * fab 悬浮按钮
  * @description 悬浮动作按钮组件，按下可显示一组动作按钮
- * @tutorial https://uveiw.bdxmz.cn/components/fab.html
+ * @tutorial https://uview.d3u.cn/components/fab.html
  * @property {Boolean}		active			是否激活 （默认 false ）
  * @property {String}		type			类型，可选值为 primary、success、info、warning、error、default （默认 'primary' ）
  * @property {String}		position		悬浮按钮位置，可选值为 left-top、right-top、left-bottom、right-bottom、left-center、right-center、top-center、bottom-center （默认 'right-bottom' ）

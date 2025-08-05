@@ -52,7 +52,7 @@ import mpMixin from '../../libs/mixin/mpMixin';
 /**
  * Popover 
  * @description 
- * @tutorial https://uveiw.bdxmz.cn/components/popover.html
+ * @tutorial https://uview.d3u.cn/components/popover.html
  * @property {Boolean}			show		是否显示（默认 false ）
  * @property {String}			position		弹出方向：top, bottom, left, right, auto
  * @property {Boolean}			showArrow		是否显示箭头（默认 true ）

@@ -2,7 +2,7 @@
   "id": "uview-next",
   "name": "uview-next",
   "displayName": "uView Next全面适配Vue3和鸿蒙，组件库更丰富，让开发更得心应手",
-  "version": "3.3.5",
+  "version": "3.3.8",
   "description": "基于uView UI 2.0，80+精选组件库，支持vue2和vue3，支持鸿蒙，支持多语言，搭配便捷工具助力，让开发更得心应手",
   "keywords": [
     "uview",
@@ -26,7 +26,7 @@
       }
     },
     "contact": {
-      "qq": ""
+      "qq": "335062722"
     },
     "declaration": {
       "ads": "无",
@@ -44,9 +44,9 @@
     "encrypt": [],
     "platforms": {
       "cloud": {
-        "tcb": "x",
-        "aliyun": "x",
-        "alipay": "x"
+        "tcb": "√",
+        "aliyun": "√",
+        "alipay": "√"
       },
       "client": {
         "uni-app": {

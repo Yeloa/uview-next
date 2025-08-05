@@ -71,7 +71,7 @@ import mpMixin from '../../libs/mixin/mpMixin';
 /**
  * Cascader 级联选择器
  * @description 级联选择器，用于多级数据的选择，支持单选和多选模式
- * @tutorial https://uveiw.bdxmz.cn/components/cascader.html
+ * @tutorial https://uview.d3u.cn/components/cascader.html
  * @property {Boolean}		show				是否显示级联选择器（默认 false ）
  * @property {String}		title				选择器标题（默认 '请选择' ）
  * @property {Array}		options				选项数据（默认 [] ）

@@ -1,4 +1,4 @@
-// 看到此报错，是因为没有配置vue.config.js的【transpileDependencies】，详见：https://uveiw.bdxmz.cn/components/npmSetting.html#_5-cli模式额外配置
+// 看到此报错，是因为没有配置vue.config.js的【transpileDependencies】，详见：https://uview.d3u.cn/components/npmSetting.html#_5-cli模式额外配置
 //const pleaseSetTranspileDependencies = {}, babelTest = pleaseSetTranspileDependencies?.test
 
 // 引入全局mixin

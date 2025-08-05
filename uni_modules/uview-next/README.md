@@ -7,8 +7,10 @@
 
 [![stars](http://gitee.com/wakge/uview-next/badge/star.svg?theme=dark)](http://gitee.com/wakge/uview-next)
 [![forks](http://gitee.com/wakge/uview-next/badge/fork.svg?theme=dark)](wakge/uview-next)
+[![Stars](https://img.shields.io/github/stars/Yeloa/uview-next?logo=github&label=Stars&color=BA2127&labelColor=3E444F&style=flat&logoColor=white)](https://github.com/Yeloa/uview-next)
+[![Forks](https://img.shields.io/github/forks/Yeloa/uview-next?logo=github&label=Forks&color=BA2127&labelColor=3E444F&style=flat&logoColor=white)](https://github.com/Yeloa/uview-next/fork)
+[![Issues](https://img.shields.io/github/issues/Yeloa/uview-next?logo=github&label=Issues&color=BA2127&labelColor=3E444F&style=flat&logoColor=white)](https://github.com/Yeloa/uview-next/issues)
 [![license](http://img.shields.io/badge/license-mit-red)](http://en.wikipedia.org/wiki/MIT_License)
-
 
 ## 📖 简介
 
@@ -16,10 +18,13 @@ uView Next 支持 Vue2 和 Vue3，支持国际化，是[uni-app](http://uniapp.d
 
 ## 📚 文档
 
-- [🌐 **官方文档** http://uview-next.netlify.app](http://uview-next.netlify.app)
-- [📄 **备用文档** http://118.25.198.98](http://118.25.198.98)
+- [🌐 **官方文档** https://uview-next.netlify.app](https://uview-next.netlify.app)
+- [📄 **备用文档** https://uview.d3u.cn](https://uview.d3u.cn)
 
 
+## 💬 交流反馈
+
+欢迎加入交流群反馈：[点此跳转](https://uview.d3u.cn/components/addQQGroup.html)
 
 ## ✨ 特性
 
@@ -35,18 +40,13 @@ uView Next 支持 Vue2 和 Vue3，支持国际化，是[uni-app](http://uniapp.d
 您可以通过**微信**扫码，查看最佳的演示效果。
 <br>
 <br>
-<img width="200" height="200" src="http://118.25.198.98/common/h5_qrcode.png" alt=""/>
-
-## 💬 交流反馈
-
-<p style="display:flex;align-items: center;">欢迎<img style="margin:0 5px" src="http://pub.idqqimg.com/wpa/images/group.png">交流反馈：[点此跳转](http://118.25.198.98/components/addQQGroup.html)
-</p>
+<img width="200" height="200" src="https://uview.d3u.cn/common/h5_qrcode.png" alt=""/>
 
 ## 🔗 重要链接
 
--   [🌐 官方文档](http://118.25.198.98/)
--   [📝 更新日志](http://118.25.198.98/components/changelog.html)
--   [👥 关于我们](http://118.25.198.98/cooperation/about.html)
+-   [🌐 官方文档](https://uview.d3u.cn/)
+-   [📝 更新日志](https://uview.d3u.cn/components/changelog.html)
+-   [👥 关于我们](https://uview.d3u.cn/cooperation/about.html)
 
 ## 🛠️ 关于 PR
 
@@ -55,11 +55,11 @@ uView Next 支持 Vue2 和 Vue3，支持国际化，是[uni-app](http://uniapp.d
 
 ### 📦 快速安装
 
-请通过[官网安装文档](http://118.25.198.98/components/downloadSetting.html)了解更详细的内容
+请通过[官网安装文档](https://uview.d3u.cn/components/downloadSetting.html)了解更详细的内容
 
 ### 🚀 快速上手
 
-请通过[快速上手](http://118.25.198.98/components/quickstart.html)了解更详细的内容
+请通过[快速上手](https://uview.d3u.cn/components/quickstart.html)了解更详细的内容
 
 ## 💡 使用方法
 

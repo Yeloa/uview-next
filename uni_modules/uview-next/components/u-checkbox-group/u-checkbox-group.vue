@@ -11,7 +11,7 @@ import mpMixin from '../../libs/mixin/mpMixin'
 /**
  * checkboxGroup 复选框组
  * @description 复选框组件一般用于需要多个选择的场景，该组件功能完整，使用方便
- * @tutorial https://uveiw.bdxmz.cn/components/checkbox.html
+ * @tutorial https://uview.d3u.cn/components/checkbox.html
  * @property {String}			name			标识符 
  * @property {Array}			value			绑定的值
  * @property {String}			shape			形状，circle-圆形，square-方形 （默认 'square' ）

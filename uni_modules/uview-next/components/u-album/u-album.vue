@@ -65,7 +65,7 @@
     /**
      * Album 相册
      * @description 本组件提供一个类似相册的功能，让开发者开发起来更加得心应手。减少重复的模板代码
-     * @tutorial https://uveiw.bdxmz.cn/components/album.html
+     * @tutorial https://uview.d3u.cn/components/album.html
      *
      * @property {Array}           urls             图片地址列表 Array<String>|Array<Object>形式
      * @property {String}          keyName          指定从数组的对象元素中读取哪个属性作为图片地址

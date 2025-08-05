@@ -11,7 +11,7 @@ import mpMixin from '../../libs/mixin/mpMixin';
 /**
  * TabsItem  tabs标签组件的子组件
  * @description tabs标签组件的子组件，用于定义单个标签页的内容
- * @tutorial https://uveiw.bdxmz.cn/components/tabs.html
+ * @tutorial https://uview.d3u.cn/components/tabs.html
  * @property {String | Number}	name		标签的名称，作为与u-tabs的current参数匹配的标识符
  * @property {String}			label		标签显示的文本
  * @property {Boolean}			disabled	是否禁用此标签（默认 false ）

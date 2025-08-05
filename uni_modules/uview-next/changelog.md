@@ -1,3 +1,8 @@
+## 3.3.8（2025-08-05）
+1. 新增`select`下拉列表组件`keyName`和`valueName`属性
+## 3.3.7（2025-08-05）
+1. 优化控制台输出
+
 ## 3.3.6（2025-08-04）
 1. 全面适配鸿蒙系统
 2. 其他一些细节优化
@@ -487,7 +492,7 @@
 
 1. 修复 tabs 组件在 vue 环境下划线消失的问题
 2. 修复 upload 组件在安卓小程序无法选择视频的问题
-3. 添加 uni.$u.config.unit 配置，用于配置参数默认单位，详见：[默认单位配置](https://uveiw.bdxmz.cn/components/setting.html#%E9%BB%98%E8%AE%A4%E5%8D%95%E4%BD%8D%E9%85%8D%E7%BD%AE)
+3. 添加 uni.$u.config.unit 配置，用于配置参数默认单位，详见：[默认单位配置](https://uview.d3u.cn/components/setting.html#%E9%BB%98%E8%AE%A4%E5%8D%95%E4%BD%8D%E9%85%8D%E7%BD%AE)
 4. 修复 textarea 组件在没绑定 v-model 时，字符统计不生效问题
 5. 修复 nvue 下控制是否出现滚动条失效问题
 
@@ -604,7 +609,7 @@
 1. uView2.0 已实现全面兼容 nvue
 2. uView2.0 对 1.x 进行了架构重构，细节和性能都有极大提升
 3. 目前 uView2.0 为公测阶段，相关细节可能会有变动
-4. 我们写了一份与 1.x 的对比指南，详见[对比 1.x](https://uveiw.bdxmz.cn/components/diff1.x.html)
+4. 我们写了一份与 1.x 的对比指南，详见[对比 1.x](https://uview.d3u.cn/components/diff1.x.html)
 5. 处理 modal 的 confirm 回调事件拼写错误问题
 6. 处理 input 组件@input 事件参数错误问题
 7. 其他一些修复
@@ -618,7 +623,7 @@
 1. uView2.0 已实现全面兼容 nvue
 2. uView2.0 对 1.x 进行了架构重构，细节和性能都有极大提升
 3. 目前 uView2.0 为公测阶段，相关细节可能会有变动
-4. 我们写了一份与 1.x 的对比指南，详见[对比 1.x](https://uveiw.bdxmz.cn/components/diff1.x.html)
+4. 我们写了一份与 1.x 的对比指南，详见[对比 1.x](https://uview.d3u.cn/components/diff1.x.html)
 5. 修复 input 组件 formatter 参数缺失问题
 6. 优化 loading-icon 组件的 scss 写法问题，防止不兼容新版本 scss
 
@@ -631,5 +636,5 @@
 1. uView2.0 已实现全面兼容 nvue
 2. uView2.0 对 1.x 进行了架构重构，细节和性能都有极大提升
 3. 目前 uView2.0 为公测阶段，相关细节可能会有变动
-4. 我们写了一份与 1.x 的对比指南，详见[对比 1.x](https://uveiw.bdxmz.cn/components/diff1.x.html)
+4. 我们写了一份与 1.x 的对比指南，详见[对比 1.x](https://uview.d3u.cn/components/diff1.x.html)
 5. 修复 input 组件 formatter 参数缺失问题

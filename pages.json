@@ -372,6 +372,12 @@
 					"style": {
 						"navigationBarTitleText": "条码"
 					}
+				},
+				{
+					"path": "paging/paging",
+					"style": {
+						"navigationBarTitleText": "分页"
+					}
 				}
 			]
 		},

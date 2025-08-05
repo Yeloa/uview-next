@@ -88,17 +88,17 @@
 							class="u-select__option"
 							:class="[
 								{
-									'u-select__option--selected': isSelected(item.value),
+									'u-select__option--selected': isSelected(item[valueName]),
 									'u-select__option--disabled': item.disabled
 								}
 							]"
 							@click="onOptionClick(item)"
 						>
 							<!-- 选项文本 -->
-							<text class="u-select__option-text">{{ item.text }}</text>
+							<text class="u-select__option-text">{{ item[keyName] }}</text>
 							
 							<!-- 选中图标 -->
-							<view v-if="isSelected(item.value)" class="u-select__selected-icon">
+							<view v-if="isSelected(item[valueName])" class="u-select__selected-icon">
 								<u-icon name="checkmark" size="16" color="#409eff"></u-icon>
 							</view>
 						</view>
@@ -119,7 +119,7 @@
 	/**
 	 * Select 选择器组件
 	 * @description 基于本地数据的选择器组件，支持单选模式，使用下拉列表形式
-	 * @tutorial https://uveiw.bdxmz.cn/components/select.html
+	 * @tutorial https://uview.d3u.cn/components/select.html
 	 * 
 	 * @property {String|Number}		value			默认值
 	 * @property {Array}				list			本地数据，格式 [{text:'',value:''}]
@@ -158,8 +158,8 @@
 			// 显示文本
 			displayText() {
 				if (!this.innerValue && this.innerValue !== 0) return ''
-				const item = this.list.find(item => item.value === this.innerValue)
-				return item ? item.text : ''
+				const item = this.list.find(item => item[this.valueName] === this.innerValue)
+				return item ? item[this.keyName] : ''
 			},
 			inputStyle() {
 				let style = {
@@ -214,7 +214,7 @@
 			onOptionClick(item) {
 				if (item.disabled) return
 				
-				const newValue = item.value
+				const newValue = item[this.valueName]
 				this.innerValue = newValue
 				this.showDropdown = false
 				this.$emit('close')

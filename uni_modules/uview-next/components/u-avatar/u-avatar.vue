@@ -62,7 +62,7 @@
 	/**
 	 * Avatar  头像
 	 * @description 本组件一般用于展示头像的地方，如个人中心，或者评论列表页的用户头像展示等场所。
-	 * @tutorial https://uveiw.bdxmz.cn/components/avatar.html
+	 * @tutorial https://uview.d3u.cn/components/avatar.html
 	 *
 	 * @property {String}			src				头像路径，如加载失败，将会显示默认头像(不能为相对路径)
 	 * @property {String}			shape			头像形状  （ circle (默认) | square）

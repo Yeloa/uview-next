@@ -29,7 +29,7 @@ import { enable, WeexBridge } from '../../libs/gcanvas/index.js';
 /**
  * circleProgress 环形进度条
  * @description 展示操作或任务的当前进度，比如上传文件，是一个圆形的进度条。注意：此组件的percent值只能动态增加，不能动态减少。
- * @tutorial https://uveiw.bdxmz.cn/components/circleProgress.html
+ * @tutorial https://uview.d3u.cn/components/circleProgress.html
  * @property {String Number} percent 圆环进度百分比值，为数值类型，0-100
  * @property {String} inactive-color 圆环的底色，默认为灰色(该值无法动态变更)（默认#ececec）
  * @property {String} active-color 圆环激活部分的颜色(该值无法动态变更)（默认#19be6b）

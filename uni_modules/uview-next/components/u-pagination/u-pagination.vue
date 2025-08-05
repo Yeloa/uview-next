@@ -66,7 +66,7 @@ import mpMixin from '../../libs/mixin/mpMixin';
 /**
  * Pagination 分页
  * @description 分页器用于分隔长列表，每次只加载一个页面
- * @tutorial https://uveiw.bdxmz.cn/components/pagination.html
+ * @tutorial https://uview.d3u.cn/components/pagination.html
  * @property {Number}			modelValue		当前页码（默认 1 ）
  * @property {Number}			total			总记录数（默认 0 ）
  * @property {Number}			pageSize		每页显示的记录数（默认 10 ）

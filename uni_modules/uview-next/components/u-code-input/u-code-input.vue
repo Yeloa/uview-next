@@ -55,7 +55,7 @@
 	/**
 	 * CodeInput 验证码输入
 	 * @description 该组件一般用于验证用户短信验证码的场景，也可以结合uView的键盘组件使用
-	 * @tutorial https://uveiw.bdxmz.cn/components/codeInput.html
+	 * @tutorial https://uview.d3u.cn/components/codeInput.html
 	 * @property {String}			confirmType				设置右下角按钮的文字，兼容性详见uni-app文档 （ 默认 'done' ）
 	 * @property {Boolean}			confirmHold				点击键盘右下角按钮时是否保持键盘不收起，H5无效 （ 默认 false ）
 	 * @property {String | Number}	maxlength			最大输入长度 （默认 6 ）

@@ -81,7 +81,7 @@
 	/**
 	 * Form 表单
 	 * @description 此组件一般用于表单场景，可以配置Input输入框，Select弹出框，进行表单验证等。
-	 * @tutorial https://uveiw.bdxmz.cn/components/form.html
+	 * @tutorial https://uview.d3u.cn/components/form.html
 	 * @property {String}			label			input的label提示语
 	 * @property {String}			prop			绑定的值
 	 * @property {Array}			rules			绑定的校验规则

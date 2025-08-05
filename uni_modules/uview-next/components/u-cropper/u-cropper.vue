@@ -62,7 +62,7 @@ import ImageCropper from './cropper.js';
 /**
  * Cropper 图片裁剪组件
  * @description 封装的图片裁剪组件，支持图片选择、裁剪、旋转等功能，适用于头像上传、图片编辑等场景
- * @tutorial https://uveiw.bdxmz.cn/components/cropper.html
+ * @tutorial https://uview.d3u.cn/components/cropper.html
  * 
  * @property {Boolean}			autoChoose		每次显示时是否自动打开选择图片（默认 false ）
  * @property {String | Number}	rectWidth		裁剪框宽度，单位px（默认 200 ）

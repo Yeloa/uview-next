@@ -80,7 +80,7 @@ import mpMixin from '../../libs/mixin/mpMixin'
 /**
  * card 卡片
  * @description 卡片组件一般用于多个列表条目，且风格统一的场景
- * @tutorial https://uveiw.bdxmz.cn/components/card.html
+ * @tutorial https://uview.d3u.cn/components/card.html
  * @property {Boolean} full 卡片与屏幕两侧是否留空隙（默认false）
  * @property {String} title 头部左边的标题
  * @property {String} titleColor 标题颜色（默认#303133）

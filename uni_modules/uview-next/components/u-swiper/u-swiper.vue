@@ -49,7 +49,7 @@ import props from './props.js';
 /**
  * Swiper 轮播图
  * @description 该组件一般用于导航轮播，广告展示等场景,可开箱即用，
- * @tutorial https://uveiw.bdxmz.cn/components/swiper.html
+ * @tutorial https://uview.d3u.cn/components/swiper.html
  * @property {Array}			list					轮播图数据
  * @property {Boolean}			indicator				是否显示面板指示器（默认 false ）
  * @property {String}			indicatorActiveColor	指示器非激活颜色（默认 '#FFFFFF' ）

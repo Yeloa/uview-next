@@ -61,7 +61,7 @@
 	/**
 	 * Tag 标签
 	 * @description tag组件一般用于标记和选择，我们提供了更加丰富的表现形式，能够较全面的涵盖您的使用场景
-	 * @tutorial https://uveiw.bdxmz.cn/components/tag.html
+	 * @tutorial https://uview.d3u.cn/components/tag.html
 	 * @property {String}			type		标签类型info、primary、success、warning、error （默认 'primary' ）
 	 * @property {Boolean | String}	disabled	不可用（默认 false ）
 	 * @property {String}			size		标签的大小，large，medium，mini （默认 'medium' ）

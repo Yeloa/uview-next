@@ -92,7 +92,7 @@
 	/**
 	 * Signature 签名组件
      * @description 可用于业务签名等场景
-     * @tutorial https://uveiw.bdxmz.cn/components/signature.html
+     * @tutorial https://uview.d3u.cn/components/signature.html
 	 * 
 	 * @property {Number}			penSize         画笔大小  （默认 2 ）
 	 * @property {Number}			minLineWidth    线条最小宽度  （默认 2 ）

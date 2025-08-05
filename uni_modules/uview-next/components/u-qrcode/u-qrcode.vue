@@ -73,7 +73,7 @@ let instance = null;
 /**
  * qrcode 二维码
  * @description 二维码生成插件，可扩展性高，它支持自定义渲染二维码，可通过uQRCode API得到二维码绘制关键信息后，使用canvas、svg或js操作dom的方式绘制二维码图案。还可自定义二维码样式，如随机颜色、圆点、方块、块与块之间的间距等。
- * @tutorial https://uveiw.bdxmz.cn/components/qrcode.html（https://uqrcode.cn/doc）
+ * @tutorial https://uview.d3u.cn/components/qrcode.html（https://uqrcode.cn/doc）
  * 
  * @property {String}	 value	二维码内容 (start为true时必填 )
  * @property {Object}	 options  二维码配置选项 (data|size|errorCorrectLevel...)
@@ -88,7 +88,7 @@ let instance = null;
  * @property {String}	 h5SaveIsDownload  H5保存即自动下载（在支持的环境下），默认false为仅弹层提示用户需要长按图片保存，不会自动下载 (默认 false)
  * @property {String}	 h5DownloadName  H5下载名称 
  * @property {String}	 h5SaveTip  H5保存二维码时候是否显示提示
- * @example <u-qrcode ref="qrcode" size="200px" value="https://uveiw.bdxmz.cn"></u-qrcode>
+ * @example <u-qrcode ref="qrcode" size="200px" value="https://uview.d3u.cn"></u-qrcode>
  */
 export default {
 	name: 'u-qrcode',

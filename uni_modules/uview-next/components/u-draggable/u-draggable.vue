@@ -57,7 +57,7 @@ import mpMixin from '../../libs/mixin/mpMixin';
 /**
  * u-draggable 拖拽排序
  * @description 拖拽排序组件，支持多列拖拽排序，可关闭，手柄拖拽，长按拖拽。
- * @tutorial https://uveiw.bdxmz.cn/components/draggable.html
+ * @tutorial https://uview.d3u.cn/components/draggable.html
  * @property {Array}			list			数据列表 （默认 [] ）
  * @property {Number}			column			列数 （默认 2 ）
  * @property {Number}			aspectRatio		宽高比，填写这项时gridHeight失效 （默认 null ）

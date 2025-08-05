@@ -76,7 +76,7 @@ import mpMixin from '../../libs/mixin/mpMixin';
 /**
  * ActionSheet 操作菜单
  * @description 本组件用于从底部弹出一个操作菜单，供用户选择并返回结果。本组件功能类似于uni的uni.showActionSheetAPI，配置更加灵活，所有平台都表现一致。
- * @tutorial https://uveiw.bdxmz.cn/components/actionSheet.html
+ * @tutorial https://uview.d3u.cn/components/actionSheet.html
  * 
  * @property {Boolean}			show				操作菜单是否展示 （默认 false ）
  * @property {String}			title				操作菜单标题
