@@ -1,5 +1,11 @@
+
+## 3.3.9（2025-08-07）
+1. 新增`table`组件`headerAlign`,`headerEllipsis`等属性
+2. 新增`upload`组件`extension`属性
+
 ## 3.3.8（2025-08-05）
 1. 新增`select`下拉列表组件`keyName`和`valueName`属性
+
 ## 3.3.7（2025-08-05）
 1. 优化控制台输出
 

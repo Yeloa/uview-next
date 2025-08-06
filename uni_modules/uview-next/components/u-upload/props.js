@@ -7,6 +7,13 @@ export default {
                 return uni.$u.props.upload.accept
             }
         },
+        // 根据文件拓展名过滤，每一项都不能是空字符串。默认不过滤。例如['.zip','.exe','.js']，不支持application/msword等类似值
+        extension: {
+            type: Array,
+            default() {
+                return uni.$u.props.upload.extension
+            }
+        },
         // 	图片或视频拾取模式，当accept为image类型时设置capture可选额外camera可以直接调起摄像头
         capture: {
             type: [String, Array],

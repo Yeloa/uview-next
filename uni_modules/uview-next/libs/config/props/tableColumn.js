@@ -13,6 +13,8 @@ export default {
     tableColumn: {
         prop: '',
         type: 'default',
+        headerAlign: 'left',
+        headerEllipsis: true,
         label: '',
         width: null,
         minWidth: null,

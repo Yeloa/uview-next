@@ -15,6 +15,16 @@ export default {
             type: String,
             default: () => uni.$u.props.tableColumn.label
         },
+        // 表头对齐方式：left/center/right
+        headerAlign: {
+            type: String,
+            default: () => uni.$u.props.tableColumn.headerAlign
+        },
+        // 表头超出1行隐藏
+        headerEllipsis: {   
+            type: Boolean,
+            default: () => uni.$u.props.tableColumn.headerEllipsis
+        },
         // 对应列的宽度，单位为px
         width: {
             type: [Number, String],

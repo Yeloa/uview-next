@@ -30,6 +30,8 @@ export default {
 		mergeConfig: [],
 		showSummary: false,
 		sumText: '合计',
-		summaryColumns: []
+		summaryColumns: [],
+		headerCellStyle: {},
+		cellStyle: {}
 	}
 };

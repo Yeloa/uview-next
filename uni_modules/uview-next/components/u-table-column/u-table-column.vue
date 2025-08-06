@@ -1,10 +1,9 @@
 <template>
     <view v-if="show" class="u-table__column" :style="[columnStyle]">
         <block v-for="(row, index) in tableData" :key="index">
-            <view class="u-table__cell" :style="[cellStyle(row, index)]" :class="[cellClasses(row, index)]"
+            <view class="u-table__cell" :style="[cellStyles(row, index)]" :class="[cellClasses(row, index)]"
                 @click="handleCellClick(row, index)" v-if="!isCellHidden(row, index)">
                 <view class="u-table__value" :class="{ 'is-ellipsis': isEllipsis }">
-
                     <slot :row="row" :column="columnConfig" :index="index" :value="row">
                         <template v-if="type === 'index'">
                             {{ index + 1 }}
@@ -42,6 +41,8 @@ import mpMixin from '../../libs/mixin/mpMixin';
  * @property {String}             type              列类型：selection/index (默认 '' )
  * @property {Function}           formatter         格式化函数 (默认 null )
  * @property {Boolean}            show              是否显示 (默认 true )
+ * @property {String}             headerAlign       表头对齐方式 (默认 'left' )
+ * @property {Boolean}            headerEllipsis    表头超出1行隐藏 (默认 false )
  * @property {String}             columnKey         列的key (默认 '' )
  * @property {String}             className         列的类名 (默认 '' )
  * @property {Object}             customStyle       定义需要用到的外部样式
@@ -58,6 +59,7 @@ export default {
                 stripe: false,
                 rowHeight: null,
                 ellipsis: true,
+                cellStyle: {},
                 selectedRowKeys: [],
                 toggleRowSelection: null,
                 mergeInfo: {}
@@ -111,7 +113,7 @@ export default {
                 return false;
             }
         },
-        cellStyle(row, index) {
+        cellStyles(row, index) {
             return (row, index) => {
                 const style = {};
 
@@ -138,7 +140,7 @@ export default {
                     }
                 }
 
-                return style;
+                return uni.$u.deepMerge(style, uni.$u.addStyle(this.parentData.cellStyle));
             }
         },
         cellClasses(row, index) {

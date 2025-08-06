@@ -4,7 +4,7 @@
             <!-- 表头 -->
             <view v-if="showHeader" class="u-table__header" ref="u-table__header">
                 <block v-for="(column, index) in childrenData" :key="index">
-                    <view v-if="column.show" class="u-table__header__column" :style="[cellStyle(column)]"
+                    <view v-if="column.show" class="u-table__header__column" :style="[cellStyles(column)]"
                         @click="handleHeaderClick(column, index)">
                         <view class="u-table__cell" :class="[cellClasses(column, index)]"
                             :style="{ height: $u.addUnit(rowHeight) }">
@@ -15,7 +15,7 @@
                             </template>
                             <!-- 普通表头 -->
                             <template v-else>
-                                <text class="u-table__value">{{ column.label }}</text>
+                                <text class="u-table__value" :class="[{'is-ellipsis': column.headerEllipsis }]">{{ column.label }}</text>
                                 <view v-if="column.sortable && column.type != 'index'" class="u-table__sort-icon">
                                     <view class="u-table__sort-arrow u-table__sort-arrow--up"
                                         :class="{ 'is-active': sortColumn === column.prop && sortOrder === 'asc' }">
@@ -51,7 +51,7 @@
             <!-- 表尾合计行 -->
             <view v-if="showSummary && data && data.length > 0" class="u-table__footer" ref="u-table__footer">
                 <block v-for="(column, index) in children" :key="index">
-                    <view v-if="column.show" class="u-table__footer__column" :style="[cellStyle(column)]">
+                    <view v-if="column.show" class="u-table__footer__column" :style="[cellStyles(column)]">
                         <view class="u-table__cell u-table__summary-cell" :class="[cellClasses(column, index)]"
                             :style="{ height: $u.addUnit(rowHeight) }">
                             <text class="u-table__value">{{ getSummaryValue(column, index) }}</text>
@@ -83,6 +83,7 @@ import mpMixin from '../../libs/mixin/mpMixin'
  * @property {String|Number}      height            Table 的高度 (默认 null )
  * @property {String|Number}      rowHeight         行高 (默认 50 )
  * @property {Boolean}            showHeader        是否显示表头 (默认 true )
+ * @property {Object}             headerCellStyle   表头单元格样式 (默认 {} )
  * @property {Boolean}            ellipsis          是否超出2行隐藏 (默认 true )
  * @property {String}             emptyText         空数据时显示的文本 (默认 '暂无数据' )
  * @property {String|Number}      emptyHeight       空数据区域高度 (默认 200 )
@@ -127,6 +128,7 @@ export default {
                 this.stripe,
                 this.rowHeight,
                 this.ellipsis,
+                this.cellStyle,
                 this.selectedRowKeys,
                 this.toggleRowSelection,
                 this.mergeInfo
@@ -253,7 +255,8 @@ export default {
             if (this.round) {
                 style.borderRadius = this.$u.addUnit(this.round)
             }
-            return this.$u.addStyle(style, this.customStyle)
+
+            return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle));
         },
         bodyStyle() {
             const style = {}
@@ -278,7 +281,7 @@ export default {
         cellClasses(column, index) {
             return (column, index) => {
                 let classes = [
-                    `is-${column.align || 'left'}`,
+                    `is-${column.headerAlign || 'left'}`,
                 ];
 
                 if (this.border) {
@@ -292,7 +295,7 @@ export default {
                 return classes;
             }
         },
-        cellStyle(column) {
+        cellStyles(column) {
             return (column) => {
                 const style = {}
                 if (column.width) {
@@ -302,7 +305,8 @@ export default {
                 } else {
                     style.flex = 1;
                 }
-                return this.$u.addStyle(style)
+
+                return uni.$u.deepMerge(style, uni.$u.addStyle(this.headerCellStyle));
             }
         }
     },
@@ -369,6 +373,8 @@ export default {
                             show: item.show,
                             label: item.label,
                             prop: item.prop,
+                            headerAlign: item.headerAlign,
+                            headerEllipsis: item.headerEllipsis,
                             align: item.align,
                             width: item.width,
                             minWidth: item.minWidth,
@@ -775,6 +781,14 @@ export default {
     &__value {
         font-size: 13px;
         line-height: 15px;
+
+        &.is-ellipsis {
+            word-break: break-all;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            overflow: hidden;
+        }
     }
 
     &.is-border {

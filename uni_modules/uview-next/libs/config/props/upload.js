@@ -14,6 +14,7 @@ export default {
 	// upload组件
 	upload: {
 		accept: 'image',
+		extension: [],
 		capture: ['album', 'camera'],
 		compressed: true,
 		compressImage: {

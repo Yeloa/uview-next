@@ -40,6 +40,15 @@ export default {
             type: Boolean,
             default: () => uni.$u.props.table.showHeader
         },
+        // 表头对齐方式
+        headerCellStyle: {
+            type: Object,
+            default: () => uni.$u.props.table.headerCellStyle
+        },
+        cellStyle: {
+            type: Object,
+            default: () => uni.$u.props.table.cellStyle
+        },
         // 是否超出隐藏
         ellipsis: {
             type: Boolean,
