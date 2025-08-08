@@ -10,17 +10,17 @@
                 <swiper-item v-for="(week, index) in weekList" :key="index">
                     <view class="u-date-strip__wrapper">
                         <view
-                            v-for="(day, dayIndex) in week"
-                            :key="dayIndex"
+                            v-for="(item, idx) in week"
+                            :key="idx"
                             class="u-date-strip__item"
                         >
-                            <view class="u-date-strip__item-content" :style="[getDateStyle('week',day)]" @click="selectDate(day)">
+                            <view class="u-date-strip__item-content" :style="[itemStyle('week',item)]" @click="selectDate(item)">
                                 <view class="u-date-strip__weekday">
-                                    {{ day.weekday }}
+                                    {{ item.weekday }}
                                 </view>
-                                <view class="u-date-strip__date" :style="getDateStyle('date',day)">
-                                    <text class="u-date-strip__date-text">{{ day.date }}</text>
-                                    <text v-if="showLunar && day.lunar" class="u-date-strip__lunar">{{ day.lunar }}</text>
+                                <view class="u-date-strip__date" :style="[itemStyle('date',item)]">
+                                    <text class="u-date-strip__date-text">{{ item.date }}</text>
+                                    <text v-if="showLunar && item.lunar" class="u-date-strip__lunar" :style="[itemStyle('lunar',item)]">{{ item.lunar }}</text>
                                 </view>
                             </view>
                         </view>
@@ -38,18 +38,18 @@
             >
                 <view class="u-date-strip__scroll-wrapper">
                     <view
-                        v-for="(day, index) in allDays"
+                        v-for="(item, index) in allDays"
                         :key="index"
                         :id="`item-${index}`"
                         class="u-date-strip__item"
                     >
-                        <view class="u-date-strip__item-content" :style="[getDateStyle('week',day)]" @click="selectDate(day)">
-                            <text class="u-date-strip__weekday" :style="[getDateStyle('weekday',day)]">
-                                {{ day.weekday }}
+                        <view class="u-date-strip__item-content" :style="[itemStyle('week',item)]" @click="selectDate(item)">
+                            <text class="u-date-strip__weekday" :style="[itemStyle('weekday',item)]">
+                                {{ item.weekday }}
                             </text>
-                            <view class="u-date-strip__date" :style="[getDateStyle('date',day)]">
-                                <text class="u-date-strip__date-text">{{ day.date }}</text>
-                                <text v-if="showLunar && day.lunar" class="u-date-strip__lunar">{{ day.lunar }}</text>
+                            <view class="u-date-strip__date" :style="[itemStyle('date',item)]">
+                                <text class="u-date-strip__date-text">{{ item.date }}</text>
+                                <text v-if="showLunar && item.lunar" class="u-date-strip__lunar" :style="[itemStyle('lunar',item)]">{{ item.lunar }}</text>
                             </view>
                         </view>
                     </view>
@@ -137,21 +137,21 @@
             },
 
             // 获取日期数字样式的计算属性
-            getDateStyle() {
-                return (type,day) => {
+            itemStyle() {
+                return (type, item) => {
                     let style = {};
-
+                   
                     if(type == 'week'){
                         style.width = this.itemWidth;
                     }
 
                     // 禁用日期的样式
-                    if (day.disabled) {
+                    if (item.disabled) {
                         style.color = this.disabledColor;
                         style.pointerEvents = 'none';
                     }
                     
-                    if (this.isSameDay(dayjs(this.innerSelected), dayjs(day.timestamp))) {
+                    if (this.isSameDay(dayjs(this.innerSelected), dayjs(item.timestamp))) {
                         style.borderRadius = this.itemRound;
 
                         if(type == 'week'){
@@ -165,7 +165,6 @@
                             }
                         }
 
-
                         if(type == 'date'){
                             if (this.activeMode == 'date') {
                                 //只高亮日期部分
@@ -178,6 +177,10 @@
                             }else if(this.activeMode == 'text'){
                                 style.color = this.activeBgColor;
                             }
+                        }
+
+                        if(type == 'lunar'){
+                            style.color = this.activeColor;
                         }
                     }
                  
@@ -228,11 +231,12 @@
                 const startWeek = this.getWeekStart(minDate);
                 const endWeek = this.getWeekStart(maxDate);
                 const totalWeeks = endWeek.diff(startWeek, 'week') + 1;
-
+               
                 // 生成指定范围内的周数据
                 for (let i = 0; i < totalWeeks; i++) {
                     const weekStart = startWeek.add(i, 'week');
                     const week = this.generateWeek(weekStart);
+                    
                     this.weekList.push(week);
                 }
 
@@ -283,6 +287,7 @@
                 const week = [];
                 for (let i = 0; i < 7; i++) {
                     const date = weekStart.add(i, 'day');
+                  
                     week.push(this.generateDay(date));
                 }
                 return week;
@@ -296,7 +301,7 @@
                     timestamp: date.valueOf(),
                     disabled: false,
                 };
-
+                
                 // 计算农历
                 if (this.showLunar) {
                     const lunar = Calendar.solar2lunar(
@@ -358,8 +363,13 @@
                 // #ifdef VUE3
                 this.$emit('update:modelValue', day.timestamp);
                 // #endif
-
-                this.$emit('change', day.timestamp);
+            
+                this.$emit('change', {
+                    weekday: day.weekday, 
+                    date: day.date, 
+                    timestamp: day.timestamp, 
+                    lunar: day.lunar
+                });
             },
 
             onSwiperChange(e) {

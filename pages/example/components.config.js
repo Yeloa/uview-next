@@ -2,12 +2,6 @@ export default [{
     groupName: '基础组件',
     groupName_en: 'Basic components',
     list: [
-        {
-            path: '/pages/componentsB/dateStrip/dateStrip',
-            icon: 'dateStrip',
-            title: 'DateStrip 日期选择器',
-            title_en: 'DateStrip'
-        },
     {
         path: '/pages/componentsB/color/color',
         icon: 'color',
@@ -106,6 +100,11 @@ export default [{
         icon: 'datetimePicker',
         title: 'DatetimePicker 时间选择器',
         title_en: 'Picker'
+    },{
+        path: '/pages/componentsB/dateStrip/dateStrip',
+        icon: 'dateStrip',
+        title: 'DateStrip 日期选择器',
+        title_en: 'DateStrip'
     },{
         path: '/pages/componentsB/select/select',
         icon: 'select',

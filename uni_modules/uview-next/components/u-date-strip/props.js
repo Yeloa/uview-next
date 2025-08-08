@@ -14,7 +14,7 @@ export default {
         // #endif
         // 默认选中的日期
         defaultDate: {
-            type: Number,
+            type: [String, Number],
             default: () => uni.$u.props.dateStrip.defaultDate,
         },
         // 切换模式：none 平铺展示所有日期，不展示切换按钮，week 按周方式切换
@@ -86,7 +86,7 @@ export default {
         // 日期格式化函数
         formatter: {
             type: [Function, null],
-            default: () => uni.$u.props.dateStrip.formatter,
+            default: null,
         },
         // 最多展示月份数量
 		monthNum: {

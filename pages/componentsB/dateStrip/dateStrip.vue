@@ -114,9 +114,9 @@
 			}
 		},
 		methods: {
-			onChange(time) {
-				this.selectedDate = time;
-				console.log('选中日期:', this.formatDate(time));
+			onChange(item) {
+				this.selectedDate = item.timestamp;
+				console.log('选中日期:', this.formatDate(item.timestamp));
 			},
 			
 			formatDate(timestamp) {

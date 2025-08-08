@@ -27,7 +27,6 @@ export default {
         bgColor: '',
         round: '',
         firstDayOfWeek: 0,
-        formatter: null,
         disabledDate: null,
         disabledColor: theme.disabledColor,
         showLunar: false

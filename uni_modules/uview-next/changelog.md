@@ -1,8 +1,11 @@
+## 3.4.1（2025-08-08）
+1. 优化`dateStrip`日期横条组件
+
 ## 3.4.0（2025-08-08）
-1. 新增`dateStrip`横条日期组件
+1. 新增`dateStrip`日期横条组件
 2. 优化`dropdown`组件
 3. 优化`table`组件
-
+4. 
 ## 3.3.9（2025-08-07）
 1. 新增`pdf`组件可预览pdf文件
 2. 新增`table`组件`headerAlign`,`headerEllipsis`等属性

@@ -74,7 +74,6 @@ export default {
         formatter: {
             type: [Function, null],
             default: null
-          
         },
         // 是否显示农历
         showLunar: {
