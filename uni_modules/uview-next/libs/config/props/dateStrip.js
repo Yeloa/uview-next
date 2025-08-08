@@ -29,6 +29,7 @@ export default {
         firstDayOfWeek: 0,
         disabledDate: null,
         disabledColor: theme.disabledColor,
-        showLunar: false
+        showLunar: false,
+        padZero: false
     }
 } 

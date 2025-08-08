@@ -66,6 +66,13 @@
 			:actions="actions5"
 			@getuserinfo="getuserinfo"
 		></u-action-sheet>
+		<u-action-sheet
+			:show="show6"
+			@close="show6 = false"
+			title="超出滚动"
+			:actions="actions6"
+			:height="300"
+		></u-action-sheet>
 	</view>
 </template>
 <script>
@@ -78,6 +85,7 @@
 				show3: false,
 				show4: false,
 				show5: false,
+				show6: false,
 				actions0: [{
 						name: '选项1',
 					},
@@ -125,6 +133,43 @@
 					openType: 'getUserInfo',
 					color: '#ccc'
 				}],
+				actions6: [{
+					name: '选项1',
+					},
+					{
+						name: '选项2',
+					},
+					{
+						name: '选项3',
+					},
+					{
+						name: '选项4',
+					},
+					{
+						name: '选项5',
+					},
+					{
+						name: '选项6',
+					},
+					{
+						name: '选项7',
+					},
+					{
+						name: '选项8',
+					},
+					{
+						name: '选项9',
+					},
+					{
+						name: '选项10',
+					},
+					{
+						name: '选项11',
+					},
+					{
+						name: '选项12',
+					}
+				],	
 				list: [{
 						title: '普通使用',
 						iconUrl: 'https://cdn.uviewui.com/uview/demo/actionSheet/custom.png'
@@ -148,6 +193,10 @@
 					},
 					{
 						title: '微信开放能力',
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/actionSheet/open.png'
+					},
+					{
+						title: '超出滚动',
 						iconUrl: 'https://cdn.uviewui.com/uview/demo/actionSheet/open.png'
 					}
 				]

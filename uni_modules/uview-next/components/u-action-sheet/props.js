@@ -49,6 +49,11 @@ export default {
 		round: {
 			type: [String, Number],
 			default: ()=> uni.$u.props.actionSheet.round
+		},
+		// 高度
+		height: {
+			type: [String, Number],
+			default: ()=> uni.$u.props.actionSheet.height
 		}
 	}
 }

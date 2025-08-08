@@ -40,6 +40,17 @@
 		</view>
 
 		<view class="u-demo-block">
+			<text class="u-demo-block__title">小于10的日期补0显示</text>
+			<view class="u-demo-block__content">
+				<u-date-strip 
+					v-model="value12" 
+					:pad-zero="true"
+					mode="none"
+				/>
+			</view>
+		</view>
+
+		<view class="u-demo-block">
 			<text class="u-demo-block__title">自定义样式</text>
 			<view class="u-demo-block__content" style="padding-bottom: 10px;">
 				<u-date-strip 
@@ -79,11 +90,11 @@
 					v-model="value10" 
 					 @change="onChange"
 					:disabled-date="disabledDates"
+					:disabled-fun="disabledFun"
 					mode="none"
 				/>
 			</view>
 		</view>
-
 	</view> 
 </template>
 
@@ -99,6 +110,7 @@
 				value9: new Date().getTime(),
 				value10: new Date().getTime(),
 				value11: new Date().getTime(),
+				value12: new Date().getTime(),
 				selectedDate: new Date().getTime(),
 				minDate: new Date(2025, 6, 10).getTime(),
 				maxDate: new Date(2025, 7, 27).getTime(),
@@ -114,11 +126,19 @@
 			}
 		},
 		methods: {
+			disabledFun(day) {
+				if(day.weekday == '二'){
+					return [
+						true,
+						'星期二'
+					];
+				}
+				return false;
+			},
 			onChange(item) {
 				this.selectedDate = item.timestamp;
 				console.log('选中日期:', this.formatDate(item.timestamp));
 			},
-			
 			formatDate(timestamp) {
 				const date = new Date(timestamp);
 				const year = date.getFullYear();

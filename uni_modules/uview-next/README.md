@@ -1,7 +1,7 @@
 <div align="center">
     <img alt="logo" src="http://uviewui.com/common/logo.png" width="120" height="120" style="margin-bottom: 10px;">
     <h1 style="margin: 30px 0 30px;font-weight: bold;font-size:40px;">uView Next</h1>
-    <h3>多平台快速开发的UI框架</h3>
+    <h3>更稳定 更高质量 更多组件 更贴近业务场景</h3>
 </div>
 
 

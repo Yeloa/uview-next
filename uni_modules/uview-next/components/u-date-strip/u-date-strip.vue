@@ -49,7 +49,7 @@
                             </text>
                             <view class="u-date-strip__date" :style="[itemStyle('date',item)]">
                                 <text class="u-date-strip__date-text">{{ item.date }}</text>
-                                <text v-if="showLunar && item.lunar" class="u-date-strip__lunar" :style="[itemStyle('lunar',item)]">{{ item.lunar }}</text>
+                                <text v-if="item.bottomInfo" class="u-date-strip__lunar" :style="[itemStyle('lunar',item)]">{{ item.bottomInfo }}</text>
                             </view>
                         </view>
                     </view>
@@ -87,8 +87,10 @@
      * @property {Number} 		firstDayOfWeek 		第一天从星期几开始 0-6 （默认 0 ）
      * @property {Number} 		monthNum 			最多展示月份数量 （默认 3 ）
      * @property {Array|String} disabledDate 		禁止选择的日期
+     * @property {Function} 	disabledFun 		禁止选择的日期函数
      * @property {String} 		disabledColor 		禁用日期的文字颜色
      * @property {Boolean} 		showLunar 			是否显示农历
+     * @property {Boolean} 		padZero 			是否对小于10的数字补0
      * @property {Function} 	formatter 			日期格式化函数
      * @property {Object}		customStyle			定义需要用到的外部样式
      * @event {Function} change 点击日期时触发
@@ -296,10 +298,11 @@
             // 生成单天数据
             generateDay(date) {
                 const day = {
-                    date: date.date(),
+                    date: this.padZero && date.date() < 10 ? `0${date.date()}` : date.date(),
                     weekday: this.weekdays[date.day()],
                     timestamp: date.valueOf(),
                     disabled: false,
+                    bottomInfo: '',
                 };
                 
                 // 计算农历
@@ -309,7 +312,7 @@
                         date.month() + 1,
                         date.date(),
                     );
-                    day.lunar = lunar.IDayCn;
+                    day.bottomInfo = lunar.IDayCn;
                 }
 
                 // 检查是否在可选范围内
@@ -335,6 +338,16 @@
                     });
                 }
 
+                if (this.disabledFun && uni.$u.test.func(this.disabledFun)) {
+                    let result = this.disabledFun(day);
+                    if (uni.$u.test.array(result)) {
+                        day.disabled = result[0];
+                        day.bottomInfo = result[1];
+                    } else {
+                        day.disabled = result;
+                    }
+                }
+
                 // 应用格式化函数
                 const formatter = this.formatter || this.innerFormatter;
                 return formatter(day);
@@ -351,24 +364,24 @@
             },
 
             // 选择日期
-            selectDate(day) {
-                if (day.disabled) return;
+            selectDate(item) {
+                if (item.disabled) return;
 
-                this.innerSelected = day.timestamp;
+                this.innerSelected = item.timestamp;
 
                 // #ifdef VUE2
-                this.$emit('input', day.timestamp);
+                this.$emit('input', item.timestamp);
                 // #endif
 
                 // #ifdef VUE3
-                this.$emit('update:modelValue', day.timestamp);
+                this.$emit('update:modelValue', item.timestamp);
                 // #endif
             
                 this.$emit('change', {
-                    weekday: day.weekday, 
-                    date: day.date, 
-                    timestamp: day.timestamp, 
-                    lunar: day.lunar
+                    weekday: item.weekday, 
+                    date: item.date, 
+                    timestamp: item.timestamp, 
+                    lunar: item.lunar
                 });
             },
 

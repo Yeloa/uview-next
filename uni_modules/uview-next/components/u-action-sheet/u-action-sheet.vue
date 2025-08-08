@@ -12,7 +12,7 @@
             }]" v-if="description">{{ description }}</text>
             <slot>
                 <u-line v-if="description"></u-line>
-                <view class="u-action-sheet__item-wrap">
+                <scroll-view class="u-action-sheet__item-wrap" :scroll-y="height !='' || height > 0" :style="[{ maxHeight: $u.addUnit(height) }]">
                     <view v-for="(item, index) in actions" :key="index">
                         <!-- #ifdef MP -->
                         <button 
@@ -53,7 +53,7 @@
                         <!-- #endif -->
                         <u-line v-if="index !== actions.length - 1"></u-line>
                     </view>
-                </view>
+                </scroll-view>
             </slot>
             <u-gap bgColor="#eaeaec" height="6" v-if="cancelText"></u-gap>
             <view hover-class="u-action-sheet--hover" v-if="cancelText" @tap="cancel">
@@ -88,6 +88,7 @@ import mpMixin from '../../libs/mixin/mpMixin';
  * @property {String}			openType			小程序的打开方式 (contact | launchApp | getUserInfo | openSetting ｜getPhoneNumber ｜error )
  * @property {Boolean}			closeOnClickOverlay	点击遮罩是否允许关闭  (默认 true )
  * @property {Number|String}	round				圆角值，默认无圆角  (默认 0 )
+ * @property {Number|String}	height				高度，默认不限制  (默认 '' )
  * @property {String}			lang				指定返回用户信息的语言，zh_CN 简体中文，zh_TW 繁体中文，en 英文
  * @property {String}			sessionFrom			会话来源，openType="contact"时有效
  * @property {String}			sendMessageTitle	会话内消息卡片标题，openType="contact"时有效

@@ -93,6 +93,11 @@ export default {
 			type: [Number, String],
 			default: ()=> uni.$u.props.dateStrip.monthNum
 		},
+        // 禁止选择的日期函数
+        disabledFun: {
+            type: [Function, null],
+            default: null
+        },
         // 禁止选择的日期
         disabledDate: {
             type: [Array, String, null],
@@ -107,6 +112,11 @@ export default {
         showLunar: {
             type: Boolean,
             default: ()=> uni.$u.props.dateStrip.showLunar
+        },
+        // 是否对小于10的数字补0
+        padZero: {
+            type: Boolean,
+            default: ()=> uni.$u.props.dateStrip.padZero
         }
     },
 };

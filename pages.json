@@ -372,6 +372,12 @@
 					"style": {
 						"navigationBarTitleText": "条码"
 					}
+				},
+				{
+					"path": "dateStrip/dateStrip",
+					"style": {
+						"navigationBarTitleText": "日期横条"
+					}
 				}
 			]
 		},
