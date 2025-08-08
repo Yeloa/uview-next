@@ -203,6 +203,11 @@ export default {
 		borderColor: {	
 			type: String,
 			default: ()=> uni.$u.props.input.borderColor
+		},
+		// 指定focus时光标颜色
+		cursorColor: {
+			type: String,
+			default: ()=> uni.$u.props.input.cursorColor
 		}
 	}
 }

@@ -49,5 +49,6 @@ export default {
 		backgroundColor: '',
 		round: '4px',
 		borderColor: '',
+		cursorColor: '',
 	}
 }

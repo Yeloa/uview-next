@@ -19,8 +19,7 @@
 				</view>
 			</view>
 		</view>
-		<view class="u-dropdown__content" :style="[contentStyle]"
-		 @tap="maskClick" @touchmove.stop.prevent>
+		<view class="u-dropdown__content" :style="[contentStyle]" @tap="maskClick" @touchmove.stop.prevent>
 			<view class="u-dropdown__content__mask"></view>
 			<view @tap.stop.prevent class="u-dropdown__content__popup" :style="[popupStyle]">
 				<slot></slot>
@@ -139,6 +138,10 @@ export default {
 			this.contentStyle.top = uni.$u.addUnit(this.height),
 			// #endif
 			
+			// #ifdef H5
+			document.body.style.overflow = 'hidden';
+			// #endif
+			
 			// 标记展开状态以及当前展开项的索引
 			this.active = true;
 			this.current = index;
@@ -158,6 +161,10 @@ export default {
 			// 下拉内容的样式进行调整，不透明度设置为0
 			this.contentStyle.zIndex = -1;
 			this.contentStyle.opacity = 0;
+			
+			// #ifdef H5
+			document.body.style.overflow = '';
+			// #endif
 			
 			setTimeout(() => {
 				this.contentStyle.height = 0;

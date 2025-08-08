@@ -1,5 +1,15 @@
 <template>
     <view class="u-page">
+
+        <view class="u-page__item">
+            <text class="u-page__item__title">基础使用</text>
+            <u-table :data="tableData">
+                <u-table-column type="index" label="序号"/>
+                <u-table-column prop="name" label="姓名" />
+                <u-table-column prop="address" label="地址" />
+            </u-table>
+        </view>
+        
         <view class="u-page__item">
             <text class="u-page__item__title">基础使用</text>
             <u-table :data="tableData">

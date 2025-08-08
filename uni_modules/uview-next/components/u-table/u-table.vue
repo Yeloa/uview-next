@@ -7,7 +7,7 @@
                     <view v-if="column.show" class="u-table__header__column" :style="[cellStyles(column)]"
                         @click="handleHeaderClick(column, index)">
                         <view class="u-table__cell" :class="[cellClasses(column, index)]"
-                            :style="{ height: $u.addUnit(rowHeight) }">
+                            :style="{ minHeight: $u.addUnit(rowHeight) }">
                             <!-- 多选表头复选框 -->
                             <template v-if="column.type === 'selection'">
                                 <u-checkbox :checked="isAllSelected" :indeterminate="isIndeterminate"
@@ -710,7 +710,6 @@ export default {
         &__column {
             @include flex(row);
             flex-shrink: 0;
-
             &:last-child .is-border {
                 border-right: none;
             }

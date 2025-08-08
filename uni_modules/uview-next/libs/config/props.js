@@ -36,6 +36,7 @@ import Cascader from './props/cascader'
 import DatetimePicker from './props/datetimePicker'
 import Divider from './props/divider'
 import Draggable from './props/draggable'
+import DateStrip from './props/dateStrip'
 import Empty from './props/empty'
 import Ellipsis from './props/ellipsis'
 import Form from './props/form'
@@ -148,6 +149,7 @@ export default {
     ...DatetimePicker,
     ...Draggable,
     ...Divider,
+    ...DateStrip,
     ...Empty,
     ...Ellipsis,
     ...Form,

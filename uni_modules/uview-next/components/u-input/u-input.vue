@@ -47,6 +47,7 @@
 					:confirm-type="confirmType"
 					:confirm-hold="confirmHold"
 					:hold-keyboard="holdKeyboard"
+					:cursor-color="cursorColor"
 					:cursor-spacing="cursorSpacing"
 					:adjust-position="adjustPosition"
 					:selection-end="selectionEnd"
@@ -115,6 +116,7 @@ import mpMixin from '../../libs/mixin/mpMixin'
  * @property {Boolean}			disableDefaultPadding	是否去掉 iOS 下的默认内边距，仅微信小程序，且type=textarea时有效 （ 默认 false ）
  * @property {Boolean}			alwaysEmbed				强制 input 处于同层状态，默认 focus 时 input 会切到非同层状态 （ 默认 false ）
  * @property {String ｜ Number}	cursor					指定focus时光标的位置（ 默认 -1 ）
+ * @property {String}			cursorColor				指定focus时光标颜色
  * @property {String ｜ Number}	cursorSpacing			输入框聚焦时底部与键盘的距离 （ 默认 30 ）
  * @property {String ｜ Number}	selectionStart			光标起始位置，自动聚集时有效，需与selection-end搭配使用 （ 默认 -1 ）
  * @property {String ｜ Number}	selectionEnd			光标结束位置，自动聚集时有效，需与selection-start搭配使用 （ 默认 -1 ）
