@@ -160,9 +160,7 @@ export default {
 		value: {
 			immediate: true,
 			handler(newVal, oldVal) {
-				if(newVal){
-					this.init(newVal);
-				}
+				this.init(newVal);
 			},
 		},
 
@@ -170,9 +168,7 @@ export default {
 		modelValue: {
 			immediate: true,
 			handler(newVal, oldVal) {
-				if(newVal){
-					this.init(newVal);
-				}
+				this.init(newVal);
 			},
 		}
 		// #endif

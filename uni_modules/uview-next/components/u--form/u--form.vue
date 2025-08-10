@@ -2,6 +2,7 @@
 	<uvForm
 		ref="uForm"
 		:model="model"
+		@update:model="$emit('update:model', $event)"
 		:rules="rules"
 		:errorType="errorType"
 		:borderBottom="borderBottom"

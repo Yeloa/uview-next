@@ -652,31 +652,38 @@ function setProperty(obj, key, value) {
 	if (!obj) {
 		return;
 	}
+	
 	// 递归赋值
 	const inFn = function (_obj, keys, v) {
 		// 最后一个属性key
 		if (keys.length === 1) {
-			_obj[keys[0]] = v;
+			// 使用 Vue.set 或直接赋值来确保响应式更新
+			const lastKey = keys[0];
+			if (typeof _obj === 'object' && _obj !== null) {
+				// 如果对象存在，直接赋值
+				_obj[lastKey] = v;
+			}
 			return;
 		}
 		// 0~length-1个key
-		while (keys.length > 1) {
-			const k = keys[0];
-			if (!_obj[k] || typeof _obj[k] !== 'object') {
-				_obj[k] = {};
-			}
-			const key = keys.shift();
-			// 自调用判断是否存在属性，不存在则自动创建对象
-			inFn(_obj[k], keys, v);
+		const k = keys[0];
+		if (!_obj[k] || typeof _obj[k] !== 'object') {
+			_obj[k] = {};
 		}
+		// 使用剩余数组，避免改变原数组
+		const remainingKeys = keys.slice(1);
+		// 自调用判断是否存在属性，不存在则自动创建对象
+		inFn(_obj[k], remainingKeys, v);
 	};
 
 	if (typeof key !== 'string' || key === '') {
+		return;
 	} else if (key.indexOf('.') !== -1) {
 		// 支持多层级赋值操作
 		const keys = key.split('.');
 		inFn(obj, keys, value);
 	} else {
+		// 单层属性直接赋值
 		obj[key] = value;
 	}
 }

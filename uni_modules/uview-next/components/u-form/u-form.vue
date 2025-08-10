@@ -24,7 +24,7 @@
 	 * @property {String | Number}				labelWidth		提示文字的宽度，单位px  ( 默认 45 ）
 	 * @property {String}						labelAlign		lable字体的对齐方式   ( 默认 ‘left' ）
 	 * @property {Object}						labelStyle		lable的样式，对象形式
-	 * @example <u--formlabelPosition="left" :model="model1" :rules="rules" ref="form1"></u--form>
+	 * @example <u--form labelPosition="left" :model="model1" :rules="rules" ref="form1"></u--form>
 	 */
 	export default {
 		name: "u-form",
@@ -105,13 +105,15 @@
 				this.resetModel();
 			},
 			// 重置model为初始值的快照
-			resetModel(obj) {
+			resetModel() {
 				// 历遍所有u-form-item，根据其prop属性，还原model的原始快照
 				this.children.map((child) => {
 					const prop = child?.prop;
 					const value = uni.$u.getProperty(this.originalModel, prop);
 					uni.$u.setProperty(this.model, prop, value);
 				});
+
+				this.$emit('update:model', this.model)
 			},
 			// 清空校验结果
 			clearValidate(props) {

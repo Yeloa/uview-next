@@ -1,7 +1,7 @@
 <template>
-	<view class="u-barcode"  :style="[{
-		width: uni.$u.addUnit(barcodeWidth),
-		height: uni.$u.addUnit(barcodeHeight)
+	<view class="u-barcode" :style="[{
+		width: $u.addUnit(barcodeWidth),
+		height: $u.addUnit(barcodeHeight)
 	},$u.addStyle(customStyle)]">
 		<canvas
 			class="u-barcode__canvas"

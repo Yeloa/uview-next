@@ -1,6 +1,6 @@
 <template>
 	<uvInput
-		<!-- #ifdef VUE2 -->
+	 	<!-- #ifdef VUE2 -->
 		:value="value"
 		@input="e => $emit('input', e)"
 		<!-- #endif -->

@@ -101,18 +101,14 @@ export default {
         value: {
 	        immediate: true,
 	        handler(newVal, oldVal) {
-                if(newVal){
-                    this.init(newVal);
-                }
+                this.init(newVal);
 	        },
 	    },
         // #ifdef VUE3
         modelValue: {
 	        immediate: true,
 	        handler(newVal, oldVal) {
-	            if(newVal){
-                    this.init(newVal);
-                }
+                this.init(newVal);
 	        },
 	    }
         // #endif
@@ -169,6 +165,7 @@ export default {
 	// #endif
     methods: {
         init(newVal){
+      
             this.innerValue = newVal;
             /* #ifdef H5 */
             // 在H5中，外部value变化后，修改input中的值，不会触发@input事件，此时手动调用值变化方法
