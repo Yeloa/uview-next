@@ -204,7 +204,8 @@
 				
 				Promise.all(promises).then(results => {
 					const flatResults = [].concat.apply([], results);
-					uni.$u.test.func(callback) && callback(flatResults);
+					const filteredResults = flatResults.filter(item => !!item);
+					uni.$u.test.func(callback) && callback(filteredResults);
 				})
 			},
 			// 校验全部数据
@@ -222,9 +223,9 @@
 							(item) => item.prop
 						);
 						this.validateField(formItemProps, (errors) => {
-							if(errors.length) {
+							if(errors && errors.length > 0) {
 								// 如果错误提示方式为toast，则进行提示
-								uni.$u.toast(errors[0].message)
+								this.errorType === 'toast' && uni.$u.toast(errors[0].message)
 								reject(errors)
 							} else {
 								resolve(true)

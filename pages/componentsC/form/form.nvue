@@ -245,7 +245,7 @@
                 rules: {
                     'userInfo.name': [
                         {
-                            type: 'string',
+                           // type: 'string',
                             required: true,
                             message: '请填写姓名',
                             trigger: ['blur', 'change'],
@@ -262,29 +262,29 @@
                         },
                     ],
                     code: {
-                        type: 'string',
+                        ///type: 'string',
                         required: true,
                         len: 4,
                         message: '请填写4位验证码',
                         trigger: ['blur'],
                     },
                     'userInfo.sex': {
-                        type: 'string',
+                       // type: 'string',
                         max: 1,
                         required: true,
                         message: '请选择男或女',
                         trigger: ['blur', 'change'],
                     },
                     radiovalue1: {
-                        type: 'string',
+                    //    type: 'string',
                         min: 1,
                         max: 2,
                         message: '橙子有毒',
                         trigger: ['change'],
                     },
                     checkboxValue1: {
-                        type: 'array',
-                        min: 2,
+                      //  type: 'array',
+                      //  min: 2,
                         required: true,
                         message: '不能太宅，至少选两项',
                         trigger: ['change'],
