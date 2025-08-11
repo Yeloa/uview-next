@@ -133,7 +133,7 @@ export default {
     ],
     data() {
         return {
-            loadingColor:'',
+            elLoadingColor:'',
             elIconColor:''
         };
     },
@@ -237,15 +237,25 @@ export default {
             return fontSize;
         },
     },
-    created() {
-        this.loadingColorCom()
-        this.iconColorCom()
-    },
+    watch: {
+        color: {
+			immediate: true,
+			handler(newVal) {
+                this.iconColorCom()
+				this.loadingColorCom()
+			}
+		},
+		iconColor: {
+			immediate: true,
+			handler(newVal) {
+				this.iconColorCom()
+			}
+		}
+	},
     // #ifdef VUE3
     emits: ['click', 'error', 'launchapp', 'opensetting', 'getuserinfo', 'getphonenumber', 'agreeprivacyauthorization', 'chooseavatar'],
     // #endif
     methods: {
-        
         iconColorCom() {
             // 如果是镂空状态，设置了color就用color值，否则使用主题颜色，
             // u-icon的color能接受一个主题颜色的值

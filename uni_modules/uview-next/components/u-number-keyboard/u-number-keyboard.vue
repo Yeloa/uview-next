@@ -106,9 +106,6 @@
 				};
 			},
 		},
-		created() {
-
-		},
 		// #ifdef VUE3
 		emits: ["change", "backspace"],
 		// #endif

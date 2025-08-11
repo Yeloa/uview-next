@@ -29,6 +29,7 @@
 			:show="show1"
 			defaultDate="2022-02-15"
 			shape="circle"
+			:showSubtitle="true"
 			round="10"
 			@confirm="confirm"
 			@close="close"

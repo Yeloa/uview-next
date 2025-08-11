@@ -52,7 +52,7 @@
 				},
 			},
 			// 监听属性的变化，通知子组件u-form-item重新获取信息
-			parentData(n) {
+			propsChange(n) {
 				if (this.children.length) {
 					this.children.map((child) => {
 						this.$u.test.func(child.updateParentData) && child.updateParentData();
@@ -71,7 +71,7 @@
 			},
 		},
 		computed: {
-			parentData() {
+			propsChange() {
 				return [
 					this.errorType,
 					this.borderBottom,
@@ -146,13 +146,13 @@
 				// 历遍children所有子form-item
 				let promises = this.children.map((child) => {
 					return new Promise(async (resolve, reject) => {
-				
+						// 用于存放form-item的错误信息
+						const childErrors = [];
+
 						if (value.includes(child.prop) === false) {
 							return resolve()
 						}
-
-						// 用于存放form-item的错误信息
-						const childErrors = [];
+						
 						// 获取对应的属性，通过类似'a.b.c'的形式
 						const propertyVal = uni.$u.getProperty(
 							this.model,
@@ -187,14 +187,15 @@
 							if (event && !trigger.includes(event)) continue;
 							
 							const { errors } = await this.asyncSchema(propertyName, propertyVal, ruleItem);
+				
 							if (uni.$u.test.array(errors)) {
-								
 								errors.forEach(item => {
 									item.prop = child.prop;
 									childErrors.push(item);
 								})
-								
-								child.message = childErrors[0].message;
+								child.message = childErrors[0].hasOwnProperty('message') ? childErrors[0].message : null;
+							}else{
+								child.message = null;
 							}
 						}
 

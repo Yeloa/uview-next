@@ -92,11 +92,20 @@
 				iconName:'',
 			}
 		},
-		created() {
-			this.getIconColor()
-			this.getIconName()
+		watch: {
+			effect: {
+				immediate: true,
+				handler(newVal) {
+					this.getIconColor()
+				}
+			},
+			type: {
+				immediate: true,
+				handler(newVal) {
+					this.getIconName()
+				}
+			}
 		},
-
 		// #ifdef VUE3
 		emits: ["click", "close"],
 		// #endif

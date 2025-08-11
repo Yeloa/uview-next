@@ -245,6 +245,13 @@
                     this.setMonth();
                 },
             },
+            //修复vue2微信小程序报警告
+            monthIndex: {
+                immediate: true,
+                handler(newVal,oldVal) {
+                    this.subtitle = `${this.months[newVal].year}年${this.months[newVal].month}月`;
+                }
+            },
         },
         computed: {
             // 由于maxDate和minDate可以为字符串(2021-10-10)，或者数值(时间戳)，但是dayjs如果接受字符串形式的时间戳会有问题，这里进行处理
@@ -266,14 +273,6 @@
         mounted() {
             this.start = Date.now();
             this.init();
-        },
-        created() {
-            // 初始化时，this.months为空数组，所以需要特别判断处理
-            if (this.months.length) {
-                this.subtitle = `${this.months[this.monthIndex].year}年${
-                    this.months[this.monthIndex].month
-                }月`;
-            }
         },
         // #ifdef VUE3
         emits: ['monthSelected'],
@@ -326,9 +325,9 @@
                     this.getMonths(minDate, maxDate),
                 );
                 // 先清空数组
-                this.months = [];
+                let monthsArr = [];
                 for (let i = 0; i < months; i++) {
-                    this.months.push({
+                    monthsArr.push({
                         date: new Array(
                             dayjs(minDate).add(i, 'month').daysInMonth(),
                         )
@@ -426,6 +425,8 @@
                         year: dayjs(minDate).add(i, 'month').year(),
                     });
                 }
+
+                this.months = monthsArr;
             },
             // 滚动到默认设置的月份
             scrollIntoDefaultMonth(selected) {
