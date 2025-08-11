@@ -402,6 +402,12 @@ export default [{
             title: 'Tabs 标签',
             title_en: 'Tabs'
         },
+		{
+		    path: '/pages/componentsB/sidebar/sidebar',
+		    icon: 'sidebar',
+		    title: 'Sidebar 侧边栏',
+		    title_en: 'Sidebar'
+		},
         // // #ifndef MP-ALIPAY
         // {
         // 	path: '/pages/template/order/order',

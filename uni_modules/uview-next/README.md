@@ -1,7 +1,7 @@
 <div align="center">
     <img alt="logo" src="http://uviewui.com/common/logo.png" width="120" height="120" style="margin-bottom: 10px;">
     <h1 style="margin: 30px 0 30px;font-weight: bold;font-size:40px;">uView Next</h1>
-    <h3>更稳定 更高质量 更多组件 更贴近业务场景</h3>
+    <h3>企业级、高质量、更贴近业务场景的UI框架</h3>
 </div>
 
 
@@ -50,7 +50,7 @@ uView Next 支持 Vue2 和 Vue3，支持国际化，是[uni-app](http://uniapp.d
 
 ## 🛠️ 关于 PR
 
-> 我们非常乐意接受各位的优质 PR，但在此之前我希望您了解 uView3.0 是一个需要兼容多个平台的（小程序、h5、ios app、android app）包括 nvue 页面、vue 页面。
+> 我们非常乐意接受各位的优质 PR，但在此之前我希望您了解 uView Next是一个需要兼容多个平台的（小程序、h5、ios app、android app）包括 nvue 页面、vue 页面。
 > 所以希望在您修复 bug 并提交之前尽可能的去这些平台测试一下兼容性。最好能携带测试截图以方便审核。非常感谢！
 
 ### 📦 快速安装
@@ -73,4 +73,4 @@ uView Next 支持 Vue2 和 Vue3，支持国际化，是[uni-app](http://uniapp.d
 
 ## 📄 版权信息
 
-uView 遵循[MIT](http://en.wikipedia.org/wiki/MIT_License)开源协议，意味着您无需支付任何费用，也无需授权，即可将 uView 应用到您的产品中。
+uView Next遵循[MIT](http://en.wikipedia.org/wiki/MIT_License)开源协议，意味着您无需支付任何费用，也无需授权，即可将 uView 应用到您的产品中。

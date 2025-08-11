@@ -33,9 +33,9 @@
 			},
 		},
 		onLoad(){
-			fetchTest().then((res)=>{
-				console.log('fetchTest 请求示例',res)
-			})
+			// fetchTest().then((res)=>{
+			// 	console.log('fetchTest 请求示例',res)
+			// })
 		},
 		methods: {
 			

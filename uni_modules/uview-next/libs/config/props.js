@@ -100,6 +100,8 @@ import SwipterIndicator from './props/swipterIndicator'
 import Switch from './props/switch'
 import Signature from './props/signature'
 import Select from './props/select'
+import Sidebar from './props/sidebar'
+import SidebarItem from './props/sidebarItem'
 import Tabbar from './props/tabbar'
 import TabbarItem from './props/tabbarItem'
 import Tabs from './props/tabs'
@@ -213,6 +215,8 @@ export default {
     ...Switch,
     ...Signature,
     ...Select,
+    ...Sidebar,
+    ...SidebarItem,
     ...Tabbar,
     ...TabbarItem,
     ...Tabs,
