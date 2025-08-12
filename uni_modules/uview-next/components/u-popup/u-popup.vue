@@ -26,6 +26,7 @@
 				@touchmove.stop.prevent="noop"
 			>
 				<u-status-bar v-if="safeAreaInsetTop"></u-status-bar>
+				<view v-if="title" class="u-popup__content__title">{{ title }}</view>
 				<slot></slot>
 				<view
 					v-if="closeable"
@@ -349,6 +350,13 @@
 				border-top-right-radius: 10px;
 				border-bottom-left-radius: 10px;
 				border-bottom-right-radius: 10px;
+			}
+
+			&__title {
+				font-size: 15px;
+				font-weight: bold;
+				text-align: center;
+				padding: 15px 0;
 			}
 			
 			&__close {

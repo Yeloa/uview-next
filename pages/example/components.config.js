@@ -2,6 +2,7 @@ export default [{
     groupName: '基础组件',
     groupName_en: 'Basic components',
     list: [
+    
     {
         path: '/pages/componentsB/color/color',
         icon: 'color',
@@ -438,7 +439,8 @@ export default [{
             title_en: 'Empty'
         }
     ]
-}, {
+},
+{
     groupName: '其他组件',
     groupName_en: 'Other components',
     list: [
@@ -449,10 +451,10 @@ export default [{
         title_en: 'Signature'
     },
 	{
-            path: '/pages/componentsC/draggable/draggable',
-            icon: 'draggable',
-            title: 'Draggable 拖拽排序',
-            title_en: 'Draggable'
+        path: '/pages/componentsC/draggable/draggable',
+        icon: 'draggable',
+        title: 'Draggable 拖拽排序',
+        title_en: 'Draggable'
     },{
         path: '/pages/componentsB/parse/parse',
         icon: 'parse',
@@ -534,6 +536,11 @@ export default [{
         icon: 'transition',
         title: 'transition 动画',
         title_en: '动画'
+    }, {
+        path: '/pages/componentsD/wx-auth/wx-auth',
+        icon: 'wx-auth',
+        title: '微信授权弹窗',
+        title_en: 'wx-auth'
     }]
 }
 ]

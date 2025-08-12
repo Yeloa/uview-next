@@ -5,6 +5,10 @@ export default {
             type: Boolean,
             default: ()=> uni.$u.props.popup.show
         },
+        title: {
+            type: String,
+            default: ()=> uni.$u.props.popup.title
+        },
         // 是否显示遮罩
         overlay: {
             type: Boolean,

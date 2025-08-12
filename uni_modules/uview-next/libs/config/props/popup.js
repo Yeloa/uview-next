@@ -12,6 +12,7 @@ export default {
     // popup组件
     popup: {
         show: false,
+        title: '',
         overlay: true,
         mode: 'bottom',
         duration: 300,
