@@ -24,5 +24,8 @@ export default {
 		keyName: 'name',
         shape:'square',
         height:30,
+        disabled: false,
+        disabledBgColor: '#e5e5e5',
+        disabledColor: theme.disabledColor,
     }
 }

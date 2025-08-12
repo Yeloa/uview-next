@@ -57,5 +57,17 @@ export default {
 			type: String,
 			default: () => uni.$u.props.subsection.barColor
         },
+        disabled: {
+            type: Boolean,
+            default: () => uni.$u.props.subsection.disabled
+        },
+        disabledBgColor: {
+            type: String,
+            default: () => uni.$u.props.subsection.disabledBgColor
+        },
+        disabledColor: {
+            type: String,
+            default: () => uni.$u.props.subsection.disabledColor
+        }
     }
 }
