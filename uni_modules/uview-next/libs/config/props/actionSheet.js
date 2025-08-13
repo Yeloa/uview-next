@@ -7,6 +7,9 @@
  * @lastTime     : 2021-08-20 16:44:35
  * @FilePath     : /u-view2.0/uview-ui/libs/config/props/actionSheet.js
  */
+
+import theme from '../theme.js'
+
 export default {
     // action-sheet组件
     actionSheet: {

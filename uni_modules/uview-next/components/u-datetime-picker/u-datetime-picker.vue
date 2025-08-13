@@ -21,31 +21,33 @@
 	>
 		<template #trigger>
 			<slot name="trigger">
-				<u-input 
-					v-if="showInput"
-					:value="inputValue"
-					:clearable="inputProps.clearable"
-					:placeholder="inputProps.placeholder"
-					:disabled="inputProps.disabled"
-					:border="inputProps.border"
-					:round="inputProps.round"
-					:backgroundColor="inputProps.disabled ? '' : inputProps.backgroundColor"
-					:disabledColor="inputProps.disabled ? inputProps.backgroundColor : ''"
-					:placeholderClass="inputProps.placeholderClass"
-					:placeholderStyle="inputProps.placeholderStyle"
-					:confirmType="inputProps.confirmType"
-					:focus="inputProps.focus"
-					:inputAlign="inputProps.inputAlign"
-					:fontSize="inputProps.fontSize"
-					:color="inputProps.color"
-					:borderColor="inputProps.borderColor"
-					:prefixIcon="inputProps.prefixIcon"
-					:suffixIcon="inputProps.suffixIcon"
-					:suffixIconStyle="inputProps.suffixIconStyle"
-					:prefixIconStyle="inputProps.prefixIconStyle"
-					:shape="inputProps.shape"
-					:customStyle="inputProps.customStyle"
-				/>
+				<slot>
+					<u-input 
+						v-if="showInput"
+						:value="inputValue"
+						:clearable="inputProps.clearable"
+						:placeholder="inputProps.placeholder"
+						:disabled="inputProps.disabled"
+						:border="inputProps.border"
+						:round="inputProps.round"
+						:backgroundColor="inputProps.disabled ? '' : inputProps.backgroundColor"
+						:disabledColor="inputProps.disabled ? inputProps.backgroundColor : ''"
+						:placeholderClass="inputProps.placeholderClass"
+						:placeholderStyle="inputProps.placeholderStyle"
+						:confirmType="inputProps.confirmType"
+						:focus="inputProps.focus"
+						:inputAlign="inputProps.inputAlign"
+						:fontSize="inputProps.fontSize"
+						:color="inputProps.color"
+						:borderColor="inputProps.borderColor"
+						:prefixIcon="inputProps.prefixIcon"
+						:suffixIcon="inputProps.suffixIcon"
+						:suffixIconStyle="inputProps.suffixIconStyle"
+						:prefixIconStyle="inputProps.prefixIconStyle"
+						:shape="inputProps.shape"
+						:customStyle="inputProps.customStyle"
+					/>
+				</slot>
 			</slot>
 		</template>
 	</u-picker>
@@ -128,9 +130,17 @@ export default {
 		}
 	},
 	mounted() {
+		
 		this.$nextTick(() => {
 			this.init()
 		})
+
+		if (process.env.NODE_ENV === 'development') {
+			// 检测即将过期的功能
+			this.checkDeprecatedFeatures([
+				{ type: 'slot', name: 'trigger' },
+			],'u-datetime-picker','https://uview.d3u.cn/components/datetimePicker.html')
+		}
 	},
 	// #ifdef VUE3
 	emits: ['update:modelValue', 'change', 'confirm', 'close', 'cancel'],

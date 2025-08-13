@@ -22,6 +22,26 @@
 					mode="widthFix"
 				></image>
 			</u-cell>
+            <u-cell title="使用触发器">
+                <template v-slot:value>
+					<u-action-sheet :actions="actions0" @select="select2">
+						<template #trigger>	
+							<u-input
+								:value="value0"
+								placeholder="请选择"
+								disabled-color="#fff"
+								disabled
+								clearable
+							/>
+						</template>
+                    </u-action-sheet>
+                </template>
+			</u-cell>
+			<u-cell title="使用js打开" @click="openActionSheet">
+                <template v-slot:value>
+                    <u-action-sheet ref="actionSheetRef" :actions="actions0" @select="select1"></u-action-sheet>
+                </template>
+            </u-cell>
 		</u-cell-group>
 		<u-action-sheet
 			:show="show0"
@@ -86,6 +106,7 @@
 				show4: false,
 				show5: false,
 				show6: false,
+				value0: '',
 				actions0: [{
 						name: '选项1',
 					},
@@ -223,8 +244,20 @@
 				console.log('close');
 				this['show0'] = false
 			},
+			openActionSheet(){
+				this.$refs.actionSheetRef.open()
+			},
 			select(e) {
 				console.log('select', e);
+			},
+			select1(e) {
+				console.log('select1', e);
+				this.$refs.actionSheetRef.close()
+				uni.$u.toast(`已选择：${e.name}`)
+			},
+			select2(e) {
+				this.value0 = e.name
+				console.log('select2', e);
 			}
 		}
 	}

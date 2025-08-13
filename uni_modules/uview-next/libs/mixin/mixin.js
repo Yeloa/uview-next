@@ -139,7 +139,122 @@ export default {
         // 空操作
         noop(e) {
             this.preventEvent(e);
+        },
+        
+        // 检测即将过期的插槽并发出警告
+        checkDeprecatedSlot(slotName, componentName, docsUrl, action = 'replace', alternative = '') {
+            if (process.env.NODE_ENV === 'development') {
+                if (this.$slots && this.$slots[slotName]) {
+                    let actionText = ''
+                    let recommendationText = ''
+                    
+                    if (action === 'delete') {
+                        actionText = '将被完全移除'
+                        recommendationText = '请移除该插槽的使用'
+                    } else if (action === 'replace') {
+                        actionText = '将被替代'
+                        recommendationText = alternative ? `请使用${alternative}插槽替代` : '请使用不具名插槽替代'
+                    }
+                    
+                    console.warn(
+                        `[${componentName}] ⚠️ 警告：<slot name="${slotName}"> 插槽将在后续版本中${actionText}，` +
+                        `${recommendationText}。` +
+                        `\n\n` +
+                        `当前用法：` +
+                        `\n<template #${slotName}>...</template>` +
+                        `\n\n` +
+                        `推荐用法：` +
+                        `\n<${componentName}>...</${componentName}>` +
+                        `\n\n` +
+                        `更多信息请查看：${docsUrl}`
+                    )
+                }
+            }
+        },
+        
+        // 检测即将过期的属性并发出警告
+        checkDeprecatedProp(propName, componentName, docsUrl, action = 'replace', alternative = '') {
+            if (process.env.NODE_ENV === 'development') {
+                if (this[propName] !== undefined) {
+                    let actionText = ''
+                    let recommendationText = ''
+                    
+                    if (action === 'delete') {
+                        actionText = '将被完全移除'
+                        recommendationText = '请移除该属性的使用'
+                    } else if (action === 'replace') {
+                        actionText = '将被替代'
+                        recommendationText = alternative ? `请使用替代方案：${alternative}` : '请使用替代方案'
+                    }
+                    
+                    const warningMsg = `[${componentName}] ⚠️ 警告：属性 "${propName}" 将在后续版本中${actionText}，` +
+                        `${recommendationText}。` +
+                        `\n\n` +
+                        `当前用法：` +
+                        `\n:${propName}="${this[propName]}"` +
+                        `\n\n`
+                    
+                    if (action === 'replace' && alternative) {
+                        console.warn(warningMsg + `推荐用法：` +
+                            `\n${alternative}` +
+                            `\n\n` +
+                            `更多信息请查看：${docsUrl}`)
+                    } else {
+                        console.warn(warningMsg + `更多信息请查看：${docsUrl}`)
+                    }
+                }
+            }
+        },
+        
+        // 检测即将过期的事件并发出警告
+        checkDeprecatedEvent(eventName, componentName, docsUrl, action = 'replace', alternative = '') {
+            if (process.env.NODE_ENV === 'development') {
+                if (this.$listeners && this.$listeners[eventName]) {
+                    let actionText = ''
+                    let recommendationText = ''
+                    
+                    if (action === 'delete') {
+                        actionText = '将被完全移除'
+                        recommendationText = '请移除该事件的使用'
+                    } else if (action === 'replace') {
+                        actionText = '将被替代'
+                        recommendationText = alternative ? `请使用替代方案：${alternative}` : '请使用替代方案'
+                    }
+                    
+                    const warningMsg = `[${componentName}] ⚠️ 警告：事件 "${eventName}" 将在后续版本中${actionText}，` +
+                        `${recommendationText}。` +
+                        `\n\n` +
+                        `当前用法：` +
+                        `\n@${eventName}="handler"` +
+                        `\n\n`
+                    
+                    if (action === 'replace' && alternative) {
+                        console.warn(warningMsg + `推荐用法：` +
+                            `\n${alternative}` +
+                            `\n\n` +
+                            `更多信息请查看：${docsUrl}`)
+                    } else {
+                        console.warn(warningMsg + `更多信息请查看：${docsUrl}`)
+                    }
+                }
+            }
+        },
+        
+        // 批量检测多个即将过期的功能
+        checkDeprecatedFeatures(features, componentName, docsUrl) {
+            if (process.env.NODE_ENV === 'development') {
+                features.forEach(feature => {
+                    if (feature.type === 'slot') {
+                        this.checkDeprecatedSlot(feature.name, componentName, docsUrl, feature.action, feature.alternative)
+                    } else if (feature.type === 'prop') {
+                        this.checkDeprecatedProp(feature.name, componentName, docsUrl, feature.action, feature.alternative)
+                    } else if (feature.type === 'event') {
+                        this.checkDeprecatedEvent(feature.name, componentName, docsUrl, feature.action, feature.alternative)
+                    }
+                })
+            }
         }
+  
     },
     onReachBottom() {
         uni.$emit('uOnReachBottom');    
@@ -150,7 +265,7 @@ export default {
         // 判断当前页面是否存在parent和chldren，一般在checkbox和checkbox-group父子联动的场景会有此情况
         // 组件销毁时，移除子组件在父组件children数组中的实例，释放资源，避免数据混乱
         if (this.parent && uni.$u.test.array(this.parent.children)) {
-            // 组件销毁时，移除父组件中的children数组中对应的实例
+            // 组件销毁时，移除子组件在父组件children数组中的实例，释放资源，避免数据混乱
             const childrenList = this.parent.children;
             childrenList.map((child, index) => {
                 // 如果相等，则移除
@@ -159,7 +274,7 @@ export default {
                 }
             });
         }
-    }
+    },
     // #endif
     
     // #ifdef VUE3

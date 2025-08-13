@@ -1,7 +1,8 @@
 <template>
 	<view>
-		<view v-if="$slots.trigger || $slots.$trigger" class="u-picker-trigger" @click="openPicker">
+		<view v-if="$slots.trigger || $slots.$trigger || $slots.default || $slots.$default	" class="u-picker-trigger" @click="openPicker">
 			<slot name="trigger"></slot>
+			<slot></slot>
 		</view>
 		<u-popup 
 			:show="showPopup"
