@@ -2,6 +2,8 @@
 	<u-popup 
 		:show="show" 
 		mode="bottom" 
+		:title="title"
+		:titleStyle="titleStyle"
 		:closeOnClickOverlay="closeOnClickOverlay"
 		:zIndex="zIndex"
 		:closeable="closeable"
@@ -11,14 +13,6 @@
 		@close="onClose"
 	>
 		<view class="u-cascader">
-			<!-- 头部 -->
-			<view class="u-cascader__header">
-				<text class="u-cascader__title" :style="[{
-					color: titleColor,
-					fontSize: titleFontSize
-				}]">{{ title }}</text>
-			</view>
-			
 			<!-- 标签页 -->
 			<view class="u-cascader__tabs">
 				<u-tabs 
@@ -74,6 +68,10 @@ import mpMixin from '../../libs/mixin/mpMixin';
  * @tutorial https://uview.d3u.cn/components/cascader.html
  * @property {Boolean}		show				是否显示级联选择器（默认 false ）
  * @property {String}		title				选择器标题（默认 '请选择' ）
+ * @property {String}		titleAlign			标题对齐方式（默认 'center' ）
+ * @property {String}		titleColor			标题颜色（默认 '' ）
+ * @property {String | Number}	titleFontSize		标题字体大小（默认 '' ）
+ * @property {Boolean}		titleBold			标题是否加粗（默认 false ）
  * @property {Array}		options				选项数据（默认 [] ）
  * @property {String|Number|Array} modelValue	当前选中值
  * @property {String}		placeholder			占位符文本（默认 '请选择' ）
@@ -380,21 +378,7 @@ export default {
 
 .u-cascader {
 	@include flex(column);
-	
-	&__header {
-		position: relative;
-		padding-top: 15px;
-		padding-bottom: 5px;
-	}
-	
-	&__title {
-		text-align: center;
-	}
-	
-	&__tabs {
-		
-	}
-	
+
 	&__content {
 		flex: 1;
 		// #ifndef APP-NVUE

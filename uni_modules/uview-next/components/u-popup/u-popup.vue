@@ -26,7 +26,11 @@
 				@touchmove.stop.prevent="noop"
 			>
 				<u-status-bar v-if="safeAreaInsetTop"></u-status-bar>
-				<view v-if="title" class="u-popup__content__title">{{ title }}</view>
+				<view class="u-popup__content__header">
+					<slot name="header">
+						<text v-if="title" class="u-popup__content__title" :style="[titleStyle]">{{ title }}</text>
+					</slot>
+				</view>
 				<slot></slot>
 				<view
 					v-if="closeable"
@@ -58,6 +62,8 @@
 	 * @description 弹出层容器，用于展示弹窗、信息提示等内容，支持上、下、左、右和中部弹出。组件只提供容器，内部内容由用户自定义
 	 * @tutorial https://uview.d3u.cn/components/popup.html
 	 * @property {Boolean}			show				是否展示弹窗 (默认 false )
+	 * @property {String}			title				弹窗标题
+	 * @property {Object | String}	titleStyle			弹窗标题样式
 	 * @property {Boolean}			overlay				是否显示遮罩 （默认 true ）
 	 * @property {String}			mode				弹出方向（默认 'bottom' ）
 	 * @property {String | Number}	duration			动画时长，单位ms （默认 300 ）
@@ -79,6 +85,8 @@
 	 * @property {Object}			customStyle			组件的样式，对象形式
 	 * @property {String | Number}	width				宽度
 	 * @property {String | Number}	height				高度
+	 * @property {String}			bgColor				背景色（默认 '#ffffff' ）
+	 * @slot title 弹窗标题
 	 * @event {Function} open 弹出层打开
 	 * @event {Function} close 弹出层收起
 	 * @example <u-popup v-model="show"><text>出淤泥而不染，濯清涟而不妖</text></u-popup>
@@ -352,11 +360,19 @@
 				border-bottom-right-radius: 10px;
 			}
 
+			&__header {
+				@include flex(row);
+				justify-content: center;
+				align-items: center;
+				box-sizing: border-box;
+				flex-shrink: 0;
+			}
+
 			&__title {
-				font-size: 15px;
-				font-weight: bold;
+				padding: 15px;
+				flex: 1;
 				text-align: center;
-				padding: 15px 0;
+				font-size: 16px;
 			}
 			
 			&__close {

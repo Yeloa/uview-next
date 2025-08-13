@@ -30,7 +30,6 @@
 		</u-cell-group>
 		<u-popup
 			:safeAreaInsetBottom="true"
-			:safeAreaInsetTop="true"
 			:mode="popupData.mode"
 			:show="show"
 			:round="popupData.round"
@@ -45,6 +44,11 @@
 			:margin="popupData.margin"
 			:width="popupData.width"
 			:height="popupData.height"
+			:title="popupData.title"
+			:titleAlign="popupData.titleAlign"
+			:titleColor="popupData.titleColor"
+			:titleFontSize="popupData.titleFontSize"
+			:titleBold="popupData.titleBold"
 			@close="close"
 			@open="open"
 		>
@@ -88,10 +92,8 @@
 					closeable: true,
 					closeIconPos:'top-right',
 					closeOnClickOverlay: true,
-					closeIcon:'',
-					closeIconColor:'',
 					//width:'200px',
-					closeIconSize:'',
+					title: ''
 				},
 				list: [{
 						popupData: {
@@ -160,6 +162,17 @@
 							closeOnClickOverlay: true
 						},
 						title: '显示圆角',
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/popup/showRadis.png'
+					},
+					{
+						popupData: {
+							overlay: true,
+							mode: 'bottom',
+							round: 10,
+							closeOnClickOverlay: true,
+							title: '这里是标题',
+						},
+						title: '显示标题',
 						iconUrl: 'https://cdn.uviewui.com/uview/demo/popup/showRadis.png'
 					},
 					{

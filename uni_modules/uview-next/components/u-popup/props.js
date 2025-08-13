@@ -5,9 +5,15 @@ export default {
             type: Boolean,
             default: ()=> uni.$u.props.popup.show
         },
+        // 弹窗标题
         title: {
             type: String,
             default: ()=> uni.$u.props.popup.title
+        },
+        // 弹窗标题样式
+        titleStyle: {
+            type: [Object, String],
+            default: ()=> uni.$u.props.popup.titleStyle
         },
         // 是否显示遮罩
         overlay: {

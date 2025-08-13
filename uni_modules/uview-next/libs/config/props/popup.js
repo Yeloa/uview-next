@@ -13,6 +13,7 @@ export default {
     popup: {
         show: false,
         title: '',
+        titleStyle: {}, 
         overlay: true,
         mode: 'bottom',
         duration: 300,

@@ -1,7 +1,7 @@
 <template>
 	<view class="u-page">
 		<u-button type="primary" @click="show = true">打开授权</u-button>
-		<u-wx-auth :show="show" :logo="logo" :title="title" @close="close" @confirm="confirm"></u-wx-auth>
+		<u-wx-auth ref="wxAuthRef" :show="show" :logo="logo" :title="title" @close="close" @chooseAvatar="chooseAvatar" @confirm="confirm"></u-wx-auth>
 	</view>
 </template>
 
@@ -16,6 +16,9 @@
 			}
 		},
 		methods: {
+			chooseAvatar(url){
+				this.$refs.wxAuthRef.avatar = "";
+			},
 			close(data) {
 				this.show = false;
 			},

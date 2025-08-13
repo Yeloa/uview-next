@@ -10,6 +10,11 @@ export default {
             type: String,
             default: ()=> uni.$u.$t('uCascader.title')
         },
+        // 标题样式
+        titleStyle: {
+            type: [Object, String],
+            default: ()=> uni.$u.props.cascader.titleStyle
+        },
         // 选项数据
         options: {
             type: Array,

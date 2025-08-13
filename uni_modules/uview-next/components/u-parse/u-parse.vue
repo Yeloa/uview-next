@@ -42,8 +42,8 @@
 import node from './node/node'
 // #endif
 import props from './props.js';
-	import mixin from '../../libs/mixin/mixin'
-	import mpMixin from '../../libs/mixin/mpMixin'
+import mixin from '../../libs/mixin/mixin'
+import mpMixin from '../../libs/mixin/mpMixin'
 import Parser from './parser'
 import audio from './audio/index.js'
 import style from './style/index.js'

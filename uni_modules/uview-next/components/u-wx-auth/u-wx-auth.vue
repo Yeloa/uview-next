@@ -19,7 +19,7 @@
 								@click="chooseAvatar"
 								@chooseavatar="chooseAvatar"
 							>
-								<u-avatar :src="avatarUrl"></u-avatar>
+								<u-avatar :src="avatar"></u-avatar>
 							</button>
 						</u-form-item>
 						<u-form-item label="昵称" :border-bottom="true">
@@ -29,7 +29,7 @@
 				</view>
 			</view>
 			<view class="u-wx-auth__footer">
-				<u-button :disabled="!avatarUrl || !nickname" :throttle-time="1000" shape="circle" type="primary" hover-class="none" @click="handleSubmit">{{ confirmText }}</u-button>
+				<u-button :disabled="!avatar || !nickname" :throttle-time="1000" shape="circle" type="primary" hover-class="none" @click="handleSubmit">{{ confirmText }}</u-button>
 			</view>
 		</view>
 	</u-popup>
@@ -61,7 +61,7 @@ export default {
 	mixins: [mpMixin, mixin, props],
 	data() {
 		return {
-			avatarUrl: '',
+			avatar: '',
 			nickname: '',
 		}
 	},
@@ -72,7 +72,7 @@ export default {
 		chooseAvatar(e) {
 			const path = e.detail?.avatarUrl;
 			if (path) {
-				this.avatarUrl = path;
+				this.avatar = path;
 				this.$emit('chooseAvatar', path);
 			}
 		},
@@ -83,7 +83,7 @@ export default {
 		// 提交处理
 		handleSubmit() {
 			// 基本信息验证
-			if (!this.avatarUrl) {
+			if (!this.avatar) {
 				return uni.$u.toast('请上传头像');
 			}
 			if (!this.nickname) {
@@ -91,7 +91,7 @@ export default {
 			}
 	
 			this.$emit('confirm', {
-				avatar: this.avatarUrl,
+				avatar: this.avatar,
 				nickname: this.nickname
 			});
 		}

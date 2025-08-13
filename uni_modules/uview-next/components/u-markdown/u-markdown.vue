@@ -469,11 +469,11 @@ export default {
 		vertical-align: middle;
 		min-width: 100%;
 	}
-	::v-deep .table-wrapper .table .tr:last-child td {
+	::v-deep .table-wrapper .table .tr:last-child .td {
 		border-bottom: none;
 	}
 
-	::v-deep .table-wrapper .table .tr td:last-child {
+	::v-deep .table-wrapper .table .tr .td:last-child {
 		border-right: none;
 	}
 

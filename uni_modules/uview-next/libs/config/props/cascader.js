@@ -17,6 +17,8 @@ export default {
         show: false,
         // 选择器标题
         title: '',
+        // 标题样式
+        titleStyle: {},
         // 选项数据
         options: [],
         // 当前选中值

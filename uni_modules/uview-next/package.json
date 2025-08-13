@@ -1,8 +1,8 @@
 {
   "id": "uview-next",
   "name": "uview-next",
-  "displayName": "uView Next全面适配Vue3和鸿蒙，组件库更丰富，企业级，高质量ui框架",
-  "version": "3.4.9",
+  "displayName": "uView Next全面适配Vue3和鸿蒙，组件库更丰富，企业级，高质量UI框架",
+  "version": "3.5.1",
   "description": "基于uViewUI2.0，80+精选组件库，支持vue2和vue3，支持鸿蒙，支持多语言，新增签名组件、拖拽排序、图片剪裁、日期横条、条形码、级联选择器、Markdown解析、侧边栏、文本省略等组件",
   "keywords": [
     "uview",
@@ -44,9 +44,9 @@
     "encrypt": [],
     "platforms": {
       "cloud": {
-        "tcb": "y",
-        "aliyun": "y",
-        "alipay": "y"
+        "tcb": "x",
+        "aliyun": "x",
+        "alipay": "x"
       },
       "client": {
         "uni-app": {
@@ -96,10 +96,10 @@
           }
         },
         "App": {
-            "app-harmony": "y",
-            "app-nvue": "y",
-            "app-uvue": "n",
-            "app-vue": "y"
+          "app-harmony": "y",
+          "app-nvue": "y",
+          "app-uvue": "n",
+          "app-vue": "y"
         }
       }
     }
