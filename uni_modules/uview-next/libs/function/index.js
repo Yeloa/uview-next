@@ -729,6 +729,24 @@ function setConfig({ props = {}, config = {}, color = {} }) {
 	uni.$u.color = deepMerge(uni.$u.color, color);
 }
 
+/**
+ * @description 获取uView内置属性值
+ * @param {string} type 属性类型
+ * @param {string} name 属性名称
+ * @param {string} value 默认值
+ */
+function getPropsConfig(type,name, value, i8n = false) {
+    if (uni.$u.props && uni.$u.props[type]) {
+        if(i8n){
+            return uni.$u.$t(`u${type.charAt(0).toUpperCase() + type.slice(1)}.${name}`);
+        }else{
+            return uni.$u.props[type][name];
+        }
+    }else{
+        return value;
+    }
+}
+
 export default {
 	range,
 	getPx,
@@ -760,5 +778,6 @@ export default {
 	page,
 	pages,
 	getHistoryPage,
-	setConfig
+	setConfig,
+	getPropsConfig 
 };

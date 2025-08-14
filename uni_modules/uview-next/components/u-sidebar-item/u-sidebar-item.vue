@@ -122,10 +122,8 @@ export default {
 		badge: {
 			immediate: true,
 			handler(newVal) {
-				if (uni.$u.test.object(this.badge)) {
-					this.propsBadge = uni.$u.deepMerge(uni.$u.props.badge, this.badge);
-				} else {
-					this.propsBadge.value = this.badge || '';
+				if (!uni.$u.test.object(this.badge)) {
+					this.propsBadge.value = this.badge;
 				}
 			}
 		}

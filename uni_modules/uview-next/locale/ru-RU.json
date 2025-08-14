@@ -6,6 +6,7 @@
 	"uCalendar.title": "Выбор даты",
 	"uCalendar.startText": "Начало",
 	"uCalendar.endText": "Конец",
+	"uCalendar.rangePrompt": "Выбранное количество дней превышает максимальное",
 	"uCalendar.confirmText": "Подтвердить",
 	"uCalendar.confirmDisabledText": "Подтвердить",
 	"uCalendar.weekdays": "пн,вт,ср,чт,пт,сб,вс",

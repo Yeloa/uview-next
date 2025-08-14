@@ -6,6 +6,7 @@
 	"uCalendar.title": "날짜 선택",
 	"uCalendar.startText": "시작",
 	"uCalendar.endText": "종료",
+	"uCalendar.rangePrompt": "선택한 일수가 최대 일수를 초과했습니다",
 	"uCalendar.confirmText": "확인",
 	"uCalendar.confirmDisabledText": "확인",
 	"uCalendar.weekdays": "월,화,수,목,금,토,일",

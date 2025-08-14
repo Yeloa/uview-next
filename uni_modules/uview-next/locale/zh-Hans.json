@@ -6,6 +6,7 @@
 	"uCalendar.title": "日期选择",
 	"uCalendar.startText": "开始",
 	"uCalendar.endText": "结束",
+	"uCalendar.rangePrompt": "选择的天数超过最大天数",
 	"uCalendar.confirmText": "确定",
 	"uCalendar.confirmDisabledText": "确定",
 	"uCalendar.weekdays": "一,二,三,四,五,六,日",

@@ -19,6 +19,7 @@
 	 * @property {Object | Function | Array}	rules			验证规则
 	 * @property {String}						errorType		错误的提示方式，见上方说明 ( 默认 message )
 	 * @property {Boolean}						borderBottom	是否显示表单域的下划线边框   ( 默认 true ）
+	 * @property {String}						borderBottomColor	下划线边框的颜色
 	 * @property {String}						errorType		错误的提示方式，见上方说明 ( 默认 message )
 	 * @property {String}						labelPosition	表单域提示文字的位置，left-左侧，top-上方 ( 默认 'left' ）
 	 * @property {String | Number}				labelWidth		提示文字的宽度，单位px  ( 默认 45 ）
@@ -75,6 +76,7 @@
 				return [
 					this.errorType,
 					this.borderBottom,
+					this.borderBottomColor,
 					this.labelPosition,
 					this.labelWidth,
 					this.labelAlign,

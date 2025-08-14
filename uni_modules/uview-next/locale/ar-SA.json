@@ -6,6 +6,7 @@
 	"uCalendar.title": "اختيار التاريخ",
 	"uCalendar.startText": "البداية",
 	"uCalendar.endText": "النهاية",
+	"uCalendar.rangePrompt": "تم اختيار عدد أيام أكثر من الحد الأقصى",
 	"uCalendar.confirmText": "تأكيد",
 	"uCalendar.confirmDisabledText": "تأكيد",
 	"uCalendar.weekdays": "الإثنين,الثلاثاء,الأربعاء,الخميس,الجمعة,السبت,الأحد",

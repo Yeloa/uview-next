@@ -51,7 +51,7 @@ export default {
 		// 月份数据
 		months: {
 			type: Array,
-			default: () => []
+			default: []
 		},
 		// 日期选择类型
 		mode: {

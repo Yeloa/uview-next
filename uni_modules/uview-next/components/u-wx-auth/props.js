@@ -1,48 +1,48 @@
-export default {
-    props: {
-        show: {
-			type: Boolean,
-			default: () => uni.$u.props.wxAuth.show
-		},
-		logo: {
-			type: String,
-			default: () => uni.$u.props.wxAuth.logo
-		},
-		title: {
-			type: String,
-			default: () => uni.$u.props.wxAuth.title
-		},
-		appName: {
-			type: String,
-			default: () => uni.$u.props.wxAuth.appName
-		},
-		showHeader:{
-			type: Boolean,
-			default: () => uni.$u.props.wxAuth.showHeader
-		},
-		content: {
-			type: String,
-			default: () => uni.$u.props.wxAuth.content
-		},
-		tips: {
-			type: String,
-			default: () => uni.$u.props.wxAuth.tips
-		},
-		round:{
-			type: [Number, String],
-			default: () => uni.$u.props.wxAuth.round
-		},
-		closeable:{
-			type: Boolean,
-			default: () => uni.$u.props.wxAuth.closeable
-		},
-		maskCloseable:{
-			type: Boolean,
-			default: () => uni.$u.props.wxAuth.maskCloseable
-		},
-		confirmText: {
-			type: String,
-			default: () => uni.$u.props.wxAuth.confirmText
-		}
-    }
-}
+import { defineProps } from '../../libs/util/props';
+
+export default defineProps('wxAuth', {
+    show: {
+		type: Boolean,
+		default: false
+	},
+	logo: {
+		type: String,
+		default: ''
+	},
+	title: {
+		type: String,
+		default: ''
+	},
+	appName: {
+		type: String,
+		default: ''
+	},
+	showHeader:{
+		type: Boolean,
+		default: true
+	},
+	content: {
+		type: String,
+		default: '获取您的昵称、头像'
+	},
+	tips: {
+		type: String,
+		default: '以便为您提供更优质的服务'
+	},
+	round:{
+		type: [Number, String],
+		default: 10
+	},
+	closeable:{
+		type: Boolean,
+		default: true
+	},
+	maskCloseable:{
+		type: Boolean,
+		default: false
+	},
+	confirmText: {
+		type: String,
+		default: '保存'
+	}
+})

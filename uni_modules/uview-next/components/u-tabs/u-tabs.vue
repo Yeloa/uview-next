@@ -32,16 +32,16 @@
 							>{{ item[keyName] }}</text>
 							<u-badge
 								:show="!!(item.badge && (item.badge.show || item.badge.isDot || item.badge.value))"
-								:isDot="item.badge && item.badge.isDot || propsBadge.isDot"
-								:value="item.badge && item.badge.value || propsBadge.value"
-								:max="item.badge && item.badge.max || propsBadge.max"
-								:type="item.badge && item.badge.type || propsBadge.type"
-								:showZero="item.badge && item.badge.showZero || propsBadge.showZero"
-								:bgColor="item.badge && item.badge.bgColor || propsBadge.bgColor"
-								:color="item.badge && item.badge.color || propsBadge.color"
-								:shape="item.badge && item.badge.shape || propsBadge.shape"
-								:numberType="item.badge && item.badge.numberType || propsBadge.numberType"
-								:inverted="item.badge && item.badge.inverted || propsBadge.inverted"
+								:isDot="item.badge && item.badge.isDot"
+								:value="item.badge && item.badge.value "
+								:max="item.badge && item.badge.max"
+								:type="item.badge && item.badge.type"
+								:showZero="item.badge && item.badge.showZero"
+								:bgColor="item.badge && item.badge.bgColor"
+								:color="item.badge && item.badge.color"
+								:shape="item.badge && item.badge.shape"
+								:numberType="item.badge && item.badge.numberType"
+								:inverted="item.badge && item.badge.inverted"
 								customStyle="margin-left: 4px;"
 							></u-badge>
 						</view>
@@ -191,9 +191,6 @@
 					
 					return uni.$u.deepMerge(customeStyle, style)
 				}
-			},
-			propsBadge() {
-				return uni.$u.props.badge
 			}
 		},
 		created() {

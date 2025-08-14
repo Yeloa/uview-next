@@ -1,8 +1,8 @@
-export default {
-    props: {
-        bgColor: {
-            type: String,
-            default: () => uni.$u.props.statusBar.bgColor
-        }
+import { defineProps } from '../../libs/util/props';
+
+export default defineProps('statusBar', {
+    bgColor: {
+        type: String,
+        default: 'transparent'
     }
-}
+})

@@ -6,6 +6,7 @@
 	"uCalendar.title": "日付選択",
 	"uCalendar.startText": "開始",
 	"uCalendar.endText": "終了",
+	"uCalendar.rangePrompt": "選択した日数が最大数を超えています",
 	"uCalendar.confirmText": "確定",
 	"uCalendar.confirmDisabledText": "確定",
 	"uCalendar.weekdays": "月,火,水,木,金,土,日",

@@ -68,7 +68,7 @@
 		</slot>
 		<u-line
 			v-if="elBorderBottom"
-			:color="message && parentData.errorType === 'border-bottom' ? $u.theme.error : propsLine.color"
+			:color="message && parentData.errorType === 'border-bottom' ? $u.theme.error : elBorderBottomColor"
 			:customStyle="`margin-top: ${message && parentData.errorType === 'message' ? '5px' : 0}`"
 		></u-line>
 	</view>
@@ -86,6 +86,7 @@
 	 * @property {String}			prop			绑定的值
 	 * @property {Array}			rules			绑定的校验规则
 	 * @property {String | Boolean}	borderBottom	是否显示表单域的下划线边框
+	 * @property {String}			borderBottomColor	下划线边框的颜色
 	 * @property {String | Number}	labelWidth		label的宽度，单位px
 	 * @property {String}			rightIcon		右侧图标
 	 * @property {String}			leftIcon		左侧图标
@@ -114,17 +115,19 @@
 					// 错误提示方式
 					errorType: 'message',
 					// 是否显示表单域的下划线边框
-					borderBottom: null
+					borderBottom: null,
+					// 下划线边框的颜色
+					borderBottomColor: null
 				}
 			}
 		},
 		// 组件创建完成时，将当前实例保存到u-form中
 		computed: {
-			propsLine() {
-				return uni.$u.props.line
-			},
 			elBorderBottom() {
 				return this.borderBottom === '' ? this.parentData.borderBottom : this.borderBottom
+			},
+			elBorderBottomColor() {
+				return this.borderBottomColor === '' ? this.parentData.borderBottomColor : this.borderBottomColor
 			}
 		},
 		mounted() {

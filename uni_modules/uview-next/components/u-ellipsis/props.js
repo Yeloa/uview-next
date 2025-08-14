@@ -1,53 +1,54 @@
-export default {
-    props: {
-        // 文本内容
-        content: {
-            type: String,
-            default: ()=> uni.$u.props.ellipsis.content
-        },
-        // 省略位置：start, end, middle
-        position: {
-            type: String,
-            default: ()=> uni.$u.props.ellipsis.position
-        },
-        lineHeight: {
-            type: [Number, String],
-            default: ()=> uni.$u.props.ellipsis.lineHeight
-        },
-        // 行数
-        rows: {
-            type: [Number, String],
-            default: ()=> uni.$u.props.ellipsis.rows
-        },
-        // 展开文本
-        expandText: {
-            type: String,
-            default: ()=> uni.$u.props.ellipsis.expandText
-        },
-        // 收起文本
-        collapseText: {
-            type: String,
-            default: ()=> uni.$u.props.ellipsis.collapseText
-        },
-        // 省略符号
-        symbol: {
-            type: String,
-            default: ()=> uni.$u.props.ellipsis.symbol
-        },
-        // 文本颜色
-        color: {
-            type: String,
-            default: ()=> uni.$u.props.ellipsis.color
-        },
-        // 文本大小
-        fontSize: {
-            type: [String, Number],
-            default: ()=> uni.$u.props.ellipsis.fontSize
-        },
-        // 展开/收起按钮颜色
-        actionColor: {
-            type: String,
-            default: ()=> uni.$u.props.ellipsis.actionColor
-        }
+import { defineProps } from '../../libs/util/props';
+import theme from '../../libs/config/theme.js'
+
+export default defineProps('ellipsis', {
+    // 文本内容
+    content: {
+        type: String,
+        default: ''
+    },
+    // 省略位置：start, end, middle
+    position: {
+        type: String,
+        default: 'end'
+    },
+    lineHeight: {
+        type: [Number, String],
+        default: 20
+    },
+    // 行数
+    rows: {
+        type: [Number, String],
+        default: 1
+    },
+    // 展开文本
+    expandText: {
+        type: String,
+        default: ''
+    },
+    // 收起文本
+    collapseText: {
+        type: String,
+        default: ''
+    },
+    // 省略符号
+    symbol: {
+        type: String,
+        default: '...'
+    },
+    // 文本颜色
+    color: {
+        type: String,
+        default: theme.mainColor
+    },
+    // 文本大小
+    fontSize: {
+        type: [String, Number],
+        default: 14
+    },
+    // 展开/收起按钮颜色
+    actionColor: {
+        type: String,
+        default: theme.primary
     }
-}
+})

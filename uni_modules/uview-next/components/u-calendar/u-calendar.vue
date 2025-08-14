@@ -134,6 +134,8 @@
 * @example <u-calendar  :defaultDate="defaultDateMultiple" :show="show" mode="multiple" @confirm="confirm">
 </u-calendar>
 * */
+
+    console.log(props);
     export default {
         name: 'u-calendar',
         mixins: [mpMixin, mixin, props],

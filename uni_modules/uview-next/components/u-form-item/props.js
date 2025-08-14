@@ -1,53 +1,59 @@
-export default {
-    props: {
-        // input的label提示语
-        label: {
-            type: String,
-            default: ()=> uni.$u.props.formItem.label
-        },
-        // 绑定的值
-        prop: {
-            type: String,
-            default: ()=> uni.$u.props.formItem.prop
-        },
-        // 是否显示表单域的下划线边框
-        borderBottom: {
-            type: [String, Boolean],
-            default: ()=> uni.$u.props.formItem.borderBottom
-        },
-        // label的位置，left-左边，top-上边
-        labelPosition: {
-            type: String,
-            default: ()=> uni.$u.props.formItem.labelPosition
-        },
-        // label的宽度，单位px
-        labelWidth: {
-            type: [String, Number],
-            default: ()=> uni.$u.props.formItem.labelWidth
-        },
-        // 右侧图标
-        rightIcon: {
-            type: String,
-            default: ()=> uni.$u.props.formItem.rightIcon
-        },
-        // 左侧图标
-        leftIcon: {
-            type: String,
-            default: ()=> uni.$u.props.formItem.leftIcon
-        },
-        // 是否显示左边的必填星号，只作显示用，具体校验必填的逻辑，请在rules中配置
-        required: {
-            type: Boolean,
-            default: ()=> uni.$u.props.formItem.required
-        },
-        leftIconStyle: {
-            type: [String, Object],
-            default: ()=> uni.$u.props.formItem.leftIconStyle
-        },
-        // 验证规则
-        rules: {
-            type: [Object, Function, Array],
-            default: ()=> uni.$u.props.formItem.rules
-        }
+import { defineProps } from '../../libs/util/props';
+import theme from '../../libs/config/theme.js'
+
+export default defineProps('formItem', {
+    // input的label提示语
+    label: {
+        type: String,
+        default: ''
+    },
+    // 绑定的值
+    prop: {
+        type: String,
+        default: ''
+    },
+    // 是否显示表单域的下划线边框
+    borderBottom: {
+        type: [String, Boolean],
+        default: ''
+    },
+    // 下划线边框的颜色
+    borderBottomColor: {
+        type: String,
+        default: theme.borderColorLight
+    },
+    // label的位置，left-左边，top-上边
+    labelPosition: {
+        type: String,
+        default: ''
+    },
+    // label的宽度，单位px
+    labelWidth: {
+        type: [String, Number],
+        default: ''
+    },
+    // 右侧图标
+    rightIcon: {
+        type: String,
+        default: ''
+    },
+    // 左侧图标
+    leftIcon: {
+        type: String,
+        default: ''
+    },
+    // 是否显示左边的必填星号，只作显示用，具体校验必填的逻辑，请在rules中配置
+    required: {
+        type: Boolean,
+        default: false
+    },
+    leftIconStyle: {
+        type: [String, Object],
+        default: ''
+    },
+    // 验证规则
+    rules: {
+        type: [Object, Function, Array],
+        default: () => ({})
     }
-}
+})

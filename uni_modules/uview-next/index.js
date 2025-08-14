@@ -24,8 +24,7 @@ import index from './libs/function/index.js';
 
 // 配置信息
 import config from './libs/config/config.js';
-// props配置信息
-import props from './libs/config/props.js';
+
 // 主题配置
 import theme from './libs/config/theme.js';
 // 平台
@@ -52,7 +51,6 @@ const $u = {
 	throttle,
 	mixin,
 	mpMixin,
-	props,
 	theme,
 	platform,
 	$t,

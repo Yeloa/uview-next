@@ -1,73 +1,74 @@
-export default {
-    props: {
-        // tab的数据
-        list: {
-            type: Array,
-            default: () => uni.$u.props.subsection.list
-        },
-        // 当前活动的tab的index
-        current: {
-            type: [String, Number],
-            default: () => uni.$u.props.subsection.current
-        },
-        // 激活的颜色
-        activeColor: {
-            type: String,
-            default: () => uni.$u.props.subsection.activeColor
-        },
-        // 未激活的颜色
-        inactiveColor: {
-            type: String,
-            default: () => uni.$u.props.subsection.inactiveColor
-        },
-        // 模式选择，mode=button为按钮形式，mode=subsection时为分段模式
-        mode: {
-            type: String,
-            default: () => uni.$u.props.subsection.mode
-        },
-        // 字体大小
-        fontSize: {
-            type: [String, Number],
-            default: () => uni.$u.props.subsection.fontSize
-        },
-        // 激活tab的字体是否加粗
-        bold: {
-            type: Boolean,
-            default: () => uni.$u.props.subsection.bold
-        },
-        // mode = button时，组件背景颜色
-        bgColor: {
-            type: String,
-            default: () => uni.$u.props.subsection.bgColor
-        },
-		// 从list元素对象中读取的键名
-		keyName: {
-			type: String,
-			default: () => uni.$u.props.subsection.keyName
-        },
-        shape: {
-			type: String,
-			default: () => uni.$u.props.subsection.shape
-        },
-        height: {
-			type: [String, Number],
-            default: () => uni.$u.props.subsection.height
-        },
-        barColor: {
-			type: String,
-			default: () => uni.$u.props.subsection.barColor
-        },
-        disabled: {
-            type: Boolean,
-            default: () => uni.$u.props.subsection.disabled
-        },
-        disabledBgColor: {
-            type: String,
-            default: () => uni.$u.props.subsection.disabledBgColor
-        },
-        disabledColor: {
-            type: String,
-            default: () => uni.$u.props.subsection.disabledColor
-        }
+import { defineProps } from '../../libs/util/props';
+import theme from '../../libs/config/theme.js'
+
+export default defineProps('subsection', {
+    // tab的数据
+    list: {
+        type: Array,
+       default: () => []
+    },
+    // 当前活动的tab的index
+    current: {
+        type: [String, Number],
+        default: 0
+    },
+    // 激活的颜色
+    activeColor: {
+        type: String,
+        default: theme.primary
+    },
+    // 未激活的颜色
+    inactiveColor: {
+        type: String,
+        default: theme.contentColor
+    },
+    // 模式选择，mode=button为按钮形式，mode=subsection时为分段模式
+    mode: {
+        type: String,
+        default: 'button'
+    },
+    // 字体大小
+    fontSize: {
+        type: [String, Number],
+        default: 12
+    },
+    // 激活tab的字体是否加粗
+    bold: {
+        type: Boolean,
+        default: true
+    },
+    // mode = button时，组件背景颜色
+    bgColor: {
+        type: String,
+        default: theme.bgColor
+    },
+    // 从list元素对象中读取的键名
+    keyName: {
+        type: String,
+        default: 'name'
+    },
+    shape: {
+        type: String,
+        default: 'square'
+    },
+    height: {
+        type: [String, Number],
+        default: 30
+    },
+    barColor: {
+        type: String,
+        default: ''
+    },
+    disabled: {
+        type: Boolean,
+        default: false
+    },
+    disabledBgColor: {
+        type: String,
+        default: '#e5e5e5'
+    },
+    disabledColor: {
+        type: String,
+        default: theme.disabledColor
     }
-}
+})

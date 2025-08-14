@@ -325,7 +325,7 @@ export default {
                     clientX: touch.clientX || touch.x || touch.pageX,
                     clientY: touch.clientY || touch.y || touch.pageY
                 }],
-                preventDefault: () => {}
+                preventdefault: () => ({})
             };
             
             this.cropper.touchMove(event);

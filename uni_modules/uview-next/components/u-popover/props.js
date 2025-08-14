@@ -1,94 +1,94 @@
-export default {
-    props: {
-        // 是否显示弹出层
-        show: {
-            type: Boolean,
-            default: ()=> uni.$u.props.popover.show
-        },
-        // 弹出层内容
-        content: {
-            type: String,
-            default: ()=> uni.$u.props.popover.content
-        },
-        // 弹出方向：top, bottom, left, right, auto
-        position: {
-            type: String,
-            default: ()=> uni.$u.props.popover.position
-        },
-        // 是否显示箭头
-        showArrow: {
-            type: Boolean,
-            default: ()=> uni.$u.props.popover.showArrow
-        },
-        // 箭头大小
-        arrowSize: {
-            type: [String, Number],
-            default: ()=> uni.$u.props.popover.arrowSize
-        },
-        // 箭头颜色
-        arrowColor: {
-            type: String,
-            default: ()=> uni.$u.props.popover.arrowColor
-        },
-        // 弹出层背景色
-        bgColor: {
-            type: String,
-            default: ()=> uni.$u.props.popover.bgColor
-        },
-        // 文字颜色
-        color: {
-            type: String,
-            default: ()=> uni.$u.props.popover.color
-        },
-        // 字体大小
-        fontSize: {
-            type: [String, Number],
-            default: ()=> uni.$u.props.popover.fontSize
-        },
-        // 内边距
-        padding: {
-            type: [String, Number],
-            default: ()=> uni.$u.props.popover.padding
-        },
-        // 圆角
-        round: {
-            type: [String, Number],
-            default: ()=> uni.$u.props.popover.round
-        },
-        // 弹出层宽度
-        width: {
-            type: [String, Number],
-            default: ()=> uni.$u.props.popover.width
-        },
-        // 弹出层最大宽度
-        maxWidth: {
-            type: [String, Number],
-            default: ()=> uni.$u.props.popover.maxWidth
-        },
-        // 弹出层最小宽度
-        minWidth: {
-            type: [String, Number],
-            default: ()=> uni.$u.props.popover.minWidth
-        },
-        // 层级
-        zIndex: {
-            type: [String, Number],
-            default: ()=> uni.$u.props.popover.zIndex
-        },
-        // 动画时长
-        duration: {
-            type: [String, Number],
-            default: ()=> uni.$u.props.popover.duration
-        },
-        // 是否禁用
-        disabled: {
-            type: Boolean,
-            default: ()=> uni.$u.props.popover.disabled
-        },
-        // 自定义弹出层样式
-        popoverStyle: {
-            type: Object,
-            default: ()=> uni.$u.props.popover.popoverStyle
-        }
+import { defineProps } from '../../libs/util/props';
+
+export default defineProps('popover', {
+    // 是否显示弹出层
+    show: {
+        type: Boolean,
+        default: false
+    },
+    // 弹出层内容
+    content: {
+        type: String,
+        default: ''
+    },
+    // 弹出方向：top, bottom, left, right, auto
+    position: {
+        type: String,
+        default: 'auto'
+    },
+    // 是否显示箭头
+    showArrow: {
+        type: Boolean,
+        default: true
+    },
+    // 箭头大小
+    arrowSize: {
+        type: [String, Number],
+        default: '12px'
+    },
+    // 箭头颜色
+    arrowColor: {
+        type: String,
+        default: ''
+    },
+    // 弹出层背景色
+    bgColor: {
+        type: String,
+        default: '#060607'
+    },
+    // 文字颜色
+    color: {
+        type: String,
+        default: '#fff'
+    },
+    // 字体大小
+    fontSize: {
+        type: [String, Number],
+        default: 14
+    },
+    // 内边距
+    padding: {
+        type: [String, Number],
+        default: '8px 12px'
+    },
+    // 圆角
+    round: {
+        type: [String, Number],
+        default: 4
+    },
+    // 弹出层宽度
+    width: {
+        type: [String, Number],
+        default: ''
+    },
+    // 弹出层最大宽度
+    maxWidth: {
+        type: [String, Number],
+        default: 200
+    },
+    // 弹出层最小宽度
+    minWidth: {
+        type: [String, Number],
+        default: 50
+    },
+    // 层级
+    zIndex: {
+        type: [String, Number],
+        default: 999
+    },
+    // 动画时长
+    duration: {
+        type: [String, Number],
+        default: 300
+    },
+    // 是否禁用
+    disabled: {
+        type: Boolean,
+        default: false
+    },
+    // 自定义弹出层样式
+    popoverStyle: {
+        type: Object,
+        default: () => ({})
     }
-}
+})

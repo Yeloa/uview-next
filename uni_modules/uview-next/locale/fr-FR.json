@@ -6,6 +6,7 @@
 	"uCalendar.title": "Sélectionner une date",
 	"uCalendar.startText": "Début",
 	"uCalendar.endText": "Fin",
+	"uCalendar.rangePrompt": "Le nombre de jours sélectionnés dépasse le nombre maximum",
 	"uCalendar.confirmText": "Confirmer",
 	"uCalendar.confirmDisabledText": "Confirmer",
 	"uCalendar.weekdays": "lun,mar,mer,jeu,ven,sam,dim",

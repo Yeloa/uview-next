@@ -1,12 +1,12 @@
-export default {
-    props: {
-        content: {
-            type: String,
-            default: ()=> uni.$u.props.markdown.content
-        },
-        showLine: {
-            type: [Boolean, String],
-            default: ()=> uni.$u.props.markdown.showLine
-        }
+import { defineProps } from '../../libs/util/props';
+
+export default defineProps('markdown', {
+    content: {
+        type: String,
+        default: ''
+    },
+    showLine: {
+        type: [Boolean, String],
+        default: true
     }
-}
+})
