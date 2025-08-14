@@ -364,8 +364,10 @@
 				@include flex(row);
 				justify-content: center;
 				align-items: center;
+				// #ifndef APP-NVUE
 				box-sizing: border-box;
 				flex-shrink: 0;
+				// #endif
 			}
 
 			&__title {

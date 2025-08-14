@@ -135,7 +135,6 @@
 </u-calendar>
 * */
 
-    console.log(props);
     export default {
         name: 'u-calendar',
         mixins: [mpMixin, mixin, props],
