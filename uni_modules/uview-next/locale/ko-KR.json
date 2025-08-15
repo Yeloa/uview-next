@@ -60,5 +60,6 @@
 	"uSignature.title": "서명해 주세요",
 	"uSignature.clearText": "지우기",
 	"uSignature.undoText": "되돌리기",
-	"uSignature.confirmText": "확인"
+	"uSignature.confirmText": "확인",
+	"uSignature.closeText": "닫기"
 }

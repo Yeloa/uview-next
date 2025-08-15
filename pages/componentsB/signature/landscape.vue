@@ -10,6 +10,7 @@
 			:disableScroll="true"
 			:backgroundColor="backgroundColor"
 			@confirm="onConfirm"
+			@close="onClose"
 		></u-signature>
 	</view>
 </template>
@@ -47,6 +48,9 @@
 				this.$refs.signatureRef.getImage().then(res => {
 					this.basicResult = res
 				})
+			},
+			onClose(){
+				uni.navigateBack()
 			},
 			onConfirm(res){
 				this.basicResult = res

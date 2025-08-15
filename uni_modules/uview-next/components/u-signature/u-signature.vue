@@ -52,31 +52,36 @@
                     </view>
                 </view>
                 <view class="u-signature__toolbar-right">
-                    <view class="u-signature__toolbar-item">
+                    <view v-if="showClose" class="u-signature__toolbar-item">
+                        <u-button
+                            type="info"
+                            icon="close-circle"
+                            @click="handleClose"
+                            :text="closeText"
+                        />
+                    </view>
+                    <view v-if="showClear" class="u-signature__toolbar-item">
                         <u-button
                             type="info"
                             icon="trash"
                             @click="handleClear"
-                        >
-                            {{ clearText }}
-                        </u-button>
+                            :text="closeText"
+                        />
                     </view>
-                    <view class="u-signature__toolbar-item">
+                    <view v-if="showUndo" class="u-signature__toolbar-item">
                         <u-button
                             type="info"
                             icon="back"
                             @click="handleUndo"
-                        >
-                            {{ undoText }}
-                        </u-button>
+                            :text="undoText"
+                        />
                     </view>
                     <view class="u-signature__toolbar-item">
                         <u-button
                             type="primary"
                             @click="handleConfirm"
-                        >
-                            {{ confirmText }}
-                        </u-button>
+                            :text="confirmText"
+                        />
                     </view>
                 </view>
             </slot>
@@ -107,6 +112,10 @@
 	 * @property {Boolean}			disabled        是否禁用  （默认 false ）
 	 * @property {Boolean}			boundingBox     只生成内容区域  （默认 false ）
 	 * @property {Object}			customStyle     自定义样式
+     * @property {String}			closeText       关闭按钮文本  （默认 '关闭' ）
+     * @property {String}			clearText       清空按钮文本  （默认 '清空' ）
+     * @property {String}			undoText        撤销按钮文本  （默认 '撤销' ）
+     * @property {String}			confirmText     确认按钮文本  （默认 '确认' ）
      * @event    {Function}        undo            撤销方法
      * @event    {Function}        clear           清空方法
      * @event    {Function}        getImage        保存方法
@@ -182,7 +191,7 @@
             this.init();
         },
         // #ifdef VUE3
-        emits: ['clear', 'undo', 'confirm'],
+        emits: ['clear', 'undo', 'confirm','close'],
         // #endif
         methods: {
             async init() {
@@ -490,6 +499,10 @@
                 this.currentStroke = [];
             },
 
+            handleClose(){
+                this.$emit('close');
+            },
+
 			handlePenColor(color){
 				this.penColorInner = color;
 				this.ctx.strokeStyle = color;
@@ -750,8 +763,8 @@
 
                     .u-signature__toolbar-item {
                         margin-right: 0;
-                        margin-left: -40px;
-                        height: 100px;
+                        margin-left: -35px;
+                        height: 90px;
                         transform: rotate(90deg);
                         transform-origin: center center;
                     }

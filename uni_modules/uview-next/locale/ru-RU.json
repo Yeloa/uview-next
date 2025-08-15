@@ -60,5 +60,6 @@
 	"uSignature.title": "Пожалуйста, подпишите",
 	"uSignature.clearText": "Очистить",
 	"uSignature.undoText": "Отменить",
-	"uSignature.confirmText": "Подтвердить"
+	"uSignature.confirmText": "Подтвердить",
+	"uSignature.closeText": "Закрыть"
 }

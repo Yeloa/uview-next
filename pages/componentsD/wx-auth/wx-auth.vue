@@ -17,7 +17,7 @@
 		},
 		methods: {
 			chooseAvatar(url){
-				this.$refs.wxAuthRef.avatar = "";
+				//this.$refs.wxAuthRef.avatar = "";
 			},
 			close(data) {
 				this.show = false;

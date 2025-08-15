@@ -110,7 +110,7 @@
 			resetModel() {
 				// 历遍所有u-form-item，根据其prop属性，还原model的原始快照
 				this.children.map((child) => {
-					const prop = child?.prop;
+					const prop = child.prop;
 					const value = uni.$u.getProperty(this.originalModel, prop);
 					uni.$u.setProperty(this.model, prop, value);
 				});

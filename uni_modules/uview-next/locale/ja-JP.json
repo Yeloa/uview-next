@@ -60,5 +60,6 @@
 	"uSignature.title": "署名してください",
 	"uSignature.clearText": "クリア",
 	"uSignature.undoText": "元に戻す",
-	"uSignature.confirmText": "確定"
+	"uSignature.confirmText": "確定",
+	"uSignature.closeText": "閉じる"
 }

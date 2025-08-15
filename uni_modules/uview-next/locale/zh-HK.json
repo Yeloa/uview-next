@@ -60,5 +60,6 @@
 	"uSignature.title": "請簽名",
 	"uSignature.clearText": "清空",
 	"uSignature.undoText": "撤銷",
-	"uSignature.confirmText": "完成"
+	"uSignature.confirmText": "完成",
+	"uSignature.closeText": "關閉"
 }

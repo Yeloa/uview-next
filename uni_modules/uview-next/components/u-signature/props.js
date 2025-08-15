@@ -31,6 +31,16 @@ export default defineProps('signature', {
         type: Boolean,
         default: true,
     },
+    // 是否显示关闭按钮
+    showClose: {
+        type: Boolean,
+        default: true,
+    },
+    // 关闭按钮的文本
+    closeText: {
+        type: String,
+        default: () => uni.$u.$t('uSignature.closeText'),
+    },
     // 清空按钮的文本
     clearText: {
         type: String,

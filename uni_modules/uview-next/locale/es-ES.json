@@ -60,5 +60,6 @@
 	"uSignature.title": "Por favor, firme",
 	"uSignature.clearText": "Limpiar",
 	"uSignature.undoText": "Deshacer",
-	"uSignature.confirmText": "Confirmar"
+	"uSignature.confirmText": "Confirmar",
+	"uSignature.closeText": "Cerrar"
 }

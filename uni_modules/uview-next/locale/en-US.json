@@ -60,5 +60,6 @@
 	"uSignature.title": "Please sign",
 	"uSignature.clearText": "Clear",
 	"uSignature.undoText": "Undo",
-	"uSignature.confirmText": "Confirm"
+	"uSignature.confirmText": "Confirm",
+	"uSignature.closeText": "Close"
 }

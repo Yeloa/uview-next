@@ -60,5 +60,6 @@
 	"uSignature.title": "Bitte unterschreiben",
 	"uSignature.clearText": "Löschen",
 	"uSignature.undoText": "Rückgängig",
-	"uSignature.confirmText": "Bestätigen"
+	"uSignature.confirmText": "Bestätigen",
+	"uSignature.closeText": "Schließen"
 }

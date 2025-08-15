@@ -60,5 +60,6 @@
 	"uSignature.title": "الرجاء التوقيع",
 	"uSignature.clearText": "مسح",
 	"uSignature.undoText": "تراجع",
-	"uSignature.confirmText": "تأكيد"
+	"uSignature.confirmText": "تأكيد",
+	"uSignature.closeText": "إغلاق"
 }

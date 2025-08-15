@@ -364,7 +364,7 @@ export default {
 
 			// 时间类型
 			if (isDateMode) {
-				if(/^\d{10}$/.test(value?.toString().trim())){
+				if(/^\d{10}$/.test(value.toString().trim())){
 					value = value * 1000
 				}
 			
