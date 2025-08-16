@@ -101,7 +101,7 @@
 			clickHandler() {
 				let name = this.name
 				// 如果没有设置name属性，历遍父组件的children数组，判断当前的元素是否和本实例this相等，找出当前组件的索引
-				const children = this.parent?.children
+				const children = this.parent.children
 				if(children && this.name === null) {
 					name = children.findIndex(child => child === this)
 				}

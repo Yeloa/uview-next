@@ -4,6 +4,7 @@ import enUS from './locale/en-US.json';
 import uView, { VueI18n, createI18n } from '@/uni_modules/uview-next';
 
 // #ifndef VUE3
+import Vue from 'vue';
 Vue.use(VueI18n)
 // #endif
 
@@ -17,7 +18,6 @@ const i18n = createI18n({
 })
 
 // #ifndef VUE3
-import Vue from 'vue';
 import './uni.promisify.adaptor';
 import store from './store';
 import mixin from './common/mixin';
@@ -40,7 +40,7 @@ require('./util/request/index')(app);
 import { createSSRApp } from 'vue';
 export function createApp() {
 	const app = createSSRApp(App);
-
+	
 	app.use(uView);
 	app.use(i18n);
 	

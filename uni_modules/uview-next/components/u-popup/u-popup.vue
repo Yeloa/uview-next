@@ -296,7 +296,7 @@
 					// 拿到子组件的子组件
 					const grandChild = child.$children
 					// 判断如果在需要重新初始化的组件数组中名中，并且存在init方法的话，则执行
-					if (names.includes(child.$options.name) && typeof child?.init === 'function') {
+					if (names.includes(child.$options.name) && child.init && typeof child.init === 'function') {
 						// 需要进行一定的延时，因为初始化页面需要时间
 						uni.$u.sleep(50).then(() => {
 							child.init()

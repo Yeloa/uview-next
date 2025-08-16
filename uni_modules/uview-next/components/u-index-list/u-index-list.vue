@@ -314,7 +314,7 @@
 				// #endif
 				// #ifdef MP-WEIXIN
 				// 微信小程序下，scroll-view的scroll-into-view属性无法对slot中的内容的id生效，只能通过设置scrollTop的形式去移动滚动条
-				if(this.children[currentIndex]?.top){
+				if(this.children[currentIndex].top){
 					this.scrollTop = this.children[currentIndex].top - uni.$u.getPx(this.customNavHeight)
 				}
 				// #endif

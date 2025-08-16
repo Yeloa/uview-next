@@ -70,7 +70,7 @@ export default {
 	// #endif
 	methods: {
 		chooseAvatar(e) {
-			const path = e.detail?.avatarUrl;
+			const path = e.detail.avatarUrl;
 			if (path) {
 				this.avatar = path;
 				this.$emit('chooseAvatar', path);

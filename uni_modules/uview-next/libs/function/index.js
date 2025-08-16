@@ -325,7 +325,7 @@ function timeFormat(dateTime = null, formatStr = 'yyyy-mm-dd') {
 		date = new Date();
 	}
 	// 若为unix秒时间戳，则转为毫秒时间戳（逻辑有点奇怪，但不敢改，以保证历史兼容）
-	else if (/^\d{10}$/.test(dateTime?.toString().trim())) {
+	else if (/^\d{10}$/.test(dateTime.toString().trim())) {
 		date = new Date(dateTime * 1000);
 	}
 	// 若用户传入字符串格式时间戳，new Date无法解析，需做兼容
@@ -694,7 +694,7 @@ function setProperty(obj, key, value) {
 function page() {
 	const pages = getCurrentPages();
 	// 某些特殊情况下(比如页面进行redirectTo时的一些时机)，pages可能为空数组
-	return `/${pages[pages.length - 1]?.route || ''}`;
+	return `/${pages[pages.length - 1].route || ''}`;
 }
 
 /**

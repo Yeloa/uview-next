@@ -202,7 +202,7 @@ export default {
         getRowKey(row) {
             if (!row) return '';
             // 这里需要与父组件的rowKey属性保持一致
-            const rowKeyProp = this.parent?.rowKey || 'id';
+            const rowKeyProp = this.parent.rowKey || 'id';
             return this.getValueByPath(row, rowKeyProp) || JSON.stringify(row);
         },
 
