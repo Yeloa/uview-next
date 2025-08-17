@@ -61,5 +61,8 @@
 	"uSignature.clearText": "Очистить",
 	"uSignature.undoText": "Отменить",
 	"uSignature.confirmText": "Подтвердить",
-	"uSignature.closeText": "Закрыть"
+	"uSignature.closeText": "Закрыть",
+
+	"uSelect.placeholder": "Пожалуйста, выберите",
+	"uSelect.emptyText": "Нет данных"
 }

@@ -61,5 +61,8 @@
 	"uSignature.clearText": "مسح",
 	"uSignature.undoText": "تراجع",
 	"uSignature.confirmText": "تأكيد",
-	"uSignature.closeText": "إغلاق"
+	"uSignature.closeText": "إغلاق",
+
+	"uSelect.placeholder": "الرجاء الاختيار",
+	"uSelect.emptyText": "لا توجد بيانات"
 }

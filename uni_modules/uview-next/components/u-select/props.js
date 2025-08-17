@@ -29,7 +29,7 @@ export default defineProps('select', {
     // 没有数据时显示的文字，本地数据无效
     emptyText: {
         type: String,
-        default: '暂无数据'
+        default: () => uni.$u.$t('uSelect.emptyText')
     },
     // 左侧标题
     label: {
@@ -39,7 +39,7 @@ export default defineProps('select', {
     // 输入框的提示文字
     placeholder: {
         type: String,
-        default: '请选择'
+        default: () => uni.$u.$t('uSelect.placeholder')
     },
     // placeholder的样式
     placeholderStyle: {

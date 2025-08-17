@@ -61,5 +61,8 @@
 	"uSignature.clearText": "清空",
 	"uSignature.undoText": "撤銷",
 	"uSignature.confirmText": "完成",
-	"uSignature.closeText": "關閉"
+	"uSignature.closeText": "關閉",
+
+	"uSelect.placeholder": "請選擇",
+	"uSelect.emptyText": "暫無數據"
 }

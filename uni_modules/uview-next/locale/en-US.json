@@ -61,5 +61,8 @@
 	"uSignature.clearText": "Clear",
 	"uSignature.undoText": "Undo",
 	"uSignature.confirmText": "Confirm",
-	"uSignature.closeText": "Close"
+	"uSignature.closeText": "Close",
+
+	"uSelect.placeholder": "Please select",
+	"uSelect.emptyText": "No data available"
 }

@@ -61,5 +61,8 @@
 	"uSignature.clearText": "清空",
 	"uSignature.undoText": "撤销",
 	"uSignature.confirmText": "完成",
-	"uSignature.closeText": "关闭"
+	"uSignature.closeText": "关闭",
+
+	"uSelect.placeholder": "请选择",
+	"uSelect.emptyText": "暂无数据"
 }
