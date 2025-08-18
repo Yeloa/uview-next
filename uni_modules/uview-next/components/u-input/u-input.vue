@@ -392,14 +392,17 @@ export default {
 			justify-content: center;
 			transform: scale(0.82);
 			margin-left: 4px;
+			z-index: 10000;
 		}
 
 		&__subfix-icon {
 			margin-left: 4px;
+			z-index: 10000;
 		}
 
 		&__prefix-icon {
 			margin-right: 4px;
+			z-index: 10000;
 		}
 	}
 }
