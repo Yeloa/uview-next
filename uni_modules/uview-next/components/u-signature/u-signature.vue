@@ -65,7 +65,7 @@
                             type="info"
                             icon="trash"
                             @click="handleClear"
-                            :text="closeText"
+                            :text="clearText"
                         />
                     </view>
                     <view v-if="showUndo" class="u-signature__toolbar-item">
