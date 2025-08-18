@@ -1,0 +1,248 @@
+// 全局数据存储 - 优化状态管理
+var refreshState = {
+	startY: 0,
+	startTime: 0,
+	refreshStatus: 1, // 1: 下拉刷新, 2: 释放刷新, 3: 刷新中, 4: 刷新完成
+	refreshShow: false,
+	readyRefresh: false,
+	refresherThreshold: 40,
+	currentReadyRefresh: true,
+	isDragging: false,
+	lastMoveY: 0,
+	dragDistance: 0,
+	velocity: 0,
+	isTouchStarted: false,
+	refresherEnabled: true
+};
+
+// 常量定义
+var CONSTANTS = {
+	MIN_DRAG_DISTANCE: 10,
+	MAX_DRAG_DISTANCE: 150,
+	ANIMATION_DURATION: '0.3s',
+	BOUNCE_DURATION: '0.2s',
+	VELOCITY_THRESHOLD: 0.5,
+	RESISTANCE_FACTOR: 0.6,
+	EASING_FUNCTION: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+};
+
+// 缓存DOM查询结果
+var refreshContainerCache = null;
+
+// 获取组件数据
+function getRefreshState(ins) {
+	return refreshState;
+}
+
+// 获取刷新容器（带缓存）
+function getRefreshContainer(ins) {
+	if (!refreshContainerCache) {
+		refreshContainerCache = ins.selectComponent('.u-paging__body');
+	}
+	return refreshContainerCache;
+}
+
+// 计算阻力效果
+function calculateResistance(distance, maxDistance) {
+	if (distance <= maxDistance) {
+		return distance;
+	}
+	return maxDistance + (distance - maxDistance) * CONSTANTS.RESISTANCE_FACTOR;
+}
+
+// 重置拖拽相关状态
+function resetDragState(state) {
+	state.refreshShow = false;
+	state.readyRefresh = false;
+	state.isDragging = false;
+	state.dragDistance = 0;
+	state.velocity = 0;
+	state.isTouchStarted = false;
+}
+
+// 设置容器样式
+function setContainerStyle(ins, transform, transition) {
+	var container = getRefreshContainer(ins);
+	if (container) {
+		container.setStyle({
+			'transform': transform,
+			'transition': transition
+		});
+	}
+}
+
+// 重置容器位置
+function resetContainerPosition(ins, useEasing) {
+	var transition = useEasing ? CONSTANTS.ANIMATION_DURATION + ' ' + CONSTANTS.EASING_FUNCTION : CONSTANTS.ANIMATION_DURATION + ' ease-out';
+	setContainerStyle(ins, 'translateY(0px)', transition);
+}
+
+// 触摸开始
+function touchstart(e, ins) {
+	var state = getRefreshState(ins);
+	
+	if (!state.refresherEnabled) return;
+	
+	var touch = e.touches[0];
+	
+	// 重置状态
+	state.startY = touch.pageY;
+	state.startTime = Date.now();
+	state.isDragging = false;
+	state.dragDistance = 0;
+	state.velocity = 0;
+	state.lastMoveY = touch.pageY;
+	state.isTouchStarted = true;
+
+	if (state.currentReadyRefresh && state.refreshStatus !== 3) {
+		setContainerStyle(ins, 'translateY(0px)', '0s');
+	}
+}
+
+// 触摸移动
+function touchmove(e, ins) {
+	var state = getRefreshState(ins);
+	
+	if (!state.isTouchStarted || !state.refresherEnabled || 
+		!state.currentReadyRefresh || state.refreshStatus === 3) return;
+	
+	var touch = e.touches[0];
+	var currentY = touch.pageY;
+	var diffY = currentY - state.startY;
+	
+	if (diffY <= 0) return;
+	
+	// 计算拖拽距离和速度
+	state.dragDistance = diffY;
+	state.velocity = (currentY - state.lastMoveY) / (Date.now() - state.startTime);
+	state.lastMoveY = currentY;
+	state.isDragging = true;
+	
+	// 应用阻力效果
+	var resistedDistance = calculateResistance(diffY, CONSTANTS.MAX_DRAG_DISTANCE);
+	var displayDistance = resistedDistance * CONSTANTS.RESISTANCE_FACTOR;
+	
+	// 更新状态
+	if (displayDistance > CONSTANTS.MIN_DRAG_DISTANCE) {
+		if (!state.readyRefresh) {
+			ins.callMethod('setReadyRefresh', { readyRefresh: true });
+			state.readyRefresh = true;
+		}
+		if (!state.refreshShow) {
+			ins.callMethod('setRefreshShow', { refreshShow: true });
+			state.refreshShow = true;
+		}
+	}
+	
+	// 设置变换
+	setContainerStyle(ins, 'translateY(' + displayDistance + 'px)', '0s');
+	
+	// 更新刷新状态
+	var newStatus = displayDistance >= state.refresherThreshold ? 2 : 1;
+	if (state.refreshStatus !== newStatus) {
+		ins.callMethod('setRefreshStatus', newStatus);
+		state.refreshStatus = newStatus;
+	}
+}
+
+// 触摸结束
+function touchend(e, ins) {
+	var state = getRefreshState(ins);
+	
+	if (!state.refresherEnabled || !state.currentReadyRefresh || !state.isDragging) return;
+	
+	// 重置拖拽状态
+	state.isDragging = false;
+	ins.callMethod('setReadyRefresh', { readyRefresh: false });
+	state.readyRefresh = false;
+	
+	// 判断是否应该刷新
+	var shouldRefresh = state.refreshStatus === 2 || 
+		(Math.abs(state.velocity) > CONSTANTS.VELOCITY_THRESHOLD && state.dragDistance > CONSTANTS.MIN_DRAG_DISTANCE);
+	
+	if (shouldRefresh) {
+		// 触发刷新
+		ins.callMethod('setRefreshStatus', 3);
+		state.refreshStatus = 3;
+		
+		// 动画到刷新位置
+		setContainerStyle(ins, 'translateY(' + state.refresherThreshold + 'px)', 
+			CONSTANTS.ANIMATION_DURATION + ' ' + CONSTANTS.EASING_FUNCTION);
+	} else {
+		// 回弹动画
+		resetContainerPosition(ins, true);
+		
+		// 隐藏刷新指示器
+		ins.callMethod('setRefreshShow', { refreshShow: false });
+		state.refreshShow = false;
+	}
+	
+	// 重置拖拽相关状态
+	state.dragDistance = 0;
+	state.velocity = 0;
+	state.isTouchStarted = false;
+}
+
+// 刷新状态变化
+function refreshStatusChange(n, o, ins) {
+	var state = getRefreshState(ins);
+	state.refreshStatus = n;
+	
+	if (n === 4) {
+		resetContainerPosition(ins, true);
+		resetDragState(state);
+	}
+}
+
+// 刷新显示状态变化
+function refreshShowChange(n, o, ins) {
+	var state = getRefreshState(ins);
+	state.refreshShow = n;
+}
+
+// 准备刷新状态变化
+function readyRefreshChange(n, o, ins) {
+	var state = getRefreshState(ins);
+	state.readyRefresh = n;
+}
+
+// 刷新距离变化
+function refresherThresholdChange(n, o, ins) {
+	var state = getRefreshState(ins);
+	state.refresherThreshold = n || 40;
+}
+
+// 当前准备刷新状态变化
+function curReadyRefreshChange(n, o, ins) {
+	var state = getRefreshState(ins);
+	state.currentReadyRefresh = n;
+	
+	if (!n) {
+		resetDragState(state);
+		resetContainerPosition(ins, false);
+	}
+}
+
+// 下拉刷新启用状态变化
+function refresherEnabledChange(n, o, ins) {
+	var state = getRefreshState(ins);
+	state.refresherEnabled = n;
+	
+	if (!n) {
+		resetDragState(state);
+		resetContainerPosition(ins, false);
+	}
+}
+
+// 导出模块
+export default {
+	touchstart,
+	touchmove,
+	touchend,
+	refreshStatusChange,
+	refreshShowChange,
+	readyRefreshChange,
+	refresherThresholdChange,
+	curReadyRefreshChange,
+	refresherEnabledChange
+};

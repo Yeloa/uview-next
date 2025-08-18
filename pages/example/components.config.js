@@ -2,7 +2,6 @@ export default [{
     groupName: '基础组件',
     groupName_en: 'Basic components',
     list: [
-    
     {
         path: '/pages/componentsB/color/color',
         icon: 'color',
@@ -541,6 +540,11 @@ export default [{
         icon: 'wx-auth',
         title: '微信授权弹窗',
         title_en: 'wx-auth'
+    }, {
+        path: '/pages/componentsD/paging/paging',
+        icon: 'paging',
+        title: 'Paging 分页',
+        title_en: 'Paging'
     }]
 }
 ]
