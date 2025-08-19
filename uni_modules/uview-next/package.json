@@ -2,7 +2,7 @@
   "id": "uview-next",
   "name": "uview-next",
   "displayName": "uView Next全面适配Vue3和鸿蒙，组件库更丰富，企业级，高质量UI框架",
-  "version": "3.5.14",
+  "version": "3.5.16",
   "description": "基于uView UI 2.0，90+精选组件库，支持vue2和vue3，支持鸿蒙，支持多语言，新增paging分页、签名、拖拽排序、图片剪裁、日期横条、条形码、级联选择器、Markdown解析等组件",
   "keywords": [
     "uview",
@@ -33,7 +33,7 @@
       "data": "无",
       "permissions": "无"
     },
-    "npmurl": "",
+    "npmurl": "https://www.npmjs.com/package/uview-next",
     "type": "component-vue",
     "darkmode": "x",
     "i18n": "√",

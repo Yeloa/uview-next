@@ -69,6 +69,7 @@
     @import '../../libs/css/components.scss';
 
     .u-calendar-header {
+        @include flex(column);
         padding-bottom: 4px;
 
         &__title {
