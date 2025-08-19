@@ -48,6 +48,11 @@ export default defineProps('input', {
 		type: Boolean,
 		default: false
 	},
+	// 是否显示密码切换的眼睛图标
+	showPasswordToggle: {
+		type: Boolean,
+		default: true
+	},
 	// 最大输入长度，设置为 -1 的时候不限制最大长度
 	maxlength: {
 		type: [String, Number],

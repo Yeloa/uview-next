@@ -33,7 +33,7 @@
 					:value="innerValue"
 					:auto-blur="autoBlur"
 					<!-- #ifdef H5 -->
-					:disabled="disabled "
+					:disabled="disabled"
 					:readonly="readonly"
 					<!-- #endif -->
 					<!-- #ifndef H5 -->
@@ -52,7 +52,7 @@
 					:adjust-position="adjustPosition"
 					:selection-end="selectionEnd"
 					:selection-start="selectionStart"
-					:password="password || type === 'password' || false"
+					:password="isPassword"
 					:ignoreCompositionEvent="ignoreCompositionEvent"
 					@input="onInput"
 					@blur="onBlur"
@@ -72,6 +72,13 @@
 					color="#ffffff"
 					customStyle="line-height: 12px"
 				></u-icon>
+			</view>
+			<view
+				v-if="showPasswordToggle && (password || type === 'password')"
+				class="u-input__content__eye"
+				@tap.stop="handlePassword"
+			>
+				<u-icon :name="showPassword ? 'eye-fill' : 'eye-off'" size="20" color="#909399"></u-icon>
 			</view>
 			<view
 				class="u-input__content__subfix-icon"
@@ -104,6 +111,7 @@ import mpMixin from '../../libs/mixin/mpMixin'
  * @property {String}			disabledColor			禁用状态时的背景色（ 默认 '#f5f7fa' ）
  * @property {Boolean}			clearable				是否显示清除控件 （ 默认 false ）
  * @property {Boolean}			password				是否密码类型 （ 默认 false ）
+ * @property {Boolean}			showPasswordToggle		是否显示密码切换图标（ 默认 true ）
  * @property {String | Number}	maxlength				最大输入长度，设置为 -1 的时候不限制最大长度 （ 默认 -1 ）
  * @property {String}			placeholder				输入框为空时的占位符
  * @property {String}			placeholderClass		指定placeholder的样式类，注意页面或组件的style中写了scoped时，需要在类名前写/deep/ （ 默认 'input-placeholder' ）
@@ -153,7 +161,9 @@ export default {
 			// value绑定值的变化是由内部还是外部引起的
 			changeFromInner: false,
 			// 过滤处理方法
-			innerFormatter: value => value
+			innerFormatter: value => value,
+			// 是否显示密码
+			showPassword: false
 		};
 	},
 	watch: {
@@ -174,6 +184,12 @@ export default {
 		// #endif
 	},
 	computed: {
+		// 实际传给input的password属性
+		isPassword() {
+			const isPasswordType = this.password || this.type === 'password';
+			if (!isPasswordType) return false;
+			return !this.showPassword;
+		},
 		// 是否显示清除控件
 		isShowClear() {
 			const { clearable, readonly, focused, innerValue } = this;
@@ -238,6 +254,7 @@ export default {
     emits: ['update:modelValue', 'focus', 'blur', 'change', 'confirm', 'clear', 'keyboardheightchange'],
     // #endif
 	methods: {
+		
 		init(newVal){
 
 			if (this.changeFromInner || this.innerValue === newVal) {
@@ -321,6 +338,9 @@ export default {
 				this.$emit("clear");
 			});
 		},
+		handlePassword() {
+			this.showPassword = !this.showPassword;
+		},
 		/**
 		 * 在安卓nvue上，事件无法冒泡
 		 * 在某些时间，我们希望监听u-from-item的点击事件，此时会导致点击u-form-item内的u-input后
@@ -391,6 +411,16 @@ export default {
 			align-items: center;
 			justify-content: center;
 			transform: scale(0.82);
+			margin-left: 4px;
+			z-index: 10000;
+		}
+
+		&__eye {
+			width: 20px;
+			height: 20px;
+			@include flex(row);
+			align-items: center;
+			justify-content: center;
 			margin-left: 4px;
 			z-index: 10000;
 		}
