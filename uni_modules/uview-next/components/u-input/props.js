@@ -196,6 +196,14 @@ export default defineProps('input', {
 		type: Boolean,
 		default: false
 	},
+	eyeIconSize: {
+		type: [String, Number],
+		default: 20
+	},
+	eyeIconColor: {
+		type: String,
+		default: '#909399'
+	},
 	// 背景颜色
 	backgroundColor: {
 		type: String,

@@ -150,14 +150,14 @@
 		mixins: [mpMixin, mixin, props],
 		data() {
 			return {
-				innerValue: this.value,
+				innerValue: '',
 				showDropdown: false
 			}
 		},
 		computed: {
 			// 显示文本
 			displayText() {
-				if (!this.innerValue && this.innerValue !== 0) return ''
+				if (!this.innerValue) return ''
 				const item = this.list.find(item => item[this.valueName] === this.innerValue)
 				return item ? item[this.keyName] : ''
 			},
@@ -178,15 +178,25 @@
 			}
 		},
 		watch: {
+			// #ifdef VUE2
 			value: {
 				immediate: true,
 				handler(newVal) {
 					this.innerValue = newVal
 				}
+			},
+			// #endif
+			// #ifdef VUE3
+			modelValue: {
+				immediate: true,
+				handler(newVal) {
+					this.innerValue = newVal
+				}
 			}
+			// #endif
 		},
 		// #ifdef VUE3
-		emits: ["change", "open", "close", "clear", "update:value"],
+		emits: ["change", "open", "close", "clear", "update:modelValue"],
 		// #endif
 		methods: {
 			// 判断选项是否被选中
@@ -220,7 +230,14 @@
 				this.$emit('close')
 				
 				this.$emit('change', this.innerValue)
-				this.$emit('update:value', this.innerValue)
+
+				// #ifdef VUE2
+				this.$emit('input', this.innerValue)
+				// #endif
+
+				// #ifdef VUE3
+				this.$emit('update:modelValue', this.innerValue)
+				// #endif
 			},
 			
 			// 点击遮罩层
@@ -237,7 +254,12 @@
 				this.innerValue = ''
 				
 				this.$emit('change', this.innerValue)
-				this.$emit('update:value', this.innerValue)
+				// #ifdef VUE2
+				this.$emit('input', this.innerValue)
+				// #endif
+				// #ifdef VUE3
+				this.$emit('update:modelValue', this.innerValue)
+				// #endif
 				this.$emit('clear', oldValue)
 			}
 		}

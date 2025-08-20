@@ -156,8 +156,8 @@ export default {
 			const currentValue = this.getCurrentValue();
 			// 如果有默认值且列表不为空，则使用默认值，否则使用第一个值
 			return (currentValue && currentValue[index] && list.length > 0) 
-				? currentValue[index] 
-				: list[0].value;
+				? Number(currentValue[index]) 
+				: Number(list[0].value);
 		},
 		
 		// 获取当前值，兼容 Vue2 和 Vue3

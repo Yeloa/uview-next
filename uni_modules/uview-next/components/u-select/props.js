@@ -6,6 +6,12 @@ export default defineProps('select', {
         type: [String, Number],
         default: ''
     },
+    // #ifdef VUE3
+    modelValue: {
+        type: [String, Number],
+        default: ''
+    },
+    // #endif
     // 本地数据，格式 [{text:'',value:''}]
     list: {
         type: Array,

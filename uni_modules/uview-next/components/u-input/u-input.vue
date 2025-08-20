@@ -78,7 +78,7 @@
 				class="u-input__content__eye"
 				@tap.stop="handlePassword"
 			>
-				<u-icon :name="showPassword ? 'eye-fill' : 'eye-off'" size="20" color="#909399"></u-icon>
+				<u-icon :name="showPassword ? 'eye-fill' : 'eye-off'" :size="eyeIconSize" :color="eyeIconColor"></u-icon>
 			</view>
 			<view
 				class="u-input__content__subfix-icon"
@@ -256,14 +256,9 @@ export default {
 	methods: {
 		
 		init(newVal){
-
-			if (this.changeFromInner || this.innerValue === newVal) {
-				this.changeFromInner = false;
-				return;
-			}
-
+		
 			this.innerValue = newVal;
-			
+			// 在H5中，外部value变化后，修改input中的值，不会触发@input事件，此时手动调用值变化方法
 			if (this.firstChange === false && this.changeFromInner === false) {
 				this.valueChange();
 			}
