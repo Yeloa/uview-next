@@ -20,5 +20,9 @@ export default defineProps('transition', {
     timingFunction: {
         type: String,
         default: 'ease-out'
+    },
+    zIndex: {
+        type: [String, Number],
+        default: 0
     }
 })

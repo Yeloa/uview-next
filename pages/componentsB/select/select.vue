@@ -146,7 +146,7 @@
 					@change="onChange16"
 				></u-select>
 			</view>
-		</view>
+		</view> 
 	</view>
 </template>
 
@@ -155,7 +155,7 @@
 		data() {
 			return {
 				// 基础用法
-				value1: '',
+				value1: 'shanghai',
 				options1: [
 					{ text: '北京', value: 'beijing' },
 					{ text: '上海', value: 'shanghai' },

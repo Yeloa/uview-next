@@ -51,6 +51,7 @@ export default {
 	    mergeStyle() {
 	        const { viewStyle, customStyle } = this
 	        return {
+				zIndex: this.zIndex,
 	            // #ifndef APP-NVUE
 	            transitionDuration: `${this.duration}ms`,
 	            // display: `${this.display ? '' : 'none'}`,

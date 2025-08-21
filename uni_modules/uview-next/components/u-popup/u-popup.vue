@@ -8,7 +8,7 @@
 			@click="overlayClick"
 			v-if="overlay"
 			:duration="overlayDuration"
-			:customStyle="overlayStyle"
+			:customStyle="mergeStyle"
 			:opacity="overlayOpacity"
 		></u-overlay>
 		<u-transition
@@ -91,6 +91,8 @@
 	 * @event {Function} close 弹出层收起
 	 * @example <u-popup v-model="show"><text>出淤泥而不染，濯清涟而不妖</text></u-popup>
 	 */
+	let popupZIndexSeed = 0;
+
 	export default {
 		name: 'u-popup',
 		mixins: [mpMixin, mixin, props],
@@ -98,7 +100,8 @@
 			return {
 				showPopup: false,
 				isTrigger: false,
-				overlayDuration: Number(this.duration) + 50
+				overlayDuration: Number(this.duration) + 50,
+				instanceZIndex: 0
 			}
 		},
 		watch: {
@@ -113,6 +116,11 @@
 					}
 					// #endif
 
+					if (newValue === true) {
+						popupZIndexSeed ++
+						this.instanceZIndex = Number(this.zIndex) + popupZIndexSeed * 2
+					}
+
 					this.isTrigger = false
 					this.showPopup = newValue
 				}
@@ -120,8 +128,9 @@
 		},
 		computed: {
 			transitionStyle() {
+				
 				const style = {
-					zIndex: this.zIndex,
+					zIndex: this.instanceZIndex + 1,
 					position: 'fixed',
 					display: 'flex',
 				}
@@ -180,6 +189,12 @@
 						right: 0,
 						bottom: 0
 					})
+				}
+			},
+			mergeStyle() {
+				return {
+					zIndex: this.instanceZIndex,
+					...uni.$u.addStyle(this.customStyle),
 				}
 			},
 			contentStyle() {
@@ -254,6 +269,9 @@
 		// #endif
 		methods: {
 			openPopup() {
+				popupZIndexSeed ++
+				this.instanceZIndex = Number(this.zIndex) + popupZIndexSeed * 2
+				
 				this.isTrigger = true
 				this.showPopup = true
 			},
@@ -309,7 +327,13 @@
 				}
 			}
 			// #endif
-		}
+		},
+		// #ifdef VUE2
+		beforeDestroy() {},
+		// #endif
+		// #ifdef VUE3
+		beforeUnmount() {}
+		// #endif
 	}
 </script>
 

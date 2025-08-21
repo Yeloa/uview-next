@@ -75,6 +75,7 @@
 			</template>
 			<view style="padding:50px 0;text-align: center;">
 				这里是正文
+				<u-button type="success" text="在打开一个" customStyle="width: 200rpx" @click="openPopup2"></u-button>
 			</view>
 		</u-popup>
 	</view>
@@ -214,6 +215,15 @@
 			}
 		},
 		methods: {
+			openPopup2(){
+				this.show = !this.show
+				this.popupData = {
+					overlay: true,
+					mode: 'center',
+					round: 10,
+					closeOnClickOverlay: true
+				}
+			},
 			openPopup(popupData) {
 				this.popupData = Object.assign({}, this.popupData, popupData)
 				uni.$u.sleep().then(() => {

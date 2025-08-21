@@ -55,7 +55,7 @@
 				show2: false,
 				show3: false,
 				value1: '',
-				value2: [130000, 130300, 130304],
+				value2: [130000, "130300", 130303],
 				value3: [],
 				value4: [],
 				list: [
