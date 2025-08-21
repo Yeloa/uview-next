@@ -154,8 +154,6 @@ export default {
 		return {
 			// 输入框的值
 			innerValue: "",
-			// 是否处于获得焦点状态
-			focused: false,
 			// value是否第一次变化，在watch中，由于加入immediate属性，会在第一次触发，此时不应该认为value发生了变化
 			firstChange: true,
 			// value绑定值的变化是由内部还是外部引起的
@@ -192,8 +190,8 @@ export default {
 		},
 		// 是否显示清除控件
 		isShowClear() {
-			const { clearable, readonly, focused, innerValue } = this;
-			return !!clearable && !readonly && !!focused && innerValue !== "";
+			const { clearable, readonly,  innerValue } = this;
+			return !!clearable && !readonly && innerValue !== "";
 		},
 		// 组件的类名
 		inputClass() {
@@ -286,17 +284,11 @@ export default {
 		// 输入框失去焦点时触发
 		onBlur(event) {
 			this.$emit("blur", event.detail.value);
-			// H5端的blur会先于点击清除控件的点击click事件触发，导致focused
-			// 瞬间为false，从而隐藏了清除控件而无法被点击到
-			uni.$u.sleep(50).then(() => {
-				this.focused = false;
-			});
 			// 尝试调用u-form的验证方法
 			uni.$u.formValidate(this, "blur");
 		},
 		// 输入框聚焦时触发
 		onFocus(e) {
-			this.focused = true;
 			this.$emit("focus", e);
 		},
 		// 点击完成按钮时触发
