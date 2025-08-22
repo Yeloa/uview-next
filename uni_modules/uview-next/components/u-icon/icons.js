@@ -23,6 +23,8 @@ export default {
     'uicon-bag': '\ue6c7',
     'uicon-account-fill': '\ue6c8',
     'uicon-bag-fill': '\ue6c9',
+    'uicon-arrow-left-fill': '\uee4a',
+    'uicon-arrow-right-fill': '\uee4b',
     'uicon-arrow-left-double': '\ue6ca',
     'uicon-arrow-up': '\ue6cb',
     'uicon-empty-news': '\ue6a9',

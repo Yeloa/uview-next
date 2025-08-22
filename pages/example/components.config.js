@@ -2,12 +2,7 @@ export default [{
     groupName: '基础组件',
     groupName_en: 'Basic components',
     list: [
-        // {
-        //     path: '/pages/componentsD/tree/tree',
-        //     icon: 'tree',
-        //     title: 'Tree 树形组件',
-        //     title_en: 'Tree'
-        // },
+      
     {
         path: '/pages/componentsB/color/color',
         icon: 'color',
@@ -551,6 +546,11 @@ export default [{
         icon: 'paging',
         title: 'Paging 分页',
         title_en: 'Paging'
+    }, {
+        path: '/pages/componentsD/tree/tree',
+        icon: 'tree',
+        title: 'Tree 树形组件',
+        title_en: 'Tree'
     }]
 }
 ]

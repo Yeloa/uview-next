@@ -1,0 +1,441 @@
+<template>
+	<view class="u-page">
+		
+		<view class="u-page__content">
+			<view class="demo-title">基础用法</view>
+			<view class="demo-block">
+				<u-tree 
+					:data="basicData" 
+					:default-expanded-keys="['1', '1-1']" 
+					expand-on-click 
+					checkable 
+				/>
+			</view>
+
+			<view class="demo-title">隐藏箭头</view>
+			<view class="demo-block">
+				<u-tree 
+					:data="basicData" 
+					:default-expanded-keys="['1', '1-1']" 
+					:show-switcher="false"
+					expand-on-click 
+					checkable 
+				/>
+			</view>
+
+			<view class="demo-title">自定义图标</view>
+			<view class="demo-block">
+				<u-tree 
+					:data="basicData" 
+					:default-expanded-keys="['1', '1-1']" 
+					expand-icon="plus"
+					collapse-icon="minus"
+					expand-on-click 
+					selectable
+				/>
+			</view>
+
+			<view class="demo-title">自定义字段名</view>
+			<view class="demo-block">
+				<u-tree 
+					:data="customFieldData" 
+					:default-expanded-keys="['1', '1-1']" 
+					key-field="id"
+					label-field="name" 
+					children-field="items" 
+					selectable 
+				/>
+			</view>
+
+			<view class="demo-title">级联选择</view>
+			<view class="demo-block">
+				<u-tree 
+					:data="cascadeData" 
+					cascade 
+					:default-expanded-keys="['0', '0-0', '0-1', '0-2']"
+					:default-checked-keys="['0-0-0']" 
+					@checked="updateCheckedKeys" 
+					checkable 
+				/>
+				<view class="checked-info">
+					<text>已选中: {{ checkedKeys.join(', ') || '无' }}</text>
+				</view>
+			</view>
+
+			<view class="demo-title">搜索过滤</view>
+			<view class="demo-block">
+				<u-input 
+					v-model="searchPattern" 
+					placeholder="输入节点名称搜索"
+					:clearable="true"
+				/>
+				<u-tree 
+					:data="searchData" 
+					expand-on-click 
+					:pattern="searchPattern"
+					:show-irrelevant-nodes="showIrrelevantNodes"
+				/>
+			</view>
+
+			<view class="demo-title">异步加载</view>
+			<view class="demo-block">
+				<u-tree 
+					:data="asyncData" 
+					:load-node="loadNodeData"
+				/>
+			</view>
+
+			<view class="demo-title">插槽自定义</view>
+			<view class="demo-block">
+				<u-tree 
+					:data="slotData" 
+					:default-expanded-keys="['1']"
+				>
+					<template #switcher="{ hide, loading, expanded }">
+						<view v-if="!hide" class="custom-switcher">
+							<u-icon :name="expanded ? 'arrow-down' : 'arrow-right'" size="12" />
+						</view>
+					</template>
+					<template #content="{ node }">
+						<view class="custom-content">
+							<text class="custom-label">{{ node.label }}</text>
+							<text class="custom-tag" v-if="node.tag">{{ node.tag }}</text>
+						</view>
+					</template>
+				</u-tree>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				// 基础用法数据
+				basicData: [
+					{
+						label: '技术部',
+						key: '1',
+						children: [
+							{
+								label: '前端组',
+								key: '1-1',
+								children: [
+									{
+										label: 'Vue开发',
+										key: '1-1-1',
+										children: [
+											{ label: '组件库开发', key: '1-1-1-1' },
+											{ label: '页面开发', key: '1-1-1-2' }
+										]
+									},
+									{
+										label: 'React开发',
+										key: '1-1-2',
+										children: [
+											{ label: 'Hooks开发', key: '1-1-2-1' },
+											{ label: '状态管理', key: '1-1-2-2' }
+										]
+									}
+								]
+							},
+							{
+								label: '后端组',
+								key: '1-2',
+								children: [
+									{ label: 'Java开发', key: '1-2-1' },
+									{ label: 'Python开发', key: '1-2-2' },
+									{ label: '数据库设计', key: '1-2-3' }
+								]
+							}
+						]
+					}
+				],
+
+				// 自定义字段数据
+				customFieldData: [
+					{
+						name: '电子产品',
+						id: '1',
+						items: [
+							{
+								name: '手机数码',
+								id: '1-1',
+								items: [
+									{
+										name: '智能手机',
+										id: '1-1-1',
+										items: [
+											{ name: 'iPhone系列', id: '1-1-1-1' },
+											{ name: 'Android系列', id: '1-1-1-2' }
+										]
+									},
+									{
+										name: '平板电脑',
+										id: '1-1-2',
+										items: [
+											{ name: 'iPad', id: '1-1-2-1' },
+											{ name: 'Android平板', id: '1-1-2-2' }
+										]
+									}
+								]
+							},
+							{
+								name: '电脑办公',
+								id: '1-2',
+								items: [
+									{ name: '笔记本电脑', id: '1-2-1' },
+									{ name: '台式电脑', id: '1-2-2' },
+									{ name: '办公设备', id: '1-2-3' }
+								]
+							}
+						]
+					}
+				],
+
+				// 级联选择数据
+				cascadeData: [
+					{
+						label: '文件系统',
+						key: '0',
+						children: [
+							{
+								label: '文档',
+								key: '0-0',
+								children: [
+									{ label: '工作文档', key: '0-0-0' },
+									{ label: '学习资料', key: '0-0-1' },
+									{ label: '项目文件', key: '0-0-2' }
+								]
+							},
+							{
+								label: '媒体',
+								key: '0-1',
+								children: [
+									{ label: '图片', key: '0-1-0' },
+									{ label: '视频', key: '0-1-1' },
+									{ label: '音频', key: '0-1-2' }
+								]
+							},
+							{
+								label: '应用程序',
+								key: '0-2',
+								children: [
+									{ label: '系统工具', key: '0-2-0' },
+									{ label: '办公软件', key: '0-2-1' },
+									{ label: '娱乐软件', key: '0-2-2' }
+								]
+							}
+						]
+					}
+				],
+				checkedKeys: [],
+
+				// 搜索数据
+				searchData: [
+					{
+						label: '项目管理',
+						key: '0',
+						children: [
+							{
+								label: '需求分析',
+								key: '0-0',
+								children: [
+									{ label: '用户调研', key: '0-0-0' },
+									{ label: '功能规划', key: '0-0-1' },
+									{ label: '原型设计', key: '0-0-2' }
+								]
+							},
+							{
+								label: '开发阶段',
+								key: '0-1',
+								children: [
+									{ label: '前端开发', key: '0-1-0' },
+									{ label: '后端开发', key: '0-1-1' },
+									{ label: '测试调试', key: '0-1-2' }
+								]
+							},
+							{
+								label: '部署上线',
+								key: '0-2',
+								children: [
+									{ label: '环境配置', key: '0-2-0' },
+									{ label: '数据迁移', key: '0-2-1' },
+									{ label: '监控运维', key: '0-2-2' }
+								]
+							}
+						]
+					}
+				],
+				searchPattern: '',
+				showIrrelevantNodes: false,
+
+				// 异步加载数据
+				asyncData: [
+					{
+						label: '在线课程',
+						key: '1',
+						children: []
+					},
+					{
+						label: '技术文档',
+						key: '2',
+						children: []
+					},
+					{
+						label: '开源项目',
+						key: '3',
+						children: []
+					}
+				],
+
+				// 插槽自定义数据
+				slotData: [
+					{
+						label: '前端框架',
+						key: '1',
+						tag: '热门',
+						children: [
+							{
+								label: 'Vue.js',
+								key: '1-1',
+								tag: '推荐',
+								children: [
+									{ label: 'Vue 3.0', key: '1-1-1', tag: '最新' },
+									{ label: 'Vue 2.0', key: '1-1-2' }
+								]
+							},
+							{
+								label: 'React',
+								key: '1-2',
+								tag: '流行',
+								children: [
+									{ label: 'React 18', key: '1-2-1', tag: '最新' },
+									{ label: 'Next.js', key: '1-2-2' }
+								]
+							}
+						]
+					},
+					{
+						label: '后端技术',
+						key: '2',
+						tag: '稳定',
+						children: [
+							{
+								label: 'Node.js',
+								key: '2-1',
+								tag: '高效',
+								children: [
+									{ label: 'Express', key: '2-1-1' },
+									{ label: 'Koa', key: '2-1-2' }
+								]
+							}
+						]
+					}
+				]
+			}
+		},
+		methods: {
+			// 级联选择回调
+			updateCheckedKeys(keys) {
+				this.checkedKeys = keys
+				console.log('选中的节点：', keys)
+			},
+
+			// 异步加载节点数据
+			loadNodeData(node) {
+				return new Promise((resolve) => {
+					
+					setTimeout(() => {
+						if (node.key === '1') {
+							node.children = [
+								{ label: 'Vue.js 基础教程', key: '1-1', isLeaf: true },
+								{ label: 'React 入门指南', key: '1-2', isLeaf: true },
+								{ label: 'TypeScript 实战', key: '1-3', isLeaf: true }
+							]
+						} else if (node.key === '2') {
+							node.children = [
+								{ label: 'API 接口文档', key: '2-1' },
+								{ label: '组件使用说明', key: '2-2' },
+								{ label: '最佳实践指南', key: '2-3' }
+							]
+						} else if (node.key === '3') {
+							node.children = [
+								{ label: 'UI 组件库', key: '3-1' },
+								{ label: '工具函数库', key: '3-2' },
+								{ label: '示例项目', key: '3-3' }
+							]
+						}
+						resolve(true)
+					}, 1000)
+				})
+			}
+		}
+	}
+</script>
+
+<style lang="scss" scoped>
+	.u-page {
+		background-color: #f5f5f5;
+	}
+
+	.demo-title {
+		font-size: 26rpx;
+		margin-bottom: 20rpx;
+		color: #666;
+	}
+
+	.demo-block {
+		background-color: #fff;
+		border-radius: 12rpx;
+		padding: 30rpx;
+		margin-bottom: 20rpx;
+		box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.1);
+	}
+
+	.demo-tip {
+		margin-bottom: 20rpx;
+		padding: 15rpx;
+		background-color: #fff3e0;
+		border-radius: 8rpx;
+		font-size: 24rpx;
+		color: #f57c00;
+		border-left: 4rpx solid #ff9800;
+	}
+
+	.checked-info {
+		margin-top: 20rpx;
+		padding: 20rpx;
+		background-color: #f8f9fa;
+		border-radius: 8rpx;
+		font-size: 28rpx;
+		color: #666;
+	}
+
+	.custom-switcher {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 32rpx;
+		height: 32rpx;
+	}
+
+	.custom-content {
+		display: flex;
+		align-items: center;
+	}
+
+	.custom-label {
+		font-size: 28rpx;
+		color: #333;
+	}
+
+	.custom-tag {
+		font-size: 20rpx;
+		color: #fff;
+		background-color: #f57c00;
+		padding: 4rpx 8rpx;
+		border-radius: 4rpx;
+	}
+</style>
