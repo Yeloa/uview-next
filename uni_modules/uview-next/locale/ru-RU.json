@@ -64,5 +64,12 @@
 	"uSignature.closeText": "Закрыть",
 
 	"uSelect.placeholder": "Пожалуйста, выберите",
-	"uSelect.emptyText": "Нет данных"
+	"uSelect.emptyText": "Нет данных",
+	
+	"uPaging.refresherDefaultText": "Продолжить свайп вниз",
+	"uPaging.refresherPullingText": "Отпустите для обновления",
+	"uPaging.refresherRefreshingText": "Обновление...",
+	"uPaging.refresherCompleteText": "Обновление завершено",
+	"uPaging.loadingMoreDefaultText": "Загрузить больше...",
+	"uPaging.loadingMoreNoMoreText": "Нет больше данных"
 }

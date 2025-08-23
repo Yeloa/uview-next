@@ -64,5 +64,12 @@
 	"uSignature.closeText": "닫기",
 
 	"uSelect.placeholder": "선택해 주세요",
-	"uSelect.emptyText": "데이터가 없습니다"
+	"uSelect.emptyText": "데이터가 없습니다",
+	
+	"uPaging.refresherDefaultText": "계속 아래로 스와이프",
+	"uPaging.refresherPullingText": "새로고침 해제",
+	"uPaging.refresherRefreshingText": "새로고침 중...",
+	"uPaging.refresherCompleteText": "새로고침 완료",
+	"uPaging.loadingMoreDefaultText": "더 불러오기...",
+	"uPaging.loadingMoreNoMoreText": "더 이상 데이터가 없습니다"
 }

@@ -64,5 +64,12 @@
 	"uSignature.closeText": "Close",
 
 	"uSelect.placeholder": "Please select",
-	"uSelect.emptyText": "No data available"
+	"uSelect.emptyText": "No data available",
+	
+	"uPaging.refresherDefaultText": "Continue to swipe down",
+	"uPaging.refresherPullingText": "Release to refresh",
+	"uPaging.refresherRefreshingText": "Refreshing...",
+	"uPaging.refresherCompleteText": "Refresh complete",
+	"uPaging.loadingMoreDefaultText": "Load more...",
+	"uPaging.loadingMoreNoMoreText": "No more data available"
 }

@@ -48,22 +48,22 @@ export default defineProps('paging', {
     // 下拉刷新前的提示文字
     refresherDefaultText: {
         type: String,
-        default: '继续下拉刷新'
+        default: uni.$u.$t('uPaging.refresherDefaultText')
     },
     // 下拉刷新释放时的提示文字
     refresherPullingText: {
         type: String,
-        default: '松开立即刷新'
+        default: uni.$u.$t('uPaging.refresherPullingText')
     },
     // 下拉刷新进行中的提示文字
     refresherRefreshingText: {
         type: String,
-        default: '正在刷新'
+        default: uni.$u.$t('uPaging.refresherRefreshingText')
     },
     // 下拉刷新完成后的提示文字
     refresherCompleteText: {
         type: String,
-        default: '刷新成功'
+        default: uni.$u.$t('uPaging.refresherCompleteText')
     },
     // 是否启用上拉加载更多功能
     loadingMoreEnabled: {
@@ -78,11 +78,11 @@ export default defineProps('paging', {
     // 上拉加载更多时的默认提示文字
     loadingMoreDefaultText: {
         type: String,
-        default: '加载更多...'
+        default: uni.$u.$t('uPaging.loadingMoreDefaultText')
     },
     // 没有更多数据时的提示文字
     loadingMoreNoMoreText: {
         type: String,
-        default: '没有更多数据了'
+        default: uni.$u.$t('uPaging.loadingMoreNoMoreText')
     }
 })

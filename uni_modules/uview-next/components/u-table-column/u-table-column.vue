@@ -118,7 +118,7 @@ export default {
                 const style = {};
 
                 if (this.parentData.rowHeight) {
-                    style.height = this.$u.addUnit(this.parentData.rowHeight);
+                    style.height = this.$u.addUnit(this.parentData.rowHeight) ;
                 }
 
                 // 处理合并单元格样式
@@ -127,10 +127,22 @@ export default {
                     const mergeData = this.parentData.mergeInfo[mergeKey];
 
                     if (mergeData) {
-                        // 设置合并单元格的高度
+                        // 设置合并单元格的高度（考虑边框和像素比例）
                         if (mergeData.rowspan > 1) {
-                            const rowHeight = parseInt(this.parentData.rowHeight);
-                            style.height = this.$u.addUnit(rowHeight * mergeData.rowspan + 1);
+                            let rowHeight = parseInt(this.parentData.rowHeight);
+                            let pixelRatio = uni.$u.window().pixelRatio;
+                            // 基础高度：行高 × 合并行数
+                            let totalHeight = rowHeight * mergeData.rowspan;
+                            
+                            // 如果开启了边框，需要加上被合并行之间的边框高度
+                            if (this.parentData.border) {
+                                // 边框宽度需要考虑像素比例，避免出现小数像素
+                                const borderWidth = Math.round(1 * pixelRatio) / pixelRatio;
+                                //保留1位小数
+                                totalHeight += ((mergeData.rowspan - 1) * borderWidth);
+                            }
+                            
+                            style.height = this.$u.addUnit(totalHeight);
                         }
 
                         // 设置显示状态
@@ -333,7 +345,6 @@ export default {
         &.is-border {
             border-right: 1px solid $u-border-color;
             border-bottom: 1px solid $u-border-color;
-
             &:last-child {
                 border-bottom: none;
             }

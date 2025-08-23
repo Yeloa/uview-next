@@ -64,5 +64,12 @@
 	"uSignature.closeText": "关闭",
 
 	"uSelect.placeholder": "请选择",
-	"uSelect.emptyText": "暂无数据"
+	"uSelect.emptyText": "暂无数据",
+	
+	"uPaging.refresherDefaultText": "继续下拉刷新",
+	"uPaging.refresherPullingText": "松开立即刷新",
+	"uPaging.refresherRefreshingText": "正在刷新",
+	"uPaging.refresherCompleteText": "刷新成功",
+	"uPaging.loadingMoreDefaultText": "加载更多...",
+	"uPaging.loadingMoreNoMoreText": "没有更多数据了"
 }

@@ -64,5 +64,12 @@
 	"uSignature.closeText": "Schließen",
 
 	"uSelect.placeholder": "Bitte auswählen",
-	"uSelect.emptyText": "Keine Daten verfügbar"
+	"uSelect.emptyText": "Keine Daten verfügbar",
+	
+	"uPaging.refresherDefaultText": "Weiter nach unten schieben",
+	"uPaging.refresherPullingText": "Zum Aktualisieren loslassen",
+	"uPaging.refresherRefreshingText": "Aktualisieren...",
+	"uPaging.refresherCompleteText": "Aktualisierung abgeschlossen",
+	"uPaging.loadingMoreDefaultText": "Mehr laden...",
+	"uPaging.loadingMoreNoMoreText": "Keine weiteren Daten verfügbar"
 }

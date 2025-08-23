@@ -64,5 +64,12 @@
 	"uSignature.closeText": "閉じる",
 
 	"uSelect.placeholder": "選択してください",
-	"uSelect.emptyText": "データがありません"
+	"uSelect.emptyText": "データがありません",
+	
+	"uPaging.refresherDefaultText": "続けて下にスワイプ",
+	"uPaging.refresherPullingText": "更新を解除",
+	"uPaging.refresherRefreshingText": "更新中...",
+	"uPaging.refresherCompleteText": "更新完了",
+	"uPaging.loadingMoreDefaultText": "さらに読み込む...",
+	"uPaging.loadingMoreNoMoreText": "さらにデータはありません"
 }

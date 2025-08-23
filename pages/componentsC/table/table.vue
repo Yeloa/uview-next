@@ -284,9 +284,19 @@ export default {
                 { category: '电子产品', product: 'iPhone 15', price: '5999', stock: '100' },
                 { category: '电子产品', product: '小米14', price: '3999', stock: '150' },
                 { category: '电子产品', product: '华为Mate60', price: '6999', stock: '80' },
+                { category: '电子产品', product: 'MacBook Pro', price: '12999', stock: '40' },
+                { category: '电子产品', product: 'iPad Air', price: '4399', stock: '120' },
                 { category: '家居用品', product: '沙发', price: '3000', stock: '50' },
                 { category: '家居用品', product: '餐桌', price: '1500', stock: '30' },
-                { category: '服装', product: 'T恤', price: '99', stock: '200' }
+                { category: '家居用品', product: '床垫', price: '2200', stock: '25' },
+                { category: '家居用品', product: '椅子', price: '299', stock: '200' },
+                { category: '服装', product: 'T恤', price: '99', stock: '200' },
+                { category: '服装', product: '卫衣', price: '199', stock: '160' },
+                { category: '服装', product: '夹克', price: '399', stock: '120' },
+                { category: '图书', product: '编程大全', price: '129', stock: '80' },
+                { category: '图书', product: '设计心理学', price: '89', stock: '95' },
+                { category: '食品', product: '精品咖啡豆', price: '79', stock: '300' },
+                { category: '食品', product: '龙井茶叶', price: '159', stock: '150' }
             ],
 
             // 合并单元格示例数据3：销售数据
@@ -304,9 +314,11 @@ export default {
                 {
                     prop: 'category',  // 要合并的列
                     ranges: [
-                        { startRow: 0, endRow: 2 },  // 第0-2行合并
-                        { startRow: 3, endRow: 4 },  // 第3-4行合并
-                        // 第5行不合并
+                        { startRow: 0, endRow: 4 },  // 电子产品 5 行合并
+                        { startRow: 5, endRow: 8 },  // 家居用品 4 行合并
+                        { startRow: 9, endRow: 11 }, // 服装 3 行合并
+                        { startRow: 12, endRow: 13 }, // 图书 2 行合并
+                        { startRow: 14, endRow: 15 }  // 食品 2 行合并
                     ]
                 }
             ],
