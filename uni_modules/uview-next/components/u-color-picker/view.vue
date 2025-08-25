@@ -6,7 +6,7 @@
 			<view class="u-color-picker__handle" :style="[handleStyle]"></view>
 		</view>
 
-		<view class="u-color-picker__slider-wrapper" @click="onHueClick">
+		<view v-if="showHueSlider" class="u-color-picker__slider-wrapper" @click="onHueClick">
 			<view class="u-color-picker__slider-bg" :style="[hueSliderStyle]"></view>
 			<slider
 				class="u-color-picker__slider" 
@@ -21,7 +21,7 @@
 			/>
 		</view>
 
-		<view class="u-color-picker__slider-wrapper u-color-picker__slider--alpha">
+		<view v-if="showAlphaSlider" class="u-color-picker__slider-wrapper u-color-picker__slider--alpha">
 			<view class="u-color-picker__slider-bg" :style="[alphaSliderStyle]"></view>
 			<slider 
 				class="u-color-picker__slider"
@@ -35,7 +35,6 @@
 				@change="onAlphaChange"
 			/>
 		</view>
-		
 
 		<view class="u-color-picker__input-area">
 			<view 
@@ -123,6 +122,14 @@
 			value: {
 				type: String,
 				default: ''
+			},
+			showAlphaSlider: {
+				type: Boolean,
+				default: true
+			},
+			showHueSlider: {
+				type: Boolean,
+				default: true
 			},
 			disabled: {
 				type: Boolean,

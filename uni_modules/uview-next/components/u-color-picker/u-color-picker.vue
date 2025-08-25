@@ -3,6 +3,8 @@
         v-if="insert"
         :value="innerValue"
         :disabled="disabled"
+        :showHueSlider="showHueSlider"
+        :showAlphaSlider="showAlphaSlider"
         :showPresets="showPresets"
         :presets="presets"
         @change="change"
@@ -25,6 +27,8 @@
 				ref="colorPickerView"
 				:value="innerValue"
 				:disabled="disabled"
+                :showHueSlider="showHueSlider"
+				:showAlphaSlider="showAlphaSlider"
 				:showPresets="showPresets"
 				:presets="presets"
 				@change="change"
@@ -53,6 +57,8 @@
      * @property {Array}			presets			预设的颜色分组
      * @property {Boolean}			showPresets		是否显示预设颜色
      * @property {Boolean}			disabled		是否禁用颜色选择器
+     * @property {Boolean}			showAlphaSlider		是否显示透明度选择器
+     * @property {Boolean}			showHueSlider		是否显示色调选择器
      *
      * @event {Function}	change			颜色值变化时触发
      * @event {Function}	formatChange	颜色格式变化时触发

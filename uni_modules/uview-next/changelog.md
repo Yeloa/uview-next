@@ -1,3 +1,5 @@
+## 3.5.29（2025-08-25）
+1. 新增`colorPicker`组件`showHueSlider`,`showAlphaSlider`属性
 ## 3.5.28（2025-08-25）
 1. 新增`colorPicker`颜色选择器组件
 ## 3.5.27（2025-08-24）
