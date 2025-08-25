@@ -2,7 +2,6 @@ export default [{
     groupName: '基础组件',
     groupName_en: 'Basic components',
     list: [
-      
     {
         path: '/pages/componentsB/color/color',
         icon: 'color',
@@ -106,6 +105,11 @@ export default [{
         icon: 'dateStrip',
         title: 'DateStrip 日期选择器',
         title_en: 'DateStrip'
+    },{
+        path: '/pages/componentsD/colorPicker/colorPicker',
+        icon: 'colorPicker',
+        title: 'ColorPicker 颜色选择器',
+        title_en: 'ColorPicker'
     },{
         path: '/pages/componentsB/select/select',
         icon: 'select',

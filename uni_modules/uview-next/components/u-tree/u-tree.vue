@@ -5,7 +5,7 @@
                 v-for="(node, index) in visibleNodes"
                 :key="index"
                 class="u-tree__node-wrapper"
-                :style="nodeWrapperStyle(node)"
+                :style="[nodeWrapperStyle(node)]"
             >
                 <view
                     class="u-tree__switcher"
@@ -42,7 +42,7 @@
 				></u-checkbox>
                 <view
                     class="u-tree__content"
-                    :style="contentStyle(node)"
+                    :style="[contentStyle(node)]"
                     @tap.stop="onToggle(node)"
                 >
                     <slot name="content" :node="node">

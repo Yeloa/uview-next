@@ -26,21 +26,7 @@ var CONSTANTS = {
 	EASING_FUNCTION: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
 };
 
-// 缓存DOM查询结果
-var refreshContainerCache = null;
 
-// 获取组件数据
-function getRefreshState(ins) {
-	return refreshState;
-}
-
-// 获取刷新容器（带缓存）
-function getRefreshContainer(ins) {
-	if (!refreshContainerCache) {
-		refreshContainerCache = ins.selectComponent('.u-paging__body');
-	}
-	return refreshContainerCache;
-}
 
 // 计算阻力效果
 function calculateResistance(distance, maxDistance) {
@@ -62,7 +48,7 @@ function resetDragState(state) {
 
 // 设置容器样式
 function setContainerStyle(ins, transform, transition) {
-	var container = getRefreshContainer(ins);
+	var container = ins.selectComponent('.u-paging__body');
 	if (container) {
 		container.setStyle({
 			'transform': transform,
@@ -79,58 +65,53 @@ function resetContainerPosition(ins, useEasing) {
 
 // 触摸开始
 var touchstart = function(e, ins) {
-	var state = getRefreshState(ins);
-	
-	if (!state.refresherEnabled) return;
+	if (!refreshState.refresherEnabled) return;
 	
 	var touch = e.touches[0];
 	
 	// 重置状态
-	state.startY = touch.pageY;
-	state.startTime = Date.now();
-	state.isDragging = false;
-	state.dragDistance = 0;
-	state.velocity = 0;
-	state.lastMoveY = touch.pageY;
-	state.isTouchStarted = true;
+	refreshState.startY = touch.pageY;
+	refreshState.startTime = Date.now();
+	refreshState.isDragging = false;
+	refreshState.dragDistance = 0;
+	refreshState.velocity = 0;
+	refreshState.lastMoveY = touch.pageY;
+	refreshState.isTouchStarted = true;
 
-	if (state.currentReadyRefresh && state.refreshStatus !== 3) {
+	if (refreshState.currentReadyRefresh && refreshState.refreshStatus !== 3) {
 		setContainerStyle(ins, 'translateY(0px)', '0s');
 	}
 };
 
 // 触摸移动
 var touchmove = function(e, ins) {
-	var state = getRefreshState(ins);
-	
-	if (!state.isTouchStarted || !state.refresherEnabled || 
-		!state.currentReadyRefresh || state.refreshStatus === 3) return;
+	if (!refreshState.isTouchStarted || !refreshState.refresherEnabled || 
+		!refreshState.currentReadyRefresh || refreshState.refreshStatus === 3) return;
 	
 	var touch = e.touches[0];
 	var currentY = touch.pageY;
-	var diffY = currentY - state.startY;
+	var diffY = currentY - refreshState.startY;
 	
 	if (diffY <= 0) return;
 	
 	// 计算拖拽距离和速度
-	state.dragDistance = diffY;
-	state.velocity = (currentY - state.lastMoveY) / (Date.now() - state.startTime);
-	state.lastMoveY = currentY;
-	state.isDragging = true;
+	refreshState.dragDistance = diffY;
+	refreshState.velocity = (currentY - refreshState.lastMoveY) / (Date.now() - refreshState.startTime);
+	refreshState.lastMoveY = currentY;
+	refreshState.isDragging = true;
 	
 	// 应用阻力效果
 	var resistedDistance = calculateResistance(diffY, CONSTANTS.MAX_DRAG_DISTANCE);
 	var displayDistance = resistedDistance * CONSTANTS.RESISTANCE_FACTOR;
-	
 	// 更新状态
 	if (displayDistance > CONSTANTS.MIN_DRAG_DISTANCE) {
-		if (!state.readyRefresh) {
+		if (!refreshState.readyRefresh) {
 			ins.callMethod('setReadyRefresh', { readyRefresh: true });
-			state.readyRefresh = true;
+			refreshState.readyRefresh = true;
 		}
-		if (!state.refreshShow) {
+		if (!refreshState.refreshShow) {
 			ins.callMethod('setRefreshShow', { refreshShow: true });
-			state.refreshShow = true;
+			refreshState.refreshShow = true;
 		}
 	}
 	
@@ -138,35 +119,33 @@ var touchmove = function(e, ins) {
 	setContainerStyle(ins, 'translateY(' + displayDistance + 'px)', '0s');
 	
 	// 更新刷新状态
-	var newStatus = displayDistance >= state.refresherThreshold ? 2 : 1;
-	if (state.refreshStatus !== newStatus) {
+	var newStatus = displayDistance >= refreshState.refresherThreshold ? 2 : 1;
+	if (refreshState.refreshStatus !== newStatus) {
 		ins.callMethod('setRefreshStatus', newStatus);
-		state.refreshStatus = newStatus;
+		refreshState.refreshStatus = newStatus;
 	}
 };
 
 // 触摸结束
 var touchend = function(e, ins) {
-	var state = getRefreshState(ins);
-	
-	if (!state.refresherEnabled || !state.currentReadyRefresh || !state.isDragging) return;
+	if (!refreshState.refresherEnabled || !refreshState.currentReadyRefresh || !refreshState.isDragging) return;
 	
 	// 重置拖拽状态
-	state.isDragging = false;
+	refreshState.isDragging = false;
 	ins.callMethod('setReadyRefresh', { readyRefresh: false });
-	state.readyRefresh = false;
+	refreshState.readyRefresh = false;
 	
 	// 判断是否应该刷新
-	var shouldRefresh = state.refreshStatus === 2 || 
-		(Math.abs(state.velocity) > CONSTANTS.VELOCITY_THRESHOLD && state.dragDistance > CONSTANTS.MIN_DRAG_DISTANCE);
+	var shouldRefresh = refreshState.refreshStatus === 2 || 
+		(Math.abs(refreshState.velocity) > CONSTANTS.VELOCITY_THRESHOLD && refreshState.dragDistance > CONSTANTS.MIN_DRAG_DISTANCE);
 	
 	if (shouldRefresh) {
 		// 触发刷新
 		ins.callMethod('setRefreshStatus', 3);
-		state.refreshStatus = 3;
+		refreshState.refreshStatus = 3;
 		
 		// 动画到刷新位置
-		setContainerStyle(ins, 'translateY(' + state.refresherThreshold + 'px)', 
+		setContainerStyle(ins, 'translateY(' + refreshState.refresherThreshold + 'px)', 
 			CONSTANTS.ANIMATION_DURATION + ' ' + CONSTANTS.EASING_FUNCTION);
 	} else {
 		// 回弹动画
@@ -174,62 +153,56 @@ var touchend = function(e, ins) {
 		
 		// 隐藏刷新指示器
 		ins.callMethod('setRefreshShow', { refreshShow: false });
-		state.refreshShow = false;
+		refreshState.refreshShow = false;
 	}
 	
 	// 重置拖拽相关状态
-	state.dragDistance = 0;
-	state.velocity = 0;
-	state.isTouchStarted = false;
+	refreshState.dragDistance = 0;
+	refreshState.velocity = 0;
+	refreshState.isTouchStarted = false;
 };
 
 // 刷新状态变化
 var refreshStatusChange = function(n, o, ins) {
-	var state = getRefreshState(ins);
-	state.refreshStatus = n;
+	refreshState.refreshStatus = n;
 	
 	if (n === 4) {
 		resetContainerPosition(ins, true);
-		resetDragState(state);
+		resetDragState(refreshState);
 	}
 };
 
 // 刷新显示状态变化
 var refreshShowChange = function(n, o, ins) {
-	var state = getRefreshState(ins);
-	state.refreshShow = n;
+	refreshState.refreshShow = n;
 };
 
 // 准备刷新状态变化
 var readyRefreshChange = function(n, o, ins) {
-	var state = getRefreshState(ins);
-	state.readyRefresh = n;
+	refreshState.readyRefresh = n;
 };
 
 // 刷新距离变化
 var refresherThresholdChange = function(n, o, ins) {
-	var state = getRefreshState(ins);
-	state.refresherThreshold = n || 40;
+	refreshState.refresherThreshold = n || 40;
 };
 
 // 当前准备刷新状态变化
 var curReadyRefreshChange = function(n, o, ins) {
-	var state = getRefreshState(ins);
-	state.currentReadyRefresh = n;
+	refreshState.currentReadyRefresh = n;
 	
 	if (!n) {
-		resetDragState(state);
+		resetDragState(refreshState);
 		resetContainerPosition(ins, false);
 	}
 };
 
 // 下拉刷新启用状态变化
 var refresherEnabledChange = function(n, o, ins) {
-	var state = getRefreshState(ins);
-	state.refresherEnabled = n;
+	refreshState.refresherEnabled = n;
 	
 	if (!n) {
-		resetDragState(state);
+		resetDragState(refreshState);
 		resetContainerPosition(ins, false);
 	}
 };

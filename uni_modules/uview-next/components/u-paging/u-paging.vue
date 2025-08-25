@@ -136,7 +136,8 @@ export default {
 			pageNo: 1,
 			pageSize: 20,
 			hasMore: true,
-			innerDataList: []
+			innerDataList: [],
+			windowTop: 0
 		}
 	},
 	computed: {
@@ -161,16 +162,7 @@ export default {
 				return 'loadmore'
 			}
 		},
-		windowTop(){
-			// #ifdef H5
-			const pageHeadNode = document.getElementsByTagName('uni-page-head');
-			if (!pageHeadNode.length){
-				return 0;
-			}
-			// #endif
-			const { windowTop } = uni.$u.window()
-			return uni.$u.addUnit(windowTop);
-		},
+		
 		containerStyle() {
 			let style = {}
 
@@ -221,10 +213,23 @@ export default {
 	},
 	mounted() {
 		this.$nextTick(() => {
-			this.reload()
+			this.init()
 		})
 	},
 	methods: {
+		init() {
+			// #ifdef H5
+			const pageHeadNode = document.getElementsByTagName('uni-page-head');
+			if (!pageHeadNode.length){
+				this.windowTop = 0;
+				return;
+			}
+
+			// #endif
+			const { windowTop } = uni.$u.window()
+			this.windowTop = uni.$u.addUnit(windowTop);
+			this.reload()
+		},
 		// 刷新
 		reload() {
 			this.triggerQuery(true)

@@ -115,7 +115,6 @@ export default {
 		// 更新容器样式
 		updateContainerStyle(transform, transition) {
 			const container = this.$refs['refresh-container'];
-		console.log(container)
 			if (container) {
 				container.style.transform = transform;
 				container.style.transition = transition;
