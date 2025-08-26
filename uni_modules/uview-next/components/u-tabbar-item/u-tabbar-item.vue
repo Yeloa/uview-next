@@ -106,7 +106,7 @@
 					const name = this.name || index
 					// 点击的item为非激活的item才发出change事件
 					if (name !== this.parent.value) {
-						this.parent.$emit('change', name)
+						this.parent.onChange(name)
 					}
 					this.$emit('click', name)
 				})

@@ -108,25 +108,24 @@ async function compressImages(config, files) {
     }
 
     for(let i = 0; i < files.length; i++) {
-        let tempFilePath;
 
         // #ifndef H5
         const result = await uni.compressImage({
             ...config,
             src: files[i].url
         });
-        tempFilePath = result.tempFilePath;
+        files[i].url = result.tempFilePath;
+        files[i].thumb = result.tempFilePath;
         // #endif
 
         // #ifdef H5
-        tempFilePath = await compressImageForH5({
+        let tempFilePath = await compressImageForH5({
             ...config,
             src: files[i].url
         });
-        // #endif
-
         files[i].url = tempFilePath;
         files[i].thumb = tempFilePath;
+        // #endif
     }
    
     return files;

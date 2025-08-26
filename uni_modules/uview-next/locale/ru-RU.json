@@ -71,5 +71,8 @@
 	"uPaging.refresherRefreshingText": "Обновление...",
 	"uPaging.refresherCompleteText": "Обновление завершено",
 	"uPaging.loadingMoreDefaultText": "Загрузить больше...",
-	"uPaging.loadingMoreNoMoreText": "Нет больше данных"
+	"uPaging.loadingMoreNoMoreText": "Нет больше данных",
+
+	"uColorPicker.title": "Выбор цвета",
+	"uColorPicker.confirmText": "Подтвердить"
 }

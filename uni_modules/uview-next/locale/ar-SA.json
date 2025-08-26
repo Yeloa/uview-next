@@ -71,5 +71,8 @@
 	"uPaging.refresherRefreshingText": "يتم التحديث...",
 	"uPaging.refresherCompleteText": "تم التحديث",
 	"uPaging.loadingMoreDefaultText": "تحميل المزيد...",
-	"uPaging.loadingMoreNoMoreText": "لا يوجد المزيد"
+	"uPaging.loadingMoreNoMoreText": "لا يوجد المزيد",
+
+	"uColorPicker.title": "اختيار اللون",
+	"uColorPicker.confirmText": "تأكيد"
 }

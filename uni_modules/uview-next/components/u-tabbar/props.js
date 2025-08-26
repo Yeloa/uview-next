@@ -17,6 +17,14 @@ export default defineProps('tabbar', {
         type: Boolean,
         default: true
     },
+    borderColor:{
+        type: String,
+        default: theme.borderColor
+    },
+    bgColor: {
+        type: String,
+        default: '#ffffff'
+    },
     // 元素层级z-index
     zIndex: {
         type: [String, Number],

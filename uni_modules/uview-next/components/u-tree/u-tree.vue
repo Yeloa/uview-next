@@ -46,7 +46,7 @@
                     @tap.stop="onToggle(node)"
                 >
                     <slot name="content" :node="node">
-                        <text class="u-tree__label" :style="labelStyle(node)">
+                        <text class="u-tree__label" :style="[labelStyle(node)]">
                             {{ node[labelField] }}
                         </text>
                     </slot>

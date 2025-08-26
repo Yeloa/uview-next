@@ -71,5 +71,8 @@
 	"uPaging.refresherRefreshingText": "正在刷新",
 	"uPaging.refresherCompleteText": "刷新成功",
 	"uPaging.loadingMoreDefaultText": "加載更多...",
-	"uPaging.loadingMoreNoMoreText": "沒有更多數據了"
+	"uPaging.loadingMoreNoMoreText": "沒有更多數據了",
+
+	"uColorPicker.title": "選擇顏色",
+	"uColorPicker.confirmText": "確定"
 }

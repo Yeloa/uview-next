@@ -71,5 +71,8 @@
 	"uPaging.refresherRefreshingText": "Actualizando...",
 	"uPaging.refresherCompleteText": "Actualización completada",
 	"uPaging.loadingMoreDefaultText": "Cargar más...",
-	"uPaging.loadingMoreNoMoreText": "No hay más datos disponibles"
+	"uPaging.loadingMoreNoMoreText": "No hay más datos disponibles",
+
+	"uColorPicker.title": "Seleccionar color",
+	"uColorPicker.confirmText": "Confirmar"
 }

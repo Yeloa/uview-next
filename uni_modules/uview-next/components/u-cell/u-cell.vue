@@ -10,6 +10,7 @@
                     <u-icon v-else :name="icon" :custom-style="iconStyle" :size="size === 'large' ? 22 : 18"></u-icon>
                 </view>
                 <view class="u-cell__title">
+                    <slot></slot>
                     <slot name="title">
                         <text v-if="title" class="u-cell__title-text" :style="[titleTextStyle]"
                             :class="[required && 'u-cell--required', disabled && 'u-cell--disabled', size === 'large' && 'u-cell__title-text--large']">{{

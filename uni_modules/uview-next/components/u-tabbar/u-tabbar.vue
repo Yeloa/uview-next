@@ -4,7 +4,7 @@
 		    class="u-tabbar__content"
 		    ref="u-tabbar__content"
 		    @touchmove.stop.prevent="noop"
-		    :class="[border && 'u-border-top', fixed && 'u-tabbar--fixed']"
+		    :class="[fixed && 'u-tabbar--fixed']"
 		    :style="[tabbarStyle]"
 		>
 			<view class="u-tabbar__content__item-wrapper">
@@ -15,9 +15,9 @@
 		<view
 		    class="u-tabbar__placeholder"
 			v-if="placeholder"
-		    :style="{
-				height: placeholderHeight + 'px',
-			}"
+		    :style="[{
+				height:  $u.addUnit(placeholderHeight),
+			}]"
 		></view>
 	</view>
 </template>
@@ -56,7 +56,12 @@
 		computed: {
 			tabbarStyle() {
 				const style = {
-					zIndex: this.zIndex
+					zIndex: this.zIndex,
+					backgroundColor: this.bgColor,
+				}
+
+				if(this.border){
+					style.borderTop = `0.5px solid ${this.borderColor}`
 				}
 				// 合并来自父组件的customStyle样式
 				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
@@ -85,10 +90,16 @@
 		mounted() {
 			this.setPlaceholderHeight()
 		},
+		// #ifdef VUE3
+		emits: ["change"],
+		// #endif
 		methods: {
 			updateChildren() {
 				// 如果存在子元素，则执行子元素的updateFromParent进行更新数据
 				this.children.length && this.children.map(child => child.updateFromParent())
+			},
+			onChange(name) {
+				this.$emit('change', name)
 			},
 			// 设置用于防止塌陷元素的高度
 			async setPlaceholderHeight() {
@@ -125,8 +136,6 @@
 		
 		&__content {
 			@include flex(column);
-			background-color: #fff;
-			
 			&__item-wrapper {
 				height: 50px;
 				@include flex(row);

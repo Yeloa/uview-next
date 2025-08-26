@@ -71,5 +71,8 @@
 	"uPaging.refresherRefreshingText": "更新中...",
 	"uPaging.refresherCompleteText": "更新完了",
 	"uPaging.loadingMoreDefaultText": "さらに読み込む...",
-	"uPaging.loadingMoreNoMoreText": "さらにデータはありません"
+	"uPaging.loadingMoreNoMoreText": "さらにデータはありません",
+
+	"uColorPicker.title": "色を選択",
+	"uColorPicker.confirmText": "確定"
 }

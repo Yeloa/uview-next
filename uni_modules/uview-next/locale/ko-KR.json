@@ -71,5 +71,8 @@
 	"uPaging.refresherRefreshingText": "새로고침 중...",
 	"uPaging.refresherCompleteText": "새로고침 완료",
 	"uPaging.loadingMoreDefaultText": "더 불러오기...",
-	"uPaging.loadingMoreNoMoreText": "더 이상 데이터가 없습니다"
+	"uPaging.loadingMoreNoMoreText": "더 이상 데이터가 없습니다",
+
+	"uColorPicker.title": "색상 선택",
+	"uColorPicker.confirmText": "확인"
 }

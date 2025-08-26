@@ -1,3 +1,9 @@
+## 3.5.32（2025-08-26）
+1. 优化`tabbar`组件
+## 3.5.31（2025-08-26）
+1. 优化`colorPicker`组件支持国际化
+## 3.5.30（2025-08-26）
+1. 新增`tabbar`组件`bgColor`,`borderColor`属性
 ## 3.5.29（2025-08-25）
 1. 新增`colorPicker`组件`showHueSlider`,`showAlphaSlider`属性
 ## 3.5.28（2025-08-25）

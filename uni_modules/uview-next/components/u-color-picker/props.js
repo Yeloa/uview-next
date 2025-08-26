@@ -40,7 +40,7 @@ export default defineProps('color-picker', {
     },
     title:{
         type: String,
-        default: '选择颜色'
+        default: () => uni.$u.$t('uColorPicker.title')
     },
     zIndex:{
         type: [String, Number],
@@ -66,7 +66,7 @@ export default defineProps('color-picker', {
     },
     confirmText:{
         type: String,
-        default: '确认'
+        default: () => uni.$u.$t('uColorPicker.confirmText')
     },
 	// 预设的颜色分组
 	presets: {
