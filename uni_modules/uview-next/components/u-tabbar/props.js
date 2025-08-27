@@ -49,5 +49,30 @@ export default defineProps('tabbar', {
     placeholder: {
         type: Boolean,
         default: true
+    },
+    // 标签栏的形状 可选项：normal， circle
+    shape: {
+        type: String,
+        default: 'normal' 
+    },
+    // 标签栏的高度
+    height: {
+        type: [String, Number],
+        default: 50
+    },
+    // 是否自适应宽度
+    fit: {
+        type: Boolean,
+        default: false
+    },
+    // 胶囊标签栏底部边距
+    bottom: {
+        type: [String, Number],
+        default: 20
+    },
+    // 模式 可选项：normal，tag
+    mode: {
+        type: String,
+        default: 'normal'
     }
 })

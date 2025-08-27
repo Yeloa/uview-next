@@ -1,16 +1,18 @@
 <template>
-	<view class="u-tabbar">
+	<view class="u-tabbar" :id="tabbarId" :ref="tabbarId">
 		<view
 		    class="u-tabbar__content"
 		    ref="u-tabbar__content"
 		    @touchmove.stop.prevent="noop"
-		    :class="[fixed && 'u-tabbar--fixed']"
+		    :class="[fixed && 'u-tabbar--fixed', shape === 'circle' && 'u-tabbar--circle']"
 		    :style="[tabbarStyle]"
 		>
-			<view class="u-tabbar__content__item-wrapper">
+			<view class="u-tabbar__content__item-wrapper" :style="[{
+				height: $u.addUnit(height)
+			}]">
 				<slot />
 			</view>
-			<u-safe-bottom v-if="safeAreaInsetBottom"></u-safe-bottom>
+			<u-safe-bottom v-if="safeAreaInsetBottom && shape === 'normal'"></u-safe-bottom>
 		</view>
 		<view
 		    class="u-tabbar__placeholder"
@@ -50,6 +52,7 @@
 		mixins: [mpMixin, mixin, props],
 		data() {
 			return {
+				tabbarId: 'tabbar_' + uni.$u.guid(),
 				placeholderHeight: 0
 			}
 		},
@@ -60,15 +63,27 @@
 					backgroundColor: this.bgColor,
 				}
 
-				if(this.border){
+				if(this.border && this.shape == 'normal'){
 					style.borderTop = `0.5px solid ${this.borderColor}`
 				}
+
+				if(this.shape == 'circle'){
+					if(this.fit){
+						//style.width = 'fit-content';
+						style.margin = '0 auto';
+					}
+
+					if(this.bottom){
+						style.bottom = uni.$u.addUnit(this.bottom);
+					}
+				}
+
 				// 合并来自父组件的customStyle样式
 				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
 			},
 			// 监听多个参数的变化，通过在computed执行对应的操作
 			updateChild() {
-				return [this.value, this.activeColor, this.inactiveColor]
+				return [this.value, this.mode, this.activeColor, this.inactiveColor]
 			},
 			updatePlaceholder() {
 				return [this.fixed, this.placeholder]
@@ -121,6 +136,28 @@
 					this.placeholderHeight = size.height
 				})
 				// #endif
+			},
+			getRect(){
+				let ref = this.tabbarId;
+				// #ifndef APP-NVUE
+				// $uGetRect为uView自带的节点查询简化方法，详见文档介绍：https://uview.d3u.cn/js/getRect.html
+				// 组件内部一般用this.$uGetRect，对外的为uni.$u.getRect，二者功能一致，名称不同
+				return new Promise(resolve => {
+					this.$uGetRect(`#${ref}`).then(size => {
+						resolve(size)
+					})
+				})
+				// #endif
+
+				// #ifdef APP-NVUE
+				// nvue下，使用dom模块查询元素高度
+				// 返回一个promise，让调用此方法的主体能使用then回调
+				return new Promise(resolve => {
+					dom.getComponentRect(this.$refs[ref], res => {
+						resolve(res.size)
+					})
+				})
+				// #endif
 			}
 		}
 	}
@@ -133,11 +170,12 @@
 		@include flex(column);
 		flex: 1;
 		justify-content: center;
-		
+	
+
 		&__content {
 			@include flex(column);
+			justify-content: center;
 			&__item-wrapper {
-				height: 50px;
 				@include flex(row);
 			}
 		}
@@ -147,6 +185,13 @@
 			bottom: 0;
 			left: 0;
 			right: 0;
+		}
+
+		&--circle {
+			margin: 0 16px;
+			border-radius: 50px;
+			overflow: hidden;
+			box-shadow: 0 6px 30px 5px rgba(0, 0, 0, .05), 0 16px 24px 2px rgba(0, 0, 0, .04), 0 8px 10px -5px rgba(0, 0, 0, .08);
 		}
 	}
 </style>

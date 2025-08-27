@@ -49,7 +49,7 @@
 		</view>
 		<view class="u-page__item">
 			<text class="u-page__item__title">拦截切换事件(点击第二个标签)</text>
-			<u-tabbar :value="value5" :fixed="false" @change="change5" :safeAreaInsetBottom="false"
+			<u-tabbar ref="tabbar5" :value="value5" :fixed="false" @change="change5" :safeAreaInsetBottom="false"
 				:placeholder="false">
 				<u-tabbar-item text="首页" icon="home">
 				</u-tabbar-item>
@@ -68,14 +68,44 @@
 				<u-tabbar-item text="我的" icon="account"></u-tabbar-item>
 			</u-tabbar>
 		</view>
+
+		<view class="u-page__item">
+			<text class="u-page__item__title">标签模式</text>
+			<u-tabbar mode="tag" :value="value7" :placeholder="false" @change="name => value7 = name"
+				:fixed="false" :safeAreaInsetBottom="false">
+				<u-tabbar-item text="首页"></u-tabbar-item>
+				<u-tabbar-item text="放映厅"></u-tabbar-item>
+				<u-tabbar-item text="直播"></u-tabbar-item>
+				<u-tabbar-item text="我的"></u-tabbar-item>
+			</u-tabbar>
+		</view>
+
+		<view class="u-page__item" style="background-color: #f3f4f6;">
+			<text class="u-page__item__title">悬浮胶囊标签栏(迷你样式)</text>
+			<u-tabbar ref="tabbar6" :value="value6" bottom="0" :fixed="false" shape="circle" :fit="true" @change="name => value6 = name" height="34">
+				<u-tabbar-item icon="home"></u-tabbar-item>
+				<u-tabbar-item icon="photo"></u-tabbar-item>
+				<u-tabbar-item icon="play-right"></u-tabbar-item>
+			</u-tabbar>
+		</view>
+
+		<view class="u-page__item" style="background-color: #f3f4f6;">
+			<text class="u-page__item__title">悬浮胶囊标签栏</text>
+			<u-tabbar :value="value6" :fixed="false" bottom="0" shape="circle" @change="name => value6 = name">
+				<u-tabbar-item text="首页" icon="home"></u-tabbar-item>
+				<u-tabbar-item text="放映厅" icon="photo"></u-tabbar-item>
+				<u-tabbar-item text="直播" icon="play-right"></u-tabbar-item>
+				<u-tabbar-item text="我的" icon="account"></u-tabbar-item>
+			</u-tabbar>
+		</view>
+
 		<view class="u-page__item">
 			<text class="u-page__item__title">固定在底部(固定在屏幕最下方)</text>
 			<u-gap height="150"></u-gap>
-			<u-tabbar :value="value6" @change="name => value6 = name" :fixed="true" :placeholder="true"
-				:safeAreaInsetBottom="true">
-				<u-tabbar-item text="首页" icon="home">
-				</u-tabbar-item>
+			<u-tabbar :value="value6" @change="name => value6 = name">
+				<u-tabbar-item text="首页" icon="home"></u-tabbar-item>
 				<u-tabbar-item text="放映厅" icon="photo"></u-tabbar-item>
+				<u-tabbar-item text="发布" icon="plus" :middle="true" iconSize="20" ></u-tabbar-item>
 				<u-tabbar-item text="直播" icon="play-right"></u-tabbar-item>
 				<u-tabbar-item text="我的" icon="account"></u-tabbar-item>
 			</u-tabbar>
@@ -101,6 +131,15 @@ export default {
 	},
 	methods: {
 		change5(name) {
+	
+			this.$refs.tabbar5.getRect().then(size => {
+				console.log('tabbar5',size)
+			})
+
+			this.$refs.tabbar6.getRect().then(size => {
+				console.log('tabbar6',size)
+			})
+	
 			if (name === 1) return uni.$u.toast('请您先登录')
 			else this.value5 = name
 		},

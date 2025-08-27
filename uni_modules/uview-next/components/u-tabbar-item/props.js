@@ -1,4 +1,5 @@
 import { defineProps } from '../../libs/util/props';
+import theme from '../../libs/config/theme.js';
 
 export default defineProps('tabbarItem', {
     // item标签的名称，作为与u-tabbar的value参数匹配的标识符
@@ -10,6 +11,18 @@ export default defineProps('tabbarItem', {
     icon: {
         type: String,
         default: ''
+    },
+    iconSize: {
+        type: [String, Number],
+        default: 20
+    },
+    iconBgColor: {
+        type: String,
+        default: theme.primary
+    },
+    iconColor: {
+        type: String,
+        default: '#fff'
     },
     // 右上角的角标提示信息
     badge: {
@@ -30,5 +43,10 @@ export default defineProps('tabbarItem', {
     badgeStyle: {
         type: [Object, String],
         default: 'top: 6px;right:2px;'
+    },
+    // 是否为中间凸起按钮
+    middle: {
+        type: Boolean,
+        default: false
     }
 })

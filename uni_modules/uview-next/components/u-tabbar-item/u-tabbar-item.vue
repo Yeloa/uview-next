@@ -1,44 +1,45 @@
 <template>
 	<view
 	    class="u-tabbar-item"
-	    :style="[$u.addStyle(customStyle)]"
+	   
 	    @tap="clickHandler"
 	>
-		<view class="u-tabbar-item__icon">
-			<u-icon
-			    v-if="icon"
-			    :name="icon"
-			    :color="isActive? parentData.activeColor : parentData.inactiveColor"
-			    :size="20"
-			></u-icon>
-			<template v-else>
-				<slot
-				    v-if="isActive"
-				    name="active-icon"
-				/>
-				<slot
-				    v-else
-				    name="inactive-icon"
-				/>
-			</template>
-			<u-badge
-				absolute
-				:offset="[0, dot ? '34rpx' : badge > 9 ? '14rpx' : '20rpx']"
-			    :customStyle="badgeStyle"
-			    :isDot="dot"
-			    :value="badge || (dot ? 1 : null)"
-			    :show="dot || badge > 0"
-			></u-badge>
+		<view class="u-tabbar-item__content" :class="[`u-tabbar-item__content--${parentData.mode}`]" :style="[contentStyle]">
+
+			<view v-if="icon" 
+				class="u-tabbar-item__icon" 
+				:class="{'u-tabbar-item__icon--middle': middle}"
+				:style="[{backgroundColor: middle && iconBgColor}]"
+			>
+				<u-icon
+					v-if="icon"
+					:name="icon"
+					:color="middle ? iconColor : (isActive ? parentData.activeColor : parentData.inactiveColor)"
+					:size="iconSize"
+				></u-icon>
+				
+				<slot v-if="isActive" name="active-icon"/>
+				<slot v-else name="inactive-icon"/>
+				<u-badge
+					absolute
+					:offset="[0, dot ? '34rpx' : badge > 9 ? '14rpx' : '20rpx']"
+					:customStyle="badgeStyle"
+					:isDot="dot"
+					:value="badge || (dot ? 1 : null)"
+					:show="dot || badge > 0"
+				></u-badge>
+			</view>
+			<view v-if="middle && text" :style="{height: baseIconSize + 'px'}"></view>
+			<slot name="text">
+				<text
+					v-if="text"
+					class="u-tabbar-item__text"
+					:style="[{
+						color: isActive? parentData.activeColor : parentData.inactiveColor
+					}]"
+				>{{ text }}</text>
+			</slot>
 		</view>
-		
-		<slot name="text">
-			<text
-			    class="u-tabbar-item__text"
-			    :style="{
-					color: isActive? parentData.activeColor : parentData.inactiveColor
-				}"
-			>{{ text }}</text>
-		</slot>
 	</view>
 </template>
 
@@ -66,11 +67,22 @@
 		data() {
 			return {
 				isActive: false, // 是否处于激活状态
+				baseIconSize: 20,
 				parentData: {
 					value: null,
+					mode: 'normal',
 					activeColor: '',
 					inactiveColor: ''
 				}
+			}
+		},
+		computed:{
+			contentStyle() {
+				let style = {};
+				if(this.isActive && this.parentData.mode === 'tag') {
+					style.backgroundColor = uni.$u.colorToRgba(this.parentData.activeColor, 0.15);
+				}
+				return style;
 			}
 		},
 		created() {
@@ -88,6 +100,14 @@
 				}
 				// 本子组件在u-tabbar的children数组中的索引
 				const index = this.parent.children.indexOf(this)
+				
+				for(let i = 0; i < this.parent.children.length; i++) {
+					if(!this.parent.children[i].middle) {
+						this.baseIconSize = this.parent.children[i].iconSize
+						break
+					}
+				}
+	
 				// 判断本组件的name(如果没有定义name，就用index索引)是否等于父组件的value参数
 				this.isActive = (this.name || index) === this.parentData.value
 			},
@@ -103,12 +123,16 @@
 			clickHandler() {
 				this.$nextTick(() => {
 					const index = this.parent.children.indexOf(this)
+				
 					const name = this.name || index
 					// 点击的item为非激活的item才发出change事件
 					if (name !== this.parent.value) {
 						this.parent.onChange(name)
 					}
 					this.$emit('click', name)
+
+					// 如果配置了url(此props参数通过mixin引入)参数，跳转页面
+					this.openPage();
 				})
 			}
 		},
@@ -123,19 +147,39 @@
 		align-items: center;
 		justify-content: center;
 		flex: 1;
-		/* #ifndef APP-NVUE */
-		width: 100%;
-		height: 100%;
-		/* #endif */
-		/* #ifdef H5 */
-		cursor: pointer;
-		/* #endif */
+		padding: 10px;
+		
+		&__content{
+			@include flex(column);
+			align-items: center;
+			justify-content: center;
+			flex: 1;
+			width: 60px;
+			/* #ifdef H5 */
+			cursor: pointer;
+			/* #endif */
+
+			&--tag{
+				border-radius: 100px;
+			}
+		}
+
 
 		&__icon {
 			@include flex;
 			position: relative;
-			width: 150rpx;
+			
 			justify-content: center;
+
+			&--middle{
+				width: 40px;
+				height: 40px;
+				position: absolute;
+				top: -20px;
+				z-index: 999;
+				border-radius: 100px;
+				box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.1);
+			}
 		}
 
 		&__text {
