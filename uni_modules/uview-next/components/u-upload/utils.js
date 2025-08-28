@@ -1,92 +1,91 @@
-// #ifdef H5
 function compressImageForH5(options) {
-    return new Promise((resolve, reject) => {
-        const {
-            src,
-            quality = 0.8,
-            width = 'auto',
-            height = 'auto',
-            compressedWidth,
-            compressedHeight
-        } = options;
+	const {
+		src,
+		quality = 0.8,
+		width = 'auto',
+		height = 'auto',
+		compressedWidth,
+		compressedHeight,
+		success,
+		fail
+	} = options;
 
-        const img = new Image();
-        img.crossOrigin = 'anonymous';
-        
-        img.onload = function() {
-            try {
-                const canvas = document.createElement('canvas');
-                const ctx = canvas.getContext('2d');
-                
-                // 计算压缩后的尺寸
-                let targetWidth = img.width;
-                let targetHeight = img.height;
-                
-                // 优先使用 compressedWidth 和 compressedHeight
-                if (compressedWidth && compressedHeight) {
-                    targetWidth = compressedWidth;
-                    targetHeight = compressedHeight;
-                } else if (compressedWidth) {
-                    targetWidth = compressedWidth;
-                    targetHeight = (img.height * compressedWidth) / img.width;
-                } else if (compressedHeight) {
-                    targetHeight = compressedHeight;
-                    targetWidth = (img.width * compressedHeight) / img.height;
-                } else {
-                    // 处理 width 和 height 参数
-                    if (width !== 'auto') {
-                        if (width.includes('px')) {
-                            targetWidth = parseInt(width);
-                        } else if (width.includes('%')) {
-                            targetWidth = img.width * (parseInt(width) / 100);
-                        }
-                    }
-                    
-                    if (height !== 'auto') {
-                        if (height.includes('px')) {
-                            targetHeight = parseInt(height);
-                        } else if (height.includes('%')) {
-                            targetHeight = img.height * (parseInt(height) / 100);
-                        }
-                    }
-                    
-                    // 如果只设置了一个维度，等比缩放
-                    if (width !== 'auto' && height === 'auto') {
-                        targetHeight = (img.height * targetWidth) / img.width;
-                    } else if (height !== 'auto' && width === 'auto') {
-                        targetWidth = (img.width * targetHeight) / img.height;
-                    }
-                }
-                
-                canvas.width = targetWidth;
-                canvas.height = targetHeight;
-                
-                // 绘制压缩后的图片
-                ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
-                
-                // 转换为 blob
-                canvas.toBlob((blob) => {
-                    if (blob) {
-                        const url = URL.createObjectURL(blob);
-                        resolve(url);
-                    } else {
-                        reject(new Error('图片压缩失败'));
-                    }
-                }, 'image/jpeg', quality);
-                
-            } catch (error) {
-                reject(error);
-            }
-        };
-        
-        img.onerror = function() {
-            reject(new Error('图片加载失败'));
-        };
-        
-        img.src = src;
-    });
+	const img = new Image();
+	img.crossOrigin = 'anonymous';
+	
+	img.onload = function() {
+		try {
+			const canvas = document.createElement('canvas');
+			const ctx = canvas.getContext('2d');
+			
+			// 计算压缩后的尺寸
+			let targetWidth = img.width;
+			let targetHeight = img.height;
+			
+			// 优先使用 compressedWidth 和 compressedHeight
+			if (compressedWidth && compressedHeight) {
+				targetWidth = compressedWidth;
+				targetHeight = compressedHeight;
+			} else if (compressedWidth) {
+				targetWidth = compressedWidth;
+				targetHeight = (img.height * compressedWidth) / img.width;
+			} else if (compressedHeight) {
+				targetHeight = compressedHeight;
+				targetWidth = (img.width * compressedHeight) / img.height;
+			} else {
+				// 处理 width 和 height 参数
+				if (width !== 'auto') {
+					if (width.includes('px')) {
+						targetWidth = parseInt(width);
+					} else if (width.includes('%')) {
+						targetWidth = img.width * (parseInt(width) / 100);
+					}
+				}
+				
+				if (height !== 'auto') {
+					if (height.includes('px')) {
+						targetHeight = parseInt(height);
+					} else if (height.includes('%')) {
+						targetHeight = img.height * (parseInt(height) / 100);
+					}
+				}
+				
+				// 如果只设置了一个维度，等比缩放
+				if (width !== 'auto' && height === 'auto') {
+					targetHeight = (img.height * targetWidth) / img.width;
+				} else if (height !== 'auto' && width === 'auto') {
+					targetWidth = (img.width * targetHeight) / img.height;
+				}
+			}
+			
+			canvas.width = targetWidth;
+			canvas.height = targetHeight;
+			
+			// 绘制压缩后的图片
+			ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
+			
+			// 转换为 blob
+			canvas.toBlob((blob) => {
+				if (blob) {
+					success({
+						tempFilePath: URL.createObjectURL(blob)
+					})
+				} else {
+					fail(new Error('图片压缩失败'));
+				}
+			}, 'image/jpeg', quality);
+			
+		} catch (error) {
+			fail(error);
+		}
+	};
+	
+	img.onerror = function() {
+		fail(new Error('图片加载失败'));
+	};
+	
+	img.src = src;
 }
-// #endif
 
 function pickExclude(obj, keys) {
 	// 某些情况下，type可能会为
@@ -102,33 +101,45 @@ function pickExclude(obj, keys) {
 }
 
 async function compressImages(config, files) {
-   
-    if( config === false){
-        return files;
-    }
+	
+	if( config === false){
+		return files;
+	}
 
-    for(let i = 0; i < files.length; i++) {
+	const tasks = [];
+	for(let i = 0; i < files.length; i++) {
+		tasks.push(new Promise((resolve) => {
+			const options = {
+				...config,
+				src: files[i].url,
+				fail:()=>{},
+				success: (result) => {
+					resolve(result);
+				},
+				fail: () => { 
+					resolve('');
+				}
+			};
 
-        // #ifndef H5
-        const result = await uni.compressImage({
-            ...config,
-            src: files[i].url
-        });
-        files[i].url = result.tempFilePath;
-        files[i].thumb = result.tempFilePath;
-        // #endif
+			// #ifndef H5
+			uni.compressImage(options);
+			// #endif
 
-        // #ifdef H5
-        let tempFilePath = await compressImageForH5({
-            ...config,
-            src: files[i].url
-        });
-        files[i].url = tempFilePath;
-        files[i].thumb = tempFilePath;
-        // #endif
-    }
-   
-    return files;
+			// #ifdef H5
+			compressImageForH5(options);
+			// #endif
+		}));
+	}
+	const results = await Promise.all(tasks);
+
+	for(let i = 0; i < files.length; i++) {
+		if(results[i]) {
+			files[i].url = results[i].tempFilePath;
+			files[i].thumb = results[i].tempFilePath;
+		}
+	}
+
+	return files;
 }
 
 function formatImage(res) {

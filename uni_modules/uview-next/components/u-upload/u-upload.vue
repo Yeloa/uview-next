@@ -96,7 +96,7 @@
 			<template v-if="isInCount">
 				<view
 				    v-if="$slots.default || $slots.$default"
-				    @tap="chooseFile"
+				    @tap="handleChooseFile"
 					class="u-upload__default-slot"
 					:class="[lists.length === 0 ? 'u-upload__default-slot--empty-list' : '']"
 				>
@@ -107,7 +107,7 @@
 				    class="u-upload__button"
 				    :hover-class="!disabled ? 'u-upload__button--hover' : ''"
 				    hover-stay-time="150"
-				    @tap="chooseFile"
+				    @tap="handleChooseFile"
 				    :class="[disabled && 'u-upload__button--disabled']"
 					:style="[{
 						width: $u.addUnit(width),
@@ -230,7 +230,7 @@
 				this.lists = lists
 				this.isInCount = lists.length < maxCount
 			},
-			chooseFile() {
+			handleChooseFile() {
 				const {
 					maxCount,
 					multiple,
@@ -245,21 +245,18 @@
 				}catch(e) {
 					capture = [];
 				}
-				chooseFile(
-						Object.assign({
-							accept: this.accept,
-							extension: this.extension,
-							multiple: this.multiple,
-							capture: capture,
-							compressed: this.compressed,
-							compressImage: this.compressImage,
-							maxDuration: this.maxDuration,
-							sizeType: this.sizeType,
-							camera: this.camera,
-						}, {
-							maxCount: maxCount - lists.length,
-						})
-					)
+				chooseFile({
+					accept: this.accept,
+					extension: this.extension,
+					multiple: this.multiple,
+					capture: capture,
+					compressed: this.compressed,
+					compressImage: this.compressImage,
+					maxDuration: this.maxDuration,
+					sizeType: this.sizeType,
+					camera: this.camera,
+					maxCount: maxCount - lists.length
+				})
 					.then((res) => {
 						this.onBeforeRead(multiple ? res : res[0]);
 					})

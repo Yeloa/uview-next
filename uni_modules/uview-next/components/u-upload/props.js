@@ -15,7 +15,7 @@ export default defineProps('upload', {
     // 	图片或视频拾取模式，当accept为image类型时设置capture可选额外camera可以直接调起摄像头
     capture: {
         type: [String, Array],
-        default: ['album', 'camera']
+        default: () => ['album', 'camera']
     },
     // 当accept为video时生效，是否压缩视频，默认为true
     compressed: {
@@ -93,7 +93,7 @@ export default defineProps('upload', {
     // 所选的图片的尺寸, 可选值为original compressed
     sizeType: {
         type: Array,
-        default: ['original', 'compressed']
+        default: () => ['original', 'compressed']
     },
     // 是否开启图片多选，部分安卓机型不支持
     multiple: {
