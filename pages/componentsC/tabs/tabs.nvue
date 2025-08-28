@@ -4,8 +4,7 @@
 		<view class="u-demo-block">
 			<text class="u-demo-block__title">基础演示</text>
 			<view class="u-demo-block__content">
-				<u-tabs :list="list1" @click="click" :current="3">
-				</u-tabs>
+				<u-tabs :list="list1" @click="click" :current="3"></u-tabs>
 			</view>
 		</view>
 
@@ -37,6 +36,67 @@
 					<u-tabs-item label="标签5" >
 						<view class="tab-content">
 							<text>这是标签5的内容</text>
+						</view>
+					</u-tabs-item>
+				</u-tabs>
+			</view>
+		</view>
+
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">手势滑动切换</text>
+			<view class="u-demo-block__content">
+				<u-tabs :swipeable="true" :animated="true" :height="200">
+					<u-tabs-item label="标签1">
+						<view class="tab-content">
+							<text>这是标签1的内容</text>
+						</view>
+					</u-tabs-item>
+					<u-tabs-item label="标签2">
+						<view class="tab-content">
+							<text>这是标签2的内容</text>
+						</view>
+					</u-tabs-item>
+					<u-tabs-item label="标签3">
+						<view class="tab-content">
+							<text>这是标签3的内容</text>
+						</view>
+					</u-tabs-item>
+					<u-tabs-item label="标签4">
+						<view class="tab-content">
+							<text>这是标签4的内容</text>
+						</view>
+					</u-tabs-item>
+					<u-tabs-item label="标签5" >
+						<view class="tab-content">
+							<text>这是标签5的内容</text>
+						</view>
+					</u-tabs-item>
+					<u-tabs-item label="标签6">
+						<view class="tab-content">
+							<text>这是标签6的内容</text>
+						</view>
+					</u-tabs-item>
+					
+					<u-tabs-item label="标签7">
+						<view class="tab-content">
+							<text>这是标签7的内容</text>
+						</view>
+					</u-tabs-item>
+					
+					<u-tabs-item label="标签8">
+						<view class="tab-content">
+							<text>这是标签8的内容</text>
+						</view>
+					</u-tabs-item>
+					
+					<u-tabs-item label="标签9">
+						<view class="tab-content">
+							<text>这是标签9的内容</text>
+						</view>
+					</u-tabs-item>
+					<u-tabs-item label="标签10">
+						<view class="tab-content">
+							<text>这是标签10的内容</text>
 						</view>
 					</u-tabs-item>
 				</u-tabs>
@@ -240,5 +300,11 @@ export default {
 	padding: 10px;
 	font-size: 16px;
 	color: #333;
+}
+
+.tab-content{
+	padding: 30px 15px;
+	text-align: center;
+	height: 100%;
 }
 </style>

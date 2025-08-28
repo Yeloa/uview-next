@@ -7,6 +7,21 @@ export default defineProps('tabs', {
         type: Number,
         default: 300,
     },
+    // 是否启用转场动画
+    animated: {
+        type: Boolean,
+        default: false,
+    },
+    // 是否启用左右滑动切换
+    swipeable: {
+        type: Boolean,
+        default: false,
+    },
+    // 高度
+    height: {
+        type: [String, Number],
+        default: '',
+    },
     // tabs标签数组
     list: {
         type: Array,

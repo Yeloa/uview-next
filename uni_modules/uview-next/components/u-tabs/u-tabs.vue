@@ -77,8 +77,14 @@
 			</view>
 			<slot name="right" />
 		</view>
-		<view class="u-tabs__content" v-if="isSlot">
-			<slot />
+		<view class="u-tabs__content" v-if="isSlot" @touchstart="onTouchStart" @touchmove="onTouchMove" @touchend="onTouchEnd" @touchcancel="onTouchEnd">
+			<view 
+				class="u-tabs__content__body"
+				:class="[animated ? 'u-tabs__content__body--animated' : '']"
+				:style="contentBodyStyle"
+			>
+				<slot />
+			</view>
 		</view>
 	</view>
 </template>
@@ -119,7 +125,19 @@
 				},
 				innerCurrent: 0,
 				moving: false,
-				children: []
+				children: [],
+				// 触摸相关状态（精简为一个对象）
+				touch: {
+					startX: 0,
+					startY: 0,
+					deltaX: 0,
+					deltaY: 0,
+					offsetX: 0,
+					offsetY: 0,
+					direction: ''
+				},
+				dragging: false,
+				dragOffsetPct: 0
 			}
 		},
 		watch: {
@@ -191,6 +209,35 @@
 					
 					return uni.$u.deepMerge(customeStyle, style)
 				}
+			},
+			contentBodyStyle() {
+				if (!this.animated) {
+					return {}
+				}
+
+				const baseLeft = -100 * this.innerCurrent
+				let style = {
+					left: (baseLeft + (this.dragging ? this.dragOffsetPct : 0)) + '%',
+					transitionDuration: (this.dragging ? 0 : this.duration) + 'ms',
+					'-webkit-transition-duration': (this.dragging ? 0 : this.duration) + 'ms'
+				}
+
+				if(this.height) {
+					style.height = uni.$u.addUnit(this.height)
+				}
+
+				// 根据方向确定是否对 left 应用过渡，以及切换不同的缓动（左/右）
+				const isHorizontal = this.touch.direction === 'horizontal'
+				const isRight = isHorizontal && this.touch.deltaX > 0
+				const isLeft = isHorizontal && this.touch.deltaX < 0
+				style.transitionProperty = isHorizontal || !this.touch.direction ? 'left' : 'none'
+				style.transitionTimingFunction = this.dragging
+					? 'linear'
+					: (isLeft
+						? 'cubic-bezier(0.4, 0, 0.2, 1)'
+						: (isRight ? 'cubic-bezier(0.2, 0, 0, 1)' : 'cubic-bezier(0.4, 0, 0.2, 1)'))
+
+				return style
 			}
 		},
 		created() {
@@ -303,6 +350,7 @@
 					.reduce((total, curr) => {
 						return total + (curr.rect ? curr.rect.width : 0)
 					}, 0)
+
 				// 此处为屏幕宽度
 				const windowWidth = uni.$u.window().windowWidth
 				// 将活动的tabs-item移动到屏幕正中间，实际上是对scroll-view的移动
@@ -368,6 +416,83 @@
 				})
 				// #endif
 			},
+			
+			// 触摸开始事件
+			onTouchStart(event) {
+				if (!this.swipeable) return
+				const touch = event.touches[0]
+				this.touch.direction = ''
+				this.touch.deltaX = 0
+				this.touch.deltaY = 0
+				this.touch.offsetX = 0
+				this.touch.offsetY = 0
+				this.touch.startX = touch.clientX
+				this.touch.startY = touch.clientY
+				this.dragging = true
+				this.dragOffsetPct = 0
+			},
+			
+			// 触摸移动事件
+			onTouchMove(event) {
+				if (!this.swipeable) return
+				const touch = event.touches[0]
+				this.touch.deltaX = touch.clientX - this.touch.startX
+				this.touch.deltaY = touch.clientY - this.touch.startY
+				this.touch.offsetX = Math.abs(this.touch.deltaX)
+				this.touch.offsetY = Math.abs(this.touch.deltaY)
+				this.touch.direction = this.touch.offsetX > this.touch.offsetY ? 'horizontal' : this.touch.offsetX < this.touch.offsetY ? 'vertical' : ''
+				if (this.touch.direction === 'horizontal') {
+					const containerWidth = this.tabsRect?.width || uni.$u.window().windowWidth
+					if (containerWidth) {
+						this.dragOffsetPct = (this.touch.deltaX / containerWidth) * 100
+					}
+				}
+			},
+			
+			// 触摸结束事件
+			onTouchEnd() {
+				if (!this.swipeable) return
+				const minSwipeDistance = 50
+				if (this.touch.direction === 'horizontal' && this.touch.offsetX >= minSwipeDistance) {
+					const step = this.touch.deltaX > 0 ? -1 : 1
+					const nextIndex = this.findAvailableByStep(this.innerCurrent, step)
+					if (nextIndex !== -1) {
+						this.switchToTab(nextIndex)
+					}
+				}
+				this.dragging = false
+				this.dragOffsetPct = 0
+			},
+			
+			// 切换到指定标签
+			switchToTab(index) {
+				if (index < 0 || index >= this.computedList.length) return
+				
+				const targetItem = this.computedList[index]
+				if (targetItem && !targetItem.disabled) {
+					this.innerCurrent = index
+					this.resize()
+					this.$emit('change', {
+						...targetItem,
+						index
+					})
+					this.updateChildren()
+				} else {
+					this.findNextAvailableTab(index)
+				}
+			},
+			
+			// 根据方向步进查找下一个可用索引
+			findAvailableByStep(startIndex, step) {
+				const list = this.computedList
+				if (!Array.isArray(list) || list.length === 0) return -1
+				let i = startIndex + step
+				while (i >= 0 && i < list.length) {
+					if (list[i] && !list[i].disabled) return i
+					i += step
+				}
+				return -1
+			}
 		},
 	}
 </script>
@@ -433,6 +558,20 @@
 					border-radius: 100px;
 					transition-property: transform;
 					transition-duration: 300ms;
+				}
+			}
+		}
+
+		&__content {
+			overflow: hidden;
+			&__body {
+				position: relative;
+				width: 100%;
+				height: 100%;
+
+				&--animated {
+					display: flex;
+					flex-direction: row;
 				}
 			}
 		}

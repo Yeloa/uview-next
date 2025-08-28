@@ -1,6 +1,8 @@
 <template>
-	<view v-if="isActive" class="u-tabs-item" :style="[$u.addStyle(customStyle)]">
-		<slot />
+	<view class="u-tabs-item" :style="[$u.addStyle(customStyle)]">
+		<template v-if="isActive">
+			<slot />
+		</template>
 	</view>
 </template>
 
