@@ -1,4 +1,6 @@
 
+import theme from '../config/theme.js';
+
 export default {
     // 定义每个组件都可能需要用到的外部样式以及类名
     props: {
@@ -49,6 +51,14 @@ export default {
             // #ifdef APP-NVUE
             return uni.$u;
             // #endif
+        },
+        $uColor() {
+            return (propName) => {
+                if (this[propName] && theme.hasOwnProperty(this[propName])) {
+                    return theme[this[propName]];
+                }
+                return this[propName];
+            };
         },
         /**
          * 生成bem规则类名

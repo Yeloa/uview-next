@@ -5,18 +5,19 @@
 		:class="[vertical && 'u-loading-icon--vertical']"
 		v-if="show"
 	>
+	
 		<view
 			v-if="!webviewHide"
 			class="u-loading-icon__spinner"
 			:class="[`u-loading-icon__spinner--${mode}`]"
 			ref="ani"
 			:style="{
-				color: color,
+				color: $uColor('color'),
 				width: $u.addUnit(size),
 				height: $u.addUnit(size),
-				borderTopColor: color,
-				borderBottomColor: otherBorderColor,
-				borderLeftColor: otherBorderColor,
+				borderTopColor: $uColor('color'),
+				borderBottomColor: mode === 'semicircle' ? $uColor('color') : otherBorderColor,
+				borderLeftColor: mode === 'semicircle' ? $uColor('color') : otherBorderColor,
 				borderRightColor: otherBorderColor,
 				'animation-duration': `${duration}ms`,
 				'animation-timing-function': mode === 'semicircle' || mode === 'circle' ? timingFunction : ''
@@ -38,7 +39,7 @@
 					class="u-loading-indicator"
 					:animating="true"
 					:style="{
-						color: color,
+						color: $uColor('color'),
 						width: $u.addUnit(size),
 						height: $u.addUnit(size)
 					}"
@@ -51,7 +52,7 @@
 			class="u-loading-icon__text"
 			:style="{
 				fontSize: $u.addUnit(textSize),
-				color: textColor,
+				color: $uColor('textColor'),
 			}"
 		>{{text}}</text>
 	</view>
