@@ -1,6 +1,9 @@
 <template>
 	<view class="uqrcode"
-		:style="{ width: $u.addUnit(templateOptions.width), height: $u.addUnit(templateOptions.height) }">
+		:style="[{ 
+			width: $u.addUnit(templateOptions.width),
+			height: $u.addUnit(templateOptions.height) 
+		}]">
 		<view class="uqrcode-canvas-wrapper">
 			<!-- 画布 -->
 			<!-- #ifndef APP-NVUE -->
@@ -21,16 +24,31 @@
 		</view>
 
 		<!-- 加载效果 -->
-		<view class="uqrcode-makeing" v-if="loading === undefined ? makeing : loading">
+		<view class="uqrcode-makeing" v-if="(loading === undefined) ? makeing : loading">
 			<slot name="loading">
 				<u-loading-icon></u-loading-icon>
 			</slot>
 		</view>
 
 		<!-- 错误处理 -->
-		<view class="uqrcode-error" v-if="isError" @click="onClick">
+		<view class="uqrcode-makeing" v-if="isError" @click="onClick">
 			<slot name="error" :error="error">
-				<text class="uqrcode-error-message">{{ error.errMsg }}</text>
+				<text class="uqrcode-error-message">{{ error.errMsg || '生成失败' }}</text>
+			</slot>
+		</view>
+
+		<view class="uqrcode-makeing" v-if="status === 'expired'">
+			<slot name="expired">
+				<text class="uqrcode-expired-message">{{ expiredText }}</text>
+				<view class="uqrcode-expired-btn" @click="onRefresh">
+					<u-icon name="reload" size="20" color="primary" :label="refreshText" labelColor="primary"></u-icon>
+				</view>
+			</slot>
+		</view>
+
+		<view class="uqrcode-makeing" v-if="status === 'scanned'">	
+			<slot name="scanned">
+				<u-icon name="checkmark-circle-fill" size="20" color="primary" :label="scannedText"></u-icon>
 			</slot>
 		</view>
 
@@ -85,6 +103,7 @@ let instance = null;
  * @property {String}	 queue  队列绘制 (默认 false)
  * @property {String}	 isQueueLoadImage  是否队列加载图片，选择true将通过队列缓存所需要加载的图片。优点是加载重复资源可减少资源请求次数，节省网络资源，缺点是会转化为同步请求，资源不重复且多的情况下，等待时间会更久。总之，请求重复资源较多则选择true，请求不重复资源较多则选择false (默认 false)
  * @property {String}	 loading  loading态 (默认 false)
+ * @property {String}	 status 状态 expired,scanned
  * @property {String}	 h5SaveIsDownload  H5保存即自动下载（在支持的环境下），默认false为仅弹层提示用户需要长按图片保存，不会自动下载 (默认 false)
  * @property {String}	 h5DownloadName  H5下载名称 
  * @property {String}	 h5SaveTip  H5保存二维码时候是否显示提示
@@ -111,7 +130,7 @@ export default {
 			makeing: false,
 			drawing: false,
 			isError: false,
-			error: undefined,
+			error: {},
 			isH5Save: false,
 			tempFilePath: '',
 			templateOptions: {
@@ -172,9 +191,10 @@ export default {
 		}
 	},
 	// #ifdef VUE3
-	emits: ["click", "complete", "change"],
+	emits: ["click", "complete", "change", "refresh"],
 		// #endif
 	methods: {
+		
 		/**
 		 * 获取模板选项
 		 */
@@ -535,16 +555,10 @@ export default {
 		 * 生成完成
 		 */
 		complete(success = true, errMsg = '') {
-			if (success) {
-				this.$emit('complete', {
-					success
-				});
-			} else {
-				this.$emit('complete', {
-					success,
-					errMsg
-				});
-			}
+			this.$emit('complete', {
+				success,
+				errMsg
+			});
 		},
 		/**
 		 * 导出临时路径
@@ -756,7 +770,9 @@ export default {
 		getInstance() {
 			return instance;
 		},
-	
+		onRefresh() {
+			this.$emit('refresh');
+		},
 		getLoadImage(loadImage) {
 			var that = this;
 			if (typeof loadImage == 'function') {
@@ -832,7 +848,10 @@ function deepReplace(o = {}, r = {}, c = false) {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
+@import "../../libs/css/components.scss";
+
 .uqrcode {
 	position: relative;
 }
@@ -853,24 +872,28 @@ function deepReplace(o = {}, r = {}, c = false) {
     /* #endif */
     justify-content: center;
     align-items: center;
-}
-
-.uqrcode-error {
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	/* #ifndef APP-NVUE */
-	display: flex;
-	/* #endif */
-	justify-content: center;
-	align-items: center;
+	background:  rgba(255, 255, 255, 0.9);
 }
 
 .uqrcode-error-message {
-	font-size: 12px;
-	color: #939291;
+	font-size: 15px;
+	font-weight: 800;
+	color: #333;
+}
+
+.uqrcode-expired-message {
+	font-size: 15px;
+	font-weight: 800;
+	color: #333;
+}
+
+
+.uqrcode-expired-btn {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	margin-top: 5px;
 }
 
 /* #ifdef H5 */

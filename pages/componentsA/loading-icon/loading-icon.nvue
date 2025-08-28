@@ -12,7 +12,7 @@
 			<text class="u-demo-block__title">半圆loading</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__loading-item">
-					<u-loading-icon mode="semicircle"></u-loading-icon>
+					<u-loading-icon mode="semicircle" color="primary"  timingFunction="linear"></u-loading-icon>
 				</view>
 			</view>
 		</view>

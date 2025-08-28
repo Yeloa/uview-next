@@ -11,10 +11,27 @@ export default defineProps('qrcode', {
         type: Object,
         default: () => ({}) 
     },
+    // 状态
+    status: {
+        type: String,
+        default: ''
+    },
+    expiredText:{
+        type: String,
+        default: '二维码已过期'
+    },
+    scannedText:{
+        type: String,
+        default: '已扫描'
+    },
+    refreshText:{
+        type: String,
+        default: '点击刷新'
+    },
     // 二维码大小
     size: {
         type: [String, Number],
-        default: 200
+        default: 140
     },
     // 导出的文件类型
     fileType: {
