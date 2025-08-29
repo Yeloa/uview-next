@@ -79,5 +79,9 @@ export default defineProps('checkbox', {
     labelDisabled: {
         type: [String, Boolean],
         default: ''
+    },
+    plain: {
+        type: Boolean,
+        default: null
     }
 })

@@ -99,15 +99,30 @@
 	import mpMixin from '../../libs/mixin/mpMixin';
 	/**
 	 * Tabs 标签
-	 * @description tabs标签组件，在标签多的时候，可以配置为左右滑动，标签少的时候，可以禁止滑动。 该组件的一个特点是配置为滚动模式时，激活的tab会自动移动到组件的中间位置。
+	 * @description tabs标签组件，在标签多的时候，可以配置为左右滑动，标签少的时候，可以禁止滑动。激活的tab会自动移动到组件的中间位置。
 	 * @tutorial https://uview.d3u.cn/components/tabs.html
-	 * @property {String | Number}	duration			滑块移动一次所需的时间，单位秒（默认 200 ）
-	 * @property {String | Number}	swierWidth			swiper的宽度（默认 '750rpx' ）
-	 * @property {String}	keyName	 从`list`元素对象中读取的键名（默认 'name' ）
-	 * @event {Function(index)} change 标签改变时触发 index: 点击了第几个tab，索引从0开始
-	 * @event {Function(index)} click 点击标签时触发 index: 点击了第几个tab，索引从0开始
-  	 * @event {Function(index)} longPress 长按标签时触发 index: 点击了第几个tab，索引从0开始
-	 * @example <u-tabs :list="list" :is-scroll="false" :current="current" @change="change" @longPress="longPress"></u-tabs>
+	 *
+	 * @property {Number} duration 滑块/内容动画过渡时间(ms)，默认 300
+	 * @property {Boolean} animated 是否启用转场动画，默认 false
+	 * @property {Boolean} swipeable 是否启用左右滑动切换，默认 false
+	 * @property {String|Number} height 内容区域固定高度，默认 ''(自适应)
+	 * @property {Array} list tabs标签数组，默认 []
+	 * @property {String} lineColor 滑块颜色，默认主题色
+	 * @property {String|Object} activeStyle 选中项文字样式，默认 { color: theme.contentColor }
+	 * @property {String|Object} inactiveStyle 未选中项文字样式，默认 { color: theme.lightColor }
+	 * @property {String|Number} lineWidth 滑块长度，默认 20
+	 * @property {String|Number} lineHeight 滑块高度，默认 3
+	 * @property {String} lineBgSize 滑块背景显示大小(背景为图片时使用)，默认 'cover'
+	 * @property {String|Object} itemStyle 菜单item样式，默认 { height: '44px' }
+	 * @property {Boolean} scrollable 菜单是否可滚动，默认 true
+	 * @property {Number|String} current 当前选中标签索引/标识，默认 0
+	 * @property {String} keyName 从 list 元素对象中读取标题的键名，默认 'name'
+	 *
+	 * @event {Function} change 标签改变时触发，参数 { index }
+	 * @event {Function} click 点击标签时触发，参数 { index }
+	 * @event {Function} longPress 长按标签时触发，参数 { index }
+	 *
+	 * @example <u-tabs :list="list" :scrollable="false" :current="current" @change="change" @longPress="longPress"></u-tabs>
 	 */
 	export default {
 		name: 'u-tabs',

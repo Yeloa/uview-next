@@ -4,7 +4,7 @@
 			<text class="u-demo-block__title">基础用法</text>
 			<view class="u-demo-block__content">
 				<view class="u-demo-item">
-					<u-amount v-model="value1" />
+					<u-amount v-model="value1"/>
 				</view>
 			</view>
 		</view>

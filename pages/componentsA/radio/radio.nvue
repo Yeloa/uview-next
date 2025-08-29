@@ -31,11 +31,11 @@
 					<u-radio-group
 						v-model="radiovalue8"
 						@change="groupChange"
-						:disabled="true"
 						shape="button"
+						:plain="false"
+						inactiveColor="#f1f1f1"
 					>
 						<u-radio v-for="(item, index) in radiolist8" 
-							:disabled="!index" 
 							:key="index" 
 							:label="item.name" 
 							:name="item.name" 

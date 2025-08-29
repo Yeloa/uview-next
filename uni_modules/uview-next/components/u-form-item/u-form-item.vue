@@ -13,10 +13,10 @@
 				<view
 					class="u-form-item__body__left"
 					v-if="required || leftIcon || label"
-					:style="{
+					:style="[{
 						width: $u.addUnit(labelWidth || parentData.labelWidth),
 						marginBottom: (labelPosition || parentData.labelPosition) === 'left' ? 0 : '5px',
-					}"
+					}]"
 				>
 					<!-- 为了块对齐 -->
 					<view class="u-form-item__body__left__content">

@@ -55,7 +55,8 @@ export default {
 				this.iconSize,
 				this.borderBottom,
 				this.placement,
-				this.activeLabelColor
+				this.activeLabelColor,
+				this.plain
 			]
 		},
 		bemClass() {

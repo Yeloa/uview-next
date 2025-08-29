@@ -46,8 +46,8 @@
 	 * @property {Boolean} 		capital 		数字是否转换为大写中文 （默认 false ）
 	 * @property {String} 		fontSize 		整数字体大小 （默认 '' ）
 	 * @property {String|Number} fontSizeRatio 	金融符号小数字体大小 （默认 0.7 ）
-	 * @property {String} 		color 			颜色 （默认 '' ）
-	 * @property {String} 		colorRatio		金融符号与小数字体颜色
+	 * @property {String} 		color 			颜色，支持主题色 （默认 '' ）
+	 * @property {String} 		colorRatio		金融符号与小数字体颜色，支持主题色
 	 * @property {Object}		customStyle		定义需要用到的外部样式
 	 * @example <u-amount v-model="123456.789" :show-separator="true" />
 	 */
@@ -100,7 +100,7 @@
 			textStyle() {
 				const style = {};
 				if (this.color){
-					style.color = this.color;
+					style.color = this.$uColor('color');
 				}
 				if (this.fontSize){
 					style.fontSize = this.fontSize;
@@ -112,10 +112,10 @@
 			symbolStyle() {
 				const style = {};
 				if (this.color){
-					style.color = this.color;
+					style.color = this.$uColor('color');
 				}
 				if (this.colorRatio){
-					style.color = this.colorRatio;
+					style.color = this.$uColor('colorRatio');
 				}
 				if (this.fontSize) {
 					if (this.fontSizeRatio) {
@@ -133,7 +133,7 @@
 			integerStyle() {
 				const style = {};
 				if (this.color){
-					style.color = this.color;
+					style.color = this.$uColor('color');
 				}
 				if (this.fontSize){
 					style.fontSize = this.fontSize;
@@ -145,10 +145,10 @@
 			decimalStyle() {
 				const style = {};
 				if (this.color){
-					style.color = this.color;
+					style.color = this.$uColor('color');
 				}
 				if (this.colorRatio){
-					style.color = this.colorRatio;
+					style.color = this.$uColor('colorRatio');
 				}
 				if (this.fontSize) {
 					if (this.fontSizeRatio) {

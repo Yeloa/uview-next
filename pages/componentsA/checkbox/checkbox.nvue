@@ -54,6 +54,8 @@
 						v-model="checkboxValue8"
 						@change="checkboxChange"
 						shape="button"
+						:plain="false"
+						inactiveColor="#f1f1f1"
 					>
 						<u-checkbox
 							v-for="(item, index) in checkboxList8"

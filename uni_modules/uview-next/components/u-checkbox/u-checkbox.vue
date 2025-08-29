@@ -88,7 +88,8 @@
 					borderBottom: false,
 					iconPlacement: 'left',
 					labelColor: null,
-					activeLabelColor: null
+					activeLabelColor: null,
+					plain: false
 				}
 			}
 		},
@@ -208,7 +209,10 @@
 			iconWrapStyle() {
 				// checkbox的整体样式
 				const style = {}
-				style.backgroundColor = (this.isChecked || this.indeterminate) && !this.elDisabled ? this.elActiveColor : '#ffffff'
+				style.backgroundColor = (this.isChecked || this.indeterminate) && !this.elDisabled ? 
+					this.elActiveColor :
+					((this.plain === false || this.parentData.plain === false) ? this.elInactiveColor : '#ffffff')
+
 				style.borderColor = (this.isChecked || this.indeterminate) && !this.elDisabled ? this.elActiveColor : this.elInactiveColor
 
 				if(this.elShape != 'button') {

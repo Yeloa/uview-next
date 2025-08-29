@@ -53,10 +53,10 @@
 			badgeStyle() {
 				const style = {}
 				if(this.color) {
-					style.color = this.color
+					style.color = this.$uColor('color');
 				}
 				if (this.bgColor && !this.inverted) {
-					style.backgroundColor = this.bgColor
+					style.backgroundColor = this.$uColor('bgColor');
 				}
 				if (this.absolute) {
 					style.position = 'absolute'

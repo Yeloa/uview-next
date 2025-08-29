@@ -89,5 +89,9 @@ export default defineProps('checkboxGroup', {
     activeLabelColor: {
         type: String,
         default: null
+    },
+    plain: {
+        type: Boolean,
+        default: true
     }
 })

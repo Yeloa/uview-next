@@ -89,7 +89,8 @@
 					placement: 'row',
 					borderBottom: false,
 					iconPlacement: 'left',
-					activeLabelColor: null
+					activeLabelColor: null,
+					plain: false
 				}
 			}
 		},
@@ -200,8 +201,12 @@
 			iconWrapStyle() {
 				// radio的整体样式
 				const style = {}
-				style.backgroundColor = this.checked && !this.elDisabled ? this.elActiveColor : '#ffffff'
-				style.borderColor = this.checked && !this.elDisabled ? this.elActiveColor : this.elInactiveColor
+
+				style.backgroundColor = this.checked && !this.elDisabled ? 
+					this.elActiveColor :
+					((this.plain === false || this.parentData.plain === false) ? this.elInactiveColor : '#ffffff')
+		
+				style.borderColor = this.checked && !this.elDisabled ? this.elActiveColor : this.elInactiveColor;
 
 				if(this.elShape != 'button') {
 					style.width = uni.$u.addUnit(this.elSize)
@@ -334,7 +339,7 @@
 	$u-radio-label-font-size:15px !default;
 	$u-radio-label-disabled-color:#c8c9cc !default;
 	$u-radio-button-border-radius: 100px !default;
-	$u-radio-button-padding:8px 15px !default;
+	$u-radio-button-padding:5px 15px !default;
 	
 	.u-radio {
 		/* #ifndef APP-NVUE */
