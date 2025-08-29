@@ -15,7 +15,9 @@
             "autoclose" : true,
             "delay" : 0
         },
-        "modules" : {},
+        "modules" : {
+            "Push" : {}
+        },
         "distribute" : {
             "android" : {
                 "permissions" : [
@@ -39,7 +41,18 @@
             "ios" : {
                 "dSYMs" : false
             },
-            "sdkConfigs" : {}
+            "sdkConfigs" : {
+                "push" : {
+                    "unipush" : {
+                        "vivo" : {},
+                        "mi" : {},
+                        "meizu" : {},
+                        "honor" : {},
+                        "hms" : {},
+                        "oppo" : {}
+                    }
+                }
+            }
         }
     },
     "quickapp" : {},
@@ -62,7 +75,7 @@
     "uniStatistics" : {
         "enable" : false
     },
-    "vueVersion" : "2",
+    "vueVersion" : "3",
     "h5" : {
         "router" : {
             "mode" : "hash",
@@ -70,5 +83,13 @@
         }
     },
     "fallbackLocale" : "zh-Hans",
-    "locale" : "zh-Hans"
+    "locale" : "zh-Hans",
+    "app-harmony" : {
+        "distribute" : {
+            "bundleName" : "uni.app.UNI2FAFD05",
+            "signingConfigs" : {
+                "release" : {}
+            }
+        }
+    }
 }

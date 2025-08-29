@@ -72,6 +72,6 @@ export default defineProps('radio', {
     },
     plain: {
         type: Boolean,
-        default: null
+        default: true
     }
 })

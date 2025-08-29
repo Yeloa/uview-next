@@ -19,21 +19,15 @@ const i18n = createI18n({
 
 // #ifndef VUE3
 import './uni.promisify.adaptor';
-import store from './store';
-import mixin from './common/mixin';
 
-Vue.prototype.$store = store;
 Vue.config.productionTip = false;
 Vue.use(uView);
-Vue.mixin(mixin);
 App.mpType = 'app';
 const app = new Vue({
 	i18n,
 	...App
 });
 app.$mount();
-// 引入请求封装
-require('./util/request/index')(app);
 // #endif
 
 // #ifdef VUE3

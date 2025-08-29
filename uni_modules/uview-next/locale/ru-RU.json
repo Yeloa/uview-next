@@ -74,5 +74,11 @@
 	"uPaging.loadingMoreNoMoreText": "Нет больше данных",
 
 	"uColorPicker.title": "Выбор цвета",
-	"uColorPicker.confirmText": "Подтвердить"
+	"uColorPicker.confirmText": "Подтвердить",
+
+	"uCropper.loadImageError": "Ошибка загрузки изображения",
+	"uCropper.chooseImageError": "Ошибка выбора изображения",
+	"uCropper.cropError": "Ошибка обрезки",
+	"uCropper.chooseImage": "Пожалуйста, выберите изображение",
+	"uCropper.cropping": "Обрезание..."
 }

@@ -411,6 +411,49 @@ export default class ImageCropper {
                 ctx.drawImage(image, -scaledImgWidth / 2, -scaledImgHeight / 2, scaledImgWidth, scaledImgHeight);
                 ctx.restore();
             }
+          
+            if(this.options.watermark && this.options.watermark.text) {
+                const text = this.options.watermark.text;
+                const fontSize = parseInt(this.options.watermark.fontSize) || 18;
+                const fontFamily = this.options.watermark.fontFamily || 'Arial';
+                const color = this.options.watermark.color || 'rgba(0, 0, 0, 0.2)';
+                const rotate = this.options.watermark.rotate || -30;
+                const spacing = this.options.watermark.spacing || 100;
+                const single = this.options.watermark.single || false;
+                const bold = this.options.watermark.bold || false;
+
+                // 设置水印样式
+                ctx.font = `${bold ? 'bold ' : ''}${fontSize}px ${fontFamily}`;
+                ctx.fillStyle = color;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+
+                if (single) {
+                    // 绘制单个居中水印
+                    const centerX = this.width / 2;
+                    const centerY = this.height / 2;
+                    ctx.translate(centerX, centerY);
+                    ctx.rotate((rotate * Math.PI) / 180);
+                    ctx.fillText(text, 0, 0);
+                } else {
+                    // 绘制网格水印
+                    const cols = Math.ceil(this.width / spacing) + 1;
+                    const rows = Math.ceil(this.height / spacing) + 1;
+
+                    // 绘制水印网格
+                    for (let row = 0; row < rows; row++) {
+                        for (let col = 0; col < cols; col++) {
+                            const x = col * spacing;
+                            const y = row * spacing;
+                            ctx.save();
+                            ctx.translate(x, y);
+                            ctx.rotate((rotate * Math.PI) / 180);
+                            ctx.fillText(text, 0, 0);
+                            ctx.restore();
+                        }
+                    }
+                }
+            }
             
             if(this.options.type == '2d') {
                 this.canvasToTempFilePath(resolve, reject, canvas);

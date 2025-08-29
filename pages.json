@@ -378,6 +378,24 @@
 					"style": {
 						"navigationBarTitleText": "日期横条"
 					}
+				},
+				{
+					"path": "sidebar/sidebar",
+					"style": {
+						"navigationBarTitleText": "侧边栏"
+					}
+				},
+				{
+					"path": "sidebar/anchor",
+					"style": {
+						"navigationBarTitleText": "锚点用法"
+					}
+				},
+				{
+					"path": "sidebar/switch",
+					"style": {
+						"navigationBarTitleText": "切换页面用法"
+					}
 				}
 			]
 		},
@@ -618,12 +636,83 @@
 					}
 				}
 			]
+		},
+		{
+			"root": "pages/componentsD",
+			"pages": [
+				{
+					"path": "wx-auth/wx-auth",
+					"style": {
+						"navigationBarTitleText": "微信授权"
+					}
+				},
+				{
+					"path": "paging/paging",
+					"style": {
+						"navigationBarTitleText": "UPaging",
+						"mp-alipay": {
+							"allowsBounceVertical": "NO"
+						}
+					}
+				},
+				{
+					"path": "paging/base",
+					"style": {
+						"navigationBarTitleText": "基础演示",
+						"mp-alipay": {
+							"allowsBounceVertical": "NO"
+						}
+					}
+				},
+				{
+					"path": "paging/fixed",
+					"style": {
+						"navigationBarTitleText": "非fixed布局",
+						"mp-alipay": {
+							"allowsBounceVertical": "NO"
+						}
+					}
+				},
+				{
+					"path": "paging/page_scroll",
+					"style": {
+						"navigationBarTitleText": "页面滚动",
+						"mp-alipay": {
+							"allowsBounceVertical": "NO"
+						}
+					}
+				},
+				{
+					"path": "paging/popup",
+					"style": {
+						"navigationBarTitleText": "在弹窗中使用",
+						"mp-alipay": {
+							"allowsBounceVertical": "NO"
+						}
+					}
+				},
+				{
+					"path": "tree/tree",
+					"style": {
+						"navigationBarTitleText": "树形组件",
+						"mp-alipay": {
+							"allowsBounceVertical": "NO"
+						}
+					}
+				},
+				{
+					"path": "colorPicker/colorPicker",
+					"style": {
+						"navigationBarTitleText": "颜色选择器"
+					}
+				}
+			]
 		}
 	],
 	"preloadRule": {
 		"pages/example/components": {
 			"network": "all",
-			"packages": ["pages/componentsA", "pages/componentsB"]
+			"packages": ["pages/componentsA", "pages/componentsB", "pages/componentsC", "pages/componentsD"]
 		}
 	},
 	"easycom": {

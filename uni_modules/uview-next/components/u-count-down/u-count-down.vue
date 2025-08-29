@@ -126,7 +126,7 @@
 			// 重置倒计时
 			reset() {
 				this.pause()
-				this.remainTime = this.time
+				this.remainTime = Number(this.time)
 				this.setRemainTime(this.remainTime)
 				if (this.autoStart) {
 					this.start()

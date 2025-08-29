@@ -15,5 +15,4 @@
 	/*每个页面公共css */
 	@import "@/uni_modules/uview-next/index.scss";
 	@import "common/demo.scss";
-	
 </style>

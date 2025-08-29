@@ -74,5 +74,11 @@
 	"uPaging.loadingMoreNoMoreText": "さらにデータはありません",
 
 	"uColorPicker.title": "色を選択",
-	"uColorPicker.confirmText": "確定"
+	"uColorPicker.confirmText": "確定",
+
+	"uCropper.loadImageError": "画像の読み込みに失敗しました",
+	"uCropper.chooseImageError": "画像の選択に失敗しました",
+	"uCropper.cropError": "画像の切り抜きに失敗しました",
+	"uCropper.chooseImage": "画像を先に選択してください",
+	"uCropper.cropping": "画像の切り抜き中..."
 }

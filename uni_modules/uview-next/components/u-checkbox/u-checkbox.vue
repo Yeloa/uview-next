@@ -89,7 +89,7 @@
 					iconPlacement: 'left',
 					labelColor: null,
 					activeLabelColor: null,
-					plain: false
+					plain: true
 				}
 			}
 		},

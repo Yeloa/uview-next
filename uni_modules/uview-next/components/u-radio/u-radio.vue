@@ -90,7 +90,7 @@
 					borderBottom: false,
 					iconPlacement: 'left',
 					activeLabelColor: null,
-					plain: false
+					plain: true
 				}
 			}
 		},

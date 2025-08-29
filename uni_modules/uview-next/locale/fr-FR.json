@@ -74,5 +74,11 @@
 	"uPaging.loadingMoreNoMoreText": "Aucune donnée disponible",
 
 	"uColorPicker.title": "Sélectionner une couleur",
-	"uColorPicker.confirmText": "Confirmer"
+	"uColorPicker.confirmText": "Confirmer",
+
+	"uCropper.loadImageError": "Erreur de chargement de l'image",
+	"uCropper.chooseImageError": "Erreur de sélection d'image",
+	"uCropper.cropError": "Erreur de découpage",
+	"uCropper.chooseImage": "Veuillez sélectionner une image",
+	"uCropper.cropping": "Découpage en cours..."
 }

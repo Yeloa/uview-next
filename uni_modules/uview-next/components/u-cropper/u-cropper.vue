@@ -47,8 +47,8 @@
             <!-- #ifdef MP-WEIXIN -->
             type="2d"
             <!-- #endif -->
-            canvas-id="cropper"
-            id="cropper"
+            :canvas-id="canvasId"
+            :id="canvasId"
             class="u-cropper__canvas" :style="canvasStyle"></canvas>
     </view>
 </template>
@@ -84,7 +84,7 @@ export default {
     data() {
         return {
             cropper: null,
-            canvasId: uni.$u.guid(),
+            canvasId: 'cropper' + uni.$u.guid(),
             viewData: {
                 imageLoaded: false,
                 imageSrc: '',
@@ -151,20 +151,21 @@ export default {
       
     },
     // #ifdef VUE3
-    emits: ['change', 'open', 'close','confirm'],
+    emits: ['change', 'open', 'close','confirm','error'],
     // #endif
     methods: {
         // 初始化裁剪器
         async initCropper() {
 
             const options = {
-                canvasId: 'cropper',
+                canvasId: this.canvasId,
                 width: uni.$u.getPx(this.width),
                 height: uni.$u.getPx(this.height),
                 rectWidth: uni.$u.getPx(this.rectWidth),
                 rectHeight: uni.$u.getPx(this.rectHeight),
-                fileType: 'jpg',
-                quality: 0.8,
+                watermark: this.watermark,
+                fileType: this.fileType,
+                quality: this.quality,
                 onUpdate: (viewData) => {
                     this.viewData = viewData;
                 }
@@ -186,11 +187,7 @@ export default {
         loadImage(src) {
             if (!this.cropper) return;
             this.cropper.setImage(src).catch(err => {
-                console.error('图片加载失败:', err);
-                uni.showToast({
-                    title: '图片加载失败',
-                    icon: 'none'
-                });
+                this.$emit('error', this.$t('uCropper.loadImageError'));
             });
         },
         
@@ -206,21 +203,14 @@ export default {
                     this.loadImage(imagePath);
                 },
                 fail: () => {
-                    uni.showToast({
-                        title: '选择图片失败',
-                        icon: 'none'
-                    });
+                    this.$emit('error', this.$t('uCropper.chooseImageError'));
                 }
             });
         },
         
         // 图片加载失败
         onImageError(e) {
-            console.error('图片加载失败', e);
-            uni.showToast({
-                title: '图片加载失败',
-                icon: 'none'
-            });
+            this.$emit('error', this.$t('uCropper.loadImageError'));
         },
         
         // 旋转图片
@@ -240,15 +230,12 @@ export default {
         // 确认裁剪
         async confirmCrop() {
             if (!this.cropper || !this.viewData.imageLoaded) {
-                uni.showToast({
-                    title: '请先选择图片',
-                    icon: 'none'
-                });
+                this.$emit('error', this.$t('uCropper.chooseImage'));
                 return;
             }
             
             uni.showLoading({
-                title: '裁剪中...',
+                title: this.$t('uCropper.cropping'),
                 mask: true
             });
 
@@ -256,11 +243,7 @@ export default {
                 this.$emit('confirm',res);
                 this.close();
             }).catch(err => {
-                console.error('裁剪失败:', err);
-                uni.showToast({
-                    title: '裁剪失败',
-                    icon: 'none'
-                });
+                this.$emit('error', this.$t('uCropper.cropError'));
             }).finally(()=>{
                 uni.hideLoading();
             });

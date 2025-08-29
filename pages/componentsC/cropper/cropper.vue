@@ -55,9 +55,11 @@
             :rect-width="rectWidth"
             :rect-height="rectHeight"
             :file-type="fileType"
+            :watermark="watermark"
             @change="onImageChange"
             @confirm="onCropConfirm"
             @close="onCropperClose"
+            @error="onCropperError"
         ></u-cropper>
     </view>
 </template>
@@ -80,6 +82,10 @@ export default {
             basicResult: '',
             customResult: '',
             circleResult: '',
+            watermark:{
+                text:'测试水印',
+                bold:true,
+            }
         };
     },
     methods: {
@@ -140,6 +146,13 @@ export default {
         
         // 裁剪器关闭回调
         onCropperClose() {
+            this.showCropper = false;
+        },
+        onCropperError(error) {
+            uni.showToast({
+                title: error,
+                icon: 'none'
+            });
             this.showCropper = false;
         }
     }

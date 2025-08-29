@@ -1,4 +1,5 @@
 module.exports = {
+    //transpileDependencies: ['uview-next'],
     // 配置路径别名
     configureWebpack: {
         devServer: {

@@ -74,5 +74,11 @@
 	"uPaging.loadingMoreNoMoreText": "Keine weiteren Daten verfügbar",
 
 	"uColorPicker.title": "Farbe auswählen",
-	"uColorPicker.confirmText": "Bestätigen"
+	"uColorPicker.confirmText": "Bestätigen",
+
+	"uCropper.loadImageError": "Bild laden fehlgeschlagen",
+	"uCropper.chooseImageError": "Bild auswählen fehlgeschlagen",
+	"uCropper.cropError": "Bild zuschneiden fehlgeschlagen",
+	"uCropper.chooseImage": "Bitte wählen Sie ein Bild aus",
+	"uCropper.cropping": "Zuschneiden..."
 }

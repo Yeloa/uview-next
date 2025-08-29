@@ -359,24 +359,21 @@
 
                 const ctx = this.ctx;
                 const text = this.watermark.text;
-                const fontSize = parseInt(this.watermark.fontSize);
-                const fontFamily = this.watermark.fontFamily;
-                const color = this.watermark.color;
-                const rotate = this.watermark.rotate;
-                const spacing = this.watermark.spacing;
+                const fontSize = parseInt(this.watermark.fontSize) || 16;
+                const fontFamily = this.watermark.fontFamily || 'Arial';
+                const color = this.watermark.color || 'rgba(0, 0, 0, 0.2)';
+                const rotate = this.watermark.rotate || -30;
+                const spacing = this.watermark.spacing || 100;
+                const bold = this.watermark.bold || false;
+                const single = this.watermark.single || false;
 
                 // 设置水印样式
-                ctx.font = `${fontSize}px ${fontFamily}`;
+                ctx.font = `${bold ? 'bold ' : ''}${fontSize}px ${fontFamily}`;
                 ctx.fillStyle = color;
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
 
-                // 计算文本尺寸
-                const textMetrics = ctx.measureText(text);
-                const textWidth = textMetrics.width;
-                const textHeight = fontSize;
-
-                if (this.watermark.single) {
+                if (single) {
                     // 绘制单个居中水印
                     const centerX = this.canvasWidth / 2;
                     const centerY = this.canvasHeight / 2;

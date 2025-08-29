@@ -41,9 +41,29 @@ export default defineProps('cropper', {
     	type: String,
     	default: 'jpg'
     },
+    // 输出图片质量，0-1
+    quality: {
+        type: [String, Number],
+        default: 0.9
+    },
     // 是否显示网格线
     showGrid: {
         type: Boolean,
         default: true
+    },
+    // 水印文字
+    watermark: {
+        type: Object,
+        default: () => ({
+            text: '',
+            text: '',
+            bold: false,
+            color: 'rgba(0, 0, 0, 0.2)',
+            fontSize: 16,
+            fontFamily: 'Arial',
+            rotate: -30,
+            spacing: 100,
+            single: false
+        })
     }
 })

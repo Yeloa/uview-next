@@ -82,6 +82,6 @@ export default defineProps('checkbox', {
     },
     plain: {
         type: Boolean,
-        default: null
+        default: true
     }
 })

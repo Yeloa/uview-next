@@ -74,5 +74,11 @@
 	"uPaging.loadingMoreNoMoreText": "더 이상 데이터가 없습니다",
 
 	"uColorPicker.title": "색상 선택",
-	"uColorPicker.confirmText": "확인"
+	"uColorPicker.confirmText": "확인",
+
+	"uCropper.loadImageError": "이미지 로딩 실패",
+	"uCropper.chooseImageError": "이미지 선택 실패",
+	"uCropper.cropError": "이미지 자르기 실패",
+	"uCropper.chooseImage": "이미지를 먼저 선택해 주세요",
+	"uCropper.cropping": "이미지 자르기 중..."
 }

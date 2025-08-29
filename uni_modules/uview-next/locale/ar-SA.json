@@ -74,5 +74,11 @@
 	"uPaging.loadingMoreNoMoreText": "لا يوجد المزيد",
 
 	"uColorPicker.title": "اختيار اللون",
-	"uColorPicker.confirmText": "تأكيد"
+	"uColorPicker.confirmText": "تأكيد",
+
+	"uCropper.loadImageError": "فشل تحميل الصورة",
+	"uCropper.chooseImageError": "فشل اختيار الصورة",
+	"uCropper.cropError": "فشل قص الصورة",
+	"uCropper.chooseImage": "الرجاء اختيار صورة",
+	"uCropper.cropping": "يتم قص الصورة..."
 }

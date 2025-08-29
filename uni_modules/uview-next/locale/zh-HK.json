@@ -74,5 +74,11 @@
 	"uPaging.loadingMoreNoMoreText": "沒有更多數據了",
 
 	"uColorPicker.title": "選擇顏色",
-	"uColorPicker.confirmText": "確定"
+	"uColorPicker.confirmText": "確定",
+
+	"uCropper.loadImageError": "圖片加載失敗",
+	"uCropper.chooseImageError": "選擇圖片失敗",
+	"uCropper.cropError": "裁剪失敗",
+	"uCropper.chooseImage": "請先選擇圖片",
+	"uCropper.cropping": "裁剪中..."
 }
