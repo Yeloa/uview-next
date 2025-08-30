@@ -90,6 +90,7 @@
 			:show="show6"
 			@close="show6 = false"
 			title="超出滚动"
+			:closeable="true"
 			:actions="actions6"
 			:height="300"
 		></u-action-sheet>

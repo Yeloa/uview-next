@@ -11,6 +11,11 @@ export default defineProps('actionSheet', {
 		type: String,
 		default: ''
 	},
+	// 弹窗标题样式
+    titleStyle: {
+        type: [Object, String],
+        default: () => ({})
+    },
 	// 选项上方的描述信息
 	description: {
 		type: String,
@@ -26,6 +31,11 @@ export default defineProps('actionSheet', {
 		type: String,
 		default: ''
 	},
+	// 是否显示关闭图标
+    closeable: {
+        type: Boolean,
+        default: false
+    },
 	// 点击某个菜单项时是否关闭弹窗
 	closeOnClickAction: {
 		type: Boolean,

@@ -154,7 +154,7 @@ $u-cell-label-margin-top: 5px !default;
 
 .u-cell {
     &__body {
-        @include flex();
+        @include flex(row);
         /* #ifndef APP-NVUE */
         box-sizing: border-box;
         /* #endif */
@@ -178,7 +178,7 @@ $u-cell-label-margin-top: 5px !default;
 
     &__left-icon-wrap,
     &__right-icon-wrap {
-        @include flex();
+        @include flex(row);
         align-items: center;
         // height: $u-cell-line-height;
         font-size: $u-cell-icon-size;
@@ -203,7 +203,7 @@ $u-cell-label-margin-top: 5px !default;
 
     &__title {
         flex: $u-cell-title-flex;
-
+        @include flex(row);
         &-text {
             font-size: $u-cell-title-font-size;
             line-height: $u-cell-title-line-height;

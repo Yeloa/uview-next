@@ -3,14 +3,16 @@
         <view v-if="$slots.trigger || $slots.$trigger" class="u-action-sheet-trigger" @click="open(true)">
             <slot name="trigger"></slot>
         </view>
-        <u-popup :show="showPopup" mode="bottom" @close="closeHandler" :safeAreaInsetBottom="safeAreaInsetBottom" :round="round">
+        <u-popup :show="showPopup"
+            mode="bottom" 
+            :title="title" 
+            :round="round"
+            :closeable="closeable"
+            :titleStyle="[{fontWeight: 'bold' },$u.addStyle(titleStyle)]"
+            :safeAreaInsetBottom="safeAreaInsetBottom" 
+            @close="cancel" 
+        >
             <view class="u-action-sheet">
-                <view class="u-action-sheet__header" v-if="title">
-                    <text class="u-action-sheet__header__title u-line-1">{{ title }}</text>
-                    <view class="u-action-sheet__header__icon-wrap" @tap.stop="cancel">
-                        <u-icon name="close" size="17" color="#c8c9cc" bold></u-icon>
-                    </view>
-                </view>
                 <text class="u-action-sheet__description" :style="[{
                     marginTop: `${title && description ? 0 : '18px'}`
                 }]" v-if="description">{{ description }}</text>
@@ -149,12 +151,6 @@ export default {
     emits: ["select", "close"],
     // #endif
     methods: {
-        closeHandler() {
-            // 允许点击遮罩关闭时，才发出close事件
-            if (this.closeOnClickOverlay) {
-                this.$emit('close');
-            }
-        },
         open(isTrigger) {
 			this.isTrigger = isTrigger
 			this.showPopup = true
@@ -191,11 +187,6 @@ export default {
 <style lang="scss" scoped>
 @import "../../libs/css/components.scss";
 $u-action-sheet-reset-button-width: 100% !default;
-$u-action-sheet-title-font-size: 16px !default;
-$u-action-sheet-title-padding: 12px 30px !default;
-$u-action-sheet-title-color: $u-main-color !default;
-$u-action-sheet-header-icon-wrap-right: 15px !default;
-$u-action-sheet-header-icon-wrap-top: 15px !default;
 $u-action-sheet-description-font-size: 13px !default;
 $u-action-sheet-description-color: 14px !default;
 $u-action-sheet-description-margin: 18px 15px !default;
@@ -215,24 +206,6 @@ $u-action-sheet-cancel-text-hover-background-color: rgb(242, 243, 245) !default;
 
 .u-action-sheet {
     text-align: center;
-
-    &__header {
-        position: relative;
-        padding: $u-action-sheet-title-padding;
-
-        &__title {
-            font-size: $u-action-sheet-title-font-size;
-            color: $u-action-sheet-title-color;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        &__icon-wrap {
-            position: absolute;
-            right: $u-action-sheet-header-icon-wrap-right;
-            top: $u-action-sheet-header-icon-wrap-top;
-        }
-    }
 
     &__description {
         font-size: $u-action-sheet-description-font-size;
