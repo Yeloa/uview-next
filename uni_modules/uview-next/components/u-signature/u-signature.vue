@@ -13,18 +13,22 @@
         </view>
 
 		<view class="u-signature__canvas">
-            <canvas
-                :type="type"
-                :canvas-id="canvasId"
-                :id="canvasId"
-                :style="[canvasStyle]"
-                :class="['u-signature__canvas']"
-                :disable-scroll="disableScroll"
-                @touchstart="onCanvasTouchStart"
-                @touchmove="onCanvasTouchMove"
-                @touchend="onCanvasTouchEnd"
-                @touchcancel="onCanvasTouchCancel" >
-            </canvas>
+            <u-canvas 
+                ref="canvasRef"
+                width="100%"
+                height="100%"
+                :disable-scroll="disableScroll" 
+                @onTouchstart="onCanvasTouchStart"
+                @onTouchmove="onCanvasTouchMove"
+                @onTouchend="onCanvasTouchEnd"
+                @onTouchcancel="onCanvasTouchCancel"
+                :customStyle="{
+                    display: 'block',
+                    touchAction: 'none',
+                    flex: 1,
+                    backgroundColor: backgroundColor
+                }"
+            />
 		</view>
 
 		<view v-if="showToolbar" 
@@ -129,7 +133,7 @@
 		mixins: [mpMixin, mixin, props],
 		data() {
 			return {
-                canvasId: 'signatureId_' + uni.$u.guid(),
+                canvasId: 'signature' + uni.$u.guid(),
                 ctx: null,
                 canvas: null,
                 canvasWidth: 0,
@@ -147,14 +151,6 @@
             };
         },
         computed: {
-            is2d() {
-                // #ifdef MP-WEIXIN
-                return this.type == '2d';
-                // #endif
-                // #ifndef MP-WEIXIN
-                return false;
-                // #endif
-            },
             containerStyle() {
                 const style = {
                     width: '100%',
@@ -197,49 +193,11 @@
             async init() {
                 await this.$nextTick();
 
-                const query = uni
-                    .createSelectorQuery()
-                    .in(this)
-                    .select(`#${this.canvasId}`);
+                const { canvas, width, height } = await this.$refs.canvasRef.getCanvasContext();
 
-                if (this.is2d) {
-                    let canvas = await new Promise((resolve) => {
-                        query
-                            .fields({
-                                node: true,
-                                size: true,
-                            })
-                            .exec((res) => {
-                               
-                                this.canvasWidth = parseInt(res[0].width);
-                                this.canvasHeight = parseInt(res[0].height);
-                                resolve(res[0].node);
-                            });
-                    });
-
-                    canvas.width = this.canvasWidth;
-                    canvas.height = this.canvasHeight;
-                    this.ctx = canvas.getContext('2d');
-                    canvasObj[this.canvasId] = canvas;
-                } else {
-                    // 传统 canvas 模式
-                    // #ifdef MP-ALIPAY
-                    this.ctx = uni.createCanvasContext(this.canvasId);
-                    // #endif
-                    // #ifndef MP-ALIPAY
-                    this.ctx = uni.createCanvasContext(this.canvasId, this);
-                    // #endif
-
-                    await new Promise((resolve) => {
-                        query
-                            .boundingClientRect((data) => {
-                                this.canvasWidth = parseInt(data.width);
-                                this.canvasHeight = parseInt(data.height);
-                                resolve();
-                            })
-                            .exec();
-                    });
-                }
+                this.ctx = canvas;
+                this.canvasWidth = width;
+                this.canvasHeight = height;
 
                 // 设置画笔样式
                 this.ctx.lineCap = 'round';
@@ -254,6 +212,7 @@
             // 开始绘制
             onCanvasTouchStart(e) {
                 if (this.disabled) return;
+  
                 const touch = e.touches[0];
                 const point = this.getTouchPoint(touch);
 
@@ -266,6 +225,7 @@
 
             // 绘制中
             onCanvasTouchMove(e) {
+               
                 if (this.disabled || !this.isDrawing) return;
 
                 const touch = e.touches[0];
@@ -340,10 +300,7 @@
                 this.ctx.strokeStyle = this.penColorInner;
                 this.ctx.lineWidth = lineWidth;
                 this.ctx.stroke();
-
-                if (!this.is2d) {
-                    this.ctx.draw(true);
-                }
+                this.ctx.draw(true);
             },
 
             // 计算两点距离
@@ -403,10 +360,7 @@
                     }
                 }
 
-                // 对于非2d canvas，需要调用draw方法
-                if (!this.is2d) {
-                    ctx.draw(true);
-                }
+                ctx.draw(true);
             },
 
             // 重绘历史记录
@@ -472,9 +426,7 @@
                 this.redrawHistory();
 
                 // 对于非2d canvas，需要调用draw方法
-                if (!this.is2d) {
-                    this.ctx.draw(true);
-                }
+                this.ctx.draw(true);
             },
 
             // 保存到历史记录
@@ -534,11 +486,7 @@
                 // 重绘所有笔画
                 this.redrawHistory();
 
-                // 对于非2d canvas，需要调用draw方法
-                if (!this.is2d) {
-                    this.ctx.draw(true);
-                }
-
+                this.ctx.draw(true);
                 this.isEmpty = this.history.length === 0;
             },
 
@@ -549,11 +497,7 @@
                 // 绘制背景和水印
                 this.drawBackgroundAndWatermark();
 
-                //对于非2d canvas，需要调用draw方法
-                if (!this.is2d) {
-                    this.ctx.draw(true);
-                }
-
+                this.ctx.draw(true);
                 this.history = [];
                 this.currentStroke = [];
                 this.isEmpty = true;
@@ -561,7 +505,6 @@
                 // 触发清空事件
                 this.$emit('clear');
             },
-
 
             // 导出图片
             getImage() {
@@ -582,32 +525,14 @@
                         // 临时隐藏水印，只绘制背景和笔画
                         this.clearCanvas();
                         this.redrawHistory();
-
-                        // 对于非2d canvas，需要调用draw方法
-                        if (!this.is2d) {
-                            this.ctx.draw(true);
-                        }
+                        this.ctx.draw(true);
                     }
 
                     let params = {
-                        canvas: canvasObj[this.canvasId],
-                        canvasId: this.canvasId,
                         width: this.canvasWidth,
                         height: this.canvasHeight,
                         fileType: this.fileType,
-                        quality: this.quality,
-                        success: (res) => {
-                            if (needRestoreWatermark) {
-                                this.restoreWatermark();
-                            }
-                            resolve(res.tempFilePath);
-                        },
-                        fail: (err) => {
-                            if (needRestoreWatermark) {
-                                this.restoreWatermark();
-                            }
-                            reject(err);
-                        },
+                        quality: this.quality
                     };
 
                     // 处理boundingBox
@@ -616,12 +541,17 @@
                         params.y = 0;
                     }
 
-                    // #ifdef MP-ALIPAY
-                    uni.canvasToTempFilePath(params);
-                    // #endif
-                    // #ifndef MP-ALIPAY
-                    uni.canvasToTempFilePath(params, this);
-                    // #endif
+                    this.$refs.canvasRef.canvasToTempFilePath(params).then(res => {
+                        if (needRestoreWatermark) {
+                            this.restoreWatermark();
+                        }
+                        resolve(res);
+                    }).catch(err => {
+                        if (needRestoreWatermark) {
+                            this.restoreWatermark();
+                        }
+                        reject(err);
+                    });
                 });
             },
         },

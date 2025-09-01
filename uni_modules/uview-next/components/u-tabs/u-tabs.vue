@@ -457,7 +457,7 @@
 				this.touch.offsetY = Math.abs(this.touch.deltaY)
 				this.touch.direction = this.touch.offsetX > this.touch.offsetY ? 'horizontal' : this.touch.offsetX < this.touch.offsetY ? 'vertical' : ''
 				if (this.touch.direction === 'horizontal') {
-					const containerWidth = this.tabsRect?.width || uni.$u.window().windowWidth
+					const containerWidth = this.tabsRect.width || uni.$u.window().windowWidth
 					if (containerWidth) {
 						this.dragOffsetPct = (this.touch.deltaX / containerWidth) * 100
 					}

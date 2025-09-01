@@ -6,10 +6,35 @@ export default defineProps('qrcode', {
         type: [String, Number],
         default: ''
     },
-    // 选项
-    options: {
-        type: Object,
-        default: () => ({}) 
+    // 背景色
+    background: {
+        type: String,
+        default: '#fff'
+    },
+    // 前景色
+    foreground: {
+        type: String,
+        default: '#000'
+    },
+    // 定位角点颜色
+    pdground: {
+        type: String,
+        default: '#000'
+    },
+    //容错级别
+    level: {
+        type: String,
+        default: 'H'
+    },
+    //二维码图标
+    icon: {
+        type: String,
+        default: ''
+    },
+    //二维码图标大小
+    iconSize: {
+        type: Number,
+        default: 30
     },
     // 状态
     status: {
@@ -38,40 +63,10 @@ export default defineProps('qrcode', {
         type: String,
         default: 'png'
     },
-    // 是否初始化组件后就开始生成
-    start: {
-        type: Boolean,
-        default: true
-    },
-    // 是否数据发生改变自动重绘
-    auto: {
-        type: Boolean,
-        default: true
-    },
-    // 队列绘制，主要针对NVue端
-    queue: {
-        type: Boolean,
-        default: false
-    },
-    // 是否队列加载图片，可减少canvas发起的网络资源请求，节省服务器资源
-    isQueueLoadImage: {
-        type: Boolean,
-        default: false
-    },
-    // loading态
-    loading: {
-        type: Boolean,
-        default: undefined
-    },
-    // H5保存即自动下载（在支持的环境下），默认false为仅弹层提示用户需要长按图片保存，不会自动下载
-    h5SaveIsDownload: {
-        type: Boolean,
-        default: false
-    },
-    // H5下载名称
-    h5DownloadName: {
-        type: String,
-        default: 'QRCode'
+    // 导出的质量
+    quality: {
+        type: Number,
+        default: 1
     }
 });
     

@@ -555,6 +555,11 @@ export default [{
         icon: 'tree',
         title: 'Tree 树形组件',
         title_en: 'Tree'
-    }]
+    },{
+		path: '/pages/componentsD/poster/poster',
+		icon: 'poster',
+		title: 'poster 海报',
+		title_en: 'poster'
+	}]
 }
 ]

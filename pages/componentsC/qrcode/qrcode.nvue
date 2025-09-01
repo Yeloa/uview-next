@@ -10,7 +10,14 @@
 		<view class="u-demo-block">
 			<text class="u-demo-block__title">增加logo</text>
 			<view class="u-demo-block__content">
-				<u-qrcode value="http://uview.d3u.cn/" :options="{foregroundImageSrc:'http://uview.d3u.cn/common/logo.png', foregroundImageBackgroundColor:'none' }"></u-qrcode>
+				<u-qrcode value="http://uview.d3u.cn/" icon="https://uview.d3u.cn/common/logo.png"></u-qrcode>
+			</view>
+		</view>
+
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">加载中状态</text>
+			<view class="u-demo-block__content">
+				<u-qrcode value="http://uview.d3u.cn/" status="loading"></u-qrcode>
 			</view>
 		</view>
 
@@ -31,7 +38,7 @@
 		<view class="u-demo-block">
 			<text class="u-demo-block__title">改变颜色和样式</text>
 			<view class="u-demo-block__content">
-				<u-qrcode value="http://uview.d3u.cn/" :options="{ foregroundColor: '#3eaf7c' }"></u-qrcode>
+				<u-qrcode value="http://uview.d3u.cn/" foreground="#3eaf7c" pdground="#3eaf7c"></u-qrcode>
 			</view>
 		</view>
 

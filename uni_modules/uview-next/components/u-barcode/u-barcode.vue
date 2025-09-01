@@ -3,12 +3,7 @@
 		width: $u.addUnit(barcodeWidth),
 		height: $u.addUnit(barcodeHeight)
 	},$u.addStyle(customStyle)]">
-		<canvas
-			class="u-barcode__canvas"
-			:type="canvasType"
-			:canvas-id="canvasId" 
-			:id="canvasId"
-		></canvas>
+		<u-canvas ref="canvasRef" :width="barcodeWidth" :height="barcodeHeight"></u-canvas>
 	</view>
 </template>
 
@@ -45,21 +40,10 @@
 		mixins: [mpMixin, mixin, props],
 		data() {
 			return {
-				canvasId: 'barcodeId_' + uni.$u.guid(),
 				ctx: null,
 				barcodeWidth: null,
 				barcodeHeight: null,
 				textHeight: 30
-			}
-		},
-		computed: {
-			is2d() {
-				// #ifdef MP-WEIXIN
-				return this.canvasType == '2d';
-				// #endif
-				// #ifndef MP-WEIXIN
-				return false;
-				// #endif
 			}
 		},
 		watch: {
@@ -106,45 +90,10 @@
 			
 			// 初始化canvas
 			async initCanvas(binaryData) {
-				
-				const query = uni
-					.createSelectorQuery()
-					.in(this)
-					.select(`#${this.canvasId}`);
-
-				if (this.is2d) {
-					let canvas = await new Promise((resolve) => {
-						query
-							.fields({
-								node: true,
-								size: true,
-							})
-							.exec((res) => {
-								resolve(res[0].node);
-							});
-					});
-				
-					canvas.width = this.barcodeWidth;
-					canvas.height = this.barcodeHeight;
-					this.ctx = canvas.getContext('2d', { willReadFrequently: true });
-				} else {
-					// #ifdef MP-ALIPAY
-					this.ctx = uni.createCanvasContext(this.canvasId);
-					// #endif
-					// #ifndef MP-ALIPAY
-					this.ctx = uni.createCanvasContext(this.canvasId, this);
-					// #endif
-				}
-
-				// 清空画布并设置背景色
-				if (this.is2d) {
-					this.ctx.fillStyle = this.backgroundColor;
-					this.ctx.fillRect(0, 0, this.barcodeWidth, this.barcodeHeight);
-				} else {
-					this.ctx.setFillStyle(this.backgroundColor);
-					this.ctx.fillRect(0, 0, this.barcodeWidth, this.barcodeHeight);
-				}
-				
+				const { canvas } = await this.$refs.canvasRef.getCanvasContext();
+				this.ctx = canvas;
+				this.ctx.fillStyle = this.backgroundColor;
+				this.ctx.fillRect(0, 0, this.barcodeWidth, this.barcodeHeight);
 				this.drawBarcode(binaryData);
 			},
 
@@ -155,11 +104,7 @@
 				let startY = this.textPosition === 'top' ?	this.textHeight : 0;
 
 				// 绘制条形码
-				if (this.is2d) {
-					this.ctx.fillStyle = this.color;
-				} else {
-					this.ctx.setFillStyle(this.color);
-				}
+				this.ctx.fillStyle = this.color;
 				
 				let drawnBars = 0;
 				for (let i = 0; i < binaryData.length; i++) {
@@ -174,11 +119,8 @@
 				if (this.displayValue) {
 					this.drawText();
 				}
-
-				if (!this.is2d) {
-					this.ctx.draw();
-				}
-				
+			
+				this.ctx.draw(true);
 			},
 
 			// 绘制文本
@@ -193,18 +135,11 @@
 				}
 				
 				// 设置文本样式
-				if (this.is2d) {
-					this.ctx.font = fontString;
-					this.ctx.fillStyle = textColor;
-					this.ctx.textAlign = this.textAlign;
-					this.ctx.textBaseline = 'middle';
-				} else {
-					this.ctx.setFontSize(this.fontSize);
-					this.ctx.setFillStyle(textColor);
-					this.ctx.setTextAlign(this.textAlign);
-					this.ctx.setTextBaseline('middle');
-				}
-
+				this.ctx.font = fontString;
+				this.ctx.fillStyle = textColor;
+				this.ctx.textAlign = this.textAlign;
+				this.ctx.textBaseline = 'middle';
+				
 				// 计算文本位置
 				let textX;
 				if (this.textAlign === 'left') {
@@ -240,10 +175,5 @@
 		flex-direction: row;
 		align-items: center;
 		justify-content: center;
-		
-		&__canvas {
-			width: 100%;
-			height: 100%;
-		}
 	}
 </style>

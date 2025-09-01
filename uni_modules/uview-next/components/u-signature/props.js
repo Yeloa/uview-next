@@ -96,16 +96,6 @@ export default defineProps('signature', {
         type: String,
         default: '#ffffff',
     },
-    // canvas类型
-    type: {
-        type: String,
-        // #ifdef MP-WEIXIN || MP-TOUTIAO
-        default: '2d',
-        // #endif
-        //#ifndef MP-WEIXIN || MP-TOUTIAO
-        default: 'webgl',
-        // #endif
-    },
     // 是否开启压感
     openSmooth: {
         type: Boolean,

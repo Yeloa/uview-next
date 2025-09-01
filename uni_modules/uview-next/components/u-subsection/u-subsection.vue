@@ -93,7 +93,7 @@ export default {
 				// #ifdef APP-NVUE
 				// 在安卓nvue上，如果通过translateX进行位移，到最后一个时，会导致右侧无法绘制圆角
 				// 故用animation模块进行位移
-				const ref = this.$refs?.['u-subsection__bar']?.ref;
+				const ref = this.$refs.['u-subsection__bar'].ref;
 				// 不存在ref的时候(理解为第一次初始化时，需要渲染dom，进行一定延时再获取ref)，这里的100ms是经过测试得出的结果(某些安卓需要延时久一点)，勿随意修改
 				uni.$u.sleep(ref ? 0 : 100).then(() => {
 					animation.transition(this.$refs['u-subsection__bar'].ref, {

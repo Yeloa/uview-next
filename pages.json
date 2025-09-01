@@ -706,6 +706,13 @@
 						"navigationBarTitleText": "颜色选择器"
 					}
 				}
+				,
+				{
+					"path": "poster/poster",
+					"style": {
+						"navigationBarTitleText": "海报生成"
+					}
+				}
 			]
 		}
 	],
