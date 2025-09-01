@@ -1022,10 +1022,11 @@ let QRCode = {};
     QRCode = function (opt) {
         //设置默认参数
         this.options = {
-            canvas: opt.canvas,
-            offsetX: opt.offsetX || 0,
-            offsetY: opt.offsetY || 0,
-            draw: opt.draw || true,
+            canvas: null,
+            offsetX: 0,
+            offsetY: 0,
+            draw: true,
+            callback:null,
             text: '',
             size: 256,
             correctLevel: 'H', // 改为字母表示：L(7%), M(15%), Q(25%), H(30%)
@@ -1126,7 +1127,11 @@ let QRCode = {};
             }
             
             if(options.draw){
-                ctx.draw(true);
+                ctx.draw(true, ()=>{
+                    if(options.callback){
+                        options.callback();
+                    }
+                });
             }
         }
         createCanvas(this.options);

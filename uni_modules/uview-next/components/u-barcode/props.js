@@ -70,5 +70,10 @@ export default defineProps('barcode', {
     fontSize: {
         type: Number,
         default: 20
+    },
+    // 显示模式 (image/canvas)
+    mode: {
+        type: String,
+        default: 'image'
     }
 })

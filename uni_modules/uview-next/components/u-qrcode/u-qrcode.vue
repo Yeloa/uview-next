@@ -3,6 +3,18 @@
 		width: $u.addUnit(size), 
 		height: $u.addUnit(size) 
 	}]" @longpress="handleLongpress">
+		<u-canvas
+			ref="canvasRef" 
+			:width="size" 
+			:height="size" 
+			:customStyle="mode === 'image' ? {
+			position: 'absolute',
+			left: '-9999px',
+			top: '-9999px',
+		} : {}"/>
+		<view class="u-qrcode__image-wrapper" v-if="mode === 'image'">
+            <image :src="imageUrl" class="u-qrcode__image" mode="widthFix"/>
+        </view>
 		<view class="u-qrcode__mask" v-if="status === 'loading'">
 			<slot name="loading">
 				<u-loading-icon mode="semicircle"></u-loading-icon>
@@ -21,7 +33,7 @@
 				<u-icon name="checkmark-circle-fill" size="20" color="primary" :label="scannedText" labelColor="primary"></u-icon>
 			</slot>
 		</view>
-		<u-canvas ref="canvasRef" width="100%" height="100%" />
+		
 	</view>
 </template>
 
@@ -40,11 +52,9 @@ import QRCode from '../../libs/util/qrcode.js';
  * @property {String}	 pdground 定位角点颜色
  * @property {String}	 level 容错级别
  * @property {String}	 value	二维码内容 (start为true时必填 )
- * @property {String}	 fileType  导出的文件类型  (jpg | png)  
  * @property {String}	 expiredText 过期文本
  * @property {String}	 scannedText 扫描文本
  * @property {String}	 refreshText 刷新文本
- * @property {Number}	 quality  导出的质量
  * @property {String | Number}	 size   二维码尺寸
  * @property {String}	 icon 二维码图标
  * @property {Number}	 iconSize 二维码图标大小
@@ -57,7 +67,7 @@ export default {
 	mixins: [mpMixin, mixin, props],
 	data() {
 		return {
-			
+			imageUrl: '',
 		};
 	},
 	watch: {
@@ -86,7 +96,7 @@ export default {
 		async make() {
 			await this.$nextTick();
 			const { canvas } = await this.$refs.canvasRef.getCanvasContext();
-			let qrcode = new QRCode({
+			new QRCode({
 				canvas: canvas, 
 				text: this.value,
 				size: this.size,
@@ -95,7 +105,26 @@ export default {
 				pdground: this.pdground,
 				correctLevel: this.level,
 				icon: this.icon,
-				iconSize: this.iconSize
+				iconSize: this.iconSize,
+				callback: () => {
+					if(this.mode === 'image') {
+						this.getTempFile((tempFilePath)=>{
+							this.imageUrl = tempFilePath;
+						})
+					}
+				}
+			});
+		},
+		getTempFile(callback) {
+			this.$refs.canvasRef.canvasToTempFilePath({
+				width: this.size,
+				height: this.size,
+				fileType: 'png',
+				quality: 1,
+			}).then((tempFilePath) => {
+				callback(tempFilePath);
+			}).catch((error) => {
+				this.$emit('error', error);
 			});
 		},
 		remake() {
@@ -106,17 +135,9 @@ export default {
 			this.$emit('refresh');
 		},
 		handleLongpress() {
-			this.$refs.canvasRef.canvasToTempFilePath({
-				width: this.size,
-				height: this.size,
-				fileType: this.fileType,
-				quality: this.quality,
-			}).then((tempFilePath) => {
-				console.log(tempFilePath)
+			this.getTempFile((tempFilePath)=>{
 				this.$emit('onLongpress', tempFilePath);
-			}).catch((error) => {
-				this.$emit('error', error);
-			});
+			})
 		}
 	}
 };
@@ -129,6 +150,15 @@ export default {
 
 .u-qrcode{
 	position: relative;
+	
+	&__image {
+		width: 100%;
+		height: 100%;
+		&-wrapper{
+			width: 100%;
+			height: 100%;
+		}
+	}
 
 	&__mask{
 		@include flex(row);

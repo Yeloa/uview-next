@@ -58,15 +58,10 @@ export default defineProps('qrcode', {
         type: [String, Number],
         default: 140
     },
-    // 导出的文件类型
-    fileType: {
+    // 显示模式 (image/canvas)
+    mode: {
         type: String,
-        default: 'png'
-    },
-    // 导出的质量
-    quality: {
-        type: Number,
-        default: 1
+        default: 'image'
     }
 });
     

@@ -3,7 +3,18 @@
 		width: $u.addUnit(barcodeWidth),
 		height: $u.addUnit(barcodeHeight)
 	},$u.addStyle(customStyle)]">
-		<u-canvas ref="canvasRef" :width="barcodeWidth" :height="barcodeHeight"></u-canvas>
+		<u-canvas 
+		ref="canvasRef" 
+		:width="barcodeWidth" 
+		:height="barcodeHeight" 
+		:customStyle="mode === 'image' ? {
+			position: 'absolute',
+			left: '-9999px',
+			top: '-9999px',
+		} : {}"></u-canvas>
+		<view class="u-barcode__image-wrapper" v-if="mode === 'image'">
+            <image :src="imageUrl" class="u-barcode__image" mode="widthFix"/>
+        </view>
 	</view>
 </template>
 
@@ -43,7 +54,8 @@
 				ctx: null,
 				barcodeWidth: null,
 				barcodeHeight: null,
-				textHeight: 30
+				textHeight: 30,
+				imageUrl: '',
 			}
 		},
 		watch: {
@@ -84,7 +96,6 @@
 				this.barcodeWidth = binaryData.length * this.width;
 				this.barcodeHeight = this.height + (this.displayValue ? this.textHeight : 0);
 				
-				await uni.$u.sleep(100);
 				await this.initCanvas(binaryData);
 			},
 			
@@ -92,6 +103,8 @@
 			async initCanvas(binaryData) {
 				const { canvas } = await this.$refs.canvasRef.getCanvasContext();
 				this.ctx = canvas;
+			
+				this.ctx.clearRect(0, 0, this.barcodeWidth, this.barcodeHeight);
 				this.ctx.fillStyle = this.backgroundColor;
 				this.ctx.fillRect(0, 0, this.barcodeWidth, this.barcodeHeight);
 				this.drawBarcode(binaryData);
@@ -120,7 +133,13 @@
 					this.drawText();
 				}
 			
-				this.ctx.draw(true);
+				this.ctx.draw(true, ()=>{
+					if(this.mode === 'image') {
+						this.getTempFile((tempFilePath)=>{
+							this.imageUrl = tempFilePath;
+						})
+					}
+				});
 			},
 
 			// 绘制文本
@@ -162,7 +181,19 @@
 
 				// 绘制文本
 				this.ctx.fillText(text, textX, textY);
-			}
+			},
+			getTempFile(callback) {
+				this.$refs.canvasRef.canvasToTempFilePath({
+					width: this.barcodeWidth,
+					height: this.barcodeHeight,
+					fileType: 'png',
+					quality: 1,
+				}).then((tempFilePath) => {
+					callback(tempFilePath);
+				}).catch((error) => {
+					this.$emit('error', error);
+				});
+			},
 		}
 	}
 </script>
@@ -175,5 +206,14 @@
 		flex-direction: row;
 		align-items: center;
 		justify-content: center;
+
+		&__image {
+			width: 100%;
+			height: 100%;
+			&-wrapper{
+				width: 100%;
+				height: 100%;
+			}
+		}
 	}
 </style>
