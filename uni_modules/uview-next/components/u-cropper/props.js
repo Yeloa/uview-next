@@ -11,6 +11,16 @@ export default defineProps('cropper', {
         type: String,
         default: 'square'
     },
+    // 取消按钮的文字
+    cancelText: {
+        type: String,
+        default: () => uni.$u.$t('uAreaPicker.cancelText')
+    },
+    // 确认按钮的文字
+    confirmText: {
+        type: String,
+        default: () => uni.$u.$t('uAreaPicker.confirmText')
+    },
     // 每次显示时是否自动打开选择图片
     autoChoose: {
         type: Boolean,
@@ -50,6 +60,11 @@ export default defineProps('cropper', {
     showGrid: {
         type: Boolean,
         default: true
+    },
+    // 小程序的打开方式
+    openType: {
+        type: String,
+        default: ''
     },
     // 水印文字
     watermark: {

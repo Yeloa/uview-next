@@ -348,7 +348,8 @@
 		&__content {
 			background-color: $u-popup-content-background-color;
 			position: relative;
-
+			overflow: hidden;
+			
 			&--round-top {
 				border-top-left-radius: 0;
 				border-top-right-radius: 0;

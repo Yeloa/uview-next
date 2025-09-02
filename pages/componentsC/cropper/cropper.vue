@@ -46,6 +46,7 @@
         </view>
         
         <u-cropper
+            openType="chooseAvatar"
             v-if="showCropper"
             :shape="shape"
             :image="selectedImage" 
@@ -224,6 +225,11 @@ export default {
     font-weight: 500;
     display: block;
     margin-bottom: 20rpx;
+}
+
+.result-image{
+    width: 100%;
+    height: 100%;
 }
 
 </style> 

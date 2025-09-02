@@ -80,5 +80,7 @@
 	"uCropper.chooseImageError": "Ошибка выбора изображения",
 	"uCropper.cropError": "Ошибка обрезки",
 	"uCropper.chooseImage": "Пожалуйста, выберите изображение",
-	"uCropper.cropping": "Обрезание..."
+	"uCropper.cropping": "Обрезание...",
+	"uCropper.cancelText": "Отмена",
+	"uCropper.confirmText": "Подтвердить"
 }

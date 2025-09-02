@@ -80,5 +80,7 @@
 	"uCropper.chooseImageError": "이미지 선택 실패",
 	"uCropper.cropError": "이미지 자르기 실패",
 	"uCropper.chooseImage": "이미지를 먼저 선택해 주세요",
-	"uCropper.cropping": "이미지 자르기 중..."
+	"uCropper.cropping": "이미지 자르기 중...",
+	"uCropper.cancelText": "취소",
+	"uCropper.confirmText": "확인"
 }

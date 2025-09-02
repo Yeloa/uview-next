@@ -4,14 +4,11 @@
 		height: $u.addUnit(barcodeHeight)
 	},$u.addStyle(customStyle)]">
 		<u-canvas 
-		ref="canvasRef" 
-		:width="barcodeWidth" 
-		:height="barcodeHeight" 
-		:customStyle="mode === 'image' ? {
-			position: 'absolute',
-			left: '-9999px',
-			top: '-9999px',
-		} : {}"></u-canvas>
+			ref="canvasRef" 
+			:width="barcodeWidth" 
+			:height="barcodeHeight" 
+			:customStyle="mode === 'image' ? 'position: absolute; left: -9999px; top: -9999px;' : ''" 
+		/>
 		<view class="u-barcode__image-wrapper" v-if="mode === 'image'">
             <image :src="imageUrl" class="u-barcode__image" mode="widthFix"/>
         </view>

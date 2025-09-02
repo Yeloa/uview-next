@@ -7,7 +7,7 @@
             <!-- 遮罩层和裁剪框 -->
             <view class="u-cropper__mask">
                 <!-- 裁剪框边框 -->
-                <view class="u-cropper__cropbox" :class="[showGrid && 'u-cropper__cropbox_grid', `u-cropper__cropbox_${shape}`]" :style="cropBoxStyle">
+                <view class="u-cropper__cropbox" :class="[showGrid && 'u-cropper__cropbox_grid', `u-cropper__cropbox_${shape}`]" :style="[cropBoxStyle]">
                     <view v-if="shape === 'square'" class="u-cropper__edge u-cropper__edge--1"></view>
                     <view v-if="shape === 'square'" class="u-cropper__edge u-cropper__edge--2"></view>
                     <view v-if="shape === 'square'" class="u-cropper__edge u-cropper__edge--3"></view>
@@ -20,7 +20,7 @@
                 v-if="viewData.imageLoaded && viewData.imageSrc"
                 class="u-cropper__image"
                 :src="viewData.imageSrc"
-                :style="imageStyle"
+                :style="[imageStyle]"
                 mode="aspectFit"
                 @error="onImageError"
             />
@@ -30,16 +30,35 @@
         <!-- 工具栏 -->
         <view class="u-cropper__tools">
             <view class="u-cropper__button__cancel" @click="close">
-                <text>取消</text>
+                <text>{{ cancelText }}</text>
             </view>
+            <!-- #ifdef MP-WEIXIN -->
+            <view class="cropper__button__choose">
+                <button
+                    v-if="openType == 'chooseAvatar'"
+                    class="u-reset-button"
+                    hover-class="none"
+                    open-type="chooseAvatar"
+                    @click="chooseAvatar"
+                    @chooseavatar="chooseAvatar"
+                >
+                    <u-icon name="photo" size="36" color="#fff"/>
+                </button>
+                <u-icon v-else name="photo" size="36" color="#fff" @click="chooseImage"/>
+            </view>
+            <!-- #endif -->
+            <!-- #ifndef MP-WEIXIN -->
             <view class="cropper__button__choose" @click="chooseImage">
                 <u-icon name="photo" size="36" color="#fff"/>
             </view>
+            <!-- #endif -->
+             
             <view class="cropper__button__rotate" @click="rotateImage">
                 <u-icon name="rotate" size="36" color="#fff"/>
             </view>
+
             <view class="u-cropper__button__confirm" @click="confirmCrop(false)">
-                <text>确定</text>
+                <text>{{ confirmText }}</text>
             </view>
         </view>
         <!-- Canvas层 -->
@@ -49,7 +68,7 @@
             <!-- #endif -->
             :canvas-id="canvasId"
             :id="canvasId"
-            class="u-cropper__canvas" :style="canvasStyle"></canvas>
+            class="u-cropper__canvas" :style="[canvasStyle]"></canvas>
     </view>
 </template>
 
@@ -178,6 +197,7 @@ export default {
             this.cropper = new ImageCropper(this, options);
 
             this.$emit('open');
+
             if(this.autoChoose) {
                 this.chooseImage();
             }
@@ -187,10 +207,16 @@ export default {
         loadImage(src) {
             if (!this.cropper) return;
             this.cropper.setImage(src).catch(err => {
-                this.$emit('error', this.$t('uCropper.loadImageError'));
+                this.$emit('error', uni.$u.$t('uCropper.loadImageError'));
             });
         },
-        
+        chooseAvatar(e) {
+			const path = e.detail.avatarUrl;
+			if (path) {
+				this.$emit('change', path);
+                this.loadImage(path);
+			}
+		},
         // 选择图片
         chooseImage() {
             uni.chooseImage({
@@ -203,14 +229,14 @@ export default {
                     this.loadImage(imagePath);
                 },
                 fail: () => {
-                    this.$emit('error', this.$t('uCropper.chooseImageError'));
+                    this.$emit('error', uni.$u.$t('uCropper.chooseImageError'));
                 }
             });
         },
         
         // 图片加载失败
         onImageError(e) {
-            this.$emit('error', this.$t('uCropper.loadImageError'));
+            this.$emit('error', uni.$u.$t('uCropper.loadImageError'));
         },
         
         // 旋转图片
@@ -230,12 +256,12 @@ export default {
         // 确认裁剪
         async confirmCrop() {
             if (!this.cropper || !this.viewData.imageLoaded) {
-                this.$emit('error', this.$t('uCropper.chooseImage'));
+                this.$emit('error', uni.$u.t('uCropper.chooseImage'));
                 return;
             }
             
             uni.showLoading({
-                title: this.$t('uCropper.cropping'),
+                title: uni.$u.$t('uCropper.cropping'),
                 mask: true
             });
 
@@ -243,7 +269,7 @@ export default {
                 this.$emit('confirm',res);
                 this.close();
             }).catch(err => {
-                this.$emit('error', this.$t('uCropper.cropError'));
+                this.$emit('error', uni.$u.$t('uCropper.cropError'));
             }).finally(()=>{
                 uni.hideLoading();
             });

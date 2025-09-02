@@ -80,5 +80,7 @@
 	"uCropper.chooseImageError": "Image selection failed",
 	"uCropper.cropError": "Image cropping failed",
 	"uCropper.chooseImage": "Please select an image",
-	"uCropper.cropping": "Cropping..."
+	"uCropper.cropping": "Cropping...",
+	"uCropper.cancelText": "Cancel",
+	"uCropper.confirmText": "Confirm"
 }

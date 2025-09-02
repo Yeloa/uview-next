@@ -80,5 +80,7 @@
 	"uCropper.chooseImageError": "فشل اختيار الصورة",
 	"uCropper.cropError": "فشل قص الصورة",
 	"uCropper.chooseImage": "الرجاء اختيار صورة",
-	"uCropper.cropping": "يتم قص الصورة..."
+	"uCropper.cropping": "يتم قص الصورة...",
+	"uCropper.cancelText": "إلغاء",
+	"uCropper.confirmText": "تأكيد"
 }

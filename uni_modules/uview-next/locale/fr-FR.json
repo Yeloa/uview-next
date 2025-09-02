@@ -80,5 +80,7 @@
 	"uCropper.chooseImageError": "Erreur de sélection d'image",
 	"uCropper.cropError": "Erreur de découpage",
 	"uCropper.chooseImage": "Veuillez sélectionner une image",
-	"uCropper.cropping": "Découpage en cours..."
+	"uCropper.cropping": "Découpage en cours...",
+	"uCropper.cancelText": "Annuler",
+	"uCropper.confirmText": "Confirmer"
 }

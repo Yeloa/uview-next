@@ -80,7 +80,7 @@
                 <u-table-column prop="department" label="部门" width="120"></u-table-column>
                 <u-table-column prop="name" label="姓名" width="100"></u-table-column>
                 <u-table-column prop="position" label="职位" width="120"></u-table-column>
-                <u-table-column prop="salary" label="薪资" align="right"></u-table-column>
+                <u-table-column prop="salary" label="薪资" ></u-table-column>
             </u-table>
         </view>
 
@@ -90,8 +90,8 @@
             <u-table :data="mergeTableData2" :merge-config="mergeConfig" border stripe>
                 <u-table-column prop="category" label="类别" width="120"></u-table-column>
                 <u-table-column prop="product" label="产品" width="150"></u-table-column>
-                <u-table-column prop="price" label="价格" align="right" width="100"></u-table-column>
-                <u-table-column prop="stock" label="库存" align="center"></u-table-column>
+                <u-table-column prop="price" label="价格" width="100"></u-table-column>
+                <u-table-column prop="stock" label="库存" width="100"></u-table-column>
             </u-table>
         </view>
 
@@ -124,9 +124,9 @@
                 border stripe>
                 <u-table-column prop="department" label="部门" width="120"></u-table-column>
                 <u-table-column prop="employee" label="员工" width="100"></u-table-column>
-                <u-table-column prop="sales" label="销售额" align="right" width="120"></u-table-column>
-                <u-table-column prop="profit" label="利润" align="right" width="100"></u-table-column>
-                <u-table-column prop="rate" label="利润率" align="center"></u-table-column>
+                <u-table-column prop="sales" label="销售额" width="120"></u-table-column>
+                <u-table-column prop="profit" label="利润"  width="100"></u-table-column>
+                <u-table-column prop="rate" label="利润率"></u-table-column>
             </u-table>
         </view>
 

@@ -80,5 +80,7 @@
 	"uCropper.chooseImageError": "選擇圖片失敗",
 	"uCropper.cropError": "裁剪失敗",
 	"uCropper.chooseImage": "請先選擇圖片",
-	"uCropper.cropping": "裁剪中..."
+	"uCropper.cropping": "裁剪中...",
+	"uCropper.cancelText": "取消",
+	"uCropper.confirmText": "確定"
 }

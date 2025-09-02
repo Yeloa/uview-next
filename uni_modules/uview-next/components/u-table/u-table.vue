@@ -698,10 +698,8 @@ export default {
 
 .u-table {
     position: relative;
-    font-size: 14px;
-    overflow: hidden;
-    min-width: 100%;
-
+    flex:1;
+    
     &__header {
         @include flex(row);
         background-color: $u-bg-color;

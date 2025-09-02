@@ -80,5 +80,7 @@
 	"uCropper.chooseImageError": "Bild auswählen fehlgeschlagen",
 	"uCropper.cropError": "Bild zuschneiden fehlgeschlagen",
 	"uCropper.chooseImage": "Bitte wählen Sie ein Bild aus",
-	"uCropper.cropping": "Zuschneiden..."
+	"uCropper.cropping": "Zuschneiden...",
+	"uCropper.cancelText": "Abbrechen",
+	"uCropper.confirmText": "Bestätigen"
 }

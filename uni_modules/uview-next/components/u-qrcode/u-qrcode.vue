@@ -7,11 +7,8 @@
 			ref="canvasRef" 
 			:width="size" 
 			:height="size" 
-			:customStyle="mode === 'image' ? {
-			position: 'absolute',
-			left: '-9999px',
-			top: '-9999px',
-		} : {}"/>
+			:customStyle="mode === 'image' ? 'position: absolute; left: -9999px; top: -9999px;' : ''" 
+		/>
 		<view class="u-qrcode__image-wrapper" v-if="mode === 'image'">
             <image :src="imageUrl" class="u-qrcode__image" mode="widthFix"/>
         </view>

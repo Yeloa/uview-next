@@ -210,6 +210,7 @@ export default {
 		align-items: flex-start;
 
 		&__content {
+			flex:1;
 			@include flex;
 		}
 	}
