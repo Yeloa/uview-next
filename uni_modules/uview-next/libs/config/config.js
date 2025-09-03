@@ -1,5 +1,5 @@
 // 此版本发布于2025-08-20
-const version = '3.6.4';
+const version = '3.6.5';
 
 // 开发环境才提示，生产环境不会提示
 if (process.env.NODE_ENV === 'development') {

@@ -198,22 +198,24 @@ function statusChange(newValue, oldValue, ownerInstance, instance) {
 // 菜单尺寸发生变化
 function sizeChange(newValue, oldValue, ownerInstance, instance) {
 	// wxs内的局部变量快照
-	var state = instance.getState();
-	state.disabled = newValue.disabled;
-	state.duration = newValue.duration;
-	state.show = newValue.show;
-	state.threshold = newValue.threshold;
-	state.buttons = newValue.buttons;
+	if(newValue){
+		var state = instance.getState();
+		state.disabled = newValue.disabled;
+		state.duration = newValue.duration;
+		state.show = newValue.show;
+		state.threshold = newValue.threshold;
+		state.buttons = newValue.buttons;
 
-	if (state.buttons) {
-		var len = state.buttons.length;
-		var buttonsWidth = 0;
-		var buttons = newValue.buttons;
-		for (var i = 0; i < len; i++) {
-			buttonsWidth += buttons[i].width;
+		if (state.buttons) {
+			var len = state.buttons.length;
+			var buttonsWidth = 0;
+			var buttons = newValue.buttons;
+			for (var i = 0; i < len; i++) {
+				buttonsWidth += buttons[i].width;
+			}
 		}
+		state.buttonsWidth = buttonsWidth;
 	}
-	state.buttonsWidth = buttonsWidth;
 }
 
 module.exports = {
