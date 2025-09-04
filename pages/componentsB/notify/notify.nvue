@@ -1,5 +1,5 @@
 <template>
-	<view class="u-page">
+	<view>
 		<u-gap
 			height="30"
 			bgColor="#fff"
@@ -138,9 +138,3 @@
 		}
 	}
 </script>
-
-<style lang="scss">
-	.u-page {
-		padding: 0;
-	}
-</style>

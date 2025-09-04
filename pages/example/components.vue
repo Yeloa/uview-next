@@ -1,34 +1,36 @@
 <template>
-	<view class="wrap">
+	<view class="u-page">
 		<view class="nav-wrap">
+			<view class="nav-lang" @click="showLang = true">
+				<u--image :showLoading="true" src="/static/uview/example/lang.png" width="18px" height="18px" />
+			</view>
 			<view class="nav-title">
-				<u--image :showLoading="true" src="https://cdn.uviewui.com/uview/common/logo.png" width="70px" height="70px" />
+				<u--image :showLoading="true" src="/static/uview/common/logo.png" width="70px" height="70px" />
 				<view class="nav-info">
 					<view class="nav-info__title">
-						<text class="nav-info__title__text">uView Next {{ $u.config.version }}</text>
+						<text class="nav-info__title__text">uView Next</text>
+						<text class="nav-info__title__version">{{ $u.config.version }}</text>
 					</view>
-					<text class="nav-slogan">企业级、高质量、更贴近业务场景的UI框架</text>
-					<view class="nav-info__title__language">
-						<view>切换语言：</view>
-						<view @click="changeLanguage('zh-CN')"><text>中文</text></view>
-						<view style="margin:0 10px;">|</view>
-						<view @click="changeLanguage('en-US')"><text>英文</text></view>
-					</view>
+					<view class="nav-slogan">企业级、高质量、更贴近业务场景</view>
 				</view>
 			</view>
 			<text class="nav-desc">{{$t('index.desc')}}</text>
 		</view>
-	
 		<view class="list-wrap">
-			<u-cell-group title-bg-color="rgb(243, 244, 246)" :title="item.groupName" v-for="(item, index) in list" :key="index">
-				<u-cell :titleStyle="{fontWeight: 500}" :title="item1.title" v-for="(item1, index1) in item.list" :key="index1" isLink @click="openPage" :name="item1.path">
-					<template #icon>
-						<u-icon :name="getIcon(item1.icon)" size="16" mode="widthFix"></u-icon>
-					</template>
-				</u-cell>
-			</u-cell-group>
+			<view class="group" v-for="(item, index) in list" :key="index">
+				<view class="group-title">{{ item.groupName }}</view>
+				<u-row gutter="10" wrap>
+					<u-col v-for="(item1, index1) in item.list" :key="index1" span="3" @click="openPage({ name: item1.path })">
+						<view class="item">
+							<u-icon :name="getIcon(item1.icon)" size="20" mode="widthFix"></u-icon>
+							<text class="text">{{ item1.title }}</text>
+						</view>
+					</u-col>
+				</u-row>
+			</view>
 		</view>
-		<u-gap height="30" bgColor="#fff"></u-gap>
+
+		<u-action-sheet round="10" title="选择语言" :actions="langList" :show="showLang" @select="changeLanguage"></u-action-sheet>
 	</view>
 </template>
 
@@ -41,6 +43,45 @@
 			return {
 				list: list,
 				desc: '',
+				showLang: false,
+				langList: [
+					{
+						name: '中文',
+						lang: "zh-Hans",
+					},
+					{
+						name: '繁体中文',
+						lang: "zh-HK",
+					},
+					{
+						name: '英文',
+						lang: "en-US",
+					},
+					{
+						name: '阿拉伯文',
+						lang: "ar-SA",
+					},
+					{
+						name: '德语',
+						lang: "de-DE",
+					},
+					{
+						name: '西班牙语',
+						lang: "es-ES",
+					},
+					{
+						name: '法语',
+						lang: "fr-FR",
+					},
+					{
+						name: '日语',
+						lang: "ja-JP",
+					},
+					{
+						name: '韩语',
+						lang: "ko-KR",
+					}
+				]
 			}
 		},
 		computed: {
@@ -56,9 +97,9 @@
 			// })
 		},
 		methods: {
-			changeLanguage(lang) {
-				uni.$u.setLocale(lang)
-				uni.$u.toast('语言切换成功')
+			changeLanguage(event) {
+				uni.$u.setLocale(event.lang)
+				this.showLang = false
 			},
 			openPage(detail) {
 				const path = detail.name
@@ -81,23 +122,13 @@
 	}
 </script>
 
-<style>
-	/* page {
-		background-color: rgb(240, 242, 244);
-	} */
-</style>
-
 <style lang="scss" >
-	.u-cell-group__title__text {
-		font-weight: bold;
-	}
-
 	.nav-wrap {
 		padding: 15px;
 		position: relative;
 	}
 
-	.lang {
+	.nav-lang {
 		position: absolute;
 		top: 15px;
 		right: 15px;
@@ -110,6 +141,7 @@
 		flex-direction: row;
 		align-items: center;
 		justify-content: flex-start;
+		margin-bottom: 5px;
 	}
 
 	.nav-info {
@@ -120,8 +152,7 @@
 			display: flex;
 			/* #endif */
 			flex-direction: row;
-			align-items: center;
-			justify-content: space-between;
+			align-items: flex-end;
 			
 			&__language {
 				margin-top: 15px;
@@ -139,6 +170,16 @@
 				font-size: 25px;
 				font-weight: bold;
 				text-align: left;
+				background: linear-gradient(135deg, #6a8cff, #7ec8ff); 
+				-webkit-background-clip: text; 
+				color: transparent;
+			}
+
+			&__version {
+				font-size: 12px;
+				color: #888686;
+				font-weight: normal;
+				margin-left: 5px;
 			}
 			
 			&__jump {
@@ -160,13 +201,42 @@
 
 	.nav-slogan {
 		color: $u-tips-color;
-		font-size: 14px;
+		font-size: 12px;
 	}
 
 	.nav-desc {
-		margin-top: 10px;
 		font-size: 14px;
 		color: $u-content-color;
 		line-height: 20px;
+	}
+
+	.group-title {
+		font-size: 13px;
+		color: $u-content-color;
+		margin-bottom: 5px;
+		margin-left: 5px;
+		margin-top: 15px;
+	}
+
+	.title {
+		font-size: 14px;
+		color: #ddd;
+		line-height: 20px;
+	}
+
+	.item {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		background: #fff;
+		border-radius: 10px;
+		height: 80px;
+		margin-bottom: 10px;
+		.text {
+			margin-top: 5px;
+			font-size: 13px;
+			color: $u-content-color;
+		}
 	}
 </style>

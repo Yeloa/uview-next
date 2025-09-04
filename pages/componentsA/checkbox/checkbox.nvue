@@ -1,213 +1,172 @@
 <template>
 	<view class="u-page">
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">基本案例</text>
+		<card title="基本案例">
 			<text class="u-block__title">苹果、香蕉和橙子哪个最甜？</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__checkbox-item">
-					<u-checkbox-group
-						v-model="checkboxValue1"
-						placement="column"
-						@change="checkboxChange"
-					>
-						<u-checkbox
-							:customStyle="{marginBottom: '8px'}"
-							v-for="(item, index) in checkboxList1"
-							:key="index"
-							:label="item.name"
-							:name="item.name"
-						>
-						</u-checkbox>
-					</u-checkbox-group>
-				</view>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">自定义形状</text>
+			<u-checkbox-group
+				v-model="checkboxValue1"
+				placement="column"
+				@change="checkboxChange"
+			>
+				<u-checkbox
+					:customStyle="{marginBottom: '8px'}"
+					v-for="(item, index) in checkboxList1"
+					:key="index"
+					:label="item.name"
+					:name="item.name"
+				>
+				</u-checkbox>
+			</u-checkbox-group>
+		</card>
+		
+		<card title="自定义形状">
 			<text class="u-block__title">中国四大名著是？</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__checkbox-item">
-					<u-checkbox-group
-						v-model="checkboxValue2"
-						placement="column"
-						@change="checkboxChange"
-						shape="circle"
-					>
-						<u-checkbox
-							:customStyle="{marginBottom: '8px'}"
-							v-for="(item, index) in checkboxList2"
-							:key="index"
-							:label="item.name"
-							:name="item.name"
-						>
-						</u-checkbox>
-					</u-checkbox-group>
-				</view>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">按钮形状</text>
+			<u-checkbox-group
+				v-model="checkboxValue2"
+				placement="column"
+				@change="checkboxChange"
+				shape="circle"
+			>
+				<u-checkbox
+					:customStyle="{marginBottom: '8px'}"
+					v-for="(item, index) in checkboxList2"
+					:key="index"
+					:label="item.name"
+					:name="item.name"
+				>
+				</u-checkbox>
+			</u-checkbox-group>
+		</card>
+		
+		<card title="按钮形状">
 			<text class="u-block__title">选择你喜欢的频道？</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__checkbox-item">
-					<u-checkbox-group
-						v-model="checkboxValue8"
-						@change="checkboxChange"
-						shape="button"
-						:plain="false"
-						inactiveColor="#f1f1f1"
-					>
-						<u-checkbox
-							v-for="(item, index) in checkboxList8"
-							:key="index"
-							:label="item.name"
-							:name="item.name"
-						>
-						</u-checkbox>
-					</u-checkbox-group>
+			<u-checkbox-group
+				v-model="checkboxValue8"
+				@change="checkboxChange"
+				shape="button"
+				:plain="false"
+				inactiveColor="#f1f1f1"
+			>
+				<u-checkbox
+					v-for="(item, index) in checkboxList8"
+					:key="index"
+					:label="item.name"
+					:name="item.name"
+				>
+				</u-checkbox>
+			</u-checkbox-group>
+		</card>
+		
+		<card title="独立使用">
+			<u-checkbox v-model:checked="checkboxValue9">
+				<view style="display: flex; flex-direction: row; align-items: center;">
+					<text>我已经阅读并同意</text>
+					<text style="color:#007AFF" @click.stop="handleClick">《用户协议》</text>	
+					<text>和</text>
+					<text style="color:#007AFF" @click.stop="handleClick">《隐私政策》</text>
 				</view>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">独立使用</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__checkbox-item">
-					<u-checkbox v-model:checked="checkboxValue9">
-						<view style="display: flex; flex-direction: row; align-items: center;">
-							<text>我已经阅读并同意</text>
-							<text style="color:#007AFF" @click.stop="handleClick">《用户协议》</text>	
-							<text>和</text>
-							<text style="color:#007AFF" @click.stop="handleClick">《隐私政策》</text>
-						</view>
-					</u-checkbox>
-					<view>
-						状态：{{checkboxValue9}}
-					</view>
-				</view>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">中间状态</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__checkbox-item">
-					<u-checkbox :indeterminate="isIndeterminate" v-model:checked="checkboxValue9" label="全选"></u-checkbox>
-				</view>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">是否禁用</text>
-			<text class="u-block__title">下面什么东西不能吃？</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__checkbox-item">
-					<u-checkbox-group
-						v-model="checkboxValue3"
-						placement="column"
-						@change="checkboxChange"
-					>
-						<u-checkbox
-							:customStyle="{marginBottom: '8px'}"
-							v-for="(item, index) in checkboxList3"
-							:key="index"
-							:label="item.name"
-							:name="item.name"
-							:disabled="index===0"
-						>
-						</u-checkbox>
-					</u-checkbox-group>
-				</view>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">是否禁止点击提示语选中复选框</text>
-			<text class="u-block__title">北宋四大家是谁？</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__checkbox-item">
-					<u-checkbox-group
-						v-model="checkboxValue4"
-						placement="column"
-						@change="checkboxChange"
-						:labelDisabled="true"
-					>
-						<u-checkbox
-							:customStyle="{marginBottom: '8px'}"
-							v-for="(item, index) in checkboxList4"
-							:key="index"
-							:label="item.name"
-							:name="item.name"
-						>
-						</u-checkbox>
-					</u-checkbox-group>
-				</view>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">自定义颜色</text>
-			<text class="u-block__title">哪个颜色最好看？</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__checkbox-item">
-					<u-checkbox-group
-						v-model="checkboxValue5"
-						placement="column"
-						@change="checkboxChange"
-						activeColor="#19be6b"
-					>
-						<u-checkbox
-							:customStyle="{marginBottom: '8px'}"
-							v-for="(item, index) in checkboxList5"
-							:key="index"
-							:label="item.name"
-							:name="item.name"
-						>
-						</u-checkbox>
-					</u-checkbox-group>
-				</view>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">横向排列形式</text>
-			<text class="u-block__title">什么东西不能飞？</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__checkbox-item">
-					<u-checkbox-group
-						v-model="checkboxValue6"
-						@change="checkboxChange"
-					>
-						<u-checkbox
-							:customStyle="{marginRight: '16px'}"
-							v-for="(item, index) in checkboxList6"
-							:key="index"
-							:label="item.name"
-							:name="item.name"
-						>
-						</u-checkbox>
-					</u-checkbox-group>
-				</view>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">横向两端排列形式</text>
-			<text class="u-block__title">什么东西不能吃？</text>
+			</u-checkbox>
 			<view>
-				<view class="u-page__checkbox-item">
-					<u-checkbox-group
-						v-model="checkboxValue7"
-						@change="checkboxChange"
-						:borderBottom="true"
-						placement="column"
-						iconPlacement="right"
-					>
-						<u-checkbox
-							:customStyle="{marginBottom: '16px'}"
-							v-for="(item, index) in checkboxList7"
-							:key="index"
-							:label="item.name"
-							:name="item.name"
-						>
-						</u-checkbox>
-					</u-checkbox-group>
-				</view>
+				状态：{{checkboxValue9}}
 			</view>
-		</view>
+		</card>
+		
+		<card title="中间状态">
+			<u-checkbox :indeterminate="isIndeterminate" v-model:checked="checkboxValue9" label="全选"></u-checkbox>
+		</card>
+		
+		<card title="是否禁用">
+			<text class="u-block__title">下面什么东西不能吃？</text>
+			<u-checkbox-group
+				v-model="checkboxValue3"
+				placement="column"
+				@change="checkboxChange"
+			>
+				<u-checkbox
+					:customStyle="{marginBottom: '8px'}"
+					v-for="(item, index) in checkboxList3"
+					:key="index"
+					:label="item.name"
+					:name="item.name"
+					:disabled="index===0"
+				>
+				</u-checkbox>
+			</u-checkbox-group>
+		</card>
+		
+		<card title="是否禁止点击提示语选中复选框">
+			<text class="u-block__title">北宋四大家是谁？</text>
+			<u-checkbox-group
+				v-model="checkboxValue4"
+				placement="column"
+				@change="checkboxChange"
+				:labelDisabled="true"
+			>
+				<u-checkbox
+					:customStyle="{marginBottom: '8px'}"
+					v-for="(item, index) in checkboxList4"
+					:key="index"
+					:label="item.name"
+					:name="item.name"
+				>
+				</u-checkbox>
+			</u-checkbox-group>
+		</card>
+		
+		<card title="自定义颜色">
+			<text class="u-block__title">哪个颜色最好看？</text>
+			<u-checkbox-group
+				v-model="checkboxValue5"
+				placement="column"
+				@change="checkboxChange"
+				activeColor="#19be6b"
+			>
+				<u-checkbox
+					:customStyle="{marginBottom: '8px'}"
+					v-for="(item, index) in checkboxList5"
+					:key="index"
+					:label="item.name"
+					:name="item.name"
+				>
+				</u-checkbox>
+			</u-checkbox-group>
+		</card>
+		
+		<card title="横向排列形式">
+			<text class="u-block__title">什么东西不能飞？</text>
+			<u-checkbox-group
+				v-model="checkboxValue6"
+				@change="checkboxChange"
+			>
+				<u-checkbox
+					:customStyle="{marginRight: '16px'}"
+					v-for="(item, index) in checkboxList6"
+					:key="index"
+					:label="item.name"
+					:name="item.name"
+				>
+				</u-checkbox>
+			</u-checkbox-group>
+		</card>
+		
+		<card title="横向两端排列形式">
+			<text class="u-block__title">什么东西不能吃？</text>
+			<u-checkbox-group
+				v-model="checkboxValue7"
+				@change="checkboxChange"
+				:borderBottom="true"
+				placement="column"
+				iconPlacement="right"
+			>
+				<u-checkbox
+					:customStyle="{marginBottom: '16px'}"
+					v-for="(item, index) in checkboxList7"
+					:key="index"
+					:label="item.name"
+					:name="item.name"
+				>
+				</u-checkbox>
+			</u-checkbox-group>
+		</card>
 	</view>
 </template>
 

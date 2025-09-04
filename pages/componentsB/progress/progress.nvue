@@ -1,84 +1,71 @@
 <template>
 	<view class="u-page">
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">基础功能</text>
-			<view class="u-demo-block__content">
-				<u-line-progress :percentage="percentage1">
-				</u-line-progress>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">不显示百分比</text>
-			<view class="u-demo-block__content">
-				<u-line-progress
-				    :showText="false"
-				    :percentage="percentage2"
-				>
-				</u-line-progress>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">自定义高度</text>
-			<view class="u-demo-block__content">
-				<u-line-progress
-				    height="8"
-				    :showText="false"
-				    :percentage="percentage3"
-				>
-				</u-line-progress>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">自定义颜色</text>
-			<view class="u-demo-block__content">
-				<u-line-progress
-				    height="8"
-				    :showText="false"
-				    :percentage="percentage4"
-				    activeColor="#3c9cff"
-				    inactiveColor="#f3f4f6"
-				>
-				</u-line-progress>
-			</view>
-		</view>
-		<view
-		    class="u-demo-block"
-		    v-if="!androidNvue"
+		<card title="基础功能">
+			<u-line-progress :percentage="percentage1">
+			</u-line-progress>
+		</card>
+		
+		<card title="不显示百分比">
+			<u-line-progress
+				:showText="false"
+				:percentage="percentage2"
+			>
+			</u-line-progress>
+		</card>
+		
+		<card title="自定义高度">
+			<u-line-progress
+				height="8"
+				:showText="false"
+				:percentage="percentage3"
+			>
+			</u-line-progress>
+		</card>
+		
+		<card title="自定义颜色">
+			<u-line-progress
+				height="8"
+				:showText="false"
+				:percentage="percentage4"
+				activeColor="#3c9cff"
+				inactiveColor="#f3f4f6"
+			>
+			</u-line-progress>
+		</card>
+		
+		<card
+			title="自定义样式(不支持安卓环境的nvue)"
+			v-if="!androidNvue"
 		>
-			<text class="u-demo-block__title">自定义样式(不支持安卓环境的nvue)</text>
-			<view class="u-demo-block__content">
-				<u-line-progress
-				    height="8"
-				    :showText="false"
-				    :percentage="percentage5"
-				    activeColor="#3c9cff"
-				    inactiveColor="#f3f4f6"
-				>
-					<text class="u-percentage-slot">{{percentage4}}%</text>
-				</u-line-progress>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">手动加减</text>
-			<view class="u-demo-block__content">
-				<u-line-progress
-				    height="8"
-				    :showText="false"
-				    :percentage="percentage6"
-				    activeColor="#3c9cff"
-				    inactiveColor="#f3f4f6"
-				>
-				</u-line-progress>
-				<view class="button-group">
-					<view class="button-group__circle" hover-class="u-hover-class" @click="computedWidth('minus')">
-						<text class="button-group__circle__text">减少</text>
-					</view>
-					<view class="button-group__circle" hover-class="u-hover-class" @click="computedWidth('plus')">
-						<text class="button-group__circle__text">增加</text>
-					</view>
+			<u-line-progress
+				height="8"
+				:showText="false"
+				:percentage="percentage5"
+				activeColor="#3c9cff"
+				inactiveColor="#f3f4f6"
+			>
+				<text class="u-percentage-slot">{{percentage4}}%</text>
+			</u-line-progress>
+		</card>
+		
+		<card title="手动加减">
+			<u-line-progress
+				height="8"
+				:showText="false"
+				:percentage="percentage6"
+				activeColor="#3c9cff"
+				inactiveColor="#f3f4f6"
+			>
+			</u-line-progress>
+			<view class="button-group">
+				<view class="button-group__circle" hover-class="u-hover-class" @click="computedWidth('minus')">
+					<text class="button-group__circle__text">减少</text>
+				</view>
+				<view class="button-group__circle" hover-class="u-hover-class" @click="computedWidth('plus')">
+					<text class="button-group__circle__text">增加</text>
 				</view>
 			</view>
-		</view>
+		</card>
 	</view>
 </template>
 
@@ -116,7 +103,9 @@
 </script>
 
 <style lang="scss">
-	.u-page {}
+	.u-page {
+		background: #fff;
+	}
 
 	.u-percentage-slot {
 		padding: 1px 5px;
@@ -127,11 +116,7 @@
 		margin-right: -5px;
 	}
 
-	.u-demo-block__content {
-		flex-direction: column !important;
-		flex-wrap: nowrap;
-		align-items: stretch;
-	}
+
 	
 	.button-group {
 		/* #ifndef APP-NVUE */

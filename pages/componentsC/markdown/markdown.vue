@@ -72,9 +72,9 @@ function hello() {
 
 #### 链接和图片
 
-[uView Next官网](http://118.25.198.98/)
+[uView Next官网](http://uview.d3u.cn/)
 
-![示例图片](http://118.25.198.98/common/logo.png)
+![示例图片](http://uview.d3u.cn/common/logo.png)
 
 ---
 
@@ -101,4 +101,7 @@ function hello() {
 </script>
 
 <style lang="scss">
+.u-page {
+	background: #fff;
+}
 </style>

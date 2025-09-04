@@ -1,7 +1,6 @@
 <template>
 	<view class="u-page">
-		<view class="u-demo-block">
-			<text class="u-demo-block__title" style="margin-bottom: 15px;">基础使用</text>
+		<card title="基础使用">
 			<u-scroll-list
 				:indicator="false"
 				indicatorColor="#fff0f0"
@@ -39,9 +38,8 @@
 					</view>
 				</view>
 			</u-scroll-list>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">多菜单扩展</text>
+		</card>
+		<card title="多菜单扩展">
 			<u-scroll-list>
 				<view class="scroll-list">
 					<view
@@ -65,7 +63,7 @@
 					</view>
 				</view>
 			</u-scroll-list>
-		</view>
+		</card>
 	</view>
 </template>
 
@@ -73,8 +71,8 @@
 export default {
 	data() {
 		return {
-			goodsBaseUrl: 'http://118.25.198.98/web/static/uview/goods/',
-			menuBaseUrl: 'http://118.25.198.98/web/static/uview/menu/',
+			goodsBaseUrl: 'http://uview.d3u.cn/web/static/uview/goods/',
+			menuBaseUrl: 'http://uview.d3u.cn/web/static/uview/menu/',
 			goodsArr: [{
 					price: '230.5',
 					thumbnail: '1.jpg'

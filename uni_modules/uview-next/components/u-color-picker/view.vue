@@ -6,7 +6,7 @@
 			<view class="u-color-picker__handle" :style="[handleStyle]"></view>
 		</view>
 
-		<view v-if="showHueSlider" class="u-color-picker__slider-wrapper" @click="onHueClick">
+		<view v-if="showHueSlider" class="u-color-picker__slider-wrapper">
 			<view class="u-color-picker__slider-bg" :style="[hueSliderStyle]"></view>
 			<slider
 				class="u-color-picker__slider" 

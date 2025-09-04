@@ -257,10 +257,17 @@
 			
 			// 按钮被点击
 			buttonClickHandler(item, index) {
-				this.$emit('click', {
-					index,
-					name: this.name
-				})
+				let duration = 0;
+				if(this.closeOnClick) {
+					duration = this.duration
+					this.closeHandler()
+				}
+				setTimeout(() => {
+					this.$emit('click', {
+						index,
+						name: this.name
+					})
+				}, duration)
 			}
 		},
 	}

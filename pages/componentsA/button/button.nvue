@@ -1,11 +1,8 @@
 <template>
 	<view class="u-page">
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">按钮类型</text>
+		<card title="按钮类型">
 			<view class="u-demo-block__content">
-                
 				<view class="u-page__button-item">
-
 					<u-button
 					    text="信息按钮"
 					    size="normal"
@@ -18,7 +15,6 @@
 					    text="成功按钮"
 					    size="normal"
 					    type="success"
-						shape="circle"
 					></u-button>
 				</view>
 				<view class="u-page__button-item">
@@ -43,9 +39,9 @@
 					></u-button>
 				</view>
 			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">镂空按钮</text>
+		</card>
+		
+		<card title="镂空按钮">
 			<view class="u-demo-block__content">
 				<view class="u-page__button-item">
 					<u-button
@@ -88,9 +84,9 @@
 					></u-button>
 				</view>
 			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">细边按钮</text>
+		</card>
+		
+		<card title="细边按钮">
 			<view class="u-demo-block__content">
 				<view class="u-page__button-item">
 					<u-button
@@ -138,10 +134,9 @@
 					></u-button>
 				</view>
 			</view>
-		</view>
+		</card>
 
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">禁用按钮</text>
+		<card title="禁用按钮">
 			<view class="u-demo-block__content">
 				<view class="u-page__button-item">
 					<u-button
@@ -184,10 +179,9 @@
 					></u-button>
 				</view>
 			</view>
-		</view>
+		</card>
 
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">加载中</text>
+		<card title="加载中">
 			<view class="u-demo-block__content">
 				<view class="u-page__button-item">
 					<u-button
@@ -209,9 +203,9 @@
 					></u-button>
 				</view>
 			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">按钮图标&按钮形状</text>
+		</card>
+		
+		<card title="按钮图标&按钮形状">
 			<view class="u-demo-block__content">
 				<view class="u-page__button-item">
 					<u-button
@@ -242,9 +236,9 @@
 					></u-button>
 				</view>
 			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">自定义颜色</text>
+		</card>
+		
+		<card title="自定义颜色">
 			<view class="u-demo-block__content">
 				<view class="u-page__button-item">
 					<u-button
@@ -268,10 +262,9 @@
 					></u-button>
 				</view>
 			</view>
-		</view>
+		</card>
 
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">自定义大小</text>
+		<card title="自定义大小">
 			<view class="u-demo-block__content" style="padding-bottom: 15px; flex-direction: column;align-items: stretch;flex-wrap: nowrap;">
 				<u-button
 				    text="超大尺寸"
@@ -303,7 +296,7 @@
 					></u-button>
 				</view>
 			</view>
-		</view>
+		</card>
 	</view>
 </template>
 

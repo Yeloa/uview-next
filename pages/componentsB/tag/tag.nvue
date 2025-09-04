@@ -233,7 +233,7 @@
 					    type="success"
 					    plain
 					    size="large"
-					    icon="http://118.25.198.98/web/static/uview/example/tag.png"
+					    icon="http://uview.d3u.cn/web/static/uview/example/tag.png"
 					>
 					</u-tag>
 				</view>

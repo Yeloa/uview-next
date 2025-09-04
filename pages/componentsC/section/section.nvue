@@ -1,24 +1,15 @@
 <template>
 	<view class="u-page">
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">基础使用</text>
-			<view class="u-demo-block__content">
-				<u-section title="红豆生南国"></u-section>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">隐藏右边</text>
-			<view class="u-demo-block__content">
-				<u-section title="红豆生南国" :right="false"></u-section>
-			</view>
-		</view>
+		<card title="基础使用">
+			<u-section title="红豆生南国"></u-section>
+		</card>
+		<card title="隐藏右边">
+			<u-section title="红豆生南国" :right="false"></u-section>
+		</card>
 
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">主题颜色</text>
-			<view class="u-demo-block__content">
-				<u-section title="红豆生南国" color="primary"></u-section>
-			</view>
-		</view>
+		<card title="主题颜色">
+			<u-section title="红豆生南国" color="primary"></u-section>
+		</card>
 	</view>
 </template>
 
@@ -51,5 +42,4 @@
 </script>
 
 <style lang="scss" scoped>
-	.u-demo {}
 </style>

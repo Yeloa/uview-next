@@ -1,5 +1,5 @@
 <template>
-	<view class="u-page" ref="page">
+	<view >
 	
 		<u-navbar
 			title="地区选择器"
@@ -28,6 +28,12 @@
 				<template v-slot:value>
 					<u-area-picker v-model="value4" closeOnClickOverlay showInput></u-area-picker>
 				</template>
+				<image
+					slot="icon"
+					class="u-cell-icon"
+					src="https://cdn.uviewui.com/uview/demo/picker/2.png"
+					mode="widthFix"
+				></image>
 			</u-cell>
 			<u-cell title="使用触发器">
 				<template v-slot:value>
@@ -37,6 +43,12 @@
 						</template>
 					</u-area-picker>
 				</template>
+				<image
+					slot="icon"
+					class="u-cell-icon"
+					src="https://cdn.uviewui.com/uview/demo/picker/1.png"
+					mode="widthFix"
+				></image>
 			</u-cell>
 		</u-cell-group>
 
@@ -106,9 +118,3 @@
 		},
 	}
 </script>
-
-<style lang="scss">
-	.u-page {
-		padding: 0;
-	}
-</style>

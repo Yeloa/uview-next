@@ -1,185 +1,152 @@
 <template>
 	<view class="u-page">
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">基本案例</text>
+		<card title="基本案例">
 			<text class="u-block__title">苹果、香蕉和橙子哪个最甜？</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__radio-item">
-					<u-radio-group
-						v-model="radiovalue1"
-						placement="column"
-						@change="groupChange"
-					>
-						<u-radio
-							:customStyle="{marginBottom: '8px'}"
-							v-for="(item, index) in radiolist1"
-							:key="index"
-							:label="item.name"
-							:name="item.name"
-							@change="radioChange"
-						>
-						</u-radio>
-					</u-radio-group>
-				</view>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">按钮样式</text>
+			<u-radio-group
+				v-model="radiovalue1"
+				placement="column"
+				@change="groupChange"
+			>
+				<u-radio
+					:customStyle="{marginBottom: '8px'}"
+					v-for="(item, index) in radiolist1"
+					:key="index"
+					:label="item.name"
+					:name="item.name"
+					@change="radioChange"
+				>
+				</u-radio>
+			</u-radio-group>
+		</card>
+		
+		<card title="按钮样式">
 			<text class="u-block__title">请选择性别</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__radio-item">
-					<u-radio-group
-						v-model="radiovalue8"
-						@change="groupChange"
-						shape="button"
-						:plain="false"
-						inactiveColor="#f1f1f1"
-					>
-						<u-radio v-for="(item, index) in radiolist8" 
-							:key="index" 
-							:label="item.name" 
-							:name="item.name" 
-							:icon="item.icon"
-							:iconSize="20"
-							:customStyle="{marginRight: '16px'}"
-						>
-						</u-radio>
-					</u-radio-group>
-				</view>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">圆形样式</text>
+			<u-radio-group
+				v-model="radiovalue8"
+				@change="groupChange"
+				shape="button"
+				:plain="false"
+				inactiveColor="#f1f1f1"
+			>
+				<u-radio v-for="(item, index) in radiolist8" 
+					:key="index" 
+					:label="item.name" 
+					:name="item.name" 
+					:icon="item.icon"
+					:iconSize="20"
+					:customStyle="{marginRight: '16px'}"
+				>
+				</u-radio>
+			</u-radio-group>
+		</card>
+		
+		<card title="圆形样式">
 			<text class="u-block__title">王者荣耀谁最帅？</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__radio-item">
-					<u-radio-group
-						v-model="radiovalue2"
-						placement="column"
-						shape="square"
-					>
-						<u-radio
-							:customStyle="{marginBottom: '8px'}"
-							v-for="(item, index) in radiolist2"
-							:key="index"
-							:label="item.name"
-							:name="item.name"
-						>
-						</u-radio>
-					</u-radio-group>
-				</view>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">是否禁用</text>
+			<u-radio-group
+				v-model="radiovalue2"
+				placement="column"
+				shape="square"
+			>
+				<u-radio
+					:customStyle="{marginBottom: '8px'}"
+					v-for="(item, index) in radiolist2"
+					:key="index"
+					:label="item.name"
+					:name="item.name"
+				>
+				</u-radio>
+			</u-radio-group>
+		</card>
+		
+		<card title="是否禁用">
 			<text class="u-block__title">苹果、香蕉和菠萝哪个最甜？</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__radio-item">
-					<u-radio-group
-						v-model="radiovalue3"
-						placement="column"
-					>
-						<u-radio
-							:customStyle="{marginBottom: '8px'}"
-							v-for="(item, index) in radiolist3"
-							:key="index"
-							:label="item.name"
-							:name="item.name"
-							:disabled="!index"
-						>
-						</u-radio>
-					</u-radio-group>
-				</view>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">纵向排列</text>
+			<u-radio-group
+				v-model="radiovalue3"
+				placement="column"
+			>
+				<u-radio
+					:customStyle="{marginBottom: '8px'}"
+					v-for="(item, index) in radiolist3"
+					:key="index"
+					:label="item.name"
+					:name="item.name"
+					:disabled="!index"
+				>
+				</u-radio>
+			</u-radio-group>
+		</card>
+		
+		<card title="纵向排列">
 			<text class="u-block__title">狙击枪用哪个倍镜最好？</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__radio-item">
-					<u-radio-group
-						v-model="radiovalue4"
-						placement="column"
-						:labelDisabled="true"
-					>
-						<u-radio
-							:customStyle="{marginBottom:'8px'}"
-							v-for="(item, index) in radiolist4"
-							:key="index"
-							:label="item.name"
-							:name="item.name"
-						>
-						</u-radio>
-					</u-radio-group>
-				</view>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">自定义颜色？</text>
+			<u-radio-group
+				v-model="radiovalue4"
+				placement="column"
+				:labelDisabled="true"
+			>
+				<u-radio
+					:customStyle="{marginBottom:'8px'}"
+					v-for="(item, index) in radiolist4"
+					:key="index"
+					:label="item.name"
+					:name="item.name"
+				>
+				</u-radio>
+			</u-radio-group>
+		</card>
+		
+		<card title="自定义颜色">
 			<text class="u-block__title">你比较喜欢下面哪个颜色？</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__radio-item">
-					<u-radio-group
-						v-model="radiovalue5"
-						placement="column"
-						activeColor="#19be6b"
-					>
-						<u-radio
-							:customStyle="{marginBottom: '8px'}"
-							v-for="(item, index) in radiolist5"
-							:key="index"
-							:label="item.name"
-							:name="item.name"
-						>
-						</u-radio>
-					</u-radio-group>
-				</view>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">横向排列形式？</text>
+			<u-radio-group
+				v-model="radiovalue5"
+				placement="column"
+				activeColor="#19be6b"
+			>
+				<u-radio
+					:customStyle="{marginBottom: '8px'}"
+					v-for="(item, index) in radiolist5"
+					:key="index"
+					:label="item.name"
+					:name="item.name"
+				>
+				</u-radio>
+			</u-radio-group>
+		</card>
+		
+		<card title="横向排列形式">
 			<text class="u-block__title">王者荣耀哪个英雄最美？</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__radio-item">
-					<u-radio-group
-						v-model="radiovalue6"
-						placement="row"
-					>
-						<u-radio
-							:customStyle="{marginRight: '16px'}"
-							v-for="(item, index) in radiolist6"
-							:key="index"
-							:label="item.name"
-							:name="item.name"
-						>
-						</u-radio>
-					</u-radio-group>
-				</view>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">横向两端排列形式？</text>
+			<u-radio-group
+				v-model="radiovalue6"
+				placement="row"
+			>
+				<u-radio
+					:customStyle="{marginRight: '16px'}"
+					v-for="(item, index) in radiolist6"
+					:key="index"
+					:label="item.name"
+					:name="item.name"
+				>
+				</u-radio>
+			</u-radio-group>
+		</card>
+		
+		<card title="横向两端排列形式">
 			<text class="u-block__title">你觉得阿木木可爱吗？</text>
-			<view>
-				<view class="u-page__radio-item">
-					<u-radio-group
-						v-model="radiovalue7"
-						:borderBottom="true"
-						placement="column"
-						iconPlacement="right"
-					>
-						<u-radio
-							:customStyle="{marginBottom: '16px'}"
-							v-for="(item, index) in radiolist7"
-							:key="index"
-							:label="item.name"
-							:name="item.name"
-						>
-						</u-radio>
-					</u-radio-group>
-				</view>
-			</view>
-		</view>
+			<u-radio-group
+				v-model="radiovalue7"
+				:borderBottom="true"
+				placement="column"
+				iconPlacement="right"
+			>
+				<u-radio
+					:customStyle="{marginBottom: '16px'}"
+					v-for="(item, index) in radiolist7"
+					:key="index"
+					:label="item.name"
+					:name="item.name"
+				>
+				</u-radio>
+			</u-radio-group>
+		</card>
 	</view>
 </template>
 
@@ -357,13 +324,6 @@
 
 <style lang="scss">
 	.u-page {
-		&__style {
-			font-size: 16px;
-			color: rgb(96, 98, 102);
-			margin-bottom: 20rpx;
-			font-weight: bold;
-		}
-
 		&__title {
 			font-size: 16px;
 			color: rgb(96, 98, 102);

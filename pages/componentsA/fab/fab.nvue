@@ -1,87 +1,64 @@
 <template>
 	<view class="u-page">
+		<card title="按钮颜色">
+			<u-radio-group v-model="type">
+				<u-radio 
+					v-for="item in typeOptions" 
+					:key="item" 
+					:name="item"
+					:label="item"
+					:custom-style="radioStyle"
+				>
+				</u-radio>
+			</u-radio-group>
+		</card>
 
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">按钮颜色</text>
-			<view class="u-demo-block__content">
-				<u-radio-group v-model="type">
-					<u-radio 
-						v-for="item in typeOptions" 
-						:key="item" 
-						:name="item"
-						:label="item"
-						:custom-style="radioStyle"
-					>
-					</u-radio>
-				</u-radio-group>
-			</view>
-		</view>
+		<card title="按钮位置">
+			<u-radio-group v-model="position" direction="row">
+				<u-radio 
+					v-for="item in positionOptions" 
+					:key="item" 
+					:name="item"
+					:label="item"
+					:custom-style="radioStyle"
+				>
+				</u-radio>
+			</u-radio-group>
+		</card>
 
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">按钮位置</text>
-			<view class="u-demo-block__content">
-				<u-radio-group v-model="position" direction="row">
-					<u-radio 
-						v-for="item in positionOptions" 
-						:key="item" 
-						:name="item"
-						:label="item"
-						:custom-style="radioStyle"
-					>
-					</u-radio>
-				</u-radio-group>
-			</view>
-		</view>
+		<card title="菜单弹出方向">
+			<u-radio-group v-model="direction" direction="row">
+				<u-radio 
+					v-for="item in directionOptions" 
+					:key="item" 
+					:name="item"
+					:label="item"
+					:custom-style="radioStyle"
+				>
+				</u-radio>
+			</u-radio-group>
+		</card>
 
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">菜单弹出方向</text>
-			<view class="u-demo-block__content">
-				<u-radio-group v-model="direction" direction="row">
-					<u-radio 
-						v-for="item in directionOptions" 
-						:key="item" 
-						:name="item"
-						:label="item"
-						:custom-style="radioStyle"
-					>
-					</u-radio>
-				</u-radio-group>
-			</view>
-		</view>
+		<card title="可拖动按钮">
+			<u-radio-group v-model="draggable" direction="row">
+				<u-radio name="auto" label="自动吸附" :custom-style="radioStyle"></u-radio>
+				<u-radio name="free" label="自由拖动" :custom-style="radioStyle"></u-radio>
+				<u-radio name="none" label="不可拖动" :custom-style="radioStyle"></u-radio>
+			</u-radio-group>
+		</card>
 
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">可拖动按钮</text>
-			<view class="u-demo-block__content">
-				<u-radio-group v-model="draggable" direction="row">
-					<u-radio name="auto" label="自动吸附" :custom-style="radioStyle"></u-radio>
-					<u-radio name="free" label="自由拖动" :custom-style="radioStyle"></u-radio>
-					<u-radio name="none" label="不可拖动" :custom-style="radioStyle"></u-radio>
-				</u-radio-group>
-			</view>
-		</view>
+		<card title="展开/收起控制">
+			<u-switch v-model="active1" ></u-switch>
+		</card>
 
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">展开/收起控制</text>
-			<view class="u-demo-block__content">
-				<u-switch v-model="active1" ></u-switch>
-			</view>
-		</view>
+		<card title="禁用状态">
+			<u-switch v-model="disabled" ></u-switch>
+		</card>
 
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">禁用状态</text>
-			<view class="u-demo-block__content">
-				<u-switch v-model="disabled" ></u-switch>
-			</view>
-		</view>
-
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">自定义触发器</text>
-			<view class="u-demo-block__content">
-				<u-switch v-model="customTrigger" ></u-switch>
-			</view>
-		</view>
+		<card title="自定义触发器">
+			<u-switch v-model="customTrigger" ></u-switch>
+		</card>
 		
-
 		<u-fab 
 			v-if="customTrigger"
 			:active="active1"
@@ -145,9 +122,6 @@
 			>
 			</u-button>
 		</u-fab>
-
-		<text class="u-demo-block__title"></text>
-
 	</view>
 </template>
 
@@ -199,27 +173,3 @@
 		}
 	}
 </script>
-
-<style lang="scss">
-	.u-page {
-		padding: 0;
-		padding-bottom: 100px;
-	}
-
-	.u-demo-block {
-		margin-bottom: 20rpx;
-		
-		&__title {
-			background-color: #f5f5f5;
-			padding: 20rpx;
-			font-size: 28rpx;
-			color: #333;
-			font-weight: 500;
-		}
-		
-		&__content {
-			padding: 20rpx;
-			background-color: #fff;
-		}
-	}
-</style>

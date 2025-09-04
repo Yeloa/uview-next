@@ -1,5 +1,5 @@
 <template>
-    <view class="u-page">
+    <view >
         <u-navbar
             title="datetimePicker 时间日期选择器"
             @leftClick="navigateBack"
@@ -33,6 +33,12 @@
                         showInput
                     ></u-datetime-picker>
                 </template>
+                <image
+                    slot="icon"
+                    class="u-cell-icon"
+                    src="https://cdn.uviewui.com/uview/demo/datetime-picker/4.png"
+                    mode="widthFix"
+                ></image>
             </u-cell>
             <u-cell title="使用触发器">
                 <template v-slot:value>
@@ -50,6 +56,12 @@
 						/>
                     </u-datetime-picker>
                 </template>
+                <image
+                    slot="icon"
+                    class="u-cell-icon"
+                    src="https://cdn.uviewui.com/uview/demo/datetime-picker/5.png"
+                    mode="widthFix"
+                ></image>
             </u-cell>
         </u-cell-group>
         <u-datetime-picker
@@ -310,8 +322,3 @@
     };
 </script>
 
-<style lang="scss">
-    .u-page {
-        padding: 0;
-    }
-</style>

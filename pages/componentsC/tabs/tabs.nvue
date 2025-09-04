@@ -1,175 +1,151 @@
 <template>
 	<view class="u-page">
-
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">基础演示</text>
-			<view class="u-demo-block__content">
-				<u-tabs :list="list1" @click="click" :current="3"></u-tabs>
-			</view>
-		</view>
+		<card title="基础演示">
+			<u-tabs :list="list1" @click="click" :current="3"></u-tabs>
+		</card>
 
 		<!-- 新增的子组件方式 -->
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">子组件方式定义</text>
-			<view class="u-demo-block__content">
-				<u-tabs>
-					<u-tabs-item label="标签1">
-						<view class="tab-content">
-							<text>这是标签1的内容</text>
-						</view>
-					</u-tabs-item>
-					<u-tabs-item label="标签2" dot>
-						<view class="tab-content">
-							<text>这是标签2的内容</text>
-						</view>
-					</u-tabs-item>
-					<u-tabs-item label="标签3(禁用)" disabled>
-						<view class="tab-content">
-							<text>这是标签3的内容（禁用）</text>
-						</view>
-					</u-tabs-item>
-					<u-tabs-item label="标签4" badge="5">
-						<view class="tab-content">
-							<text>这是标签4的内容（带徽标）</text>
-						</view>
-					</u-tabs-item>
-					<u-tabs-item label="标签5" >
-						<view class="tab-content">
-							<text>这是标签5的内容</text>
-						</view>
-					</u-tabs-item>
-				</u-tabs>
-			</view>
-		</view>
+		<card title="子组件方式定义">
+			<u-tabs>
+				<u-tabs-item label="标签1">
+					<view class="tab-content">
+						<text>这是标签1的内容</text>
+					</view>
+				</u-tabs-item>
+				<u-tabs-item label="标签2" dot>
+					<view class="tab-content">
+						<text>这是标签2的内容</text>
+					</view>
+				</u-tabs-item>
+				<u-tabs-item label="标签3(禁用)" disabled>
+					<view class="tab-content">
+						<text>这是标签3的内容（禁用）</text>
+					</view>
+				</u-tabs-item>
+				<u-tabs-item label="标签4" badge="5">
+					<view class="tab-content">
+						<text>这是标签4的内容（带徽标）</text>
+					</view>
+				</u-tabs-item>
+				<u-tabs-item label="标签5" >
+					<view class="tab-content">
+						<text>这是标签5的内容</text>
+					</view>
+				</u-tabs-item>
+			</u-tabs>
+		</card>
 
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">手势滑动切换</text>
-			<view class="u-demo-block__content">
-				<u-tabs :swipeable="true" :animated="true" :height="200">
-					<u-tabs-item label="标签1">
-						<view class="tab-content">
-							<text>这是标签1的内容</text>
-						</view>
-					</u-tabs-item>
-					<u-tabs-item label="标签2">
-						<view class="tab-content">
-							<text>这是标签2的内容</text>
-						</view>
-					</u-tabs-item>
-					<u-tabs-item label="标签3">
-						<view class="tab-content">
-							<text>这是标签3的内容</text>
-						</view>
-					</u-tabs-item>
-					<u-tabs-item label="标签4">
-						<view class="tab-content">
-							<text>这是标签4的内容</text>
-						</view>
-					</u-tabs-item>
-					<u-tabs-item label="标签5" >
-						<view class="tab-content">
-							<text>这是标签5的内容</text>
-						</view>
-					</u-tabs-item>
-					<u-tabs-item label="标签6">
-						<view class="tab-content">
-							<text>这是标签6的内容</text>
-						</view>
-					</u-tabs-item>
-					
-					<u-tabs-item label="标签7">
-						<view class="tab-content">
-							<text>这是标签7的内容</text>
-						</view>
-					</u-tabs-item>
-					
-					<u-tabs-item label="标签8">
-						<view class="tab-content">
-							<text>这是标签8的内容</text>
-						</view>
-					</u-tabs-item>
-					
-					<u-tabs-item label="标签9">
-						<view class="tab-content">
-							<text>这是标签9的内容</text>
-						</view>
-					</u-tabs-item>
-					<u-tabs-item label="标签10">
-						<view class="tab-content">
-							<text>这是标签10的内容</text>
-						</view>
-					</u-tabs-item>
-				</u-tabs>
-			</view>
-		</view>
+		<card title="手势滑动切换">
+			<u-tabs :swipeable="true" :animated="true" :height="200">
+				<u-tabs-item label="标签1">
+					<view class="tab-content">
+						<text>这是标签1的内容</text>
+					</view>
+				</u-tabs-item>
+				<u-tabs-item label="标签2">
+					<view class="tab-content">
+						<text>这是标签2的内容</text>
+					</view>
+				</u-tabs-item>
+				<u-tabs-item label="标签3">
+					<view class="tab-content">
+						<text>这是标签3的内容</text>
+					</view>
+				</u-tabs-item>
+				<u-tabs-item label="标签4">
+					<view class="tab-content">
+						<text>这是标签4的内容</text>
+					</view>
+				</u-tabs-item>
+				<u-tabs-item label="标签5" >
+					<view class="tab-content">
+						<text>这是标签5的内容</text>
+					</view>
+				</u-tabs-item>
+				<u-tabs-item label="标签6">
+					<view class="tab-content">
+						<text>这是标签6的内容</text>
+					</view>
+				</u-tabs-item>
+				
+				<u-tabs-item label="标签7">
+					<view class="tab-content">
+						<text>这是标签7的内容</text>
+					</view>
+				</u-tabs-item>
+				
+				<u-tabs-item label="标签8">
+					<view class="tab-content">
+						<text>这是标签8的内容</text>
+					</view>
+				</u-tabs-item>
+				
+				<u-tabs-item label="标签9">
+					<view class="tab-content">
+						<text>这是标签9的内容</text>
+					</view>
+				</u-tabs-item>
+				<u-tabs-item label="标签10">
+					<view class="tab-content">
+						<text>这是标签10的内容</text>
+					</view>
+				</u-tabs-item>
+			</u-tabs>
+		</card>
 
-		<view class="u-demo-block" style="margin-bottom: 0;">
-			<text class="u-demo-block__title">粘性布局</text>
-		</view>
-		<u-sticky bgColor="#fff">
-			<u-tabs :list="list1"></u-tabs>
-		</u-sticky>
-		<u-gap height="23" bgColor="#fff"></u-gap>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">显示徽标</text>
-			<view class="u-demo-block__content">
-				<u-tabs :list="list2">
-				</u-tabs>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">禁止滚动</text>
-			<view class="u-demo-block__content">
-				<u-tabs :list="list6" :scrollable="false">
-				</u-tabs>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">禁用菜单</text>
-			<view class="u-demo-block__content">
-				<u-tabs :list="list3">
-				</u-tabs>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">自定义样式</text>
-			<view class="u-demo-block__content">
-				<u-tabs :list="list4" lineWidth="30" lineColor="#f56c6c" :activeStyle="{
+		<card title="粘性布局">
+			<u-sticky bgColor="#fff">
+				<u-tabs :list="list1"></u-tabs>
+			</u-sticky>
+		</card>
+		
+		<card title="显示徽标">
+			<u-tabs :list="list2">
+			</u-tabs>
+		</card>
+		
+		<card title="禁止滚动">
+			<u-tabs :list="list6" :scrollable="false">
+			</u-tabs>
+		</card>
+		
+		<card title="禁用菜单">
+			<u-tabs :list="list3">
+			</u-tabs>
+		</card>
+		
+		<card title="自定义样式">
+			<u-tabs :list="list4" lineWidth="30" lineColor="#f56c6c" :activeStyle="{
+				color: '#303133',
+				fontWeight: 'bold',
+				transform: 'scale(1.05)'
+			}" :inactiveStyle="{
+					color: '#606266',
+					transform: 'scale(1)'
+				}" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;">
+			</u-tabs>
+		</card>
+		
+		<card title="滑块设置背景图">
+			<u-tabs :list="list4" lineWidth="20" lineHeight="7" :lineColor="`url(${lineBg}) 100% 100%`"
+				:activeStyle="{
 					color: '#303133',
 					fontWeight: 'bold',
 					transform: 'scale(1.05)'
 				}" :inactiveStyle="{
-						color: '#606266',
-						transform: 'scale(1)'
-					}" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;">
-				</u-tabs>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">滑块设置背景图</text>
-			<view class="u-demo-block__content">
-				<u-tabs :list="list4" lineWidth="20" lineHeight="7" :lineColor="`url(${lineBg}) 100% 100%`"
-					:activeStyle="{
-						color: '#303133',
-						fontWeight: 'bold',
-						transform: 'scale(1.05)'
-					}" :inactiveStyle="{
-						color: '#606266',
-						transform: 'scale(1)'
-					}" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;">
-				</u-tabs>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">右侧自定义插槽</text>
-			<view class="u-demo-block__content">
-				<u-tabs :list="list1">
-					<view slot="right" style="padding-left: 4px;" @tap="$u.toast('插槽被点击')">
-						<u-icon name="list" size="21" bold></u-icon>
-					</view>
-				</u-tabs>
-			</view>
-		</view>
+					color: '#606266',
+					transform: 'scale(1)'
+				}" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;">
+			</u-tabs>
+		</card>
+		
+		<card title="右侧自定义插槽">
+			<u-tabs :list="list1">
+				<view slot="right" style="padding-left: 4px;" @tap="$u.toast('插槽被点击')">
+					<u-icon name="list" size="21" bold></u-icon>
+				</view>
+			</u-tabs>
+		</card>
 	</view>
 </template>
 
@@ -292,14 +268,7 @@ export default {
 
 <style lang="scss">
 .u-page {
-	padding: 0;
 	padding-bottom: 500px;
-}
-.u-demo-block__title {
-	background-color: #f5f5f5;
-	padding: 10px;
-	font-size: 16px;
-	color: #333;
 }
 
 .tab-content{

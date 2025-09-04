@@ -1,171 +1,142 @@
 <template>
 	<view class="u-page">
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">基础使用</text>
-			<view class="u-demo-block__content">
-				<u--input
-					placeholder="请输入内容"
-					border="surround"
-					v-model="value"
-					@change="change"
-					readonly
-				></u--input>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">可清空内容</text>
-			<view class="u-demo-block__content">
-				<u--input
-					placeholder="请输入内容"
-					border="surround"
-					clearable
-				></u--input>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">数字键盘</text>
-			<view class="u-demo-block__content">
-				<u--input
-					placeholder="请输入内容"
-					border="surround"
-					type="number"
-					clearable
-				></u--input>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">密码类型</text>
-			<view class="u-demo-block__content">
-				<u--input
-					placeholder="请输入内容"
-					border="surround"
-					password
-					clearable
-				></u--input>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">自定义样式</text>
-			<view class="u-demo-block__content">
-				<u--input
-					placeholder="请输入内容"
-					backgroundColor="#f5f5f5"
-					border="none"
-					clearable
-				></u--input>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">显示下划线</text>
-			<view class="u-demo-block__content">
-				<u--input
-					placeholder="请输入内容"
-					border="bottom"
-					clearable
-				></u--input>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">禁用状态</text>
-			<view class="u-demo-block__content">
-				<u--input
-					placeholder="禁用状态"
-					border="surround"
-					disabled
-				></u--input>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">圆形</text>
-			<view class="u-demo-block__content">
-				<u--input
-					placeholder="请输入内容"
-					border="surround"
-					shape="circle"
-				></u--input>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">前后图标</text>
-			<view class="u-demo-block__content">
-				<u--input
-					placeholder="前置图标"
-					prefixIcon="search"
-					prefixIconStyle="font-size: 22px;color: #909399"
-				></u--input>
-			</view>
-			<view
-				class="u-demo-block__content"
-				style="margin-top: 15px;"
-			>
-				<u--input
-					placeholder="后置图标"
-					suffixIcon="map-fill"
-					suffixIconStyle="color: #909399"
-				></u--input>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">前后插槽</text>
-			<view class="u-demo-block__content">
-				<!-- 注意：由于兼容性差异，如果需要使用前后插槽，nvue下需使用u--input，非nvue下需使用u-input -->
-				<!-- #ifndef APP-NVUE -->
-				<u-input placeholder="前置插槽">
-					<!-- #endif -->
-					<!-- #ifdef APP-NVUE -->
-					<u--input placeholder="前置插槽">
-						<!-- #endif -->
-						<template #prefix>
-							<u--text
-								text="http://"
-								margin="0 3px 0 0"
-								type="tips"
-							></u--text>
-						</template>
-						<!-- #ifndef APP-NVUE -->
-				</u-input>
+		<card title="基础使用">
+			<u--input
+				placeholder="请输入内容"
+				border="surround"
+				v-model="value"
+				@change="change"
+				readonly
+			></u--input>
+		</card>
+		
+		<card title="可清空内容">
+			<u--input
+				placeholder="请输入内容"
+				border="surround"
+				clearable
+			></u--input>
+		</card>
+		
+		<card title="数字键盘">
+			<u--input
+				placeholder="请输入内容"
+				border="surround"
+				type="number"
+				clearable
+			></u--input>
+		</card>
+		
+		<card title="密码类型">
+			<u--input
+				placeholder="请输入内容"
+				border="surround"
+				password
+				clearable
+			></u--input>
+		</card>
+		
+		<card title="自定义样式">
+			<u--input
+				placeholder="请输入内容"
+				backgroundColor="#f5f5f5"
+				border="none"
+				clearable
+			></u--input>
+		</card>
+		
+		<card title="显示下划线">
+			<u--input
+				placeholder="请输入内容"
+				border="bottom"
+				clearable
+			></u--input>
+		</card>
+		
+		<card title="禁用状态">
+			<u--input
+				placeholder="禁用状态"
+				border="surround"
+				disabled
+			></u--input>
+		</card>
+		
+		<card title="圆形">
+			<u--input
+				placeholder="请输入内容"
+				border="surround"
+				shape="circle"
+			></u--input>
+		</card>
+		
+		<card title="前置图标">
+			<u--input
+				placeholder="前置图标"
+				prefixIcon="search"
+				prefixIconStyle="font-size: 22px;color: #909399"
+			></u--input>
+		</card>
+		
+		<card title="后置图标">
+			<u--input
+				placeholder="后置图标"
+				suffixIcon="map-fill"
+				suffixIconStyle="color: #909399"
+			></u--input>
+		</card>
+		
+		<card title="前置插槽">
+			<!-- 注意：由于兼容性差异，如果需要使用前后插槽，nvue下需使用u--input，非nvue下需使用u-input -->
+			<!-- #ifndef APP-NVUE -->
+			<u-input placeholder="前置插槽">
 				<!-- #endif -->
 				<!-- #ifdef APP-NVUE -->
-				</u--input>
-				<!-- #endif -->
-			</view>
-			<view
-				class="u-demo-block__content"
-				style="margin-top: 15px;"
-			>
-				<!-- 注意：由于兼容性差异，如果需要使用前后插槽，nvue下需使用u--input，非nvue下需使用u-input -->
-				<!-- #ifndef APP-NVUE -->
-				<u-input placeholder="后置插槽" v-model="smscode">
+				<u--input placeholder="前置插槽">
 					<!-- #endif -->
-					<!-- #ifdef APP-NVUE -->
-					<u--input placeholder="后置插槽">
-						<!-- #endif -->
-						<template #suffix>
-							<u-code
-								ref="uCode"
-								@change="codeChange"
-								seconds="20"
-								changeText="X秒重新获取"
-							></u-code>
-							<u-button
-								@tap="getCode"
-								:text="tips"
-								type="success"
-								size="mini"
-							></u-button>
-						</template>
-						<!-- #ifndef APP-NVUE -->
-				</u-input>
+					<template #prefix>
+						<u--text
+							text="http://"
+							margin="0 3px 0 0"
+							type="tips"
+						></u--text>
+					</template>
+					<!-- #ifndef APP-NVUE -->
+			</u-input>
+			<!-- #endif -->
+			<!-- #ifdef APP-NVUE -->
+			</u--input>
+			<!-- #endif -->
+		</card>
+		
+		<card title="后置插槽">
+			<!-- 注意：由于兼容性差异，如果需要使用前后插槽，nvue下需使用u--input，非nvue下需使用u-input -->
+			<!-- #ifndef APP-NVUE -->
+			<u-input placeholder="后置插槽" v-model="smscode">
 				<!-- #endif -->
 				<!-- #ifdef APP-NVUE -->
-				</u--input>
-				<!-- #endif -->
-			</view>
-		</view>
-		<u-gap
-			bgColor="#fff"
-			height="50"
-		></u-gap>
+				<u--input placeholder="后置插槽">
+					<!-- #endif -->
+					<template #suffix>
+						<u-code
+							ref="uCode"
+							@change="codeChange"
+							seconds="20"
+							changeText="X秒重新获取"
+						></u-code>
+						<u-button
+							@tap="getCode"
+							:text="tips"
+							type="success"
+							size="mini"
+						></u-button>
+					</template>
+					<!-- #ifndef APP-NVUE -->
+			</u-input>
+			<!-- #endif -->
+			<!-- #ifdef APP-NVUE -->
+			</u--input>
+			<!-- #endif -->
+		</card>
 	</view>
 </template>
 
@@ -211,7 +182,3 @@
 		}
 	}
 </script>
-
-<style lang="scss">
-
-</style>

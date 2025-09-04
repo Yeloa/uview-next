@@ -1,6 +1,8 @@
 <template>
 	<view class="u-page">
-		<u-button type="primary" @click="show = true">打开授权</u-button>
+		<card title="基础用法" bg-color="none">
+			<u-button type="primary" @click="show = true">打开授权</u-button>
+		</card>
 		<u-wx-auth ref="wxAuthRef" :show="show" :logo="logo" :title="title" @close="close" @chooseAvatar="chooseAvatar" @confirm="confirm"></u-wx-auth>
 	</view>
 </template>
@@ -31,4 +33,7 @@
 </script>
 
 <style lang="scss">
+page{
+	background-color: #f5f5f5;
+}
 </style>

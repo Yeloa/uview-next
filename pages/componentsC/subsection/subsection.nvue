@@ -1,110 +1,92 @@
 <template>
 	<view class="u-page">
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">基础使用</text>
-			<view class="u-demo-block__content">
-				<u-subsection
-					:list="list"
-					mode="subsection"
-					:current="current1"
-					@change="change1"
-				></u-subsection>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">按钮模式</text>
-			<view class="u-demo-block__content">
+		<card title="基础使用">
+			<u-subsection
+				:list="list"
+				mode="subsection"
+				:current="current1"
+				@change="change1"
+			></u-subsection>
+		</card>
+		<card title="按钮模式">
+			<u-subsection
+				:list="list"
+				mode="button"
+				barColor="#fff"
+				:current="current2"
+				@change="change2"
+			></u-subsection>
+		</card>
+		<card title="圆角模式">
+			<u-subsection
+				:list="list"
+				mode="subsection"
+				shape="circle"
+				:current="current2"
+				@change="change2"
+			></u-subsection>
+			<view style="margin-top: 10px;">
 				<u-subsection
 					:list="list"
 					mode="button"
-					barColor="#fff"
-					:current="current2"
-					@change="change2"
-				></u-subsection>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">圆角模式</text>
-			<view class="u-demo-block__content">
-				<u-subsection
-					:list="list"
-					mode="subsection"
 					shape="circle"
+					barColor="#3c9cff"
+					activeColor="#fff"
 					:current="current2"
 					@change="change2"
 				></u-subsection>
-				<view style="margin-top: 10px;">
-					<u-subsection
-						:list="list"
-						mode="button"
-						shape="circle"
-						barColor="#3c9cff"
-						activeColor="#fff"
-						:current="current2"
-						@change="change2"
-					></u-subsection>
-				</view>
 			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">更换主题</text>
-			<view class="u-demo-block__content">
+		</card>
+		<card title="更换主题">
+			<u-subsection
+				:list="list"
+				mode="subsection"
+				:current="current3"
+				activeColor="#f56c6c"
+				@change="change3"
+			></u-subsection>
+
+			<view style="margin-top: 10px;">
 				<u-subsection
 					:list="list"
-					mode="subsection"
+					mode="button"
 					:current="current3"
-					activeColor="#f56c6c"
+					activeColor="#fff"
+					barColor="#f56c6c"
 					@change="change3"
 				></u-subsection>
-
-				<view style="margin-top: 10px;">
-					<u-subsection
-						:list="list"
-						mode="button"
-						:current="current3"
-						activeColor="#fff"
-						barColor="#f56c6c"
-						@change="change3"
-					></u-subsection>
-				</view>
-
-				<view style="margin-top: 10px;">
-					<u-subsection
-						:list="list"
-						mode="button"
-						height="40"
-						shape="circle"
-						:current="current3"
-						activeColor="#fff"
-						barColor="#f56c6c"
-						@change="change3"
-					></u-subsection>
-				</view>
 			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">默认位置</text>
-			<view class="u-demo-block__content">
+
+			<view style="margin-top: 10px;">
 				<u-subsection
 					:list="list"
 					mode="button"
-					:current="current4"
-					@change="change4"
+					height="40"
+					shape="circle"
+					:current="current3"
+					activeColor="#fff"
+					barColor="#f56c6c"
+					@change="change3"
 				></u-subsection>
 			</view>
-		</view>
+		</card>
+		<card title="默认位置">
+			<u-subsection
+				:list="list"
+				mode="button"
+				:current="current4"
+				@change="change4"
+			></u-subsection>
+		</card>
 
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">禁用</text>
-			<view class="u-demo-block__content">
-				<u-subsection
-					:list="list2"
-					mode="button"
-					:current="current4"
-					@change="change4"
-				></u-subsection>
-			</view>
-		</view>
+		<card title="禁用">
+			<u-subsection
+				:list="list2"
+				mode="button"
+				:current="current4"
+				@change="change4"
+			></u-subsection>
+		</card>
 	</view>
 </template>
 

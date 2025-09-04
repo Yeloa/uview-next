@@ -57,6 +57,11 @@
 					style.marginLeft = uni.$u.addUnit(-Number(this.gutter)/2)
 					style.marginRight = uni.$u.addUnit(-Number(this.gutter)/2)
 				}
+
+				if(this.wrap) {
+					style.flexWrap = 'wrap'
+				}
+				
 				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
 			}
 		},

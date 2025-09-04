@@ -1,7 +1,6 @@
 <template>
 	<view class="u-page">
-		<view class="u-page__item">
-			<text class="u-page__item__title">基础功能</text>
+		<card title="基础功能">
 			<u-collapse @change="change" @close="close" @open="open">
 				<u-collapse-item title="文档指南" name="Docs guide">
 					<text class="u-collapse-content">涵盖uniapp各个方面，给开发者方向指导和设计理念，让您茅塞顿开，一马平川</text>
@@ -13,9 +12,8 @@
 					<text class="u-collapse-content">众多的贴心小工具，是您开发过程中召之即来的利器，让您飞镖在手，百步穿杨</text>
 				</u-collapse-item>
 			</u-collapse>
-		</view>
-		<view class="u-page__item">
-			<text class="u-page__item__title">展开和禁用</text>
+		</card>
+		<card title="展开和禁用">
 			<u-collapse :value="['2']">
 				<u-collapse-item title="文档指南">
 					<text class="u-collapse-content">涵盖uniapp各个方面，给开发者方向指导和设计理念，让您茅塞顿开，一马平川</text>
@@ -27,9 +25,8 @@
 					<text class="u-collapse-content">众多的贴心小工具，是您开发过程中召之即来的利器，让您飞镖在手，百步穿杨</text>
 				</u-collapse-item>
 			</u-collapse>
-		</view>
-		<view class="u-page__item">
-			<text class="u-page__item__title">手风琴模式</text>
+		</card>
+		<card title="手风琴模式">
 			<u-collapse accordion>
 				<u-collapse-item title="文档指南">
 					<text class="u-collapse-content">涵盖uniapp各个方面，给开发者方向指导和设计理念，让您茅塞顿开，一马平川</text>
@@ -41,9 +38,8 @@
 					<text class="u-collapse-content">众多的贴心小工具，是您开发过程中召之即来的利器，让您飞镖在手，百步穿杨</text>
 				</u-collapse-item>
 			</u-collapse>
-		</view>
-		<view class="u-page__item">
-			<text class="u-page__item__title">移除下划线</text>
+		</card>
+		<card title="移除下划线">
 			<u-collapse accordion :border="false">
 				<u-collapse-item title="文档指南">
 					<text class="u-collapse-content">涵盖uniapp各个方面，给开发者方向指导和设计理念，让您茅塞顿开，一马平川</text>
@@ -55,11 +51,10 @@
 					<text class="u-collapse-content">众多的贴心小工具，是您开发过程中召之即来的利器，让您飞镖在手，百步穿杨</text>
 				</u-collapse-item>
 			</u-collapse>
-		</view>
+		</card>
 		<!-- 微信小程序不支持，因为微信中不支持 <slot name="title" slot="title" />的写法 -->
 		<!-- #ifndef MP-WEIXIN -->
-		<view class="u-page__item">
-			<text class="u-page__item__title">自定义标题和内容</text>
+		<card title="自定义标题和内容">
 			<u-collapse accordion>
 				<u-collapse-item>
 					<template #title>
@@ -82,9 +77,8 @@
 					<text class="u-collapse-content">众多的贴心小工具，是您开发过程中召之即来的利器，让您飞镖在手，百步穿杨</text>
 				</u-collapse-item>
 			</u-collapse>
-		</view>
+		</card>
 		<!-- #endif -->
-		<u-gap height="50"></u-gap>
 	</view>
 </template>
 
@@ -107,29 +101,3 @@ export default {
 	}
 }
 </script>
-
-<style lang="scss">
-.u-page {
-	padding: 0;
-
-	&__item {
-
-		&__title {
-			color: $u-tips-color;
-			background-color: $u-bg-color;
-			padding: 15px;
-			font-size: 15px;
-
-			&__slot-title {
-				color: $u-primary;
-				font-size: 14px;
-			}
-		}
-	}
-}
-
-.u-collapse-content {
-	color: $u-tips-color;
-	font-size: 14px;
-}
-</style>

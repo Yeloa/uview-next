@@ -128,6 +128,7 @@
 
 <style lang="scss">
 	.u-page {
+		background: #fff;
 		padding: 40rpx 0px;
 
 		&__top-box {

@@ -1,8 +1,6 @@
 <template>
 	<view class="u-page">
-		<u-alert type="error" description="PC端需开启仿真模式测试"></u-alert>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">基础功能</text>
+		<card title="基础功能">
 			<view class="u-demo-block__content">
 				<view class="signature-container">
 					<u-signature
@@ -17,7 +15,7 @@
 					></u-signature>
 				</view>
 			</view>
-		</view>
+		</card>
 		
 		<view class="button-container">
 			<u-button size="small" type="primary" @click="clear">清空</u-button>
@@ -28,10 +26,9 @@
 		<view class="button-container">
 			<u-button size="small" type="error" @click="goLandscape">横屏模式</u-button>
 		</view>
-		<view class="preview-container">
-			<view class="preview-title">预览</view>
+		<card title="预览">
 			<image :src="basicResult" class="result-image" mode="widthFix"></image>
-		</view>
+		</card>
 	</view>
 </template>
 

@@ -29,7 +29,7 @@ function createI18n(config) {
         locale: 'zh-CN', // 默认显示语言
         fallbackLocale: 'en-US',
         messages: {
-            'zh-CN': zhCN, //简体中文
+            'zh-Hans': zhCN, //简体中文
             'zh-HK': zhHK, //繁体中文（香港）
             'en-US': enUS, //英文
             'ja-JP': jaJP,  //日文

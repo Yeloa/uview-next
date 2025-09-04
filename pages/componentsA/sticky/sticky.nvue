@@ -52,6 +52,6 @@
 
 <style lang="scss">
 	.u-page {
-		
+		background-color: #fff;
 	}
 </style>

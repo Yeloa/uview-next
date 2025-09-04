@@ -1,5 +1,5 @@
 <template>
-    <view class="u-page">
+    <view >
         <u-gap height="20" bgColor="#fff"></u-gap>
         <u-cell-group border>
             <u-cell

@@ -1,5 +1,5 @@
 <template>
-	<view class="u-page">
+	<view >
 		<u-navbar
 			title="遮罩层"
 			@leftClick="navigateBack"
@@ -54,15 +54,15 @@
 				showOpcatiy: false,
 				list: [{
 						title: '基本案列',
-						iconUrl: 'http://118.25.198.98/web/static/uview/overlay/baseCases.png'
+						iconUrl: 'http://uview.d3u.cn/web/static/uview/overlay/baseCases.png'
 					},
 					{
 						title: '嵌入内容',
-						iconUrl: 'http://118.25.198.98/web/static/uview/overlay/embeddedContent.png'
+						iconUrl: 'http://uview.d3u.cn/web/static/uview/overlay/embeddedContent.png'
 					},
 					{
 						title: '设置透明度',
-						iconUrl: 'http://118.25.198.98/web/static/uview/overlay/setTransparency.png'
+						iconUrl: 'http://uview.d3u.cn/web/static/uview/overlay/setTransparency.png'
 					},
 				]
 			}

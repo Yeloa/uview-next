@@ -1,108 +1,93 @@
 <template>
 	<view class="u-page">
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">基础功能</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__tag-item">
-					<u-count-to
-						:endVal="value"
-						@end="end"
-					></u-count-to>
-				</view>
+		<card title="基础功能">
+			<view class="u-page__tag-item">
+				<u-count-to
+					:endVal="value"
+					@end="end"
+				></u-count-to>
 			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">倒计数</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__tag-item">
-					<u-count-to :startVal="startVal1"></u-count-to>
-				</view>
+		</card>
+		
+		<card title="倒计数">
+			<view class="u-page__tag-item">
+				<u-count-to :startVal="startVal1"></u-count-to>
 			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">显示小数位</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__tag-item">
-					<u-count-to
-						:startVal="startVal2"
-						:endVal="endVal"
-						:decimals="decimals"
-					></u-count-to>
-				</view>
+		</card>
+		
+		<card title="显示小数位">
+			<view class="u-page__tag-item">
+				<u-count-to
+					:startVal="startVal2"
+					:endVal="endVal"
+					:decimals="decimals"
+				></u-count-to>
 			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">千分位分隔符</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__tag-item">
-					<u-count-to
-						:startVal="startVal3"
-						:endVal="endVal2"
-						separator=","
-						:decimals="decimals"
-					></u-count-to>
-				</view>
+		</card>
+		
+		<card title="千分位分隔符">
+			<view class="u-page__tag-item">
+				<u-count-to
+					:startVal="startVal3"
+					:endVal="endVal2"
+					separator=","
+					:decimals="decimals"
+				></u-count-to>
 			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">自定义控制</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__tag-item">
-					<u-count-to
-						ref="uCountTo"
-						:endVal="endVal3"
-						:autoplay="autoplay"
-					></u-count-to>
-				</view>
+		</card>
+		
+		<card title="自定义控制">
+			<view class="u-page__tag-item">
+				<u-count-to
+					ref="uCountTo"
+					:endVal="endVal3"
+					:autoplay="autoplay"
+				></u-count-to>
 			</view>
-			<view class="u-demo-block__content">
-				<view
-					class=""
-					style="flex: 1;"
+			<view
+				class=""
+				style="flex: 1;"
+			>
+				<u-grid
+					border
+					align="center"
+					customStyle="margin-top: 20px;margin-bottom: 20"
 				>
-					<u-grid
-						border
-						align="center"
-						customStyle="margin-top: 20px;margin-bottom: 20"
-					>
-						<u-grid-item @click="start">
-							<view class="u-grid-slot">
-								<view class="u-grid-slot__circle">
-									<text class="u-grid-slot__circle__text">开始</text>
-								</view>
+					<u-grid-item @click="start">
+						<view class="u-grid-slot">
+							<view class="u-grid-slot__circle">
+								<text class="u-grid-slot__circle__text">开始</text>
 							</view>
-						</u-grid-item>
-						<u-grid-item @click="paused">
-							<view class="u-grid-slot">
-								<view class="u-grid-slot__circle">
-									<text class="u-grid-slot__circle__text">暂停</text>
-								</view>
+						</view>
+					</u-grid-item>
+					<u-grid-item @click="paused">
+						<view class="u-grid-slot">
+							<view class="u-grid-slot__circle">
+								<text class="u-grid-slot__circle__text">暂停</text>
 							</view>
-						</u-grid-item>
-						<u-grid-item @click="resume">
-							<view class="u-grid-slot">
-								<view class="u-grid-slot__circle">
-									<text class="u-grid-slot__circle__text">继续</text>
-								</view>
+						</view>
+					</u-grid-item>
+					<u-grid-item @click="resume">
+						<view class="u-grid-slot">
+							<view class="u-grid-slot__circle">
+								<text class="u-grid-slot__circle__text">继续</text>
 							</view>
-						</u-grid-item>
-					</u-grid>
-				</view>
+						</view>
+					</u-grid-item>
+				</u-grid>
 			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">自定义</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__tag-item">
-					<u-count-to
-						:endVal="value"
-						color="#909399"
-						:fontSize="fontSize"
-						:bold="true"
-					></u-count-to>
-				</view>
+		</card>
+		
+		<card title="自定义">
+			<view class="u-page__tag-item">
+				<u-count-to
+					:endVal="value"
+					color="#909399"
+					:fontSize="fontSize"
+					:bold="true"
+				></u-count-to>
 			</view>
-		</view>
+		</card>
 	</view>
 </template>
 
@@ -146,11 +131,7 @@
 </script>
 
 <style lang="scss">
-	.u-demo-block__content {
-		flex-direction: row;
-		flex-wrap: wrap;
-		align-items: center;
-	}
+
 
 	.u-grid-slot {
 		border-radius: 100px;

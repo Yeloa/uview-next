@@ -1,49 +1,36 @@
 <template>
 	<view class="u-page">
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">基础使用</text>
-			<view class="u-demo-block__content">
-				<view class="demo-item" @click="showBasic = true">
-					<text>地区</text>
-					<text class="selected-text">{{ basicLabel }}</text>
-				</view>
-				<u-cascader :show="showBasic" v-model="basicValue" :options="areaOptions" @close="showBasic = false" @confirm="onBasicConfirm" />
+		<card title="基础使用">
+			<view class="demo-item" @click="showBasic = true">
+				<text>请选择地区</text>
+				<text class="selected-text">{{ basicLabel }}</text>
 			</view>
-		</view>
+			<u-cascader :show="showBasic" v-model="basicValue" :options="areaOptions" @close="showBasic = false" @confirm="onBasicConfirm" />
+		</card>
 
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">预设值</text>
-			<view class="u-demo-block__content">
-				<view class="demo-item" @click="showPreset = true">
-					<text>地区</text>
-					<text class="selected-text">{{ presetLabel }}</text>
-				</view>
-				<u-cascader :show="showPreset" v-model="presetValue" :options="areaOptions" @close="showPreset = false" @confirm="onPresetConfirm" />
+		<card title="预设值">
+			<view class="demo-item" @click="showPreset = true">
+				<text>请选择地区</text>
+				<text class="selected-text">{{ presetLabel }}</text>
 			</view>
-		</view>
+			<u-cascader :show="showPreset" v-model="presetValue" :options="areaOptions" @close="showPreset = false" @confirm="onPresetConfirm" />
+		</card>
 
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">自定义样式</text>
-			<view class="u-demo-block__content">
-				<view class="demo-item" @click="showCustomStyle = true" >
-					<text>地区</text>
-					<text class="selected-text">{{ customStyleLabel }}</text>
-				</view>
-				<u-cascader 
-					:show="showCustomStyle" 
-					:options="areaOptions"
-					:round="10"
-					v-model="customStyleValue" 
-					title="请选择地区"
-					active-color="#ff6b6b" 
-					@close="showCustomStyle = false" 
-					@change="onCustomStyleConfirm" />
+		<card title="自定义样式">
+			<view class="demo-item" @click="showCustomStyle = true">
+				<text>请选择地区</text>
+				<text class="selected-text">{{ customStyleLabel }}</text>
 			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title"></text>
-			
-		</view>
+			<u-cascader 
+				:show="showCustomStyle" 
+				:options="areaOptions"
+				:round="10"
+				v-model="customStyleValue" 
+				title="请选择地区"
+				active-color="#ff6b6b" 
+				@close="showCustomStyle = false" 
+				@change="onCustomStyleConfirm" />
+		</card>
 	</view>
 </template>
 
@@ -373,35 +360,14 @@
 </script>
 
 <style lang="scss">
-.u-page {
-	padding: 0;
-}
-
-.u-demo-block {
-	margin-bottom: 10px;
-}
-
-.u-demo-block__title {
-	background-color: #f5f5f5;
-	padding: 10px;
-	font-size: 16px;
-	color: #333;
-}
-
-.u-demo-block__content {
-	padding: 0 10px;
-}
-
 .demo-item {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
 }
-
 .selected-text {
 	font-size: 14px;
 	color: #666;
 }
-
 </style>

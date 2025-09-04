@@ -55,6 +55,14 @@ export default defineProps('color-picker', {
         type: Boolean,
         default: true
     },
+    showAlphaSlider: {
+        type: Boolean,
+        default: true
+    },
+    showHueSlider: {
+        type: Boolean,
+        default: true
+    },
 	// 是否禁用颜色选择器
 	disabled: {
 		type: Boolean,

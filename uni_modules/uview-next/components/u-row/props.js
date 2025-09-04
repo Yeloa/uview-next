@@ -15,5 +15,9 @@ export default defineProps('row', {
     align: {
         type: String,
         default: 'center'
+    },
+    wrap: {
+        type: Boolean,
+        default: false
     }
 })

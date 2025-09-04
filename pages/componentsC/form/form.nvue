@@ -253,7 +253,7 @@
                         {
                             // 此为同步验证，可以直接返回true或者false，如果是异步验证，稍微不同，见下方说明
                             validator: (rule, value, callback) => {
-                                // 调用uView自带的js验证规则，详见：http://118.25.198.98/js/test.html
+                                // 调用uView自带的js验证规则，详见：http://uview.d3u.cn/js/test.html
                                 return uni.$u.test.chinese(value);
                             },
                             message: '姓名必须为中文',
@@ -347,7 +347,7 @@
         methods: {
             // 此为同步验证，可以直接返回true或者false，如果是异步验证，稍微不同，见下方说明
             validator: (rule, value, callback) => {
-                // 调用uView自带的js验证规则，详见：http://118.25.198.98/js/test.html
+                // 调用uView自带的js验证规则，详见：http://uview.d3u.cn/js/test.html
                 setTimeout(() => {
                     callback('姓名重复');
                     // 如果校验通过，也要执行callback()回调
@@ -466,4 +466,8 @@
     };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.u-page {
+    background-color: #fff;
+}
+</style>

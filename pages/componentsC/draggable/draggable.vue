@@ -1,7 +1,5 @@
 <template>
 	<view class="u-page">
-		<u-alert type="error" description="PC端需开启仿真模式测试"></u-alert>
-
 		<view class="u-demo-block" style="margin-top: 10px;">
 			<text class="u-demo-block__title">基础使用 - 禁用</text>
 			<view class="u-demo-block__content">

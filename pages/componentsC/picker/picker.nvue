@@ -1,5 +1,5 @@
 <template>
-	<view class="u-page" ref="page">
+	<view >
 		<u-navbar
 			title="选择器"
 			@leftClick="navigateBack"

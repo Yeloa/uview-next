@@ -5,13 +5,16 @@
 			<view class="u-page__swipe-action-item">
 				<u-swipe-action>
 					<u-swipe-action-item
-						v-if="show1"
-						:options="options1"
+						v-for="(item, index) in swipeItems"
+						:key="index"
+						:name="item.name"
+						:options="item.options"
 						@click="click"
+						closeOnClick
 					>
 						<view class="swipe-action u-border-top u-border-bottom">
 							<view class="swipe-action__content">
-								<text class="swipe-action__content__text">基础使用</text>
+								<text class="swipe-action__content__text">{{ item.text }}</text>
 							</view>
 						</view>
 					</u-swipe-action-item>
@@ -93,6 +96,34 @@
 				moveX: 0,
 				showText: '当前状态：关',
 				showStatus: false,
+				swipeItems: [{
+					text: '基础使用',
+					name:'item1',
+					options: [{
+						text: '删除1',
+						style: {
+							backgroundColor: '#f56c6c'
+						}
+					}]
+				},{
+					text: '基础使用2',
+					name:'item2',
+					options: [{
+						text: '删除2',
+						style: {
+							backgroundColor: '#f56c6c'
+						}
+					}]
+				},{
+					text: '基础使用3',
+					name:'item3',
+					options: [{
+						text: '删除3',
+						style: {
+							backgroundColor: '#f56c6c'
+						}
+					}]
+				}],
 				options1: [{
 					text: '删除',
 					style: {
@@ -189,17 +220,23 @@
 			}
 		},
 		methods: {
-			click(index) {
-				console.log('click', index);
-				uni.showModal({
-					title: '温馨提示',
-					content: '确定要删除吗？',
-					success: res => {
-						if (res.confirm) {
-							this.show1 = false
-						}
-					}
-				})
+			click(event) {
+				const idx = this.swipeItems.findIndex((item) => item.name == event.name);
+				this.swipeItems.splice(idx, 1);
+
+				// uni.showModal({
+				// 	title: '温馨提示',
+				// 	content: '确定要删除吗？',
+				// 	success: res => {
+				// 		if (res.confirm) {
+				// 			// 找到对应的项目并隐藏
+				// 			const idx = this.swipeItems.findIndex((item) => item.name == index.name);
+				// 			if (idx) {
+				// 				this.swipeItems.splice(idx, 1);
+				// 			}
+				// 		}
+				// 	}
+				// })
 			}
 		}
 	}

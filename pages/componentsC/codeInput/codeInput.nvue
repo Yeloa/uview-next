@@ -1,62 +1,48 @@
 <template>
 	<view class="u-page">
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">基础使用</text>
-			<view class="u-demo-block__content">
-				<u-code-input
-					v-model="value1"
-					:maxlength="4"
-					@change="change"
-					@finish="finish"
-				></u-code-input>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">横线模式</text>
-			<view class="u-demo-block__content">
-				<u-code-input
-					v-model="value2"
-					mode="line"
-					:maxlength="4"
-					:bold="true"
-				></u-code-input>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">设置长度</text>
-			<view class="u-demo-block__content">
-				<u-code-input
-					v-model="value3"
-					:maxlength="6"
-				></u-code-input>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">设置间距</text>
-			<view class="u-demo-block__content">
-				<u-code-input
-					v-model="value4"
-					mode="box"
-					:space="0"
-					:maxlength="4"
-				></u-code-input>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">细边框</text>
-			<view class="u-demo-block__content">
-				<u-code-input
-					v-model="value5"
-					mode="box"
-					:space="0"
-					:maxlength="4"
-					hairline
-				></u-code-input>
-			</view>
-			<view
-				class="u-demo-block__content"
-				style="margin-top: 10px;"
-			>
+		<card title="基础使用">
+			<u-code-input
+				v-model="value1"
+				:maxlength="4"
+				@change="change"
+				@finish="finish"
+			></u-code-input>
+		</card>
+		
+		<card title="横线模式">
+			<u-code-input
+				v-model="value2"
+				mode="line"
+				:maxlength="4"
+				:bold="true"
+			></u-code-input>
+		</card>
+		
+		<card title="设置长度">
+			<u-code-input
+				v-model="value3"
+				:maxlength="6"
+			></u-code-input>
+		</card>
+		
+		<card title="设置间距">
+			<u-code-input
+				v-model="value4"
+				mode="box"
+				:space="0"
+				:maxlength="4"
+			></u-code-input>
+		</card>
+		
+		<card title="细边框">
+			<u-code-input
+				v-model="value5"
+				mode="box"
+				:space="0"
+				:maxlength="4"
+				hairline
+			></u-code-input>
+			<view style="margin-top: 10px;">
 				<u-code-input
 					v-model="value6"
 					mode="line"
@@ -65,71 +51,64 @@
 					hairline
 				></u-code-input>
 			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">调整颜色</text>
-			<view class="u-demo-block__content">
+		</card>
+		
+		<card title="调整颜色">
+			<u-code-input
+				v-model="value7"
+				mode="box"
+				:space="0"
+				:maxlength="4"
+				hairline
+				color="#f56c6c"
+				borderColor="#f56c6c"
+			></u-code-input>
+			
+			<view style="margin-top: 10px;">
 				<u-code-input
-					v-model="value7"
-					mode="box"
-					:space="0"
+					v-model="value11"
+					size="40"
 					:maxlength="4"
-					hairline
-					color="#f56c6c"
-					borderColor="#f56c6c"
+					round="5"
+					bgColor="#f3f3f3"
+					borderColor="none"
 				></u-code-input>
-				
-				<view class="u-demo-block__content" style="margin-top: 10px;">
-					<u-code-input
-						v-model="value11"
-						size="40"
-						:maxlength="4"
-						round="5"
-						bgColor="#f3f3f3"
-						borderColor="none"
-					></u-code-input>
-				</view>
+			</view>
 
-				<view class="u-demo-block__content" style="margin-top: 10px;">
-					<u-code-input
-						v-model="value10"
-						mode="line"
-						size="30"
-						:maxlength="4"
-						hairline
-						color="#3c9cff"
-						borderColor="#3c9cff"
-					></u-code-input>
-				</view>
-
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">点模式</text>
-			<view class="u-demo-block__content">
+			<view style="margin-top: 10px;">
 				<u-code-input
-					v-model="value8"
-					mode="box"
-					dot
-					:space="0"
+					v-model="value10"
+					mode="line"
+					size="30"
 					:maxlength="4"
 					hairline
+					color="#3c9cff"
+					borderColor="#3c9cff"
 				></u-code-input>
 			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">预置内容</text>
-			<view class="u-demo-block__content">
-				<u-code-input
-					v-model="value9"
-					mode="box"
-					:space="0"
-					:maxlength="4"
-					hairline
-					fontSize="17"
-				></u-code-input>
-			</view>
-		</view>
+		</card>
+		
+		<card title="点模式">
+			<u-code-input
+				v-model="value8"
+				mode="box"
+				dot
+				:space="0"
+				:maxlength="4"
+				hairline
+			></u-code-input>
+		</card>
+		
+		<card title="预置内容">
+			<u-code-input
+				v-model="value9"
+				mode="box"
+				:space="0"
+				:maxlength="4"
+				hairline
+				fontSize="17"
+			></u-code-input>
+		</card>
 	</view>
 </template>
 

@@ -1,15 +1,13 @@
 <template>
 	<view class="u-page">
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">基础功能</text>
+		<card title="基础功能">
 			<u-swiper
 				:list="list1"
 				@change="change"
 				@click="click"
 			></u-swiper>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">带标题</text>
+		</card>
+		<card title="带标题">
 			<u-swiper
 				:list="list2"
 				keyName="image"
@@ -17,33 +15,29 @@
 				:autoplay="false"
 				circular
 			></u-swiper>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">带指示器</text>
+		</card>
+		<card title="带指示器">
 			<u-swiper
 				:list="list3"
 				indicator
 				indicatorMode="line"
 				circular
 			></u-swiper>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">加载中</text>
+		</card>
+		<card title="加载中">
 			<u-swiper
 				:list="list3"
 				loading
 			></u-swiper>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">嵌入视频</text>
+		</card>
+		<card title="嵌入视频">
 			<u-swiper
 				:list="list4"
 				keyName="url"
 				:autoplay="false"
 			></u-swiper>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">自定义指示器</text>
+		</card>
+		<card title="自定义指示器">
 			<u-swiper
 				:list="list5"
 				@change="e => current = e.current"
@@ -79,10 +73,9 @@
 					<text class="indicator-num__text">{{ currentNum + 1 }}/{{ list6.length }}</text>
 				</view>
 			</u-swiper>
-		</view>
+		</card>
 		<!-- #ifndef APP-NVUE || MP-TOUTIAO -->
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">卡片式</text>
+		<card title="卡片式">
 			<u-swiper
 				:list="list3"
 				previousMargin="30"
@@ -92,7 +85,7 @@
 				radius="5"
 				bgColor="#ffffff"
 			></u-swiper>
-		</view>
+		</card>
 		<!-- #endif -->
 	</view>
 </template>
@@ -104,67 +97,67 @@
 				current: 0,
 				currentNum: 0,
 				list: [{
-						// image: 'http://118.25.198.98/web/static/uview/resources/video.mp4',
-						image: 'http://118.25.198.98/web/static/uview/album/1.jpg',
+						// image: 'http://uview.d3u.cn/web/static/uview/resources/video.mp4',
+						image: 'http://uview.d3u.cn/web/static/uview/album/1.jpg',
 						title: '昨夜星辰昨夜风，画楼西畔桂堂东',
-						poster: 'http://118.25.198.98/web/static/uview/album/1.jpg'
+						poster: 'http://uview.d3u.cn/web/static/uview/album/1.jpg'
 					},
 					{
-						image: 'http://118.25.198.98/web/static/uview/album/2.jpg',
+						image: 'http://uview.d3u.cn/web/static/uview/album/2.jpg',
 						title: '身无彩凤双飞翼，心有灵犀一点通'
 					},
 					{
-						image: 'http://118.25.198.98/web/static/uview/album/3.jpg',
+						image: 'http://uview.d3u.cn/web/static/uview/album/3.jpg',
 						title: '谁念西风独自凉，萧萧黄叶闭疏窗，沉思往事立残阳'
 					}
 				],
 				list1: [
-					'http://118.25.198.98/web/static/uview/album/1.jpg',
-					'http://118.25.198.98/web/static/uview/album/2.jpg',
-					'http://118.25.198.98/web/static/uview/album/3.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/1.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/2.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/3.jpg',
 				],
 				list2: [{
-						image: 'http://118.25.198.98/web/static/uview/album/2.jpg',
+						image: 'http://uview.d3u.cn/web/static/uview/album/2.jpg',
 						title: '昨夜星辰昨夜风，画楼西畔桂堂东',
 						type: 'image',
 					},
 					{
-						image: 'http://118.25.198.98/web/static/uview/album/1.jpg',
+						image: 'http://uview.d3u.cn/web/static/uview/album/1.jpg',
 						title: '身无彩凤双飞翼，心有灵犀一点通'
 					},
 					{
-						image: 'http://118.25.198.98/web/static/uview/album/3.jpg',
+						image: 'http://uview.d3u.cn/web/static/uview/album/3.jpg',
 						title: '谁念西风独自凉，萧萧黄叶闭疏窗，沉思往事立残阳'
 					}
 				],
 				list3: [
-					'http://118.25.198.98/web/static/uview/album/3.jpg',
-					'http://118.25.198.98/web/static/uview/album/2.jpg',
-					'http://118.25.198.98/web/static/uview/album/1.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/3.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/2.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/1.jpg',
 				],
 				list4: [{
-						url: 'http://118.25.198.98/web/static/uview/resources/video.mp4',
+						url: 'http://uview.d3u.cn/web/static/uview/resources/video.mp4',
 						title: '昨夜星辰昨夜风，画楼西畔桂堂东',
-						poster: 'http://118.25.198.98/web/static/uview/album/1.jpg',
+						poster: 'http://uview.d3u.cn/web/static/uview/album/1.jpg',
 					},
 					{
-						url: 'http://118.25.198.98/web/static/uview/album/2.jpg',
+						url: 'http://uview.d3u.cn/web/static/uview/album/2.jpg',
 						title: '身无彩凤双飞翼，心有灵犀一点通'
 					},
 					{
-						url: 'http://118.25.198.98/web/static/uview/album/3.jpg',
+						url: 'http://uview.d3u.cn/web/static/uview/album/3.jpg',
 						title: '谁念西风独自凉，萧萧黄叶闭疏窗，沉思往事立残阳'
 					}
 				],
 				list5: [
-					'http://118.25.198.98/web/static/uview/album/3.jpg',
-					'http://118.25.198.98/web/static/uview/album/2.jpg',
-					'http://118.25.198.98/web/static/uview/album/1.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/3.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/2.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/1.jpg',
 				],
 				list6: [
-					'http://118.25.198.98/web/static/uview/album/2.jpg',
-					'http://118.25.198.98/web/static/uview/album/3.jpg',
-					'http://118.25.198.98/web/static/uview/album/1.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/2.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/3.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/1.jpg',
 				]
 			}
 		},

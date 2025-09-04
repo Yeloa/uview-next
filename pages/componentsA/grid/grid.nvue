@@ -1,126 +1,114 @@
 <template>
 	<view class="u-page">
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">基本案例</text>
-			<view>
-				<u-grid
-					:border="false"
-					@click="click"
-					align="center"
+		<card title="基本案例">
+			<u-grid
+				:border="false"
+				@click="click"
+				align="center"
+			>
+				<u-grid-item
+					v-for="(baseListItem,baseListIndex) in baseList"
+					:key="baseListIndex"
 				>
-					<u-grid-item
-						v-for="(baseListItem,baseListIndex) in baseList"
-						:key="baseListIndex"
-					>
-						<u-icon
-							:customStyle="{paddingTop:20+'rpx'}"
-							:name="baseListItem.name"
-							:size="22"
-						></u-icon>
-						<text class="grid-text">{{baseListItem.title}}</text>
-					</u-grid-item>
-				</u-grid>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">显示边框</text>
-			<view>
-				<u-grid :border="true">
-					<u-grid-item
-						v-for="(listItem,listIndex) in list"
-						:key="listIndex"
-						customStyle="padding-top: 10px; padding-bottom: 10px" 
-					>
-						<u-icon
-							:customStyle="{paddingTop:20+'rpx'}"
-							:name="listItem.name"
-							:size="22"
-						></u-icon>
-						<text class="grid-text">{{listItem.title}}</text>
-					</u-grid-item>
-				</u-grid>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">绑定点击事件&自定义列数</text>
-			<view>
-				<u-grid
-					:border="false"
-					col="4"
+					<u-icon
+						:customStyle="{paddingTop:20+'rpx'}"
+						:name="baseListItem.name"
+						:size="22"
+					></u-icon>
+					<text class="grid-text">{{baseListItem.title}}</text>
+				</u-grid-item>
+			</u-grid>
+		</card>
+		<card title="显示边框">
+			<u-grid :border="true">
+				<u-grid-item
+					v-for="(listItem,listIndex) in list"
+					:key="listIndex"
+					customStyle="padding-top: 10px; padding-bottom: 10px" 
 				>
-					<u-grid-item
-						v-for="(listItem,listIndex) in list"
-						:key="listIndex"
-						customStyle="padding-top: 10px; padding-bottom: 10px"
-					>
-						<u-icon
-							:customStyle="{paddingTop:20+'rpx'}"
-							:name="listItem.name"
-							:size="22"
-						></u-icon>
-						<text class="grid-text">{{listItem.title}}</text>
-					</u-grid-item>
-				</u-grid>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">可滑动</text>
-			<view>
-				<swiper
-					:indicator-dots="true"
-					class="swiper"
+					<u-icon
+						:customStyle="{paddingTop:20+'rpx'}"
+						:name="listItem.name"
+						:size="22"
+					></u-icon>
+					<text class="grid-text">{{listItem.title}}</text>
+				</u-grid-item>
+			</u-grid>
+		</card>
+		<card title="绑定点击事件&自定义列数">
+			<u-grid
+				:border="false"
+				col="4"
+			>
+				<u-grid-item
+					v-for="(listItem,listIndex) in list"
+					:key="listIndex"
+					customStyle="padding-top: 10px; padding-bottom: 10px"
 				>
-					<swiper-item>
-						<u-grid :border="true">
-							<u-grid-item
-								v-for="(item, index) in swiperList"
-								:index="index"
-								:key="index"
-							>
-								<u-icon
-									:customStyle="{paddingTop:20+'rpx'}"
-									:name="item"
-									:size="22"
-								></u-icon>
-								<text class="grid-text">{{ '宫格' + (index + 1) }}</text>
-							</u-grid-item>
-						</u-grid>
-					</swiper-item>
-					<swiper-item>
-						<u-grid :border="true">
-							<u-grid-item
-								v-for="(item, index) in swiperList"
-								:index="index + 9"
-								:key="index"
-							>
-								<u-icon
-									:customStyle="{paddingTop:20+'rpx'}"
-									:name="item"
-									:size="22"
-								></u-icon>
-								<text class="grid-text">{{ '宫格' + (index + 1) }}</text>
-							</u-grid-item>
-						</u-grid>
-					</swiper-item>
-					<swiper-item>
-						<u-grid :border="true">
-							<u-grid-item
-								v-for="(item, index) in swiperList"
-								:index="index + 18"
-								:key="index"
-							>
-								<u-icon
-									:customStyle="{paddingTop:20+'rpx'}"
-									:name="item"
-									:size="22"
-								></u-icon>
-								<text class="grid-text">{{ "宫格" + (index + 1) }}</text>
-							</u-grid-item>
-						</u-grid>
-					</swiper-item>
-				</swiper>
-			</view>
-		</view>
+					<u-icon
+						:customStyle="{paddingTop:20+'rpx'}"
+						:name="listItem.name"
+						:size="22"
+					></u-icon>
+					<text class="grid-text">{{listItem.title}}</text>
+				</u-grid-item>
+			</u-grid>
+		</card>
+		<card title="可滑动">
+			<swiper
+				:indicator-dots="true"
+				class="swiper"
+			>
+				<swiper-item>
+					<u-grid :border="true">
+						<u-grid-item
+							v-for="(item, index) in swiperList"
+							:index="index"
+							:key="index"
+						>
+							<u-icon
+								:customStyle="{paddingTop:20+'rpx'}"
+								:name="item"
+								:size="22"
+							></u-icon>
+							<text class="grid-text">{{ '宫格' + (index + 1) }}</text>
+						</u-grid-item>
+					</u-grid>
+				</swiper-item>
+				<swiper-item>
+					<u-grid :border="true">
+						<u-grid-item
+							v-for="(item, index) in swiperList"
+							:index="index + 9"
+							:key="index"
+						>
+							<u-icon
+								:customStyle="{paddingTop:20+'rpx'}"
+								:name="item"
+								:size="22"
+							></u-icon>
+							<text class="grid-text">{{ '宫格' + (index + 1) }}</text>
+						</u-grid-item>
+					</u-grid>
+				</swiper-item>
+				<swiper-item>
+					<u-grid :border="true">
+						<u-grid-item
+							v-for="(item, index) in swiperList"
+							:index="index + 18"
+							:key="index"
+						>
+							<u-icon
+								:customStyle="{paddingTop:20+'rpx'}"
+								:name="item"
+								:size="22"
+							></u-icon>
+							<text class="grid-text">{{ "宫格" + (index + 1) }}</text>
+						</u-grid-item>
+					</u-grid>
+				</swiper-item>
+			</swiper>
+		</card>
 		<u-toast ref="uToast" />
 	</view>
 </template>

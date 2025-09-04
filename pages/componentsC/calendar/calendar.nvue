@@ -92,14 +92,6 @@
 			:disabledDate="disabledDate"
 			:disabledFun="disabledFun"
 		></u-calendar>
-		<view style="padding: 15px;">插入模式</view>
-		<u-calendar
-			:insert="true"
-			:show="show1"
-			defaultDate="2022-02-15"
-			@change="change"
-			@close="close"
-		></u-calendar>
 	</view>
 </template>
 <script>
@@ -233,5 +225,6 @@
 <style lang="scss">
 	.u-page {
 		padding: 0;
+		background-color: #fff;
 	}
 </style>

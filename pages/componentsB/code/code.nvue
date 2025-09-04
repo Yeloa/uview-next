@@ -1,61 +1,54 @@
 <template>
 	<view class="u-page">
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">基础功能</text>
-			<view class="u-demo-block__content">
-				<u-code
-				    ref="uCode"
-				    @change="codeChange"
-				    seconds="20"
-					change-text="XS获取"
-					@start="disabled1 = true"
-					@end="disabled1 = false"
-				></u-code>
-				<u-button
-				    @tap="getCode"
-				    :text="tips"
-				    type="success"
-					size="small"
-					:disabled="disabled1"
-				></u-button>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">保持倒计时(开始后，左上角返退出此页面再进入，会发现倒计时还在继续)</text>
-			<view class="u-demo-block__content">
-				<u-code
-				    ref="uCode1"
-				    @change="codeChange1"
-				    keep-running
-				    change-text="倒计时XS"
-					@start="disabled2 = true"
-					@end="disabled2 = false"
-				></u-code>
-				<u-button
-					type="primary"
-				    @tap="getCode1"
-				    :text="tips1"
-					size="small"
-					:disabled="disabled2"
-				></u-button>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">文本样式</text>
-			<view class="u-demo-block__content">
-				<u-code
-				    ref="uCode2"
-				    @change="codeChange2"
-				    keep-running
-					start-text="点我获取验证码"
-				></u-code>
-				<text
-				    @tap="getCode2"
-				    :text="tips2"
-					class="u-page__code-text"
-				>{{tips2}}</text>
-			</view>
-		</view>
+		<card title="基础功能" flex>
+			<u-code
+				ref="uCode"
+				@change="codeChange"
+				seconds="20"
+				change-text="XS获取"
+				@start="disabled1 = true"
+				@end="disabled1 = false"
+			></u-code>
+			<u-button
+				@tap="getCode"
+				:text="tips"
+				type="success"
+				size="small"
+				:disabled="disabled1"
+			></u-button>
+		</card>
+		
+		<card title="保持倒计时" flex>
+			<u-code
+				ref="uCode1"
+				@change="codeChange1"
+				keep-running
+				change-text="倒计时XS"
+				@start="disabled2 = true"
+				@end="disabled2 = false"
+			></u-code>
+			<u-button
+				type="primary"
+				@tap="getCode1"
+				:text="tips1"
+				size="small"
+				:disabled="disabled2"
+			></u-button>
+		</card>
+		
+		<card title="文本样式" flex>
+			<u-code
+				ref="uCode2"
+				@change="codeChange2"
+				keep-running
+				start-text="点我获取验证码"
+			></u-code>
+			<text
+				@tap="getCode2"
+				:text="tips2"
+				class="u-page__code-text"
+			>{{tips2}}</text>
+		</card>
 	</view>
 </template>
 
@@ -149,12 +142,5 @@
 			color: $u-primary;
 			font-size: 15px;
 		}
-	}
-	
-	.u-demo-block__content {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: row;
 	}
 </style>

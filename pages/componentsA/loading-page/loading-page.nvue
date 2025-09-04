@@ -129,5 +129,6 @@
 <style lang="scss">
 	.u-page {
 		padding: 0;
+		background-color: #fff;
 	}
 </style>

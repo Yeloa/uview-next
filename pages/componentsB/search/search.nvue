@@ -1,185 +1,143 @@
 <template>
 	<view class="u-page">
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">基础功能</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__tag-item">
-					<u-search
-						v-model="value1"
-						:show-action="false"
-						@change="change"
-					></u-search>
-				</view>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">设置初始值</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__tag-item">
-					<u-search
-						v-model="value2"
-						:show-action="false"
-					></u-search>
-				</view>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">搜索框形状</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__tag-item">
-					<u-search
-						v-model="value3"
-						:show-action="false"
-						shape="round"
-					></u-search>
-				</view>
-			</view>
-			<view class="u-demo-block__content m-t-10">
-				<view class="u-page__tag-item">
-					<u-search
-						v-model="value4"
-						:show-action="false"
-						shape="square"
-					></u-search>
-				</view>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">右侧控件</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__tag-item">
-					<u-search v-model="value5" :show-action="true"></u-search>
-				</view>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">禁用输入框</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__tag-item">
-					<u-search
-						placeholder="输入框被禁用,可以监听点击事件进行跳转"
-						disabled
-						:show-action="false"
-					></u-search>
-				</view>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">点击左侧图标</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__tag-item">
-					<u-search
-						v-model="value6"
-						:show-action="false"
-						@clickIcon="clickIcon"
-					></u-search>
-				</view>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">搜索框内容水平对齐</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__tag-item">
-					<u-search
-						v-model="value7"
-						:show-action="false"
-						input-align="left"
-					></u-search>
-				</view>
-			</view>
-			<view class="u-demo-block__content m-t-10">
-				<view class="u-page__tag-item">
-					<u-search
-						v-model="value8"
-						:show-action="false"
-						input-align="center"
-					></u-search>
-				</view>
-			</view>
-			<view class="u-demo-block__content m-t-10">
-				<view class="u-page__tag-item">
-					<u-search
-						v-model="value9"
-						:show-action="false"
-						input-align="right"
-					></u-search>
-				</view>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">自定义</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__tag-item">
-					<u-search
-						v-model="value10"
-						:show-action="false"
-						borderColor="rgb(230, 230, 230)"
-						bgColor="#fff"
-					></u-search>
-				</view>
-			</view>
-			<view class="u-demo-block__content m-t-10">
-				<view class="u-page__tag-item">
-					<u-search
-						v-model="value11"
-						:show-action="false"
-						search-icon-color="#FF0000"
-					></u-search>
-				</view>
-			</view>
-			<view class="u-demo-block__content m-t-10">
-				<view class="u-page__tag-item">
-					<u-search
-						v-model="value12"
-						:show-action="false"
-						placeholder-color="#FF0000"
-					></u-search>
-				</view>
-			</view>
-			<view class="u-demo-block__content m-t-10">
-				<view class="u-page__tag-item">
-					<u-search
-						v-model="value13"
-						:show-action="false"
-						color="#FF0000"
-					></u-search>
-				</view>
-			</view>
-			<view class="u-demo-block__content m-t-10">
-				<view class="u-page__tag-item">
-					<u-search
-						v-model="value14"
-						label="手机"
-						:show-action="false"
-					>
-					</u-search>
-				</view>
-			</view>
-			<view class="u-demo-block__content m-t-10">
-				<view class="u-page__tag-item">
-					<u-search
-						v-model="value15"
-						search-icon="scan"
-						:show-action="false"
-					>
-					</u-search>
-				</view>
-			</view>
-			<view class="u-demo-block__content m-t-10">
-				<view class="u-page__tag-item">
-					<u-search
-						placeholder="自定义右侧插槽"
-						v-model="value15"
-						:search-icon="false"
-						:show-action="false"
-					>
-						<template #right>
-							<u-icon name="scan" size="20"></u-icon>
-						</template>
-					</u-search>
-				</view>
-			</view>
-		</view>
+		<card title="基础功能">
+			<u-search
+				v-model="value1"
+				:show-action="false"
+				@change="change"
+			></u-search>
+		</card>
+		
+		<card title="设置初始值">
+			<u-search
+				v-model="value2"
+				:show-action="false"
+			></u-search>
+		</card>
+		
+		<card title="圆形搜索框">
+			<u-search
+				v-model="value3"
+				:show-action="false"
+				shape="round"
+			></u-search>
+		</card>
+		
+		<card title="方形搜索框">
+			<u-search
+				v-model="value4"
+				:show-action="false"
+				shape="square"
+			></u-search>
+		</card>
+		
+		<card title="右侧控件">
+			<u-search v-model="value5" :show-action="true"></u-search>
+		</card>
+		
+		<card title="禁用输入框">
+			<u-search
+				placeholder="输入框被禁用,可以监听点击事件进行跳转"
+				disabled
+				:show-action="false"
+			></u-search>
+		</card>
+		
+		<card title="点击左侧图标">
+			<u-search
+				v-model="value6"
+				:show-action="false"
+				@clickIcon="clickIcon"
+			></u-search>
+		</card>
+		
+		<card title="左对齐">
+			<u-search
+				v-model="value7"
+				:show-action="false"
+				input-align="left"
+			></u-search>
+		</card>
+		
+		<card title="居中对齐">
+			<u-search
+				v-model="value8"
+				:show-action="false"
+				input-align="center"
+			></u-search>
+		</card>
+		
+		<card title="右对齐">
+			<u-search
+				v-model="value9"
+				:show-action="false"
+				input-align="right"
+			></u-search>
+		</card>
+		
+		<card title="自定义边框和背景">
+			<u-search
+				v-model="value10"
+				:show-action="false"
+				borderColor="rgb(230, 230, 230)"
+				bgColor="#fff"
+			></u-search>
+		</card>
+		
+		<card title="自定义搜索图标颜色">
+			<u-search
+				v-model="value11"
+				:show-action="false"
+				search-icon-color="#FF0000"
+			></u-search>
+		</card>
+		
+		<card title="自定义占位符颜色">
+			<u-search
+				v-model="value12"
+				:show-action="false"
+				placeholder-color="#FF0000"
+			></u-search>
+		</card>
+		
+		<card title="自定义文字颜色">
+			<u-search
+				v-model="value13"
+				:show-action="false"
+				color="#FF0000"
+			></u-search>
+		</card>
+		
+		<card title="带标签">
+			<u-search
+				v-model="value14"
+				label="手机"
+				:show-action="false"
+			>
+			</u-search>
+		</card>
+		
+		<card title="自定义搜索图标">
+			<u-search
+				v-model="value15"
+				search-icon="scan"
+				:show-action="false"
+			>
+			</u-search>
+		</card>
+		
+		<card title="自定义右侧插槽">
+			<u-search
+				placeholder="自定义右侧插槽"
+				v-model="value15"
+				:search-icon="false"
+				:show-action="false"
+			>
+				<template #right>
+					<u-icon name="scan" size="20"></u-icon>
+				</template>
+			</u-search>
+		</card>
 	</view>
 </template>
 
@@ -221,15 +179,5 @@
 </script>
 
 <style lang="scss">
-	.u-page__tag-item {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: column;
-		flex: 1
-	}
-
-	.m-t-10 {
-		margin-top: 10px;
-	}
+	.u-page {}
 </style>

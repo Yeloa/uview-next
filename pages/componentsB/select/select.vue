@@ -1,152 +1,133 @@
 <template>
 	<view class="u-page">
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">基础用法</text>
-			<view class="u-demo-block__content">
-				<u-select 
-					v-model="value1" 
-					:list="options1" 
-					placeholder="请选择城市"
-					@change="onChange1"
-				></u-select>
-				<text class="u-result">选中值: {{ value1 }}</text>
-			</view>
-		</view>
+		<card title="基础用法">
+			<u-select 
+				v-model="value1" 
+				:list="options1" 
+				placeholder="请选择城市"
+				@change="onChange1"
+			></u-select>
+			<text class="u-result">选中值: {{ value1 }}</text>
+		</card>
 
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">带标签</text>
-			<view class="u-demo-block__content">
-				<u-select 
-					v-model="value2" 
-					:list="options2" 
-					label="选择性别"
-					placeholder="请选择性别"
-					@change="onChange2"
-				></u-select>
-				<text class="u-result">选中值: {{ value2 }}</text>
-			</view>
-		</view>
+		<card title="带标签">
+			<u-select 
+				v-model="value2" 
+				:list="options2" 
+				label="选择性别"
+				placeholder="请选择性别"
+				@change="onChange2"
+			></u-select>
+			<text class="u-result">选中值: {{ value2 }}</text>
+		</card>
 
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">不同边框样式</text>
-			<view class="u-demo-block__content">
-				<u-select 
-					v-model="value5" 
-					:list="options1" 
-					border="bottom"
-					placeholder="下边框"
-					@change="onChange5"
-				></u-select>
-				<view style="height: 10px;"></view>
-				<u-select 
-					v-model="value6" 
-					:list="options1" 
-					border="none"
-					placeholder="无边框"
-					@change="onChange6"
-				></u-select>
-			</view>
-		</view>
+		<card title="下边框">
+			<u-select 
+				v-model="value5" 
+				:list="options1" 
+				border="bottom"
+				placeholder="下边框"
+				@change="onChange5"
+			></u-select>
+		</card>
 
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">文字对齐方式</text>
-			<view class="u-demo-block__content">
-				<u-select 
-					v-model="value7" 
-					:list="options1" 
-					align="left"
-					placeholder="左对齐"
-					@change="onChange7"
-				></u-select>
-				<view style="height: 10px;"></view>
-				<u-select 
-					v-model="value8" 
-					:list="options1" 
-					align="center"
-					placeholder="居中对齐"
-					@change="onChange8"
-				></u-select>
-				<view style="height: 10px;"></view>
-				<u-select 
-					v-model="value9" 
-					:list="options1" 
-					align="right"
-					placeholder="右对齐"
-					@change="onChange9"
-				></u-select>
-			</view>
-		</view>
+		<card title="无边框">
+			<u-select 
+				v-model="value6" 
+				:list="options1" 
+				border="none"
+				placeholder="无边框"
+				@change="onChange6"
+			></u-select>
+		</card>
 
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">弹出位置</text>
-			<view class="u-demo-block__content">
-				<u-select 
-					v-model="value14" 
-					:list="options1" 
-					placement="bottom"
-					placeholder="底部弹出"
-					@change="onChange14"
-				></u-select>
-				<view style="height: 10px;"></view>
-				<u-select 
-					v-model="value15" 
-					:list="options1" 
-					placement="top"
-					placeholder="顶部弹出"
-					@change="onChange15"
-				></u-select>
-			</view>
-		</view>
+		<card title="左对齐">
+			<u-select 
+				v-model="value7" 
+				:list="options1" 
+				align="left"
+				placeholder="左对齐"
+				@change="onChange7"
+			></u-select>
+		</card>
 
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">禁用状态</text>
-			<view class="u-demo-block__content">
-				<u-select 
-					v-model="value10" 
-					:list="options1" 
-					:disabled="true"
-					placeholder="禁用状态"
-				></u-select>
-			</view>
-		</view>
+		<card title="居中对齐">
+			<u-select 
+				v-model="value8" 
+				:list="options1" 
+				align="center"
+				placeholder="居中对齐"
+				@change="onChange8"
+			></u-select>
+		</card>
 
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">隐藏右侧按钮</text>
-			<view class="u-demo-block__content">
-				<u-select 
-					v-model="value11" 
-					:list="options1" 
-					:showArrow="true"
-					placeholder="隐藏右侧按钮"
-					@change="onChange11"
-				></u-select>
-			</view>
-		</view>
+		<card title="右对齐">
+			<u-select 
+				v-model="value9" 
+				:list="options1" 
+				align="right"
+				placeholder="右对齐"
+				@change="onChange9"
+			></u-select>
+		</card>
 
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">文本换行</text>
-			<view class="u-demo-block__content">
-				<u-select 
-					v-model="value12" 
-					:list="options4" 
-					:wrap="true"
-					placeholder="长文本换行显示"
-					@change="onChange12"
-				></u-select>
-			</view>
-		</view>
+		<card title="底部弹出">
+			<u-select 
+				v-model="value14" 
+				:list="options1" 
+				placement="bottom"
+				placeholder="底部弹出"
+				@change="onChange14"
+			></u-select>
+		</card>
 
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">禁用选项</text>
-			<view class="u-demo-block__content">
-				<u-select 
-					v-model="value16" 
-					:list="options5" 
-					placeholder="包含禁用选项"
-					@change="onChange16"
-				></u-select>
-			</view>
-		</view> 
+		<card title="顶部弹出">
+			<u-select 
+				v-model="value15" 
+				:list="options1" 
+				placement="top"
+				placeholder="顶部弹出"
+				@change="onChange15"
+			></u-select>
+		</card>
+
+		<card title="禁用状态">
+			<u-select 
+				v-model="value10" 
+				:list="options1" 
+				:disabled="true"
+				placeholder="禁用状态"
+			></u-select>
+		</card>
+
+		<card title="隐藏右侧按钮">
+			<u-select 
+				v-model="value11" 
+				:list="options1" 
+				:showArrow="true"
+				placeholder="隐藏右侧按钮"
+				@change="onChange11"
+			></u-select>
+		</card>
+
+		<card title="文本换行">
+			<u-select 
+				v-model="value12" 
+				:list="options4" 
+				:wrap="true"
+				placeholder="长文本换行显示"
+				@change="onChange12"
+			></u-select>
+		</card>
+
+		<card title="禁用选项">
+			<u-select 
+				v-model="value16" 
+				:list="options5" 
+				placeholder="包含禁用选项"
+				@change="onChange16"
+			></u-select>
+		</card>
 	</view>
 </template>
 
@@ -291,10 +272,5 @@
 		font-size: 12px;
 		color: #909399;
 		margin-top: 8px;
-	}
-	
-	.u-demo-block__content {
-		flex-direction: column !important;
-		align-items: stretch;
 	}
 </style>

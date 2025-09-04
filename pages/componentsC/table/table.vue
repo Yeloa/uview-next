@@ -1,37 +1,24 @@
 <template>
     <view class="u-page">
-
-        <view class="u-page__item">
-            <text class="u-page__item__title">基础使用</text>
+        <card title="基础使用">
             <u-table :data="tableData">
                 <u-table-column type="index" label="序号"/>
                 <u-table-column prop="name" label="姓名" />
                 <u-table-column prop="address" label="地址" />
             </u-table>
-        </view>
+        </card>
         
-        <view class="u-page__item">
-            <text class="u-page__item__title">基础使用</text>
-            <u-table :data="tableData">
-                <u-table-column type="index" label="序号"/>
-                <u-table-column prop="name" label="姓名" />
-                <u-table-column prop="address" label="地址" />
-            </u-table>
-        </view>
-
-        <view class="u-page__item">
-            <text class="u-page__item__title">固定表头</text>
+        <card title="固定表头">
             <u-table :data="tableData" height="250">
                 <u-table-column type="index" label="序号" sortable />
                 <u-table-column prop="name" label="姓名" sortable />
                 <u-table-column prop="address" label="地址" sortable />
             </u-table>
-        </view>
+        </card>
 
-        <view class="u-page__item">
-            <text class="u-page__item__title">自定义列模板</text>
+        <card title="自定义列模板">
             <u-table :data="tableData" height="300">
-                <u-table-column type="index" label="序号大福大" sortable />
+                <u-table-column type="index" label="序号" sortable />
                 <u-table-column prop="name" label="姓名" sortable />
                 <u-table-column prop="status" label="状态" align="center">
                     <template v-slot="{ row, value, type }">
@@ -47,79 +34,60 @@
                     </template>
                 </u-table-column>
             </u-table>
-        </view>
+        </card>
 
-        <view class="u-page__item">
-            <text class="u-page__item__title">多选</text>
+        <card title="多选">
             <u-table :data="tableData" :defaultSelection="defaultSelectedRows" @selection-change="handleSelectionChange"
                 @selectAll="handleSelectAll" height="300">
                 <u-table-column type="selection" width="55" align="center"></u-table-column>
                 <u-table-column prop="name" label="姓名"></u-table-column>
                 <u-table-column prop="age" label="年龄" align="center"></u-table-column>
                 <u-table-column prop="status" label="状态" align="center">
-                    <!-- #ifdef VUE2 -->
                     <template v-slot="{ row, value, type }">
                         <u-tag :text="row.status === 1 ? '正常' : '禁用'" :type="row.status === 1 ? 'success' : 'error'"
                             size="mini"></u-tag>
                     </template>
-                    <!-- #endif -->
-                    <!-- #ifdef VUE3 -->
-                    <template #default="{ row, index }">
-                        <u-tag :text="row.status === 1 ? '正常' : '禁用'" :type="row.status === 1 ? 'success' : 'error'"
-                            size="mini"></u-tag>
-                    </template>
-                    <!-- #endif -->
                 </u-table-column>
             </u-table>
-        </view>
+        </card>
 
-        <!-- 合并单元格示例 - 方法一：spanMethod 自定义合并 -->
-        <view class="u-page__item">
-            <text class="u-page__item__title">合并单元格 - spanMethod 自定义合并</text>
+        <card title="合并单元格 - spanMethod 自定义合并">
             <u-table :data="mergeTableData1" :span-method="spanMethod" border stripe>
                 <u-table-column prop="department" label="部门" width="120"></u-table-column>
                 <u-table-column prop="name" label="姓名" width="100"></u-table-column>
                 <u-table-column prop="position" label="职位" width="120"></u-table-column>
                 <u-table-column prop="salary" label="薪资" ></u-table-column>
             </u-table>
-        </view>
+        </card>
 
-        <!-- 合并单元格示例 - 方法二：mergeConfig 简化配置 -->
-        <view class="u-page__item">
-            <text class="u-page__item__title">合并单元格 - mergeConfig 简化配置</text>
+        <card title="合并单元格 - mergeConfig 简化配置">
             <u-table :data="mergeTableData2" :merge-config="mergeConfig" border stripe>
                 <u-table-column prop="category" label="类别" width="120"></u-table-column>
                 <u-table-column prop="product" label="产品" width="150"></u-table-column>
                 <u-table-column prop="price" label="价格" width="100"></u-table-column>
                 <u-table-column prop="stock" label="库存" width="100"></u-table-column>
             </u-table>
-        </view>
+        </card>
 
-        <!-- 合并单元格示例 - 方法三：动态自动合并 -->
-        <view class="u-page__item">
-            <text class="u-page__item__title">合并单元格 - 动态自动合并相同值</text>
+        <card title="合并单元格 - 动态自动合并相同值">
             <u-table :data="mergeTableData3" border stripe>
                 <u-table-column prop="region" label="地区" width="100"></u-table-column>
                 <u-table-column prop="city" label="城市" width="100"></u-table-column>
                 <u-table-column prop="sales" label="销售额" align="right" width="120"></u-table-column>
                 <u-table-column prop="growth" label="增长率" align="center"></u-table-column>
             </u-table>
-        </view>
+        </card>
 
-        <!-- 表尾合计行示例 - 基础使用 -->
-        <view class="u-page__item">
-            <text class="u-page__item__title">表尾合计行 - 基础使用</text>
+        <card title="表尾合计行 - 基础使用">
             <u-table :data="summaryTableData1" :show-summary="true" border stripe :scroll-x="false">
                 <u-table-column prop="product" label="产品" width="120"></u-table-column>
                 <u-table-column prop="quantity" label="数量" align="center" width="80"></u-table-column>
                 <u-table-column prop="price" label="单价" align="right" width="100"></u-table-column>
                 <u-table-column prop="amount" label="金额" align="right" width="100"></u-table-column>
             </u-table>
-        </view>
+        </card>
 
-        <!-- 表尾合计行示例 - 指定合计列 -->
-        <view class="u-page__item">
-            <text class="u-page__item__title">表尾合计行 - 指定合计列</text>
+        <card title="表尾合计行 - 指定合计列">
             <u-table :data="summaryTableData2" :show-summary="true" :summary-columns="['sales', 'profit']" sum-text="总计"
                 border stripe>
                 <u-table-column prop="department" label="部门" width="120"></u-table-column>
@@ -128,11 +96,9 @@
                 <u-table-column prop="profit" label="利润"  width="100"></u-table-column>
                 <u-table-column prop="rate" label="利润率"></u-table-column>
             </u-table>
-        </view>
+        </card>
 
-        <!-- 表尾合计行示例 - 自定义合计方法 -->
-        <view class="u-page__item">
-            <text class="u-page__item__title">表尾合计行 - 自定义合计方法</text>
+        <card title="表尾合计行 - 自定义合计方法">
             <u-table :data="summaryTableData3" :show-summary="true" :summary-method="customSummaryMethod" border stripe>
                 <u-table-column type="selection" width="55" align="center"></u-table-column>
                 <u-table-column prop="category" label="类别" width="100"></u-table-column>
@@ -141,10 +107,9 @@
                 <u-table-column prop="price" label="售价" align="right" width="100"></u-table-column>
                 <u-table-column prop="stock" label="库存" align="center"></u-table-column>
             </u-table>
-        </view>
+        </card>
 
-        <view class="u-page__item">
-            <text class="u-page__item__title">自定义空状态</text>
+        <card title="自定义空状态">
             <u-table :data="[]">
                 <u-table-column prop="name" label="姓名"></u-table-column>
                 <u-table-column prop="age" label="年龄"></u-table-column>
@@ -156,9 +121,7 @@
                     </view>
                 </template>
             </u-table>
-        </view>
-
-        <u-gap height="50"></u-gap>
+        </card>
     </view>
 </template>
 
@@ -522,20 +485,6 @@ export default {
 
 <style lang="scss" scoped>
 .u-page {
-
-    &__item {
-
-        &__title {
-            display: block;
-            color: $u-tips-color;
-            padding: 15px 0;
-            font-size: 15px;
-
-            &__slot-title {
-                color: $u-primary;
-                font-size: 14px;
-            }
-        }
-    }
+    padding: 0;
 }
 </style>

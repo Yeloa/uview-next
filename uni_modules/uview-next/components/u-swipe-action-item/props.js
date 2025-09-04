@@ -21,6 +21,11 @@ export default defineProps('swipeActionItem', {
         type: Boolean,
         default: true,
     },
+    // 是否点击后自动关闭其他swipe按钮组
+    closeOnClick: {
+        type: Boolean,
+        default: true,
+    },
     // 滑动距离阈值，只有大于此值，才被认为是要打开菜单
     threshold: {
         type: Number,

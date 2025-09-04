@@ -125,6 +125,7 @@
 <style lang="scss">
 	.u-page {
 		height: 1200px;
+		background: #fff;
 		&__backTop-item{
 			margin-top:10px;
 		}

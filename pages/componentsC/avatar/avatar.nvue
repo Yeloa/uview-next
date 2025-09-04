@@ -1,20 +1,16 @@
 <template>
 	<view class="u-page">
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">基础演示</text>
-			<view class="u-demo-block__content">
-				<u-avatar :src="src1"></u-avatar>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">头像形状</text>
-			<view class="u-demo-block__content">
+		<card title="基础演示">
+			<u-avatar :src="src1"></u-avatar>
+		</card>
+
+		<card title="头像形状">
+			<view class="avatar-row">
 				<view class="u-avatar-item">
 					<u-avatar
 						:src="src2"
 						shape="circle"
 						@click="click"
-						
 					></u-avatar>
 				</view>
 				<view class="u-avatar-item">
@@ -24,10 +20,10 @@
 					></u-avatar>
 				</view>
 			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">头像尺寸</text>
-			<view class="u-demo-block__content">
+		</card>
+
+		<card title="头像尺寸">
+			<view class="avatar-row">
 				<view class="u-avatar-item">
 					<u-avatar
 						:src="src4"
@@ -47,10 +43,10 @@
 					></u-avatar>
 				</view>
 			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">图标头像</text>
-			<view class="u-demo-block__content">
+		</card>
+
+		<card title="图标头像">
+			<view class="avatar-row">
 				<view class="u-avatar-item">
 					<u-avatar
 						icon="red-packet-fill"
@@ -64,10 +60,10 @@
 					></u-avatar>
 				</view>
 			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">文字头像(自动背景色)</text>
-			<view class="u-demo-block__content">
+		</card>
+
+		<card title="文字头像(自动背景色)">
+			<view class="avatar-row">
 				<view class="u-avatar-item">
 					<u-avatar
 						text="U"
@@ -98,17 +94,15 @@
 					></u-avatar>
 				</view>
 			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">图片加载失败(显示默认头像)</text>
-			<view class="u-demo-block__content">
-				<u-avatar :src="src7"></u-avatar>
-			</view>
-		</view>
+		</card>
+
+		<card title="图片加载失败(显示默认头像)">
+			<u-avatar :src="src7"></u-avatar>
+		</card>
+
 		<!-- #ifdef MP-WEIXIN || MP-QQ || MP-BAIDU -->
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">小程序开放能力</text>
-			<view class="u-demo-block__content">
+		<card title="小程序开放能力">
+			<view class="avatar-row">
 				<view class="u-avatar-item">
 					<u-avatar
 						mpAvatar
@@ -116,25 +110,23 @@
 					></u-avatar>
 				</view>
 			</view>
-		</view>
+		</card>
 		<!-- #endif -->
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">头像组</text>
-			<view class="u-demo-block__content">
-				<u-avatar-group
-					:urls="urls"
-					size="35"
-					gap="0.4"
-				></u-avatar-group>
-			</view>
-			<view class="u-demo-block__content" style="margin-top: 20px">
+
+		<card title="头像组">
+			<u-avatar-group
+				:urls="urls"
+				size="35"
+				gap="0.4"
+			></u-avatar-group>
+			<view style="margin-top: 20px">
 				<u-avatar-group
 					:urls="urls"
 					size="35"
 					gap="0.6"
 				></u-avatar-group>
 			</view>
-		</view>
+		</card>
 	</view>
 </template>
 
@@ -172,7 +164,7 @@
 </script>
 
 <style lang="scss">
-	.u-demo-block__content {
+	.avatar-row {
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */

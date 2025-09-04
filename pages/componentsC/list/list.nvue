@@ -1,5 +1,5 @@
 <template>
-	<view class="u-page">
+	<view>
 		<u-list
 			@scrolltolower="scrolltolower"
 		>
@@ -30,16 +30,16 @@
 			return {
 				indexList: [],
 				urls: [
-					'http://118.25.198.98/web/static/uview/album/1.jpg',
-					'http://118.25.198.98/web/static/uview/album/2.jpg',
-					'http://118.25.198.98/web/static/uview/album/3.jpg',
-					'http://118.25.198.98/web/static/uview/album/4.jpg',
-					'http://118.25.198.98/web/static/uview/album/5.jpg',
-					'http://118.25.198.98/web/static/uview/album/6.jpg',
-					'http://118.25.198.98/web/static/uview/album/7.jpg',
-					'http://118.25.198.98/web/static/uview/album/8.jpg',
-					'http://118.25.198.98/web/static/uview/album/9.jpg',
-					'http://118.25.198.98/web/static/uview/album/10.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/1.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/2.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/3.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/4.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/5.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/6.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/7.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/8.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/9.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/10.jpg',
 				]
 			}
 		},
@@ -60,9 +60,3 @@
 		},
 	}
 </script>
-
-<style lang="scss">
-	.u-page {
-		padding: 0;
-	}
-</style>

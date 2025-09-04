@@ -1,5 +1,5 @@
 <template>
-    <view class="u-page">
+    <view>
         <u-navbar
             title="模态框"
             @leftClick="navigateBack"
@@ -174,8 +174,6 @@
                         iconUrl:
                             'https://cdn.uviewui.com/uview/demo/modal/8.png',
                         titleStyle: {
-                            color: '#f00',
-                            fontWeight: 'bold',
                         },
                     },
                     {

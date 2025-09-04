@@ -633,6 +633,7 @@
 <style lang="scss">
 	.u-page {
 		padding: 14rpx;
+		background-color: #fff;
 
 		&__grid {
 			/* #ifndef APP-NVUE */

@@ -1,49 +1,32 @@
 <template>
-    <view class="example-page">
-        <view class="example-content">
-            <!-- 基础用法 -->
-            <view class="example-section">
-                <view class="section-title">基础用法</view>
-                <view class="section-desc">点击按钮选择图片并进行裁剪</view>
-                
-                <view class="demo-box">
-                    <u-button @click="showBasicCropper" type="primary">打开图片裁剪</u-button>
-                    <view v-if="basicResult" class="result-box">
-                        <text class="result-title">裁剪结果：</text>
-                        <image :src="basicResult" class="result-image" mode="widthFix"></image>
-                    </view>
+    <view class="u-page">
+        <card title="基础用法">
+            <u-button @click="showBasicCropper" type="primary">打开图片裁剪</u-button>
+            <view v-if="basicResult" class="result-box">
+                <text class="result-title">裁剪结果：</text>
+                <image :src="basicResult" class="result-image" mode="widthFix"></image>
+            </view>
+        </card>
+        
+        <card title="自定义裁剪尺寸">
+            <view class="demo-box">
+                <u-button @tap="showCustomCropper" type="primary">方形裁剪 (300x100)</u-button>
+                <view v-if="customResult" class="result-box">
+                    <text class="result-title">裁剪结果：</text>
+                    <image :src="customResult" class="result-image" mode="widthFix"></image>
                 </view>
             </view>
-            
-            <!-- 自定义尺寸 -->
-            <view class="example-section">
-                <view class="section-title">自定义裁剪尺寸</view>
-                <view class="section-desc">设置不同的裁剪框大小</view>
-                
-                <view class="demo-box">
-                    <u-button @tap="showCustomCropper" type="primary">方形裁剪 (300x100)</u-button>
-                    <view v-if="customResult" class="result-box">
-                        <text class="result-title">裁剪结果：</text>
-                        <image :src="customResult" class="result-image" mode="widthFix"></image>
-                    </view>
-                </view>
+        </card>
+        
+        <!-- 圆形剪裁框 -->
+        <card title="圆形剪裁框">
+            <u-button @tap="showCircleCropper" type="primary">圆形剪裁框</u-button>
+            <view v-if="circleResult" class="result-box">
+                <text class="result-title">裁剪结果：</text>
+                <image :src="circleResult" class="result-image" mode="widthFix"></image>
             </view>
-            
-            <!-- 预设图片 -->
-            <view class="example-section">
-                <view class="section-title">圆形剪裁框</view>
-                <view class="section-desc">把圆形剪裁框设置圆形</view>
-                
-                <view class="demo-box">
-                    <u-button @tap="showCircleCropper" type="primary">圆形剪裁框</u-button>
-                    <view v-if="circleResult" class="result-box">
-                        <text class="result-title">裁剪结果：</text>
-                        <image :src="circleResult" class="result-image" mode="widthFix"></image>
-                    </view>
-                </view>
-            </view>
-            
-        </view>
+        </card>
+      
         
         <u-cropper
             openType="chooseAvatar"
@@ -161,55 +144,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.example-page {
-    padding: 40rpx;
-    background-color: #f8f9fa;
-    min-height: 100vh;
-}
-
-.example-header {
-    text-align: center;
-    margin-bottom: 60rpx;
-}
-
-.example-title {
-    font-size: 48rpx;
-    font-weight: bold;
-    color: #333;
-}
-
-.example-content {
-    display: flex;
-    flex-direction: column;
-    gap: 60rpx;
-}
-
-.example-section {
-    background-color: #fff;
-    border-radius: 16rpx;
-    padding: 40rpx;
-    box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
-}
-
-.section-title {
-    font-size: 36rpx;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 16rpx;
-}
-
-.section-desc {
-    font-size: 28rpx;
-    color: #666;
-    margin-bottom: 40rpx;
-    line-height: 1.5;
-}
-
-.demo-box {
-    display: flex;
-    flex-direction: column;
-    gap: 24rpx;
-}
 
 .result-box {
     margin-top: 40rpx;
