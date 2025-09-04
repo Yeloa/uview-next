@@ -4,7 +4,8 @@
 		{
 			"path": "pages/example/components",
 			"style": {
-				"navigationBarTitleText": "uView Next"
+				"navigationBarTitleText": "uView Next",
+				"navigationStyle": "custom"
 			}
 		}
 	],
