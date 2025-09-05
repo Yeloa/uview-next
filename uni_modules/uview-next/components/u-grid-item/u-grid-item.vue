@@ -44,6 +44,7 @@
 		data() {
 			return {
 				parentData: {
+					gutter: 0,
 					col: 3, // 父组件划分的宫格数
 					border: true, // 是否显示边框，根据父组件决定
 				},
@@ -65,9 +66,13 @@
 			// #endif
 			itemStyle() {
 				const style = {
-					background: this.bgColor,
-					width: this.width
+					width: this.width,
+					padding: uni.$u.addUnit(uni.$u.getPx(this.parentData.gutter)/2),
 				}
+				if(this.bgColor){
+					style.backgroundColor = this.bgColor;
+				}
+				
 				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
 			}
 		},

@@ -2,10 +2,12 @@ import { defineProps } from '../../libs/util/props';
 
 export default defineProps('select', {
     // 默认值
+    //#ifdef VUE2
     value: {
         type: [String, Number],
         default: ''
     },
+    // #endif
     // #ifdef VUE3
     modelValue: {
         type: [String, Number],

@@ -2,7 +2,6 @@ import { defineProps } from '../../libs/util/props';
 
 export default defineProps('paging', {
     // #ifdef VUE2
-    // Vue2 兼容性：数据绑定值
     value: {
         type: Array,
         default: () => []

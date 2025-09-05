@@ -110,6 +110,28 @@
 			</swiper>
 		</card>
 		<u-toast ref="uToast" />
+
+		<card title="间距" bgColor="none">
+			<u-grid
+				:border="false"
+				col="3"
+				gutter="10"
+			>
+				<u-grid-item
+					v-for="(listItem,listIndex) in list"
+					:key="listIndex"
+				>
+					<view class="grid-item-content">
+						<u-icon
+							:customStyle="{paddingTop:20+'rpx'}"
+							:name="listItem.name"
+							:size="22"
+						></u-icon>
+						<text class="grid-text">{{listItem.title}}</text>
+					</view>
+				</u-grid-item>
+			</u-grid>
+		</card>
 	</view>
 </template>
 
@@ -178,5 +200,16 @@
 		/* #ifndef APP-PLUS */
 		box-sizing: border-box;
 		/* #endif */
+	}
+
+	.grid-item-content{
+		border-radius: 10rpx;
+		background-color: #fff;
+		flex: 1;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 	}
 </style>

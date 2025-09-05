@@ -2,10 +2,12 @@ import { defineProps } from '../../libs/util/props';
 
 export default defineProps('textarea', {
 	// 输入框的内容
+	//#ifdef VUE2
 	value: {
 		type: [String, Number],
 		default: ''
     },
+	// #endif
 	// #ifdef VUE3
 	modelValue: {
 		type: [String, Number],

@@ -81,7 +81,9 @@
 					activeColor: null,
 					inactiveColor: null,
 					size: 18,
+					//#ifdef VUE2
 					value: null,
+					// #endif
 					// #ifdef VUE3
 					modelValue: null,
 					// #endif

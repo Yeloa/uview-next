@@ -3,6 +3,7 @@
 		<view class="u-popover__trigger" id="popover-trigger" ref="popoverTrigger" @click.stop="clickHandler">
 			<slot/>
 		</view>
+		<u-overlay v-if="showOverlay" :show="showPopover" :z-index="zIndex - 1" @click="showPopover = false"></u-overlay>
 		<u-transition
 			mode="fade" 
 			:duration="duration" 
@@ -70,6 +71,7 @@ import mpMixin from '../../libs/mixin/mpMixin';
  * @property {Number}			duration		动画时长（默认 300 ）
  * @property {Boolean}			disabled		是否禁用（默认 false ）
  * @property {Object}			popoverStyle		自定义弹出层样式
+ * @property {Boolean}			overlay		是否显示遮罩层（默认 false ）
 
  * @example 
  * <u-popover position="top" :content="content">

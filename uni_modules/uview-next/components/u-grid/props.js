@@ -15,5 +15,20 @@ export default defineProps('grid', {
     align: {
         type: String,
         default: 'left'
+    },
+    // 背景颜色
+	bgColor: {
+		type: String,
+		default: ''
+	},
+	// 边框圆角
+	round: {
+		type: [String, Number],
+		default: ''
+	},
+    // 给col添加间距，左右边距各占一半
+    gutter: {
+        type: [String, Number],
+        default: 0
     }
 })

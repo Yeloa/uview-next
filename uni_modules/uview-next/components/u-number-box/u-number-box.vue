@@ -285,7 +285,7 @@
 					if(this.currentValue === ''){
 						this.currentValue = value;
 					}
-					this.emitChange(value);
+					this.emitChange(this.currentValue);
 				}
 				// 发出blur事件
 				this.$emit(

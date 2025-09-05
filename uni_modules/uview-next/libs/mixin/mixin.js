@@ -123,7 +123,7 @@ export default {
                     .exec();
             });
         },
-        getParentData(parentName = '') {
+        getParentData(parentName = '', nextParentName = '') {
             // 避免在created中去定义parent变量
             if (!this.parent) this.parent = {}
             // 这里的本质原理是，通过获取父组件实例(也即类似u-radio的父组件u-radio-group的this)

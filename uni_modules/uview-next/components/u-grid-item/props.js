@@ -9,6 +9,6 @@ export default defineProps('gridItem', {
     // 背景颜色
     bgColor: {
         type: String,
-        default: 'transparent'
+        default: ''
     }
 })

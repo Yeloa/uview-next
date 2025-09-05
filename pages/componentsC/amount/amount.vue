@@ -2,7 +2,7 @@
 	<view class="u-page">
 		<card title="基础用法">
 			<view class="u-demo-item">
-				<u-amount v-model="value1"/>
+				<u-amount :value="value1"/>
 			</view>
 		</card>
 

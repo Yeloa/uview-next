@@ -3,10 +3,12 @@ import theme from '../../libs/config/theme.js'
 
 export default defineProps('picker', {
     // 输入的值
+    //#ifdef VUE2
 	value: {
 		type: [Array, String, Number],
 		default: ''
 	},
+	// #endif
 	// #ifdef VUE3
 	modelValue: {
 		type: [Array, String, Number],

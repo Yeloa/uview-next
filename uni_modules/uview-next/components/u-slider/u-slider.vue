@@ -46,7 +46,33 @@
 	import props from './props.js';
 	import mixin from '../../libs/mixin/mixin'
 	import mpMixin from '../../libs/mixin/mpMixin'
-	
+	/**
+	 * Slider 滑块
+	 * @description 本组件用于滑动选择数值
+	 * @tutorial https://uviewui.com/components/slider.html
+	 * @property {String | Number}	value				当前值 (默认 0 )
+	 * @property {String | Number}	min				最小值 (默认 0 )
+	 * @property {String | Number}	max				最大值 (默认 100 )
+	 * @property {String | Number}	step				步长 (默认 1 )
+	 * @property {Boolean}			range				是否开启双滑块模式 (默认 false )
+	 * @property {Boolean}			disabled			是否禁用滑块 (默认 false )
+	 * @property {Boolean}			reverse			是否反向移动 (默认 false )
+	 * @property {Boolean}			readonly			是否为只读状态 (默认 false )
+	 * @property {Boolean}			noCross			是否禁止双滑块交叉 (默认 false )
+	 * @property {Boolean}			vertical			是否垂直展示 (默认 false )
+	 * @property {String}			size				滑块的尺寸 (默认 24 )
+	 * @property {String}			thumbSize			滑块大小 (默认 15 )
+	 * @property {String}			thumbColor			滑块颜色 (默认 '#ffffff' )
+	 * @property {String}			thumbBorder			滑块边框颜色 (默认 '3px solid ' + theme.primary )
+	 * @property {String}			thumbRadius			滑块圆角 (默认 50 )
+	 * @property {String}			railColor			轨道颜色 (默认 'rgba(0, 0, 0, 0.1)' )
+	 * @property {String}			railRadius			轨道圆角 (默认 10 )
+	 * @property {String}			railSize			轨道大小 (默认 4 )
+	 * @property {String}			trackColor			已选择部分的轨道颜色 (默认 theme.primary )
+	 * @property {Boolean}			showValue			是否显示数值 (默认 false )
+	 * @example <u-slider></u-slider>
+	 */
+
 	export default {
 		name: 'u-slider',
 		mixins: [mpMixin, mixin, props],

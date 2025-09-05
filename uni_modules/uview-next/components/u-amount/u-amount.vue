@@ -164,6 +164,7 @@
 		},
 		watch: {
 			value: {
+				immediate: true,
 				handler(newVal) {
 					if(!newVal) return;
 					if (this.transition) {
@@ -171,22 +172,8 @@
 					} else {
 						this.displayValue = newVal;
 					}
-				},
-				immediate: true
-			},
-			// #ifdef VUE3
-			modelValue: {
-				handler(newVal) {
-					if(!newVal) return;
-					if (this.transition) {
-						this.startAnimation(newVal);
-					} else {
-						this.displayValue = newVal;
-					}
-				},
-				immediate: true
+				}
 			}
-			// #endif
 		},
 		methods: {
 			// 添加分隔符

@@ -42,7 +42,9 @@ export default {
 		// 拉取父组件新的变化后的参数
 		parentData() {
 			return [
+				//#ifdef VUE2
 				this.value,
+				// #endif
 				// #ifdef VUE3
 				this.modelValue,
 				// #endif

@@ -3,10 +3,12 @@ import theme from '../../libs/config/theme.js'
 
 export default defineProps('radioGroup', {
     // 绑定的值
+    //#ifdef VUE2
     value: {
         type: [String, Number, Boolean],
         default: ''
     },
+    // #endif
     // #ifdef VUE3
 	modelValue: {
 		type: [String, Number, Boolean],

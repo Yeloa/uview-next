@@ -3,10 +3,12 @@ import theme from '../../libs/config/theme.js';
 
 export default defineProps('sidebar', {
     // 当前导航项的索引
+    //#ifdef VUE2
     value: {
         type: [Number, String],
         default: 0,
     },
+    // #endif
     // #ifdef VUE3
     // 当前导航项的索引
     modelValue: {

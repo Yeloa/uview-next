@@ -6,12 +6,6 @@ export default defineProps('amount', {
 		type: Number,
         default: null
 	},
-	// #ifdef VUE3
-	modelValue: {
-		type: Number,
-        default: null
-	},
-	// #endif
     // 金融符号
     symbol: {
         type: String,

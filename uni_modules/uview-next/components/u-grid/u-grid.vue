@@ -50,7 +50,7 @@
 		computed: {
 			// 计算父组件的值是否发生变化
 			parentData() {
-				return [this.hoverClass, this.col, this.size, this.border];
+				return [this.hoverClass, this.col, this.size, this.border, this.gutter];
 			},
 			// 宫格对齐方式
 			gridStyle() {
@@ -68,6 +68,19 @@
 					default:
 						style.justifyContent = 'flex-start';
 				};
+
+				if(this.bgColor){
+					style.backgroundColor = this.bgColor;
+				}
+
+				if(this.round){
+					style.borderRadius = uni.$u.addUnit(this.round);
+				}
+
+				if(this.gutter) {
+					style.margin = uni.$u.addUnit(-Number(this.gutter))
+				}
+		
 				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle));
 			}
 		},
@@ -98,5 +111,6 @@
 		@include flex;
 		flex-wrap: wrap;
 		align-items: center;
+		overflow: hidden;
 	}
 </style>

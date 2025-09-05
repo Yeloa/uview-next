@@ -8,11 +8,12 @@ export default defineProps('pagination', {
         default: 1
     },
     // #endif
-    // v-model 的别名
+    //#ifdef VUE2
     value: {
         type: Number,
         default: 1
     },
+    // #endif
     // 总记录数，用于计算总页数
     total: {
         type: Number,

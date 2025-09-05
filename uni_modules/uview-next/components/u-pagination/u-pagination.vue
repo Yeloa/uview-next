@@ -266,15 +266,17 @@ export default {
 			}
 		},
 		// #endif
+		//#ifdef VUE2
 		value: {
 			immediate: true,
 			handler(val) {
 				// 只在没有modelValue且value有效时更新
-				if (val && !this.modelValue) {
+				if (val && !this.innerValue) {
 					this.innerValue = val;
 				}
 			}
 		}
+		// #endif
 	},
 	// #ifdef VUE3
 	emits: ["update:modelValue", "change"],

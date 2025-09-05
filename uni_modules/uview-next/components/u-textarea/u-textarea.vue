@@ -98,12 +98,14 @@ export default {
 		}
 	},
 	watch: {
+        //#ifdef VUE2
         value: {
 	        immediate: true,
 	        handler(newVal, oldVal) {
                 this.init(newVal);
 	        },
 	    },
+        // #endif
         // #ifdef VUE3
         modelValue: {
 	        immediate: true,

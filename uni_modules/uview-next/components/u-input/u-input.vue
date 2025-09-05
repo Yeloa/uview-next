@@ -165,13 +165,14 @@ export default {
 		};
 	},
 	watch: {
+		//#ifdef VUE2
 		value: {
 			immediate: true,
 			handler(newVal, oldVal) {
 				this.init(newVal);
 			},
 		},
-
+		// #endif
 		// #ifdef VUE3
 		modelValue: {
 			immediate: true,
@@ -252,9 +253,7 @@ export default {
     emits: ['update:modelValue', 'focus', 'blur', 'change', 'confirm', 'clear', 'keyboardheightchange'],
     // #endif
 	methods: {
-		
 		init(newVal){
-		
 			this.innerValue = newVal;
 			// 在H5中，外部value变化后，修改input中的值，不会触发@input事件，此时手动调用值变化方法
 			if (this.firstChange === false && this.changeFromInner === false) {

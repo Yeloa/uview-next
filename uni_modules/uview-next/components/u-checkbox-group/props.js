@@ -8,10 +8,12 @@ export default defineProps('checkboxGroup', {
         default: ''
     },
     // 绑定的值
+    //#ifdef VUE2
     value: {
         type: Array,
        default: () => []
     },
+    // #endif
     // #ifdef VUE3
     modelValue: {
         type: Array,

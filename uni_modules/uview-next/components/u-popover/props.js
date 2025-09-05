@@ -90,5 +90,10 @@ export default defineProps('popover', {
     popoverStyle: {
         type: Object,
         default: () => ({})
+    },
+    // 是否显示遮罩层
+    showOverlay: {
+        type: Boolean,
+        default: false
     }
 })
