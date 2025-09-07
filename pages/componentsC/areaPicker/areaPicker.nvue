@@ -38,7 +38,7 @@
 				<template v-slot:value>
 					<u-area-picker v-model="value3" closeOnClickOverlay @init="init" @confirm="confirm3">
 						<template v-slot:trigger>
-							<u-input :value="value1" placeholder="请选择地区" disabled-color="#fff" disabled clearable />
+							<u-input v-model="value1" placeholder="请选择地区" disabled-color="#fff" disabled clearable />
 						</template>
 					</u-area-picker>
 				</template>

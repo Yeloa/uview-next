@@ -82,5 +82,5 @@ export default defineProps('tabs', {
     keyName: {
         type: String,
         default: 'name',
-    },
+    }
 });

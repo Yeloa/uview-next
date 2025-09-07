@@ -1,7 +1,6 @@
 <template>
 	<view class="u-page">
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">基础功能</text>
+		<card title="基础功能">
 			<view class="u-demo-block__content">
 				<view class="u-page__tag-item">
 					<u-switch
@@ -13,9 +12,9 @@
 					<u-switch v-model="value2"></u-switch>
 				</view>
 			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">加载中</text>
+		</card>
+		
+		<card title="加载中">
 			<view class="u-demo-block__content">
 				<view class="u-page__tag-item">
 					<u-switch
@@ -30,9 +29,9 @@
 					></u-switch>
 				</view>
 			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">禁用状态</text>
+		</card>
+		
+		<card title="禁用状态">
 			<view class="u-demo-block__content">
 				<view class="u-page__tag-item">
 					<u-switch
@@ -47,9 +46,9 @@
 					></u-switch>
 				</view>
 			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">自定义尺寸</text>
+		</card>
+		
+		<card title="自定义尺寸">
 			<view class="u-demo-block__content">
 				<view class="u-page__tag-item">
 					<u-switch
@@ -64,9 +63,9 @@
 					></u-switch>
 				</view>
 			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">自定义颜色</text>
+		</card>
+		
+		<card title="自定义颜色">
 			<view class="u-demo-block__content">
 				<view class="u-page__tag-item">
 					<u-switch
@@ -83,9 +82,9 @@
 					></u-switch>
 				</view>
 			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">自定义样式</text>
+		</card>
+		
+		<card title="自定义样式">
 			<view class="u-demo-block__content">
 				<view class="u-page__tag-item">
 					<u-switch
@@ -104,9 +103,9 @@
 					></u-switch>
 				</view>
 			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">异步控制</text>
+		</card>
+		
+		<card title="异步控制">
 			<view class="u-demo-block__content">
 				<view class="u-page__tag-item">
 					<u-switch
@@ -116,7 +115,7 @@
 					></u-switch>
 				</view>
 			</view>
-		</view>
+		</card>
 	</view>
 </template>
 

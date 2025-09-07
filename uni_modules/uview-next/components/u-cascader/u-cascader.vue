@@ -16,13 +16,13 @@
 			<!-- 标签页 -->
 			<view class="u-cascader__tabs">
 				<u-tabs 
-					:list="tabsList"
+					:list="tabs"
 					:current="activeTabIndex"
 					:scrollable="true"
 					:activeStyle="{ color: activeColor, fontWeight: '600' }"
 					:inactiveStyle="{ color: color }"
 					:lineColor="activeColor"
-					:keyName="'name'"
+					:keyName="'label'"
 					@change="switchTab"
 				></u-tabs>
 			</view>
@@ -133,26 +133,6 @@ export default {
 			if (this.selectedPath.length === 0) return false
 			const lastSelected = this.selectedPath[this.selectedPath.length - 1]
 			return this.hasChildren(lastSelected)
-		},
-
-		// 标签页列表数据
-		tabsList() {
-			const list = this.tabs.map(tab => ({
-				name: tab.label,
-				label: tab.label
-			}))
-			
-			// 首次打开或者有子项时显示占位符
-			// 首次打开：tabs为空时
-			// 有子项：选择了某项且该项有子项时
-			if (this.tabs.length === 0 || this.canAddTab) {
-				list.push({
-					name: this.placeholder,
-					label: this.placeholder
-				})
-			}
-			
-			return list
 		}
 	},
 	
@@ -198,6 +178,12 @@ export default {
 			this.currentOptions = this.options || []
 			this.optionsStack.push(this.currentOptions)
 			
+			// 添加初始占位符标签
+			this.tabs.push({
+				label: this.placeholder,
+				name: this.placeholder
+			})
+			
 			// 如果有初始值，则定位到对应的层级
 			if (this.currentValue) {
 				this.initWithValue()
@@ -208,6 +194,7 @@ export default {
 		initWithValue() {
 			const value = Array.isArray(this.currentValue) ? this.currentValue : [this.currentValue]
 			let currentOptions = this.options || []
+			this.tabs = [] // 清空占位符，准备添加实际标签
 			
 			for (let i = 0; i < value.length; i++) {
 				const targetValue = value[i]
@@ -217,6 +204,7 @@ export default {
 					this.selectedPath.push(item)
 					this.tabs.push({
 						label: this.getLabel(item),
+						name: this.getLabel(item),
 						level: i
 					})
 					
@@ -229,6 +217,14 @@ export default {
 				} else {
 					break
 				}
+			}
+			
+			// 如果没有选中项或还有子项可选择，添加占位符
+			if (this.tabs.length === 0 || this.canAddTab) {
+				this.tabs.push({
+					label: this.placeholder,
+					name: this.placeholder
+				})
 			}
 			
 			this.activeTabIndex = this.tabs.length > 0 ? this.tabs.length - 1 : 0
@@ -247,6 +243,7 @@ export default {
 			this.tabs = this.tabs.slice(0, currentLevel)
 			this.tabs.push({
 				label: this.getLabel(item),
+				name: this.getLabel(item),
 				level: currentLevel
 			})
 			
@@ -260,6 +257,12 @@ export default {
 				// 有子项，添加新的选项到栈中
 				const childOptions = this.getChildren(item)
 				this.optionsStack.push(childOptions)
+				
+				// 添加占位符标签
+				this.tabs.push({
+					label: this.placeholder,
+					name: this.placeholder
+				})
 				
 				// 自动切换到下一个标签页
 				this.activeTabIndex = currentLevel + 1

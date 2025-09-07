@@ -713,6 +713,12 @@
 					"style": {
 						"navigationBarTitleText": "海报生成"
 					}
+				},
+				{
+					"path": "slider-button/slider-button",
+					"style": {
+						"navigationBarTitleText": "滑动按钮"
+					}
 				}
 			]
 		}

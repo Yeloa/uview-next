@@ -24,7 +24,12 @@
 				<slot>
 					<u-input 
 						v-if="showInput"
+						<!-- #ifdef VUE2 -->
 						:value="inputValue"
+						<!-- #endif -->
+						<!-- #ifdef VUE3 -->
+						:modelValue="inputValue"
+						<!-- #endif -->
 						:clearable="inputProps.clearable"
 						:placeholder="inputProps.placeholder"
 						:disabled="inputProps.disabled"

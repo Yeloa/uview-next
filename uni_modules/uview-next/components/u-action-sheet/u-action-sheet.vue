@@ -8,7 +8,7 @@
             :title="title" 
             :round="round"
             :closeable="closeable"
-            :titleStyle="[{fontWeight: 'bold' },$u.addStyle(titleStyle)]"
+            :titleStyle="titleStyles"
             :safeAreaInsetBottom="safeAreaInsetBottom" 
             @close="cancel" 
         >
@@ -126,6 +126,10 @@ export default {
         };
     },
     computed: {
+		titleStyles() {
+		    const style = { fontWeight: 'bold' }
+		    return uni.$u.deepMerge(style, uni.$u.addStyle(this.titleStyle))
+		},
         // 操作项目的样式
         itemStyle() {
             return (index) => {

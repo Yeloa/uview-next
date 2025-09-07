@@ -91,6 +91,8 @@
 					mode: 'bottom',
 					round: '',
 					closeable: true,
+					closeIcon:'',
+					closeIconColor:'',
 					closeIconPos:'top-right',
 					closeOnClickOverlay: true,
 					//width:'200px',

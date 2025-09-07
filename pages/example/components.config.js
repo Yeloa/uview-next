@@ -175,6 +175,11 @@ export default [{
         icon: 'album',
         title: '相册',
         title_en: 'Album'
+    },{
+        path: '/pages/componentsD/slider-button/slider-button',
+        icon: 'sliderButton',
+        title: '滑动按钮',
+        title_en: 'SliderButton'
     }]
 }, {
     groupName: '数据组件',

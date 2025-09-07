@@ -64,7 +64,7 @@
 			<view
 				class="u-input__content__clear"
 				v-if="isShowClear"
-				@tap="onClear"
+				@tap.stop="onClear"
 			>
 				<u-icon
 					name="close"

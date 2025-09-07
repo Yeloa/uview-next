@@ -62,7 +62,7 @@ export default defineProps('slider', {
 	// 滑块的尺寸
 	size: {
 		type: [String, Number],
-		default: 24
+		default: 34
 	},
 	// 滑块大小
 	thumbSize: {
