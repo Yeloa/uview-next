@@ -12,10 +12,15 @@ export default defineProps('dropdown', {
         type: String,
         default: theme.primary
     },
+    // 禁用时的颜色
+    disabledColor: {
+        type: String,
+        default: theme.disabledColor
+    },
     // 菜单的背景颜色
     bgColor: {
         type: String,
-        default: ''
+        default: '#ffffff'
     },
     // 菜单的圆角值
     round: {
@@ -32,20 +37,20 @@ export default defineProps('dropdown', {
         type: Boolean,
         default: true
     },
+    // 是否显示遮罩
+    overlay: {
+        type: Boolean,
+        default: true
+    },
     // 过渡时间
     duration: {
         type: [Number, String],
-        default: 300
+        default: 220
     },
     // 标题菜单的高度
     height: {
         type: [Number, String],
-        default: 40
-    },
-    // 是否显示下边框
-    borderBottom: {
-        type: Boolean,
-        default: false
+        default: 44
     },
     // 标题的字体大小
     titleSize: {
@@ -55,16 +60,16 @@ export default defineProps('dropdown', {
     // 下拉出来的内容部分的圆角值
     borderRadius: {
         type: [Number, String],
-        default: 0
+        default: 10
     },
     // 菜单右侧的icon图标
     menuIcon: {
         type: String,
-        default: 'arrow-down'
+        default: 'caret-down'
     },
     // 菜单右侧图标的大小
     menuIconSize: {
         type: [Number, String],
-        default: ''
+        default: 16
     }
 })

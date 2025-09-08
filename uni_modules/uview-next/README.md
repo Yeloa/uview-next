@@ -4,12 +4,13 @@
     <h3>企业级、高质量、更贴近业务场景的UI框架</h3>
 </div>
 
-
 [![stars](http://gitee.com/wakge/uview-next/badge/star.svg?theme=dark)](http://gitee.com/wakge/uview-next)
 [![forks](http://gitee.com/wakge/uview-next/badge/fork.svg?theme=dark)](wakge/uview-next)
 [![Stars](https://img.shields.io/github/stars/Yeloa/uview-next?logo=github&label=Stars&color=BA2127&labelColor=3E444F&style=flat&logoColor=white)](https://github.com/Yeloa/uview-next)
 [![Forks](https://img.shields.io/github/forks/Yeloa/uview-next?logo=github&label=Forks&color=BA2127&labelColor=3E444F&style=flat&logoColor=white)](https://github.com/Yeloa/uview-next/fork)
 [![Issues](https://img.shields.io/github/issues/Yeloa/uview-next?logo=github&label=Issues&color=BA2127&labelColor=3E444F&style=flat&logoColor=white)](https://github.com/Yeloa/uview-next/issues)
+[![npm](https://img.shields.io/npm/v/uview-next?logo=npm&label=npm&color=CB3837&labelColor=3E444F&style=flat&logoColor=white)](https://www.npmjs.com/package/uview-next)
+[![downloads](https://img.shields.io/npm/dm/uview-next?logo=npm&label=Downloads&color=CB3837&labelColor=3E444F&style=flat&logoColor=white)](https://www.npmjs.com/package/uview-next)
 [![license](http://img.shields.io/badge/license-mit-red)](http://en.wikipedia.org/wiki/MIT_License)
 
 ## 📖 简介
@@ -18,9 +19,7 @@ uView Next 支持 Vue2 和 Vue3，支持国际化，是[uni-app](http://uniapp.d
 
 ## 📚 文档
 
-- [🌐 **官方文档** https://uview-next.netlify.app](https://uview-next.netlify.app)
-- [📄 **备用文档** https://uview.d3u.cn](https://uview.d3u.cn)
-
+- [📄 **官方文档** https://uview.d3u.cn](https://uview.d3u.cn)
 
 ## 💬 交流反馈
 

@@ -91,5 +91,7 @@ export default {
 @import './vue.ani-style.scss';
 /* #endif */
 
-.u-transition {}
+.u-transition {
+	position: relative;
+}
 </style>

@@ -1,4 +1,8 @@
 export default {
+    'uicon-caret-down': '\ue6da',
+    'uicon-caret-left': '\ue6db',
+    'uicon-caret-right': '\ue6dc',
+    'uicon-caret-up': '\ue6dd',
     'uicon-arrow-upward': '\ue6cc',
     'uicon-arrow-rightward': '\ue6cd',
     'uicon-android-circle-fill': '\ue6ce',

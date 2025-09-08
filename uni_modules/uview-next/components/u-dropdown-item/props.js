@@ -19,6 +19,11 @@ export default defineProps('dropdownItem', {
         type: [String, Number],
         default: ''
     },
+    //禁用默认的点击事件
+    disabledClick: {
+        type: Boolean,
+        default: false
+    },
     // 选项数据，如果传入了默认slot，此参数无效
     options: {
         type: Array,
