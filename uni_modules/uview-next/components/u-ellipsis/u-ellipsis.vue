@@ -1,5 +1,5 @@
 <template>
-	<view class="u-ellipsis" :style="customStyle">
+	<view class="u-ellipsis" :style="[$u.addStyle(customStyle)]">
 		<view class="u-ellipsis__content">
 			<text :style="[textStyle]">
 				{{ expanded ? content : text }}

@@ -344,6 +344,24 @@
 					}
 				},
 				{
+					"path": "tabbar/tabbar1",
+					"style": {
+						"navigationBarTitleText": "放映厅"
+					}
+				},
+				{
+					"path": "tabbar/tabbar2",
+					"style": {
+						"navigationBarTitleText": "直播"
+					}
+				},
+				{
+					"path": "tabbar/tabbar3",
+					"style": {
+						"navigationBarTitleText": "我的"
+					}
+				},
+				{
 					"path": "signature/signature",
 					"style": {
 						"navigationBarTitleText": "签名",

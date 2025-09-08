@@ -102,12 +102,12 @@
 		<view class="u-page__item">
 			<text class="u-page__item__title">固定在底部(固定在屏幕最下方)</text>
 			<u-gap height="150"></u-gap>
-			<u-tabbar :value="value6" @change="name => value6 = name">
-				<u-tabbar-item text="首页" icon="home"></u-tabbar-item>
-				<u-tabbar-item text="放映厅" icon="photo"></u-tabbar-item>
+			<u-tabbar>
+				<u-tabbar-item text="首页" icon="home" url="/pages/componentsB/tabbar/tabbar"></u-tabbar-item>
+				<u-tabbar-item text="放映厅" icon="photo" url="/pages/componentsB/tabbar/tabbar1"></u-tabbar-item>
 				<u-tabbar-item text="发布" icon="plus" :middle="true" iconSize="20" ></u-tabbar-item>
-				<u-tabbar-item text="直播" icon="play-right"></u-tabbar-item>
-				<u-tabbar-item text="我的" icon="account"></u-tabbar-item>
+				<u-tabbar-item text="直播" icon="play-right" url="/pages/componentsB/tabbar/tabbar2"></u-tabbar-item>
+				<u-tabbar-item text="我的" icon="account" url="/pages/componentsB/tabbar/tabbar3"></u-tabbar-item>
 			</u-tabbar>
 		</view>
 	</view>

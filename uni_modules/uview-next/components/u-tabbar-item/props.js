@@ -48,5 +48,10 @@ export default defineProps('tabbarItem', {
     middle: {
         type: Boolean,
         default: false
-    }
+    },
+	// 页面跳转的类型，覆盖mixin
+	linkType: {
+	    type: String,
+	    default: 'redirectTo'
+	}
 })

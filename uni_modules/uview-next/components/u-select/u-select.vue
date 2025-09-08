@@ -157,7 +157,6 @@
 		computed: {
 			// 显示文本
 			displayText() {
-				if (!this.innerValue) return ''
 				const item = this.list.find(item => item[this.valueName] === this.innerValue)
 				return item ? item[this.keyName] : ''
 			},

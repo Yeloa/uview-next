@@ -94,11 +94,15 @@
 				// #ifdef VUE3
 				value = this.modelValue;
 				// #endif
+				const { min, max } = this.numericRange;
 				if (this.range) {
-					const val = Array.isArray(value) ? value : [this.min, this.max];
-					return [this.safeNumber(val[0], this.min), this.safeNumber(val[1], this.max)];
+					const val = Array.isArray(value) ? value : [min, max];
+					const start = Math.max(min, Math.min(max, this.safeNumber(val[0], min)));
+					const end = Math.max(min, Math.min(max, this.safeNumber(val[1], max)));
+					return [start, end];
 				}
-				return this.safeNumber(value, this.min);
+				const v = this.safeNumber(value, min);
+				return Math.max(min, Math.min(max, v));
 			},
 			displayStartValue() {
 				return Array.isArray(this.currentValue) ? this.currentValue[0] : this.currentValue;
@@ -202,14 +206,13 @@
 			}
 		},
 		mounted() {
-			this.$nextTick(() => this.measure());
+			this.$nextTick(() => this.init());
 		},
-	
 		// #ifdef VUE3
 		emits: ['update:modelValue', 'change', 'dragStart', 'dragEnd'],
 		// #endif
 		methods: {
-			measure() {
+			init() {
 				const query = uni.createSelectorQuery().in(this);
 				query.select('#' + this.sliderId).boundingClientRect(rect => {
 					if (rect && rect.width > 0 && rect.height > 0) {
@@ -353,16 +356,14 @@
 				if (this.disabled || this.readonly) return;
 				this.isDragging = true;
 				this.activeThumb = thumb;
-				this.measure();
+				this.init();
 				this.$emit('dragStart', this.currentValue);
 			},
 			
 			onThumbMove(e) {
 				if (!this.isDragging) return;
 				const v = this.pointToValue(e);
-				if (v) {
-					this.updateValue(v, this.activeThumb);
-				}
+				this.updateValue(v, this.activeThumb);
 			},
 			
 			onThumbEnd(e) {

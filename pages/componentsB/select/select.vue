@@ -136,13 +136,13 @@
 		data() {
 			return {
 				// 基础用法
-				value1: 'shanghai',
+				value1: 1,
 				options1: [
-					{ text: '北京', value: 'beijing' },
-					{ text: '上海', value: 'shanghai' },
-					{ text: '广州', value: 'guangzhou' },
-					{ text: '深圳', value: 'shenzhen' },
-					{ text: '杭州', value: 'hangzhou' }
+					{ text: '北京', value: 0 },
+					{ text: '上海', value: 1 },
+					{ text: '广州', value: 2 },
+					{ text: '深圳', value: 3 },
+					{ text: '杭州', value: 4 }
 				],
 				
 				// 带标签

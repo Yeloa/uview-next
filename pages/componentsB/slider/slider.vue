@@ -10,7 +10,7 @@
             <u-slider v-model="value3" :step="5" @change="onChange"></u-slider>
         </card>
         <card title="双滑块模式">
-            <u-slider v-model="rangeValue" :range="true" @change="onChange"></u-slider>
+            <u-slider v-model="rangeValue" :max="200" :showValue="true" :range="true" @change="onChange"></u-slider>
         </card>
         <card title="禁止交叉的双滑块">
             <u-slider v-model="rangeValue2" :range="true" :noCross="true" @change="onChange"></u-slider>

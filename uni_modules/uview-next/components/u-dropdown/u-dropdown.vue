@@ -84,6 +84,10 @@ export default {
 				this.contentHeight = parseInt(windowHeight - statusBarHeight - windowTop - res.top);
 			});
 
+			// #ifdef MP-WEIXIN
+			this.retryComputedComponentRect(this.$children)
+			// #endif
+
 			const index = this.children.findIndex(child => child == target);
 			this.$emit('open', index);
 		},
@@ -97,7 +101,33 @@ export default {
 					child.close(index);
 				}
 			})
+		},
+		// #ifdef MP-WEIXIN
+		retryComputedComponentRect(children) {
+			// 组件内部需要计算节点的组件
+			const names = ['u-calendar-month', 'u-album', 'u-collapse-item','u-line-progress', 'u-list-item', 'u-rate', 'u-read-more', 'u-row', 'u-row-notice', 'u-scroll-list',
+				'u-skeleton', 'u-slider', 'u-steps-item', 'u-sticky', 'u-subsection', 'u-swipe-action-item', 'u-tabbar',
+				'u-tabs', 'u-tooltip']
+
+			// 历遍所有的子组件节点
+			for (let i = 0; i < children.length; i++) {
+				const child = children[i]
+				// 拿到子组件的子组件
+				const grandChild = child.$children
+				// 判断如果在需要重新初始化的组件数组中名中，并且存在init方法的话，则执行
+				if (names.includes(child.$options.name) && child.init && typeof child.init === 'function') {
+					// 需要进行一定的延时，因为初始化页面需要时间
+					uni.$u.sleep(50).then(() => {
+						child.init()
+					})
+				}
+				// 如果子组件还有孙组件，进行递归历遍
+				if (grandChild.length) {
+					this.retryComputedComponentRect(grandChild)
+				}
+			}
 		}
+		// #endif
 	}
 }
 </script>

@@ -3,7 +3,7 @@
 		mode="fade"
 		:show="show"
 	>
-		<view class="u-tag-wrapper">
+		<view class="u-tag-wrapper" :style="[$u.addStyle(customStyle)]">
 			<view
 				class="u-tag"
 				:class="[`u-tag--${shape}`, !plain && `u-tag--${type}`, plain && `u-tag--${type}--plain`, `u-tag--${size}`, plain && plainFill && `u-tag--${type}--plain--fill`]"

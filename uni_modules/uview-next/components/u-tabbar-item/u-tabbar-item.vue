@@ -1,7 +1,6 @@
 <template>
 	<view
 	    class="u-tabbar-item"
-	   
 	    @tap="clickHandler"
 	>
 		<view class="u-tabbar-item__content" :class="[`u-tabbar-item__content--${parentData.mode}`]" :style="[contentStyle]">
@@ -107,9 +106,13 @@
 						break
 					}
 				}
-	
-				// 判断本组件的name(如果没有定义name，就用index索引)是否等于父组件的value参数
-				this.isActive = (this.name || index) === this.parentData.value
+				
+				if(this.url && this.url === uni.$u.page()) {
+					this.isActive = true
+				}else{
+					// 判断本组件的name(如果没有定义name，就用index索引)是否等于父组件的value参数
+					this.isActive = (this.name || index) === this.parentData.value
+				}
 			},
 			updateParentData() {
 				// 此方法在mixin中
@@ -130,7 +133,6 @@
 						this.parent.onChange(name)
 					}
 					this.$emit('click', name)
-
 					// 如果配置了url(此props参数通过mixin引入)参数，跳转页面
 					this.openPage();
 				})

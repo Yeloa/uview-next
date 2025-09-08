@@ -16,8 +16,8 @@
 
 <script>
 import props from './props.js';
-	import mixin from '../../libs/mixin/mixin'
-	import mpMixin from '../../libs/mixin/mpMixin';
+import mixin from '../../libs/mixin/mixin'
+import mpMixin from '../../libs/mixin/mpMixin';
 /**
  * lazyLoad 懒加载
  * @description 懒加载使用的场景为：页面有很多图片时，APP会同时加载所有的图片，导致页面卡顿，各个位置的图片出现前后不一致等.

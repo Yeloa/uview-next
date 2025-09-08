@@ -8,6 +8,9 @@
 					<u-dropdown-item v-model="value2" title="温度" :options="options2"></u-dropdown-item>
 					<u-dropdown-item title="属性">
 						<view style="padding: 15px;">
+
+							<u-slider v-model="rangeValue" @change="onChange" max="500" :showValue="true" :range="true"></u-slider>
+							
 							<u-radio-group v-model="radiovalue1" shape="button" activeBorderColor="#f00">
 								<u-radio
 									:customStyle="{marginRight: '8px'}"
@@ -81,6 +84,7 @@
 				show: false,
 				value1: 1,
 				value2: 2,
+				rangeValue: [50, '500'],
 				radiovalue1: '苹果',
 				// 基本案列数据
 				radiolist1: [{
@@ -124,6 +128,9 @@
 			}
 		},
 		methods: {
+			onChange(value) {
+				console.log(value)
+			},
 			handleClose() {
 				this.show = false
 			},
