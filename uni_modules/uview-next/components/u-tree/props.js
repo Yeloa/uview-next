@@ -114,12 +114,12 @@ export default defineProps('tree', {
 	// 展开图标
 	expandIcon: {
 		type: String,
-		default: 'arrow-right-fill'
+		default: 'caret-right'
 	},
 	// 收缩图标
 	collapseIcon: {
 		type: String,
-		default: 'arrow-down-fill'
+		default: 'caret-down'
 	},
 	// loading的颜色
 	loadingColor: {

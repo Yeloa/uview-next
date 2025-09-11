@@ -29,7 +29,6 @@
 				</u-row>
 			</view>
 		</view>
-
 		<u-action-sheet round="10" title="选择语言" :actions="langList" :show="showLang" @select="changeLanguage"></u-action-sheet>
 	</view>
 </template>
@@ -41,6 +40,7 @@
 	export default {
 		data() {
 			return {
+				shopData:[],
 				list: list,
 				desc: '',
 				showLang: false,
@@ -97,6 +97,9 @@
 			// })
 		},
 		methods: {
+			customSummaryMethod(){
+				return ['合计', '合计1', '合计2', '合计3', '合计4'];
+			},
 			changeLanguage(event) {
 				uni.$u.setLocale(event.lang)
 				this.showLang = false

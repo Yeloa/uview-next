@@ -45,10 +45,11 @@
 							    size="25"
 							/>
 							<u-loading-icon
-							    size="22"
-							    mode="circle"
-							    color="#ffffff"
-							    v-else
+								size="22"
+								mode="semicircle"
+								timingFunction="linear"
+								color="#ffffff"
+								v-else
 							/>
 						</view>
 						<text

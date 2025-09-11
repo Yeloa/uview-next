@@ -333,6 +333,8 @@ export default {
                 this.updateChildrenData()
                 // 数据变化时重新检查选中状态
                 this.validateSelection()
+                //重新计算布局
+                this.getFooterHeight()
             },
             immediate: true
         },

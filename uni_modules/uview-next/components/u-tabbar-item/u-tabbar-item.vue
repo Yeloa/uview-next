@@ -5,7 +5,7 @@
 	>
 		<view class="u-tabbar-item__content" :class="[`u-tabbar-item__content--${parentData.mode}`]" :style="[contentStyle]">
 
-			<view v-if="icon" 
+			<view
 				class="u-tabbar-item__icon" 
 				:class="{'u-tabbar-item__icon--middle': middle}"
 				:style="[{backgroundColor: middle && iconBgColor}]"
@@ -21,7 +21,7 @@
 				<slot v-else name="inactive-icon"/>
 				<u-badge
 					absolute
-					:offset="[0, dot ? '34rpx' : badge > 9 ? '14rpx' : '20rpx']"
+					:offset="[0, dot ? '-10px' : badge > 9 ? '-20px' : '-12px']"
 					:customStyle="badgeStyle"
 					:isDot="dot"
 					:value="badge || (dot ? 1 : null)"

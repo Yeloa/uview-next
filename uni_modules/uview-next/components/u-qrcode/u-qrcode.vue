@@ -14,7 +14,7 @@
         </view>
 		<view class="u-qrcode__mask" v-if="status === 'loading'">
 			<slot name="loading">
-				<u-loading-icon mode="semicircle"></u-loading-icon>
+				<u-loading-icon mode="semicircle" timingFunction="linear"></u-loading-icon>
 			</slot>
 		</view>
 		<view class="u-qrcode__mask" v-if="status === 'expired'">

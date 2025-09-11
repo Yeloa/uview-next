@@ -231,7 +231,6 @@ export default {
                     address: '北京市海淀区'
                 }
             ],
-
             // 合并单元格示例数据1：员工信息
             mergeTableData1: [
                 { department: '技术部', name: '张三', position: '前端工程师', salary: '15000' },

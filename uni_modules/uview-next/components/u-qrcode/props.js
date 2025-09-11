@@ -43,15 +43,15 @@ export default defineProps('qrcode', {
     },
     expiredText:{
         type: String,
-        default: '二维码已过期'
+        default: uni.$u.$t('uQrcode.expiredText')
     },
     scannedText:{
         type: String,
-        default: '已扫描'
+        default: uni.$u.$t('uQrcode.scannedText')
     },
     refreshText:{
         type: String,
-        default: '点击刷新'
+        default: uni.$u.$t('uQrcode.refreshText')
     },
     // 二维码大小
     size: {

@@ -82,5 +82,9 @@
 	"uCropper.chooseImage": "Por favor, seleccione una imagen",
 	"uCropper.cropping": "Recortando...",
 	"uCropper.cancelText": "Cancelar",
-	"uCropper.confirmText": "Confirmar"
+	"uCropper.confirmText": "Confirmar",
+
+	"uQrcode.expiredText": "QR code expirado",
+	"uQrcode.scannedText": "Escaneado",
+	"uQrcode.refreshText": "Actualizar"
 }

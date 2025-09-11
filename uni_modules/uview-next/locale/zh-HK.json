@@ -82,5 +82,9 @@
 	"uCropper.chooseImage": "請先選擇圖片",
 	"uCropper.cropping": "裁剪中...",
 	"uCropper.cancelText": "取消",
-	"uCropper.confirmText": "確定"
+	"uCropper.confirmText": "確定",
+
+	"uQrcode.expiredText": "二維碼已過期",
+	"uQrcode.scannedText": "已掃描",
+	"uQrcode.refreshText": "點擊刷新"
 }

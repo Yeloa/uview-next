@@ -82,5 +82,9 @@
 	"uCropper.chooseImage": "画像を先に選択してください",
 	"uCropper.cropping": "画像の切り抜き中...",
 	"uCropper.cancelText": "キャンセル",
-	"uCropper.confirmText": "確定"
+	"uCropper.confirmText": "確定",
+
+	"uQrcode.expiredText": "QRコードが期限切れです",
+	"uQrcode.scannedText": "スキャン済み",
+	"uQrcode.refreshText": "更新"
 }

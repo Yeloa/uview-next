@@ -82,5 +82,9 @@
 	"uCropper.chooseImage": "请先选择图片",
 	"uCropper.cropping": "裁剪中...",
 	"uCropper.cancelText": "取消",
-	"uCropper.confirmText": "确定"
+	"uCropper.confirmText": "确定",
+
+	"uQrcode.expiredText": "二维码已过期",
+	"uQrcode.scannedText": "已扫描",
+	"uQrcode.refreshText": "点击刷新"
 }

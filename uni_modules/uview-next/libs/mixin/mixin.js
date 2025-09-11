@@ -99,10 +99,31 @@ export default {
         openPage(urlKey = 'url') {
             const url = this[urlKey]
             if (url) {
-                // 执行类似uni.navigateTo的方法
-                uni[this.linkType]({
-                    url
-                });
+                switch(this.linkType){
+                    case 'redirectTo':
+                        uni.redirectTo({
+                            url
+                        });
+                        break;
+                    case 'switchTab':
+                        uni.switchTab({
+                            url
+                        });
+                        break;
+                    case 'reLaunch':
+                        uni.reLaunch({
+                            url
+                        });
+                        break;
+                    case 'navigateBack':
+                        uni.navigateBack();
+                        break;
+                    default:
+                        uni.navigateTo({
+                            url
+                        });
+                        break;
+                }
             }
         },
         // 查询节点信息

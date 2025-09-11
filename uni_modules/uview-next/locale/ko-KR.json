@@ -82,5 +82,9 @@
 	"uCropper.chooseImage": "이미지를 먼저 선택해 주세요",
 	"uCropper.cropping": "이미지 자르기 중...",
 	"uCropper.cancelText": "취소",
-	"uCropper.confirmText": "확인"
+	"uCropper.confirmText": "확인",
+
+	"uQrcode.expiredText": "QR 코드가 만료되었습니다",
+	"uQrcode.scannedText": "스캔됨",
+	"uQrcode.refreshText": "새로고침"
 }

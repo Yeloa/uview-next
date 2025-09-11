@@ -100,7 +100,6 @@ export default {
             } else {
                 style.flex = 1;
             }
-
             return style;
         },
         // 响应式的行选中状态映射

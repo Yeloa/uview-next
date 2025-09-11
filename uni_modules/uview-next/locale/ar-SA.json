@@ -82,5 +82,9 @@
 	"uCropper.chooseImage": "الرجاء اختيار صورة",
 	"uCropper.cropping": "يتم قص الصورة...",
 	"uCropper.cancelText": "إلغاء",
-	"uCropper.confirmText": "تأكيد"
+	"uCropper.confirmText": "تأكيد",
+
+	"uQrcode.expiredText": "الرمز المرجعي منتهي الصلاحية",
+	"uQrcode.scannedText": "مسح",
+	"uQrcode.refreshText": "تحديث"
 }

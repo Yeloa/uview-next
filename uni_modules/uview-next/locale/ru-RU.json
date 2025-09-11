@@ -82,5 +82,9 @@
 	"uCropper.chooseImage": "Пожалуйста, выберите изображение",
 	"uCropper.cropping": "Обрезание...",
 	"uCropper.cancelText": "Отмена",
-	"uCropper.confirmText": "Подтвердить"
+	"uCropper.confirmText": "Подтвердить",
+
+	"uQrcode.expiredText": "QR-код просрочен",
+	"uQrcode.scannedText": "Сканирование",
+	"uQrcode.refreshText": "Нажмите для обновления"
 }

@@ -1,5 +1,6 @@
 import test from './test.js';
 import { round } from './digit.js';
+import theme from './../config/theme.js';
 
 /**
  * @description 如果value小于min，取min；如果value大于max，取max
@@ -747,6 +748,57 @@ function getPropsConfig(type,name, value, i8n = false) {
     }
 }
 
+function getLocation(options = {}) {
+	return new Promise((resolve, reject) => {
+		uni.getLocation({
+			//#ifdef APP-PLUS || H5
+			type: 'wgs84',
+			//#endif
+			//#ifndef APP-PLUS || H5
+			type: 'gcj02',
+			//#endif
+			isHighAccuracy: true,
+			...options,
+			success: resolve,
+			fail: ({ errMsg }) => {
+				if (errMsg.indexOf('auth') > -1 && errMsg.indexOf('deny') > -1) {
+					uni.showModal({
+						confirmText: '开启定位',
+						confirmColor: theme.primary,
+						title: '定位服务未开启',
+						content: '请允许使用您的位置，以便为您提供更好的服务',
+						success: () => {
+							uni.openSetting({
+								success: () => {}
+							});
+						}
+					});
+				} else if (errMsg.indexOf('auth denied') > -1 || errMsg.indexOf('ERROR_NOCELL') > -1) {
+					uni.showModal({
+						showCancel: false,
+						confirmText: '我知道了',
+						confirmColor: theme.primary,
+						title: '定位服务未开启',
+						content: '请手动开启手机系统定位权限，以便准确获取您的位置',
+						success: () => {}
+					});
+				} else {
+					uni.showModal({
+						showCancel: false,
+						confirmText: '我知道了',
+						confirmColor: theme.primary,
+						title: '系统提示',
+						content: '获取位置失败',
+						success: () => {}
+					});
+				}
+
+				reject(errMsg);
+			}
+		});
+	});
+}
+
 export default {
 	range,
 	getPx,
@@ -779,5 +831,6 @@ export default {
 	pages,
 	getHistoryPage,
 	setConfig,
-	getPropsConfig 
+	getPropsConfig,
+	getLocation
 };
