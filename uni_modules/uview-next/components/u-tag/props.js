@@ -11,6 +11,16 @@ export default defineProps('tag', {
         type: [Boolean, String],
         default: false
     },
+    // 不可用
+    animation: {
+        type: [Boolean],
+        default: false
+    },
+    // 关闭按钮是不是内嵌在标签内
+    closeInside: {
+        type: [Boolean],
+        default: false
+    },
     // 标签的大小，large，medium，mini
     size: {
         type: String,
@@ -85,5 +95,10 @@ export default defineProps('tag', {
     iconColor: {
         type: String,
         default: ''
+    },
+    // 间距
+    gutter: {
+        type: [String, Number],
+        default: 10
     }
 })

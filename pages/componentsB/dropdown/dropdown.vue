@@ -33,7 +33,7 @@
 		<view class="u-demo-block">
 			<text class="u-demo-block__title" style="margin-left: 15px;margin-top: 15px;">自定义菜单</text>
 			<view class="u-demo-block__content">
-				<u-dropdown activeColor="#f00">
+				<u-dropdown activeColor="#f00" ref="dropdown">
 					<u-dropdown-item v-model="value1" title="距离" :options="options1"></u-dropdown-item>
 					<u-dropdown-item v-model="value2" :options="options2">
 						<template #label="{active}">
@@ -136,6 +136,7 @@
 			},
 			handleClick() {
 				this.show = true
+				this.$refs.dropdown.close()
 				console.log('handleClick')
 			}
 		}

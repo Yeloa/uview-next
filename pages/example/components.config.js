@@ -145,6 +145,11 @@ export default [{
         icon: 'field',
         title: '输入框',
         title_en: 'Input'
+    },{
+        path: '/pages/componentsD/inputTag/inputTag',
+        icon: 'tag',
+        title: '输入标签',
+        title_en: 'InputTag'
     }, {
         path: '/pages/componentsC/textarea/textarea',
         icon: 'textarea',

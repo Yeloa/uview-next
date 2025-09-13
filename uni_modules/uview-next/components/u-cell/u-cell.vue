@@ -203,7 +203,7 @@ $u-cell-label-margin-top: 5px !default;
 
     &__title {
         flex: $u-cell-title-flex;
-        @include flex(row);
+        @include flex(column);
         &-text {
             font-size: $u-cell-title-font-size;
             line-height: $u-cell-title-line-height;

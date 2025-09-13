@@ -52,7 +52,7 @@
             <view v-if="showSummary && data && data.length > 0" class="u-table__footer" ref="u-table__footer">
                 <block v-for="(column, index) in children" :key="index">
                     <view v-if="column.show" class="u-table__footer__column" :style="[cellStyles(column)]">
-                        <view class="u-table__cell u-table__summary-cell" :class="[cellClasses(column, index)]"
+                        <view class="u-table__cell u-table__summary-cell" :class="[cellFooterClasses(column, index)]"
                             :style="{ height: $u.addUnit(rowHeight) }">
                             <text class="u-table__value">{{ getSummaryValue(column, index) }}</text>
                         </view>
@@ -307,6 +307,23 @@ export default {
                 }
 
                 return uni.$u.deepMerge(style, uni.$u.addStyle(this.headerCellStyle));
+            }
+        },
+        cellFooterClasses(column, index) {
+            return (column, index) => {
+                let classes = [
+                    `is-${column.align || 'left'}`,
+                ];
+
+                if (this.border) {
+                    classes.push('is-border');
+                }
+
+                // #ifdef MP-ALIPAY || MP-TOUTIAO
+                classes = classes.join(' ')
+                // #endif
+
+                return classes;
             }
         }
     },

@@ -1,8 +1,11 @@
 <template>
 	<view
 		class="u-slider"
-		:class="[{ 'u-slider--vertical': vertical, 'u-slider--disabled': disabled }]"
-		:id="sliderId"
+		:class="[
+			disabled ? 'u-slider--disabled' : '',
+			vertical ? 'u-slider--vertical' : 'u-slider--horizontal'
+		]"
+		:id="sliderId"  
 		:style="[sliderStyle]"
 		@tap="onRailTap"
 	>
@@ -397,13 +400,17 @@
 	&--vertical .u-slider__rail {
 		left: 50%;
 		top: 0;
-		transform: translateX(-50%);
 		height: 100%;
 		width: 100%;
 	}
 
 	&--vertical .u-slider__thumb {
 		transform: translate(0%, 50%);
+	}
+
+	&--horizontal .u-slider__thumb {
+		left: 0;
+		transform: translate(-50%, 0%);
 	}
 
 	&__rail {
@@ -413,8 +420,6 @@
 	&__thumb {
 		position: absolute;
 		z-index: 2;
-		left: 0;
-		transform: translate(-50%, 0%);
 	}
 
 	&__track {

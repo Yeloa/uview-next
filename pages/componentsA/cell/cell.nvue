@@ -54,7 +54,7 @@
 					</template>
 				</u-cell>
 				<u-cell title="单元格" isLink>
-					<template #title>
+					<template #value>
 						<view class="u-slot-title">
 							<text class="u-slot-value">99</text>
 						</view>

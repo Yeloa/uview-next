@@ -78,16 +78,34 @@ export default {
 	emits: ["open","close"],
 	// #endif
 	methods: {
-		openItem(target) {
+		//对外方法
+		close(index) {
+			this.children.map((child, idx) => {
+				if(index != undefined){
+					if(index == idx){
+						child.close(index);
+					}
+				}else{
+					child.close(idx);
+				}
+			})
+		},
+		open(index) {
 			const { windowHeight, windowTop, statusBarHeight } = uni.$u.window();
 			this.$uGetRect('.u-dropdown').then(res => {
 				this.contentHeight = parseInt(windowHeight - statusBarHeight - windowTop - res.top);
 			});
 
 			// #ifdef MP-WEIXIN
-			this.retryComputedComponentRect(this.$children)
+			this.retryComputedComponentRect(this.$children);
 			// #endif
-
+			if(index != undefined){
+				const child = this.children.find((child,idx) => index === idx);
+				child.open();
+			}
+		},
+		openItem(target) {
+			this.open()
 			const index = this.children.findIndex(child => child == target);
 			this.$emit('open', index);
 		},

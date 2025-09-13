@@ -16,12 +16,12 @@ export default defineProps('slider', {
 	// #endif
 	// 最小值
 	min: {
-		type: Number,
+		type: [String, Number],
 		default: 0
 	},
 	// 最大值
 	max: {
-		type: Number,
+		type: [String, Number],
 		default: 100
 	},
 	// 步长

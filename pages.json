@@ -737,6 +737,12 @@
 					"style": {
 						"navigationBarTitleText": "滑动按钮"
 					}
+				},
+				{
+					"path": "inputTag/inputTag",
+					"style": {
+						"navigationBarTitleText": "输入标签"
+					}
 				}
 			]
 		}

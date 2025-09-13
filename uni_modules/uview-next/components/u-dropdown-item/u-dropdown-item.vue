@@ -14,8 +14,9 @@
 				</view>
 			</slot>
 		</view>
-		<view 
-			class="u-dropdown-item__wrapper" 
+		<view
+			v-if="active"
+			class="u-dropdown-item__wrapper"
 			:style="[{ 
 				top: $u.addUnit(parentData.height - 1),
 				height: $u.addUnit(parentData.contentHeight)

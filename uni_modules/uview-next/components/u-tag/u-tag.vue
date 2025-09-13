@@ -1,45 +1,38 @@
 <template>
-	<u-transition
-		mode="fade"
-		:show="show"
-	>
-		<view class="u-tag-wrapper" :style="[$u.addStyle(customStyle)]">
-			<view
-				class="u-tag"
-				:class="[`u-tag--${shape}`, !plain && `u-tag--${type}`, plain && `u-tag--${type}--plain`, `u-tag--${size}`, plain && plainFill && `u-tag--${type}--plain--fill`]"
-				@tap.stop="clickHandler"
-				:style="[{
-					marginRight: closable ? '10px' : 0,
-					marginTop: closable ? '10px' : 0,
-				}, style]"
+	<u-transition :mode="animation ? 'fade' : 'none'" :show="show">
+		<view
+			class="u-tag"
+			:class="[`u-tag--${shape}`, !plain && `u-tag--${type}`, plain && `u-tag--${type}--plain`, `u-tag--${size}`, plain && plainFill && `u-tag--${type}--plain--fill`]"
+			@tap.stop="clickHandler"
+			:style="[tagStyle]"
+		>
+			<slot name="icon">
+				<view class="u-tag__icon" v-if="icon">
+					<image v-if="$u.test.image(icon)" :src="icon" :style="[imgStyle]"></image>
+					<u-icon v-else :color="elIconColor" :name="icon" :size="iconSize"></u-icon>
+				</view>
+			</slot>
+		
+			<text
+				v-if="$slots.default && $slots.$default"
+				class="u-tag__text"
+				:style="[textColor]"
+				:class="[`u-tag__text--${type}`, plain && `u-tag__text--${type}--plain`, `u-tag__text--${size}`]"
 			>
-				<slot name="icon">
-					<view class="u-tag__icon" v-if="icon">
-						<image v-if="$u.test.image(icon)" :src="icon" :style="[imgStyle]"></image>
-						<u-icon v-else :color="elIconColor" :name="icon" :size="iconSize"></u-icon>
-					</view>
-				</slot>
-			
-				<text
-					v-if="$slots.default && $slots.$default"
-					class="u-tag__text"
-					:style="[textColor]"
-					:class="[`u-tag__text--${type}`, plain && `u-tag__text--${type}--plain`, `u-tag__text--${size}`]"
-				>
-					<slot></slot>
-				</text>
-				<text
-					v-else
-					class="u-tag__text"
-					:style="[textColor]"
-					:class="[`u-tag__text--${type}`, plain && `u-tag__text--${type}--plain`, `u-tag__text--${size}`]"
-				>
-					{{ text }}
-				</text>
-			</view>
+				<slot></slot>
+			</text>
+			<text
+				v-else
+				class="u-tag__text"
+				:style="[textColor]"
+				:class="[`u-tag__text--${type}`, plain && `u-tag__text--${type}--plain`, `u-tag__text--${size}`]"
+			>
+				{{ text }}
+			</text>
+
 			<view
 				class="u-tag__close"
-				:class="[`u-tag__close--${size}`]"
+				:class="[closeInside ? 'u-tag__close--inside' : 'u-tag__close--absolute', `u-tag__close--${size}`]"
 				v-if="closable"
 				@tap.stop="closeHandler"
 				:style="[{backgroundColor: closeColor}]"
@@ -71,12 +64,14 @@
 	 * @property {String}			color		标签字体颜色，默认为空字符串，即不处理
 	 * @property {String}			borderColor	镂空形式标签的边框颜色
 	 * @property {String}			closeColor	关闭按钮图标的颜色（默认 #C6C7CB）
+	 * @property {Boolean}			closeInside	关闭按钮是不是内嵌在标签内（默认 false ）
 	 * @property {String | Number}	name		点击时返回的索引值，用于区分例遍的数组哪个元素被点击了
 	 * @property {Boolean}			plainFill	镂空时是否填充背景色（默认 false ）
 	 * @property {Boolean}			plain		是否镂空（默认 false ）
 	 * @property {Boolean}			closable	是否可关闭，设置为true，文字右边会出现一个关闭图标（默认 false ）
 	 * @property {Boolean}			show		标签显示与否（默认 true ）
 	 * @property {String}			icon		内置图标，或绝对路径的图片
+	 * @property {Boolean | String} animation	是否使用动画，默认true，可选值为：false
 	 * @event {Function(index)} click 点击标签时触发 index: 传递的index参数值
 	 * @event {Function(index)} close closable为true时，点击标签关闭按钮触发 index: 传递的index参数值	
 	 * @example <u-tag text="标签" type="error" plain plainFill></u-tag>
@@ -90,21 +85,28 @@
 			}
 		},
 		computed: {
-			style() {
+			tagStyle() {
 				const style = {}
 				if (this.bgColor) {
-					style.backgroundColor = this.bgColor
+					style.backgroundColor = this.$uColor('bgColor')
 				}
 				if (this.color) {
-					style.color = this.color
+					style.color = this.$uColor('color')
 				}
 				if(this.borderColor) {
-					style.borderLeftColor = this.borderColor;
-					style.borderTopColor = this.borderColor;
-					style.borderRightColor = this.borderColor;
-					style.borderBottomColor = this.borderColor;
+					const borderColor = this.$uColor('borderColor')
+					style.borderLeftColor =  borderColor;
+					style.borderTopColor = borderColor;
+					style.borderRightColor = borderColor;
+					style.borderBottomColor = borderColor;
 				}
-				return style
+
+				if(this.closable) {
+					style.marginRight = uni.$u.addUnit(this.gutter);
+					style.marginTop = uni.$u.addUnit(this.gutter);
+				}
+
+				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
 			},
 			// nvue下，文本颜色无法继承父元素
 			textColor() {
@@ -157,13 +159,10 @@
 <style lang="scss" scoped>
 	@import "../../libs/css/components.scss";
 
-	.u-tag-wrapper {
-		position: relative;
-	}
-
 	.u-tag {
 		@include flex;
 		align-items: center;
+		justify-content: space-between;
 		border-style: solid;
 
 		&--circle {
@@ -171,7 +170,7 @@
 		}
 
 		&--square {
-			border-radius: 3px;
+			border-radius: 4px;
 		}
 
 		&__icon {
@@ -306,14 +305,14 @@
 		}
 
 		&--info {
-			background-color: $u-info;
+			background-color: $u-info-light;
 			border-width: 1px;
-			border-color: $u-info;
+			border-color: $u-info-light;
 		}
 
 		&--info--plain {
 			border-width: 1px;
-			border-color: $u-info;
+			border-color: $u-info-light;
 		}
 
 		&--info--plain--fill {
@@ -321,29 +320,36 @@
 		}
 
 		&__text--info {
-			color: #FFFFFF;
+			color: $u-main-color;
 		}
 
 		&__text--info--plain {
-			color: $u-info;
+			color: $u-info-light;
 		}
 
 		&__close {
-			position: absolute;
-			z-index: 999;
-			top: 10px;
-			right: 10px;
-			border-radius: 100px;
-			background-color: #C6C7CB;
 			@include flex(row);
 			align-items: center;
 			justify-content: center;
-			/* #ifndef APP-NVUE */
-			transform: scale(0.6) translate(80%, -80%);
-			/* #endif */
-			/* #ifdef APP-NVUE */
-			transform: scale(0.6) translate(50%, -50%);
-			/* #endif */
+			border-radius: 100px;
+			
+
+			&--inside {
+				transform: scale(0.7) translateX(5px);
+			}
+
+			&--absolute {
+				position: absolute;
+				z-index: 999;
+				top: 0px;
+				right: 0px;
+				/* #ifndef APP-NVUE */
+				transform: scale(0.6) translate(80%, -80%);
+				/* #endif */
+				/* #ifdef APP-NVUE */
+				transform: scale(0.6) translate(50%, -50%);
+				/* #endif */
+			}
 
 			&--mini {
 				width: 18px;
