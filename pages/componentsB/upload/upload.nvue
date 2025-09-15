@@ -2,13 +2,31 @@
 	<view class="u-page">
 		<card title="基础用法">
 			<u-upload
-				:fileList="fileList1"
-				@afterRead="afterRead"
-				@delete="deletePic"
-				name="1"
-				multiple
-				:maxCount="10"
+				v-model="fileList11"
+				action="https://uview.d3u.cn/upload.php"
+				name="file"
 			></u-upload>
+
+			<view class="fileList">
+				<view>文件列表</view>
+				{{ fileList11 }}
+			</view>
+		</card>
+		<card title="自定义上传">
+			<u-upload
+				v-model="fileList12"
+				@afterRead="afterRead1"
+				name="file"
+				multiple
+				:maxCount="2"
+			></u-upload>
+
+			<view class="fileList">
+				<view>文件列表</view>
+				<view v-for="(item,index) in fileList12" :key="index">
+					{{ item }}
+				</view>
+			</view>
 		</card>
 		
 		<card title="上传视频">
@@ -75,20 +93,22 @@
 </template>
 
 <script>
-	
+	import { uploadFile } from '@/common/api'
 	export default {
 		data() {
 			return {
+				fileList11: 'https://uview.d3u.cn/web/static/uview/album/1.jpg',
+				fileList12: [],
 				fileList1: [],
 				fileList2: [],
 				fileList3: [{
-					url: 'http://uview.d3u.cn/web/static/uview/album/1.jpg',
+					url: 'https://uview.d3u.cn/web/static/uview/album/1.jpg',
 				}],
 				fileList4: [{
-						url: 'http://uview.d3u.cn/web/static/uview/album/1.jpg',
+						url: 'https://uview.d3u.cn/web/static/uview/album/1.jpg',
 					},
 					{
-						url: 'http://uview.d3u.cn/web/static/uview/album/1.jpg',
+						url: 'https://uview.d3u.cn/web/static/uview/album/1.jpg',
 					}
 				],
 				fileList5: [],
@@ -99,6 +119,15 @@
 		onLoad() {
 		},
 		methods: {
+			async afterRead1(event){
+				for (let i = 0; i < event.file.length; i++) {
+					const { data } = await uploadFile({
+						filePath: event.file[i].url,
+						name: event.name,
+					});
+					this.fileList12.push(data.data.url)
+				}
+			},
 			// 删除图片
 			deletePic(event) {
 				this[`fileList${event.name}`].splice(event.index, 1)
@@ -146,3 +175,11 @@
 		},
 	}
 </script>
+
+<style scoped>	
+.fileList{
+	margin-top: 10px;
+	font-size: 12px;
+	color: #888;
+}
+</style>

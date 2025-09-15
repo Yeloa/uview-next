@@ -67,5 +67,8 @@ export default {
 .u-tabs-item {
 	width: 100%;
 	height: 100%;
+	display: flex;
+    flex-shrink: 0;
+    flex-grow: 0;
 }
 </style>

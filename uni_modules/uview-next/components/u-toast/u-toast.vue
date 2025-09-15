@@ -11,7 +11,6 @@
 			>
 				<u-loading-icon
 					v-if="tmpConfig.type === 'loading'"
-					mode="circle"
 					color="rgb(255, 255, 255)"
 					inactiveColor="rgb(120, 120, 120)"
 					size="25"

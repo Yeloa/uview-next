@@ -25,7 +25,7 @@
 				<picker-view
 					class="u-picker__view"
 					indicator-class="u-picker__indicator"
-					:indicatorStyle="`height: ${$u.addUnit(itemHeight)}`"
+					:indicatorStyle="`height: ${$u.addUnit(itemHeight)};background-color: #f5f5f5;z-index: 0;`"
 					:value="innerIndex"
 					:immediateChange="immediateChange"
 					:style="{
@@ -381,9 +381,6 @@ export default {
 	}
 
 	.u-picker__indicator {
-		background: rgba(245, 245, 245, 1);
-		z-index: 0;
-		
 		// #ifndef APP-NVUE
 		&::before,
 		&::after {

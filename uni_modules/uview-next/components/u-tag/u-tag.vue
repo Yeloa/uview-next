@@ -161,6 +161,7 @@
 
 	.u-tag {
 		@include flex;
+		position: relative;
 		align-items: center;
 		justify-content: space-between;
 		border-style: solid;

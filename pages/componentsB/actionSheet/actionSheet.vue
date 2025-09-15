@@ -15,12 +15,9 @@
 				:key="index"
 				isLink
 			>
-				<image
-					slot="icon"
-					class="u-cell-icon"
-					:src="item.iconUrl"
-					mode="widthFix"
-				></image>
+				<template #icon>
+					<image class="u-cell-icon" :src="item.iconUrl" mode="widthFix"></image>
+				</template>
 			</u-cell>
             <u-cell title="使用触发器">
                 <template v-slot:value>

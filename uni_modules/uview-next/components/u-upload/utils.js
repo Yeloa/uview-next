@@ -101,11 +101,10 @@ function pickExclude(obj, keys) {
 }
 
 async function compressImages(config, files) {
-	
 	if( config === false){
 		return files;
 	}
-
+	
 	const tasks = [];
 	for(let i = 0; i < files.length; i++) {
 		tasks.push(new Promise((resolve) => {
@@ -130,6 +129,8 @@ async function compressImages(config, files) {
 			// #endif
 		}));
 	}
+
+	
 	const results = await Promise.all(tasks);
 
 	for(let i = 0; i < files.length; i++) {
@@ -203,82 +204,81 @@ export function chooseFile({
     maxCount
 }) {
     return new Promise((resolve, reject) => {
-        
         switch (accept) {
-        case 'image':
-            uni.chooseImage({
-                count: multiple ? Math.min(maxCount, 9) : 1,
-                sourceType: capture,
-                sizeType,
-                success: (res) => resolve(compressImages(compressImage,formatImage(res))),
-                fail: reject
-            })
-            break
-            // #ifdef MP-WEIXIN
-            // 只有微信小程序才支持chooseMedia接口
-        case 'media':
-            wx.chooseMedia({
-                count: multiple ? Math.min(maxCount, 9) : 1,
-                sourceType: capture,
-                maxDuration,
-                sizeType,
-                camera,
-                success: (res) => resolve(formatMedia(res)),
-                fail: reject
-            })
-            break
-            // #endif
-        case 'video':
-            uni.chooseVideo({
-                sourceType: capture,
-                compressed,
-                maxDuration,
-                camera,
-                success: (res) => resolve(formatVideo(res)),
-                fail: reject
-            })
-            break
-            // #ifdef MP-WEIXIN || H5
-            // 只有微信小程序才支持chooseMessageFile接口
-        case 'file':
-            // #ifdef MP-WEIXIN
-            wx.chooseMessageFile({
-                count: multiple ? maxCount : 1,
-                type: accept,
-                success: (res) => resolve(formatFile(res)),
-                fail: reject
-            })
-            // #endif
-            // #ifdef H5
-            // 需要hx2.9.9以上才支持uni.chooseFile
-            uni.chooseFile({
-                count: multiple ? maxCount : 1,
-                type: accept,
-                success: (res) => resolve(formatFile(res)),
-                fail: reject
-            })
-            // #endif
-            break
+			case 'image':
+				uni.chooseImage({
+					count: multiple ? maxCount : 1,
+					sourceType: capture,
+					sizeType,
+					success: (res) => resolve(compressImages(compressImage,formatImage(res))),
+					fail: reject
+				})
+				break
+				// #ifdef MP-WEIXIN
+				// 只有微信小程序才支持chooseMedia接口
+			case 'media':
+				wx.chooseMedia({
+					count: multiple ? maxCount : 1,
+					sourceType: capture,
+					maxDuration,
+					sizeType,
+					camera,
+					success: (res) => resolve(formatMedia(res)),
+					fail: reject
+				})
+				break
 				// #endif
-		default: 
-			// 此为保底选项，在accept不为上面任意一项的时候选取全部文件
-			// #ifdef MP-WEIXIN
-			wx.chooseMessageFile({
-			    count: multiple ? maxCount : 1,
-			    type: 'all',
-			    success: (res) => resolve(formatFile(res)),
-			    fail: reject
-			})
-			// #endif
-			// #ifdef H5
-			// 需要hx2.9.9以上才支持uni.chooseFile
-			uni.chooseFile({
-				count: multiple ? maxCount : 1,
-				type: 'all',
-				success: (res) => resolve(formatFile(res)),
-				fail: reject
-			})
-			// #endif
-        }
+			case 'video':
+				uni.chooseVideo({
+					sourceType: capture,
+					compressed,
+					maxDuration,
+					camera,
+					success: (res) => resolve(formatVideo(res)),
+					fail: reject
+				})
+				break
+				// #ifdef MP-WEIXIN || H5
+				// 只有微信小程序才支持chooseMessageFile接口
+			case 'file':
+				// #ifdef MP-WEIXIN
+				wx.chooseMessageFile({
+					count: multiple ? maxCount : 1,
+					type: accept,
+					success: (res) => resolve(formatFile(res)),
+					fail: reject
+				})
+				// #endif
+				// #ifdef H5
+				// 需要hx2.9.9以上才支持uni.chooseFile
+				uni.chooseFile({
+					count: multiple ? maxCount : 1,
+					type: accept,
+					success: (res) => resolve(formatFile(res)),
+					fail: reject
+				})
+				// #endif
+				break
+					// #endif
+			default: 
+				// 此为保底选项，在accept不为上面任意一项的时候选取全部文件
+				// #ifdef MP-WEIXIN
+				wx.chooseMessageFile({
+					count: multiple ? maxCount : 1,
+					type: 'all',
+					success: (res) => resolve(formatFile(res)),
+					fail: reject
+				})
+				// #endif
+				// #ifdef H5
+				// 需要hx2.9.9以上才支持uni.chooseFile
+				uni.chooseFile({
+					count: multiple ? maxCount : 1,
+					type: 'all',
+					success: (res) => resolve(formatFile(res)),
+					fail: reject
+				})
+				// #endif
+		}
     })
 }

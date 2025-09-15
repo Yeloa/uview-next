@@ -5,7 +5,6 @@
 		:class="[vertical && 'u-loading-icon--vertical']"
 		v-if="show"
 	>
-	
 		<view
 			v-if="!webviewHide"
 			class="u-loading-icon__spinner"

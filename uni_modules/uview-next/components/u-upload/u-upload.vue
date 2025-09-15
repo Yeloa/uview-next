@@ -11,7 +11,7 @@
 					}]"
 				>
 					<image
-					    v-if="(item.isImage || (item.type && item.type === 'image')) || ((item.isVideo || (item.type && item.type === 'video')) && item.thumb)"
+					    v-if="(item.type && item.type === 'image') || ((item.type && item.type === 'video') && item.thumb)"
 					    :src="item.thumb || item.url"
 					    :mode="imageMode"
 					    class="u-upload__wrap__preview__image"
@@ -29,9 +29,9 @@
 						<u-icon
 						    color="#80CBF9"
 						    size="26"
-						    :name="item.isVideo || (item.type && item.type === 'video') ? 'movie' : 'folder'"
+						    :name="item.type && item.type === 'video' ? 'movie' : 'folder'"
 						></u-icon>
-						<text class="u-upload__wrap__preview__other__text">{{item.isVideo || (item.type && item.type === 'video') ? '视频' : '文件'}}</text>
+						<text class="u-upload__wrap__preview__other__text">{{item.type && item.type === 'video' ? '视频' : '文件'}}</text>
 					</view>
 					<view
 					    class="u-upload__status"
@@ -45,11 +45,11 @@
 							    size="25"
 							/>
 							<u-loading-icon
-								size="22"
-								mode="semicircle"
+							    size="22"
+							    mode="semicircle"
 								timingFunction="linear"
-								color="#ffffff"
-								v-else
+							    color="#ffffff"
+							    v-else
 							/>
 						</view>
 						<text
@@ -106,7 +106,7 @@
 				<view
 				    v-else
 				    class="u-upload__button"
-				    :hover-class="!disabled ? 'u-upload__button--hover' : ''"
+				    :hover-class="disabled ? '' : 'u-upload__button--hover'"
 				    hover-stay-time="150"
 				    @tap="handleChooseFile"
 				    :class="[disabled && 'u-upload__button--disabled']"
@@ -197,9 +197,16 @@
 				successIcon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAKKADAAQAAAABAAAAKAAAAAB65masAAACP0lEQVRYCc3YXygsURwH8K/dpcWyG3LF5u/6/+dKVylSypuUl6uUPMifKMWL8oKEB1EUT1KeUPdR3uTNUsSLxb2udG/cbvInNuvf2rVnazZ/ZndmZ87snjM1Z+Z3zpzfp9+Z5mEAhlvjRtZgCKs+gnPAOcAkkMOR4jEHfItjDvgRxxSQD8cM0BuOCaAvXNCBQrigAsXgggYUiwsK0B9cwIH+4gIKlIILGFAqLiBAOTjFgXJxigJp4BQD0sIpAqSJow6kjSNAFTnRaHJwLenD6Mud52VQAcrBfTd2oyq+HtGaGGWAcnAVcXWoM3bCZrdi+ncPfaAcXE5UKVpdW/vitGPqqAtn98d0gXJwX7Qp6MmegUYVhvmTIezdmHlxJCjpHRTCFerLkRRu4k0aqdajN3sWOo0BK//msHa+xDuPC/oNFMKRhTtM4xjIX0SCNpXL4+7VIaHuyiWEp2L7ahWLf8fejfPdqPmC3mJicORZUp1CQzm+GiphvljGk+PBvWRbxii+xVTj5M6CiZ/tsDufvaXyxEUDxeLIyvu3m0iOyEFWVAkydcVYdyFrE9tQk9iMq6f/GNlvwt3LjQfh60LUrw9/cFyyMJUW/XkLSNMV4Mi6C5ML+ui4x5ClAX9sB9w0wV6wglJwJCv5fOxcr6EstgbGiEw4XcfUry4cWrcEUW8n+ARKxXEJHhw2WG43UKSvwI/TSZgvl7kh0b3XLZaLEy0QmMgLZAVH7J+ALOE+AVnDvQOyiPMAWcW5gSzjCPAV+78S5WE0GrQAAAAASUVORK5CYII=',
 				// #endif
 				lists: [],
-				isInCount: true,
+				changeFromInner: false,
 				showPopup: false,
-				currentVideoUrl: ''
+				currentVideoUrl: '',
+				autoUpload: false,
+			}
+		},
+		computed: {
+			isInCount() {
+				const maxCount = this.multiple ? this.maxCount : 1;
+				return this.lists.length < maxCount;
 			}
 		},
 		watch: {
@@ -207,29 +214,77 @@
 			fileList: {
 				immediate: true,
 				deep: true,
-				handler() {
-					this.formatFileList()
+				handler(newVal) {
+					this.formatFileList(newVal)
 				}
 			},
+			// #ifdef VUE2
+			value: {
+				immediate: true,
+				deep: true,
+				handler(newVal) {
+					if(!this.multiple) {
+						newVal = [newVal];
+					}
+					if(newVal.length > 0){
+						if(this.changeFromInner){
+							this.changeFromInner = false;
+							return;
+						}
+						this.autoUpload = true;
+						this.formatFileList(newVal)
+					}
+				}
+			},
+			// #endif
+			// #ifdef VUE3
+			modelValue: {
+				immediate: true,
+				deep: true,
+				handler(newVal) {
+					if(!this.multiple) {
+						newVal = [newVal];
+					}
+					if(newVal.length > 0){
+						if(this.changeFromInner){
+							this.changeFromInner = false;
+							return;
+						}
+						this.autoUpload = true;
+						this.formatFileList(newVal)
+					}
+				}
+			},
+			// #endif
 		},
 		// #ifdef VUE3
-		emits: ['beforeRead', 'afterRead', 'oversize', 'delete', 'clickPreview','error'],
+		emits: ['update:modelValue','beforeRead', 'afterRead', 'oversize', 'delete', 'clickPreview','error'],
 		// #endif
 		methods: {
-			formatFileList() {
-				const {
-					fileList = [], maxCount
-				} = this;
-				const lists = fileList.map((item) =>
-					Object.assign(Object.assign({}, item), {
-						// 如果item.url为本地选择的blob文件的话，无法判断其为video还是image，此处优先通过accept做判断处理
-						isImage: this.accept === 'image' || uni.$u.test.image(item.url || item.thumb),
-						isVideo: this.accept === 'video' || uni.$u.test.video(item.url || item.thumb),
-						deletable: typeof(item.deletable) === 'boolean' ? item.deletable : this.deletable,
-					})
-				);
-				this.lists = lists
-				this.isInCount = lists.length < maxCount
+			formatFileList(fileList) {
+				const lists = fileList.map((item) => {
+					
+					let obj = {
+						url: item,
+						type: 'image',
+						deletable: true
+					};
+					
+					if(uni.$u.test.object(item)){
+						//合并 item 对象
+						Object.assign(obj, item);
+						obj.url = item.url || item.thumb;
+						obj.deletable = typeof item.deletable === 'boolean' ? item.deletable : this.deletable
+					}
+					
+					// 如果item.url为本地选择的blob文件的话，无法判断其为video还是image，此处优先通过accept做判断处理
+					if (this.accept === 'video' || uni.$u.test.video(obj.url)) {
+						obj.type = 'video';
+					}
+				
+					return obj;
+				});
+				this.lists = lists;
 			},
 			handleChooseFile() {
 				const {
@@ -259,7 +314,7 @@
 					maxCount: maxCount - lists.length
 				})
 					.then((res) => {
-						this.onBeforeRead(multiple ? res : res[0]);
+						this.onBeforeRead(res);
 					})
 					.catch((error) => {
 						this.$emit('error', error);
@@ -323,11 +378,33 @@
 				if (typeof afterRead === 'function') {
 					afterRead(file, this.getDetail());
 				}
-				this.$emit('afterRead', Object.assign({
-					file
-				}, this.getDetail()));
+
+				const fileList = Object.assign({ file }, this.getDetail());
+				if(this.autoUpload) {
+					fileList.file.map((item) => {
+						this.lists.push({
+							url: item.url,
+							type: item.type,
+							size: item.size,
+							status: 'uploading',
+							message: '上传中',
+						});
+					});
+					this.changeFromInner = false;
+				}
+
+				if(this.action){
+					this.uploadFile(fileList);
+				}else{
+					this.$emit('afterRead', fileList);
+				}
 			},
 			deleteItem(index) {
+				if(this.autoUpload) {
+					this.lists.splice(index, 1);
+					this.emitUpdate();
+				}
+				
 				this.$emit(
 					'delete',
 					Object.assign(Object.assign({}, this.getDetail(index)), {
@@ -335,9 +412,50 @@
 					})
 				);
 			},
+			async uploadFile(fileList) {
+				const { file } = fileList;
+				const fileListLen = this.lists.length - file.length;
+
+				for (let i = 0; i < file.length; i++) {
+					const { data } = await uni.$u.http.upload(this.action, {
+						filePath:file[i].url,
+						name: fileList.name,
+						formData: this.data,
+						headers: this.headers,
+					});
+
+					let index = fileListLen + i;
+					let url = data.url || data.data.url;
+
+					if(url) {
+						this.lists[index].url = url;
+						this.lists[index].message = '';
+						this.lists[index].status = 'success';
+					}
+				}
+
+				this.emitUpdate();
+			},
+			
+			emitUpdate() {
+				this.changeFromInner = true;
+				let urls = this.lists.map( item => item.url)
+				
+				if(!this.multiple) {
+					urls = urls[0];
+				}
+
+				// #ifdef VUE2
+				this.$emit('input', urls);
+				// #endif
+				// #ifdef VUE3
+				this.$emit('update:modelValue', urls);
+				// #endif
+			},
+
 			// 预览图片
 			onPreviewImage(item, index) {
-				if (!item.isImage || !this.previewFullImage) return
+				if (item.tyep != 'image' || !this.previewFullImage) return
 				uni.previewImage({
 					// 先filter找出为图片的item，再返回filter结果中的图片url
 					urls: this.lists.filter((item) => this.accept === 'image' || uni.$u.test.image(item.url || item.thumb)).map((item) => item.url || item.thumb),
@@ -348,11 +466,11 @@
 				});
 			},
 			onPreviewVideo(item, index) {
-				if (!item.isVideo || !this.previewFullImage) return;
+				if (item.tyep != 'video' || !this.previewFullImage) return;
 		
 				let sources = [];
 				this.lists.forEach((val)=>{
-					if(val.isVideo && (val.type && val.type === 'video')){
+					if(val.type && val.type === 'video'){
 						sources.push({
 							type: 'video',
 							url: val.url

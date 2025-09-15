@@ -2,6 +2,33 @@ import { defineProps } from '../../libs/util/props';
 import theme from '../../libs/config/theme.js';
 
 export default defineProps('upload', {
+    // #ifdef VUE2
+    value: {
+        type: [Array, String],
+       default: () => []
+    },
+    // #endif
+    // #ifdef VUE3
+    modelValue: {
+        type: [Array, String],
+       default: () => []
+    },
+    // #endif
+    // 上传地址
+    action: {
+        type: String,
+        default: ''
+    },
+    // 上传数据
+    data: {
+        type: Object,
+        default: () => {}
+    },
+    // 上传头
+    headers: {
+        type: Object,
+        default: () => {}
+    },
     // 接受的文件类型, 可选值为all media image file video
     accept: {
         type: String,
@@ -88,7 +115,7 @@ export default defineProps('upload', {
     // 标识符，可以在回调函数的第二项参数中获取
     name: {
         type: String,
-        default: ''
+        default: 'file'
     },
     // 所选的图片的尺寸, 可选值为original compressed
     sizeType: {

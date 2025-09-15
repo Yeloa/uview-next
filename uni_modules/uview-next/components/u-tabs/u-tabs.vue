@@ -518,7 +518,7 @@
 	.u-tabs {
 
 		&__wrapper {
-			@include flex;
+			@include flex(row);
 			align-items: center;
 
 			&__scroll-view-wrapper {
@@ -529,17 +529,17 @@
 			}
 
 			&__scroll-view {
-				@include flex;
+				@include flex(row);
 				flex: 1;
 			}
 
 			&__nav {
-				@include flex;
+				@include flex(row);
 				position: relative;
 
 				&__item {
 					padding: 0 11px;
-					@include flex;
+					@include flex(row);
 					align-items: center;
 					justify-content: center;
 					/* #ifdef H5 */
@@ -579,14 +579,17 @@
 
 		&__content {
 			overflow: hidden;
+			@include flex(row);
+			
 			&__body {
 				position: relative;
 				width: 100%;
 				height: 100%;
 
 				&--animated {
-					display: flex;
-					flex-direction: row;
+					@include flex(row);
+					flex-shrink: 0;
+					flex-grow: 0;
 				}
 			}
 		}

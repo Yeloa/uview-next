@@ -15,20 +15,22 @@
 				:key="index"
 				isLink
 			>
-				<image
-					slot="icon"
-					class="u-cell-icon"
-					:src="item.iconUrl"
-					mode="widthFix"
-				></image>
+				<template #icon>
+					<image
+						class="u-cell-icon"
+						:src="item.iconUrl"
+						mode="widthFix"
+					></image>
+				</template>
 			</u-cell>
 			<u-cell title="使用触发器">
-				<image
-					slot="icon"
-					class="u-cell-icon"
-					src="https://cdn.uviewui.com/uview/demo/picker/2.png"
-					mode="widthFix"
-				></image>
+				<template #icon>
+					<image
+						class="u-cell-icon"
+						src="https://cdn.uviewui.com/uview/demo/picker/2.png"
+						mode="widthFix"
+					></image>
+				</template>
 				<template #value>
 					<u-picker :columns="columns6" closeOnClickOverlay @confirm="confirm8">
 						<template #trigger>

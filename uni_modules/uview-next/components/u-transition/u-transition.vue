@@ -92,6 +92,7 @@ export default {
 /* #endif */
 
 .u-transition {
+	@include flex(column);
 	position: relative;
 }
 </style>

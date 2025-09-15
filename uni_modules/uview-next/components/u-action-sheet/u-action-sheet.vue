@@ -62,7 +62,7 @@
                     </scroll-view>
                 </slot>
                 <u-gap bgColor="#eaeaec" height="6" v-if="cancelText"></u-gap>
-                <view hover-class="u-action-sheet--hover" v-if="cancelText" @tap="cancel">
+                <view class="u-action-sheet__cancel-text-wrap" hover-class="u-action-sheet--hover" v-if="cancelText" @tap="cancel">
                     <text 
                         @touchmove.stop.prevent 
                         :hover-stay-time="150" 
@@ -210,7 +210,7 @@ $u-action-sheet-cancel-text-hover-background-color: rgb(242, 243, 245) !default;
 
 .u-action-sheet {
     text-align: center;
-
+    @include flex(column);
     &__description {
         font-size: $u-action-sheet-description-font-size;
         color: $u-tips-color;
@@ -240,6 +240,10 @@ $u-action-sheet-cancel-text-hover-background-color: rgb(242, 243, 245) !default;
                 text-align: center;
             }
         }
+    }
+
+    &__cancel-text-wrap {
+        @include flex(column);
     }
 
     &__cancel-text {

@@ -15,39 +15,39 @@
 				:key="index"
 				isLink
 			>
-				<image
-					slot="icon"
-					class="u-cell-icon"
-					:src="item.iconUrl"
-					mode="widthFix"
-				></image>
+				<template #icon>
+					<image class="u-cell-icon" :src="item.iconUrl" mode="widthFix"></image>
+				</template>
 			</u-cell>
 
 			<u-cell title="默认Input">
-				<template v-slot:value>
+				<template #value>
 					<u-area-picker v-model="value4" closeOnClickOverlay showInput></u-area-picker>
 				</template>
-				<image
-					slot="icon"
-					class="u-cell-icon"
-					src="https://cdn.uviewui.com/uview/demo/picker/2.png"
-					mode="widthFix"
-				></image>
+				<template #icon>
+					<image
+						class="u-cell-icon"
+						src="https://cdn.uviewui.com/uview/demo/picker/2.png"
+						mode="widthFix"
+					></image>
+				</template>
+				
 			</u-cell>
 			<u-cell title="使用触发器">
-				<template v-slot:value>
+				<template #value>
 					<u-area-picker v-model="value3" closeOnClickOverlay @init="init" @confirm="confirm3">
-						<template v-slot:trigger>
+						<template #trigger>
 							<u-input v-model="value1" placeholder="请选择地区" disabled-color="#fff" disabled clearable />
 						</template>
 					</u-area-picker>
 				</template>
-				<image
-					slot="icon"
-					class="u-cell-icon"
-					src="https://cdn.uviewui.com/uview/demo/picker/1.png"
-					mode="widthFix"
-				></image>
+				<template #icon>
+					<image
+						class="u-cell-icon"
+						src="https://cdn.uviewui.com/uview/demo/picker/1.png"
+						mode="widthFix"
+					></image>
+				</template>
 			</u-cell>
 		</u-cell-group>
 

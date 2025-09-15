@@ -15,12 +15,13 @@
 				:icon="item.iconUrl"
 				@click="showToast(item)"
 			>
-				<!-- <image
-				    slot="icon"
-				    class="u-cell-icon"
-				    :src="getIcon(item.icon)"
-				    mode="widthFix"
-				></image> -->
+				<template #icon>
+					<image
+						class="u-cell-icon"
+						:src="item.iconUrl"
+						mode="widthFix"
+					></image> 
+				</template>
 			</u-cell>
 		</u-cell-group>
 	</view>
@@ -74,11 +75,7 @@
 			}
 		},
 		computed: {
-			getIcon() {
-				return path => {
-					return 'https://cdn.uviewui.com/uview/example/' + path + '.png';
-				}
-			}, 
+			
 		},
 		methods: {
 			showToast(params) {
