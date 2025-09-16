@@ -29,6 +29,9 @@ import platform from './libs/function/platform';
 
 // 国际化
 import { $t, VueI18n, createI18n } from './locale';
+import { showModal } from './libs/function/modal.js';
+import { showActionSheet } from './libs/function/actionSheet.js';
+import { showToast, hideToast, showLoading, hideLoading } from './libs/function/toast.js';
 
 const http = new Request();
 
@@ -51,6 +54,12 @@ const $u = {
 	theme,
 	platform,
 	$t,
+	showToast,
+	hideToast,
+	showLoading,
+	hideLoading,
+	showModal,
+	showActionSheet,
 	...index
 };
 
@@ -91,7 +100,7 @@ const install = (Vue, Params) => {
 	}
 };
 
-export { VueI18n, createI18n, http, route, debounce, throttle, theme, platform };
+export { VueI18n, createI18n, http, route, debounce, throttle, theme, platform, showToast, hideToast, showLoading, hideLoading, showModal };
 
 export default {
 	install

@@ -5,21 +5,21 @@
         </view>
         <u-popup :show="showPopup"
             mode="bottom" 
-            :title="title" 
-            :round="round"
+            :title="tmpConfig.title" 
+            :round="tmpConfig.round"
             :closeable="closeable"
             :titleStyle="titleStyles"
-            :safeAreaInsetBottom="safeAreaInsetBottom" 
+            :safeAreaInsetBottom="tmpConfig.safeAreaInsetBottom" 
             @close="cancel" 
         >
             <view class="u-action-sheet">
                 <text class="u-action-sheet__description" :style="[{
-                    marginTop: `${title && description ? 0 : '18px'}`
-                }]" v-if="description">{{ description }}</text>
+                    marginTop: `${tmpConfig.title && tmpConfig.description ? 0 : '18px'}`
+                }]" v-if="tmpConfig.description">{{ tmpConfig.description }}</text>
                 <slot>
-                    <u-line v-if="description"></u-line>
-                    <scroll-view class="u-action-sheet__item-wrap" :scroll-y="height !='' || height > 0" :style="[{ maxHeight: $u.addUnit(height) }]">
-                        <view v-for="(item, index) in actions" :key="index">
+                    <u-line v-if="tmpConfig.description"></u-line>
+                    <scroll-view class="u-action-sheet__item-wrap" :scroll-y="tmpConfig.height !='' || tmpConfig.height > 0" :style="[{ maxHeight: $u.addUnit(tmpConfig.height) }]">
+                        <view v-for="(item, index) in tmpConfig.actions" :key="index">
                             <!-- #ifdef MP -->
                             <button 
                                 class="u-reset-button" 
@@ -57,17 +57,17 @@
                                 <!-- #ifdef MP -->
                             </button>
                             <!-- #endif -->
-                            <u-line v-if="index !== actions.length - 1"></u-line>
+                            <u-line v-if="index !== tmpConfig.actions.length - 1"></u-line>
                         </view>
                     </scroll-view>
                 </slot>
-                <u-gap bgColor="#eaeaec" height="6" v-if="cancelText"></u-gap>
-                <view class="u-action-sheet__cancel-text-wrap" hover-class="u-action-sheet--hover" v-if="cancelText" @tap="cancel">
+                <u-gap bgColor="#eaeaec" height="6" v-if="tmpConfig.cancelText"></u-gap>
+                <view class="u-action-sheet__cancel-text-wrap" hover-class="u-action-sheet--hover" v-if="tmpConfig.cancelText" @tap="cancel">
                     <text 
                         @touchmove.stop.prevent 
                         :hover-stay-time="150" 
                         class="u-action-sheet__cancel-text"
-                    >{{ cancelText }}</text>
+                    >{{ tmpConfig.cancelText }}</text>
                 </view>
             </view>
         </u-popup>
@@ -80,6 +80,7 @@ import button from '../../libs/mixin/button';
 import props from './props.js';
 import mixin from '../../libs/mixin/mixin'
 import mpMixin from '../../libs/mixin/mpMixin';
+import { setActionSheetRef } from '../../libs/function/actionSheet.js'
 /**
  * ActionSheet 操作菜单
  * @description 本组件用于从底部弹出一个操作菜单，供用户选择并返回结果。本组件功能类似于uni的uni.showActionSheetAPI，配置更加灵活，所有平台都表现一致。
@@ -113,7 +114,10 @@ import mpMixin from '../../libs/mixin/mpMixin';
  * @event {Function} error			当使用开放能力时，发生错误的回调，openType="error"时有效
  * @event {Function} launchapp		打开 APP 成功的回调，openType="launchApp"时有效
  * @event {Function} opensetting	在打开授权设置页后回调，openType="openSetting"时有效
+ * @method {Function} open			显示ActionSheet，可通过this.$refs.xxx.open(options)调用
+ * @method {Function} close			隐藏ActionSheet，可通过this.$refs.xxx.close()调用
  * @example <u-action-sheet :actions="list" :title="title" :show="show"></u-action-sheet>
+ * @example <u-action-sheet ref="uActionSheet" @select="handleSelect" @close="handleClose"></u-action-sheet>
  */
 export default {
     name: "u-action-sheet",
@@ -123,9 +127,25 @@ export default {
         return {
             isTrigger: false,
             showPopup: false,
+            cancelCallback: null,
+            successCallback: null,
+            config: {} // 临时配置，用于open方法传入的参数
         };
     },
     computed: {
+        tmpConfig() {
+            return uni.$u.deepMerge({
+                title: this.title,
+                description: this.description,
+                actions: this.actions,
+                cancelText: this.cancelText,
+                closeOnClickAction: this.closeOnClickAction,
+                safeAreaInsetBottom: this.safeAreaInsetBottom,
+                closeOnClickOverlay: this.closeOnClickOverlay,
+                round: this.round,
+                height: this.height
+            }, this.config);
+        },
 		titleStyles() {
 		    const style = { fontWeight: 'bold' }
 		    return uni.$u.deepMerge(style, uni.$u.addStyle(this.titleStyle))
@@ -134,10 +154,11 @@ export default {
         itemStyle() {
             return (index) => {
                 let style = {};
-                if (this.actions[index].color) style.color = this.actions[index].color;
-                if (this.actions[index].fontSize) style.fontSize = uni.$u.addUnit(this.actions[index].fontSize);
+                const actions = this.tmpConfig.actions;
+                if (actions[index].color) style.color = actions[index].color;
+                if (actions[index].fontSize) style.fontSize = uni.$u.addUnit(actions[index].fontSize);
                 // 选项被禁用的样式
-                if (this.actions[index].disabled) style.color = '#c0c4cc';
+                if (actions[index].disabled) style.color = '#c0c4cc';
                 return style;
             };
         },
@@ -151,35 +172,77 @@ export default {
 			}
 		}
     },
+    mounted() {
+        // 注册全局ActionSheet引用
+        setActionSheetRef(this)
+    },
     // #ifdef VUE3
     emits: ["select", "close"],
     // #endif
     methods: {
-        open(isTrigger) {
-			this.isTrigger = isTrigger
-			this.showPopup = true
-		},
+        // 显示ActionSheet
+        open(options = {}) {
+            // 如果传入的是布尔值，说明是trigger触发的
+            if (typeof options === 'boolean') {
+                this.isTrigger = options;
+                this.showPopup = true;
+                return;
+            }
+            
+            // 全局调用方式
+            this.config = options;
+            this.successCallback = (res) => {
+                if(uni.$u.test.func(options.success)) {
+                    options.success(res);
+                }
+                this.close();
+            };
+
+            this.cancelCallback = (res) => {
+                if(uni.$u.test.func(options.cancel)) {
+                    options.cancel(res);
+                }
+                this.close();
+            };
+
+            this.isTrigger = false;
+            this.showPopup = true;
+        },
         // 点击取消按钮
         cancel() {
             if(this.isTrigger){
                 this.showPopup = false
             }
-            this.$emit('close');
+            
+            // 如果有全局回调，使用全局回调
+            if(this.cancelCallback) {
+                this.cancelCallback();
+            } else {
+                this.$emit('close');
+            }
         },
+        // 隐藏ActionSheet
         close() {
-            this.showPopup = false
+            this.showPopup = false;
         },
         selectHandler(index) {
-            const item = this.actions[index];
-           
+            const item = this.tmpConfig.actions[index];
             if (item && !item.disabled && !item.loading) {
-                this.$emit('select', item);
+                // 如果有全局回调，使用全局回调
+                if(this.successCallback) {
+                    this.successCallback({
+                        index: index,
+                        detail: item
+                    });
+                } else {
+                    this.$emit('select', item);
+                }
 
-                if(this.isTrigger || this.closeOnClickAction){
+                if(this.isTrigger || this.tmpConfig.closeOnClickAction){
                     this.showPopup = false
                 }
 
-                if (this.closeOnClickOverlay) {
+                if (this.tmpConfig.closeOnClickOverlay) {
                     this.$emit('close');
                 }
             }

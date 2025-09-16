@@ -100,7 +100,7 @@ export default defineProps('modal', {
     // modal宽度，不支持百分比，可以数值，px，rpx单位
     width: {
         type: [String, Number],
-        default: '650rpx'
+        default: '320px'
     },
     // 确认按钮的样式，circle-圆形，square-方形，如设置，将不会显示取消按钮
     confirmButtonShape: {

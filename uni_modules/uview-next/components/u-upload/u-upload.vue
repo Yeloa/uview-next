@@ -66,7 +66,7 @@
 							<u-icon
 							    name="close"
 							    color="#ffffff"
-							    size="10"
+							    size="8"
 							></u-icon>
 						</view>
 					</view>
@@ -223,7 +223,7 @@
 				immediate: true,
 				deep: true,
 				handler(newVal) {
-					if(!this.multiple) {
+					if(!this.multiple && newVal) {
 						newVal = [newVal];
 					}
 					if(newVal.length > 0){
@@ -242,7 +242,7 @@
 				immediate: true,
 				deep: true,
 				handler(newVal) {
-					if(!this.multiple) {
+					if(!this.multiple && newVal) {
 						newVal = [newVal];
 					}
 					if(newVal.length > 0){
@@ -455,7 +455,6 @@
 
 			// 预览图片
 			onPreviewImage(item, index) {
-				if (item.tyep != 'image' || !this.previewFullImage) return
 				uni.previewImage({
 					// 先filter找出为图片的item，再返回filter结果中的图片url
 					urls: this.lists.filter((item) => this.accept === 'image' || uni.$u.test.image(item.url || item.thumb)).map((item) => item.url || item.thumb),
@@ -466,8 +465,6 @@
 				});
 			},
 			onPreviewVideo(item, index) {
-				if (item.tyep != 'video' || !this.previewFullImage) return;
-		
 				let sources = [];
 				this.lists.forEach((val)=>{
 					if(val.type && val.type === 'video'){
@@ -523,10 +520,10 @@
 	$u-upload-text-font-size:11px !default;
 	$u-upload-text-color:$u-tips-color !default;
 	$u-upload-text-margin-top:2px !default;
-	$u-upload-deletable-right:0 !default;
-	$u-upload-deletable-top:0 !default;
+	$u-upload-deletable-right:2px !default;
+	$u-upload-deletable-top:2px !default;
 	$u-upload-deletable-bgColor:rgb(55, 55, 55) !default;
-	$u-upload-deletable-height:14px !default;
+	$u-upload-deletable-height:15px !default;
 	$u-upload-deletable-width:$u-upload-deletable-height;
 	$u-upload-deletable-boder-bottom-left-radius:100px !default;
 	$u-upload-deletable-zIndex:3 !default;
@@ -538,10 +535,6 @@
 	$u-upload-success-border-bottom-color: $u-success !default;
 	$u-upload-success-border-right-color:$u-upload-success-border-bottom-color;
 	$u-upload-success-border-width:9px !default;
-	$u-upload-icon-top:0px !default;
-	$u-upload-icon-right:0px !default;
-	$u-upload-icon-h5-top:1px !default;
-	$u-upload-icon-h5-right:0 !default;
 	$u-upload-icon-width:16px !default;
 	$u-upload-icon-height:$u-upload-icon-width;
 	$u-upload-success-icon-bottom:-10px !default;
@@ -613,20 +606,13 @@
 			height: $u-upload-deletable-height;
 			width: $u-upload-deletable-width;
 			@include flex;
-			border-bottom-left-radius: $u-upload-deletable-boder-bottom-left-radius;
+			border-radius: 100px;
 			align-items: center;
 			justify-content: center;
 			z-index: $u-upload-deletable-zIndex;
 
 			&__icon {
-				position: absolute;
-				transform: scale(0.7);
-				top: $u-upload-icon-top;
-				right: $u-upload-icon-right;
-				/* #ifdef H5 */
-				top: $u-upload-icon-h5-top;
-				right: $u-upload-icon-h5-right;
-				/* #endif */
+			
 			}
 		}
 

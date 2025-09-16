@@ -40,7 +40,7 @@ export default defineProps('calendar', {
     // 自定义列表
     customList: {
         type: Array,
-        default: []
+        default: () => []
     },
     // 主题色，对底部按钮和选中日期有效
     color: {

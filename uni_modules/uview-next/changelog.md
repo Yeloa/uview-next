@@ -1,3 +1,6 @@
+## 3.6.25（2025-09-16）
+1. 新增uni.$u.showToast, uni.$u.showLoading, uni.$u.showModal,uni.$u.showActionSheet方法，无需引入组件，即可全局调用
+2. 修复`upload`组件相关问题
 ## 3.6.24（2025-09-15）
 1. 优化`upload`组件，提供更简单易用的上传功能
 2. 修复`tabs`组件手势滑动问题

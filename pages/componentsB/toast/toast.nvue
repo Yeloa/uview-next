@@ -79,9 +79,9 @@
 		},
 		methods: {
 			showToast(params) {
-				this.$refs.uToast.show({
+				this.$refs.uToast.open({
 					...params,
-					complete() {
+					success() {
 						params.url && uni.navigateTo({
 							url: params.url
 						})

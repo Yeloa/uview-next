@@ -570,6 +570,11 @@ export default [{
 		icon: 'poster',
 		title: '海报生成',
 		title_en: 'poster'
-	}]
+	},{
+        path: '/pages/componentsD/feedback/feedback',
+        icon: 'alert',
+        title: '全局反馈',
+        title_en: 'Feedback'
+    }]
 }
 ]

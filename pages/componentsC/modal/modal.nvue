@@ -25,6 +25,7 @@
                     ></image>
                 </template>
             </u-cell>
+            <u-cell title="使用js打开" @click="openModal"></u-cell>
         </u-cell-group>
         <u-modal
             :content="content"
@@ -114,6 +115,8 @@
             :zoom="false"
             @confirm="() => (show10 = false)"
         ></u-modal>
+
+        <u-modal ref="uModal" @confirm="handleConfirm"></u-modal>
     </view>
 </template>
 
@@ -199,6 +202,19 @@
             };
         },
         methods: {
+            openModal() {
+               this.$refs.uModal.open({
+                    title: '标题',
+                    content: '内容',
+                    success: (res) => {
+                        console.log(res);
+                    },
+               });
+            },
+            handleConfirm() {
+                this.$refs.uModal.close();
+            },
+            
             showModal(index) {
                 this[`show${index + 1}`] = true;
             },

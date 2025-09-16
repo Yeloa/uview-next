@@ -2,44 +2,44 @@
 	<u-popup
 		mode="center"
 		:zoom="zoom"
-		:show="show"
-        :round="round"
+		:show="show || innerShow"
+        :round="tmpConfig.round"
 		:zIndex="zIndex"
 		:customStyle="{
 			overflow: 'hidden',
 			marginTop: `-${$u.addUnit(negativeTop)}`
 		}"
-		:closeOnClickOverlay="closeOnClickOverlay"
+		:closeOnClickOverlay="tmpConfig.closeOnClickOverlay"
 		:safeAreaInsetBottom="false"
-		:duration="duration"
+		:duration="tmpConfig.duration"
 		@click="clickHandler"
 	>
 		<view
 			class="u-modal"
 			:style="[{
-				width: $u.addUnit(width),
+				width: $u.addUnit(tmpConfig.width),
 			}]">
-			<text class="u-modal__title" v-if="title">{{ title }}</text>
-			<view class="u-modal__content" :style="[{paddingTop: $u.addUnit(title ? 12 : 25)}]">
+			<text class="u-modal__title" v-if="tmpConfig.title">{{ tmpConfig.title }}</text>
+			<view class="u-modal__content" :style="[{paddingTop: $u.addUnit(tmpConfig.title ? 12 : 25)}]">
 				<slot>
-					<text class="u-modal__content__text">{{ content }}</text>
+					<text class="u-modal__content__text">{{ tmpConfig.content }}</text>
 				</slot>
 			</view>
 			<view class="u-modal__button--confirm-button" v-if="$slots.confirmButton">
 				<slot name="confirmButton"></slot>
 			</view>
 			<template v-else>
-				<u-line v-if="buttonModel == 'text'"></u-line>
+				<u-line v-if="tmpConfig.buttonModel == 'text'"></u-line>
 				<view
 					class="u-modal__button"
-					:class="[`u-modal__button__${buttonModel}`]"
+					:class="[`u-modal__button__${tmpConfig.buttonModel}`]"
 					:style="[{
-						flexDirection: buttonReverse ? 'row-reverse' : 'row'
+						flexDirection: tmpConfig.buttonReverse ? 'row-reverse' : 'row'
 					}]">
-					<view v-if="showCancelButton"
+					<view v-if="tmpConfig.showCancelButton"
 						class="u-modal__button--cancel"
-						:class="[`u-modal__button__${buttonModel}--cancel`]"
-						:hover-class="`u-modal__button__${buttonModel}--hover`"
+						:class="[`u-modal__button__${tmpConfig.buttonModel}--cancel`]"
+						:hover-class="`u-modal__button__${tmpConfig.buttonModel}--hover`"
 						:hover-stay-time="150"
 						:style="[cancelButtonStyle]"
 						@tap="cancelHandler"
@@ -47,15 +47,15 @@
 						<text
 							class="u-modal__button__text"
 							:style="[{
-								color: cancelColor
+								color: tmpConfig.cancelColor
 							}]"
-						>{{ cancelText }}</text>
+						>{{ tmpConfig.cancelText }}</text>
 					</view>
-					<u-line direction="column" v-if="buttonModel == 'text' && showConfirmButton && showCancelButton"></u-line>
-					<view v-if="showConfirmButton"
+					<u-line direction="column" v-if="tmpConfig.buttonModel == 'text' && tmpConfig.showConfirmButton && tmpConfig.showCancelButton"></u-line>
+					<view v-if="tmpConfig.showConfirmButton"
 						class="u-modal__button--confirm"
-						:class="[`u-modal__button__${buttonModel}--confirm`]"
-						:hover-class="`u-modal__button__${buttonModel}--hover`"
+						:class="[`u-modal__button__${tmpConfig.buttonModel}--confirm`]"
+						:hover-class="`u-modal__button__${tmpConfig.buttonModel}--hover`"
 						:hover-stay-time="150"
 						:style="[confirmButtonStyle]"
 						@tap="confirmHandler"
@@ -65,9 +65,9 @@
 							v-else
 							class="u-modal__button__text"
 							:style="[{
-								color: buttonModel == 'text' ? confirmColor : '#ffffff'
+								color: tmpConfig.buttonModel == 'text' ? tmpConfig.confirmColor : '#ffffff'
 							}]"
-						>{{ confirmText }}</text>
+						>{{ tmpConfig.confirmText }}</text>
 					</view>
 				</view>
 			</template>
@@ -79,6 +79,8 @@
 	import props from './props.js';
 	import mixin from '../../libs/mixin/mixin'
 	import mpMixin from '../../libs/mixin/mpMixin';
+	import { setModalRef } from '../../libs/function/modal.js'
+
 	/**
 	 * Modal 模态框
 	 * @description 弹出模态框，常用于消息提示、消息确认、在当前页面内完成特定的交互操作。
@@ -108,40 +110,68 @@
 	 * @event {Function} confirm	点击确认按钮时触发
 	 * @event {Function} cancel		点击取消按钮时触发
 	 * @event {Function} close		点击遮罩关闭出发，closeOnClickOverlay为true有效
+	 * @method {Function} show		显示Modal，可通过this.$refs.xxx.show(options)调用
+	 * @method {Function} hide		隐藏Modal，可通过this.$refs.xxx.hide()调用
 	 * @example <u-modal :show="true" title="title" content="content"></u-modal>
+	 * @example <u-modal ref="uModal" @confirm="handleConfirm" @cancel="handleCancel"></u-modal>
 	 */
 	export default {
 		name: 'u-modal',
 		mixins: [mpMixin, mixin, props],
 		data() {
 			return {
-				loading: false
+				loading: false,
+				innerShow: false, // 内部控制显示状态
+				callback: null,
+				config: {} // 临时配置，用于show方法传入的参数,
 			}
 		},
 		computed: {
+			tmpConfig() {
+				return uni.$u.deepMerge({
+					title: this.title,
+					content: this.content,
+					confirmText: this.confirmText,
+					cancelText: this.cancelText,
+					showConfirmButton: this.showConfirmButton,
+					showCancelButton: this.showCancelButton,
+					confirmColor: this.confirmColor,
+					cancelColor: this.cancelColor,
+					buttonReverse: this.buttonReverse,
+					closeOnClickOverlay: this.closeOnClickOverlay,
+					asyncClose: this.asyncClose,
+					width: this.width,
+					round: this.round,
+					duration: this.duration,
+					buttonModel: this.buttonModel,
+					buttonRound: this.buttonRound,
+					confirmBgColor: this.confirmBgColor,
+					cancelBgColor: this.cancelBgColor
+				}, this.config);
+			},
 			confirmButtonStyle(){
 				const style = {}
 				let radius = ''
-				if(this.buttonModel == 'button'){
-					radius = uni.$u.addUnit(this.buttonRound)
+				if(this.tmpConfig.buttonModel == 'button'){
+					radius = uni.$u.addUnit(this.tmpConfig.buttonRound)
 					style.borderTopLeftRadius = radius
 					style.borderTopRightRadius = radius
 					style.borderBottomLeftRadius = radius
 					style.borderBottomRightRadius = radius
-					style.backgroundColor = this.confirmBgColor
+					style.backgroundColor = this.tmpConfig.confirmBgColor
 				}
 
-				radius = uni.$u.addUnit(this.round)
+				radius = uni.$u.addUnit(this.tmpConfig.round)
 				
-				if(this.buttonModel == 'text'){
+				if(this.tmpConfig.buttonModel == 'text'){
 					style.borderBottomRightRadius = radius
 
-					if(!this.showCancelButton && this.showConfirmButton){
+					if(!this.tmpConfig.showCancelButton && this.tmpConfig.showConfirmButton){
 						style.borderBottomRightRadius = radius
 						style.borderBottomLeftRadius = radius
 					}
 
-					if(this.buttonReverse){
+					if(this.tmpConfig.buttonReverse){
 						style.borderBottomLeftRadius = radius
 					}
 				}
@@ -151,25 +181,25 @@
 			cancelButtonStyle() {
 				const style = {}
 				let radius = ''
-				if(this.buttonModel == 'button'){
-					radius = uni.$u.addUnit(this.buttonRound)
+				if(this.tmpConfig.buttonModel == 'button'){
+					radius = uni.$u.addUnit(this.tmpConfig.buttonRound)
 					style.borderTopLeftRadius = radius
 					style.borderTopRightRadius = radius
 					style.borderBottomLeftRadius = radius
 					style.borderBottomRightRadius = radius
-					style.backgroundColor = this.cancelBgColor
+					style.backgroundColor = this.tmpConfig.cancelBgColor
 				}
 				
-				radius = uni.$u.addUnit(this.round)
+				radius = uni.$u.addUnit(this.tmpConfig.round)
 
-				if(this.buttonModel == 'text'){
+				if(this.tmpConfig.buttonModel == 'text'){
 					style.borderBottomLeftRadius = radius
-					if(this.showCancelButton && !this.showConfirmButton) {
+					if(this.tmpConfig.showCancelButton && !this.tmpConfig.showConfirmButton) {
 						style.borderBottomRightRadius = radius
 						style.borderBottomLeftRadius = radius
 					}
 
-					if(this.buttonReverse){
+					if(this.tmpConfig.buttonReverse){
 						style.borderBottomRightRadius = radius
 					}
 				}
@@ -184,21 +214,56 @@
 				if (n && this.loading) this.loading = false
 			}
 		},
+		mounted() {
+			// 注册全局Modal引用
+			setModalRef(this)
+		},
 		// #ifdef VUE3
 		emits: ["confirm", "cancel", "close"],
 		// #endif
 		methods: {
+			// 显示Modal
+			open(options = {}) {
+				this.config = options;
+				this.callback = (res) => {
+					if(uni.$u.test.func(options.success)) {
+						options.success(res);
+					}
+					this.close();
+				};
+				this.innerShow = true;
+			},
+			// 隐藏Modal
+			close() {
+				this.loading = false;
+				this.innerShow = false;
+			},
 			// 点击确定按钮
 			confirmHandler() {
 				// 如果配置了异步关闭，将按钮值为loading状态
-				if (this.asyncClose) {
+				if (this.tmpConfig.asyncClose) {
 					this.loading = true;
 				}
-				this.$emit('confirm')
+
+				if(this.callback) {
+					this.callback({
+						confirm: true,
+						cancel: false,
+					});
+				}else{
+					this.$emit('confirm')
+				}
 			},
 			// 点击取消按钮
 			cancelHandler() {
-				this.$emit('cancel')
+				if(this.callback) {
+					this.callback({
+						confirm: false,
+						cancel: true,
+					});
+				}else{
+					this.$emit('cancel')
+				}
 			},
 			// 点击遮罩
 			// 从原理上来说，modal的遮罩点击，并不是真的点击到了遮罩
@@ -206,8 +271,15 @@
 			// 多了一个透明的遮罩，此透明的遮罩会覆盖在灰色的遮罩上，所以实际上是点击不到灰色遮罩的，popup内部在
 			// 透明遮罩的子元素做了.stop处理，所以点击内容区，也不会导致误触发
 			clickHandler() {
-				if (this.closeOnClickOverlay) {
-					this.$emit('close')
+				if (this.tmpConfig.closeOnClickOverlay) {
+					if(this.callback) {
+						this.callback({
+							confirm: false,
+							cancel: true,
+						});
+					}else{
+						this.$emit('close')
+					}
 				}
 			}
 		}
@@ -242,7 +314,6 @@
 			&__text {
 				font-size: 15px;
 				color: $u-content-color;
-				flex: 1;
 			}
 		}
 
