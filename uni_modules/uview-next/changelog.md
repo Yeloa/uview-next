@@ -1,3 +1,8 @@
+## 3.6.27（2025-09-17）
+1. 优化`tree`组件图标
+2. 优化`swiper`组件图标
+## 3.6.26（2025-09-16）
+1. 增加`canvas`组件示例和文档
 ## 3.6.25（2025-09-16）
 1. 新增uni.$u.showToast, uni.$u.showLoading, uni.$u.showModal,uni.$u.showActionSheet方法，无需引入组件，即可全局调用
 2. 修复`upload`组件相关问题

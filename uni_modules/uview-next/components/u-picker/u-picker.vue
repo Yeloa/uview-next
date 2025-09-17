@@ -57,7 +57,7 @@
 					v-if="loading"
 					class="u-picker--loading"
 				>
-					<u-loading-icon mode="circle"></u-loading-icon>
+					<u-loading-icon mode="semicircle" timingFunction="linear"></u-loading-icon>
 				</view>
 			</view>
 		</u-popup>

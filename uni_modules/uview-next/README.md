@@ -35,6 +35,26 @@ uView Next 支持 Vue2 和 Vue3，支持国际化，是[uni-app](http://uniapp.d
 - 📖 **详尽文档**：清晰教程 + 交互演示，显著降低学习成本
 - 📦 **按需引入**：智能按需加载，有效减小打包体积，优化性能
 
+## 🆕 新增组件
+
+**25个全新组件**，覆盖更多业务场景，让开发更高效！
+
+| 组件 | 描述 | 组件 | 描述 |
+|------|------|------|------|
+| **InputTag** | 输入标签组件 | **Select** | 下拉列表组件
+| **Cascader** | 级联选择器组件 | **AreaPicker** | 地区选择器组件 
+| **Signature** | 签名组件 | **ColorPicker** | 颜色选择器组件
+| **Table** | 表格组件 | **Tree** | 树形组件 
+| **Pagination** | 分页组件 | **Paging** | 分页组件
+| **Waterfall** | 瀑布流组件 | **Amount** | 金融数字组件
+| **Feedback** | 全局反馈组件 | **Popover** | 气泡提示组件
+| **Fab** | 悬浮按钮组件 | **SliderButton** | 滑动按钮组件
+| **Draggable** | 拖拽排序组件 | **Ellipsis** | 文本省略组件
+| **Poster** | 海报生成器组件 | **Qrcode** | 二维码组件
+| **Barcode** | 条形码组件 | **Cropper** | 图片剪裁组件
+| **Markdown** | 文档解析组件 | **Sidebar** | 侧边栏组件
+| **DateStrip** | 日期横条组件 | **wxAuth** | 微信授权组件 
+
 ## 📱 预览
 
 您可以通过**微信**扫码，查看最佳的演示效果。

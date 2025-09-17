@@ -749,6 +749,12 @@
 					"style": {
 						"navigationBarTitleText": "全局反馈"
 					}
+				},
+				{
+					"path": "canvas/canvas",
+					"style": {
+						"navigationBarTitleText": "画布"
+					}
 				}
 			]
 		}

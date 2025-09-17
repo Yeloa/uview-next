@@ -5,7 +5,7 @@
 		borderRadius: $u.addUnit(radius)
 	}">
 		<view class="u-swiper__loading" v-if="loading">
-			<u-loading-icon mode="circle"></u-loading-icon>
+			<u-loading-icon mode="semicircle" timingFunction="linear"></u-loading-icon>
 		</view>
 		<swiper v-else class="u-swiper__wrapper" :style="{
 			height: $u.addUnit(height),

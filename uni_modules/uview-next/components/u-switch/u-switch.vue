@@ -23,8 +23,8 @@
 		>
 			<u-loading-icon
 			    :show="loading"
-			    mode="circle"
-			    timingFunction='linear'
+			    mode="semicircle" 
+				timingFunction="linear"
 			    <!-- #ifdef VUE3 -->
 				:color="modelValue ? activeColor : '#AAABAD'"
 				<!-- #endif -->

@@ -575,6 +575,11 @@ export default [{
         icon: 'alert',
         title: '全局反馈',
         title_en: 'Feedback'
+    },{
+        path: '/pages/componentsD/canvas/canvas',
+        icon: 'poster',
+        title: '画布',
+        title_en: 'Canvas'
     }]
 }
 ]

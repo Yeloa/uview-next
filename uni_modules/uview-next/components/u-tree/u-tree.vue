@@ -20,7 +20,8 @@
                     >
                         <u-loading-icon
                             v-if="isLoading(node)"
-                            mode="circle"
+                            mode="semicircle"
+                            timingFunction="linear"
                             :color="loadingColor"
                             :size="12"
                         />
