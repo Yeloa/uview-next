@@ -49,6 +49,7 @@ export default {
 		}
 	},
 	watch: {
+		// #ifdef VUE2
 		value: {
 			immediate: true,
 			handler(newValue) {
@@ -58,6 +59,7 @@ export default {
 				}
 			}
 		},
+		// #endif
 		// #ifdef VUE3
 		modelValue: {
 			immediate: true,
@@ -119,8 +121,10 @@ export default {
 		},
 		// 更新子组件的数据
 		updateChildData() {
-			this.children.map(child => {
-				uni.$u.test.func((child || {}).updateFromParent) && child.updateFromParent()
+			this.$nextTick(() => {
+				this.children.map(child => {
+					uni.$u.test.func((child || {}).updateFromParent) && child.updateFromParent()
+				})
 			})
 		},
 		// 处理子组件点击
