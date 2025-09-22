@@ -170,7 +170,7 @@
             },
             open(){
                 this.$nextTick(() => {
-                    this.$refs.calendarView.setMonth();
+                    this.$refs.calendarView.init();
                 });
             },
             // 点击确定按钮

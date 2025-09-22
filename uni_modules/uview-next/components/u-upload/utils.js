@@ -1,6 +1,8 @@
 function compressImageForH5(options) {
 	const {
 		src,
+		mime,
+		name,
 		quality = 0.8,
 		width = 'auto',
 		height = 'auto',
@@ -60,20 +62,30 @@ function compressImageForH5(options) {
 			
 			canvas.width = targetWidth;
 			canvas.height = targetHeight;
-			
+
+			if (mime === 'image/png' || mime === 'image/webp') {
+				ctx.clearRect(0, 0, targetWidth, targetHeight);
+			}
+
 			// 绘制压缩后的图片
 			ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
-			
+
 			// 转换为 blob
 			canvas.toBlob((blob) => {
 				if (blob) {
+					const compressedFile = new File([blob], name, {
+						type: blob.type,
+						lastModified: Date.now()
+					});
+					
 					success({
-						tempFilePath: URL.createObjectURL(blob)
+						tempFilePath: URL.createObjectURL(compressedFile),
+						file: compressedFile
 					})
 				} else {
 					fail(new Error('图片压缩失败'));
 				}
-			}, 'image/jpeg', quality);
+			}, mime, quality);
 			
 		} catch (error) {
 			fail(error);
@@ -101,17 +113,21 @@ function pickExclude(obj, keys) {
 }
 
 async function compressImages(config, files) {
+	
 	if( config === false){
 		return files;
 	}
-	
+
 	const tasks = [];
 	for(let i = 0; i < files.length; i++) {
 		tasks.push(new Promise((resolve) => {
 			const options = {
 				...config,
 				src: files[i].url,
-				fail:()=>{},
+				mime: files[i].mime_type,
+				// #ifdef H5
+				name: files[i].name,
+				// #endif
 				success: (result) => {
 					resolve(result);
 				},
@@ -137,6 +153,9 @@ async function compressImages(config, files) {
 		if(results[i]) {
 			files[i].url = results[i].tempFilePath;
 			files[i].thumb = results[i].tempFilePath;
+			// #ifdef H5
+			files[i].file = results[i].file;
+			// #endif
 		}
 	}
 
@@ -147,11 +166,13 @@ function formatImage(res) {
     return res.tempFiles.map((item) => ({
         ...pickExclude(item, ['path']),
         type: 'image',
+		mime: item.type,
         url: item.path,
         thumb: item.path,
 		size: item.size,
 		// #ifdef H5
-		name: item.name
+		name: item.name,
+		file: item.file,
 		// #endif
     }))
 }

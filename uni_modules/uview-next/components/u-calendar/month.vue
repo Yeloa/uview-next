@@ -1,6 +1,6 @@
 <template>
 	<view class="u-calendar-month-wrapper" ref="u-calendar-month-wrapper">
-		<view v-for="(item, index) in months" :key="index" :class="[`u-calendar-month-${index}`]"
+		<view v-for="(item, index) in months" :key="index" class="u-calendar-month" :class="[`u-calendar-month-${index}`]"
 			:ref="`u-calendar-month-${index}`" :id="`month-${index}`">
 			<text v-if="index !== 0" class="u-calendar-month__title">{{ item.year }}年{{ item.month }}月</text>
 			<view class="u-calendar-month__days">
@@ -8,16 +8,16 @@
 					<text class="u-calendar-month__days__month-mark-wrapper__text">{{ item.month }}</text>
 				</view>
 				<view class="u-calendar-month__days__day" v-for="(item1, index1) in item.date" :key="index1"
-					:style="[dayStyle(index, index1, item1)]" @tap="clickHandler(index, index1, item1)"
+					:style="[getDayStyle(index, index1, item1)]" @tap="clickHandler(index, index1, item1)"
 					:class="[item1.selected && 'u-calendar-month__days__day__select--selected']">
-					<view class="u-calendar-month__days__day__select" :style="[daySelectStyle(index, index1, item1)]">
+					<view class="u-calendar-month__days__day__select" :style="[getDaySelectStyle(index, index1, item1)]">
 						<text class="u-calendar-month__days__day__select__info"
 							:class="[item1.disabled && 'u-calendar-month__days__day__select__info--disabled']"
-							:style="[textStyle(item1)]">{{ item1.day }}</text>
-						<text v-if="getBottomInfo(index, index1, item1)"
+							:style="[getTextStyle(item1)]">{{ item1.day }}</text>
+						<text v-if="getBottomInfoText(index, index1, item1)"
 							class="u-calendar-month__days__day__select__buttom-info"
 							:class="[item1.disabled && 'u-calendar-month__days__day__select__buttom-info--disabled']"
-							:style="[textStyle(item1)]">{{ getBottomInfo(index, index1, item1) }}</text>
+							:style="[getTextStyle(item1)]">{{ getBottomInfoText(index, index1, item1) }}</text>
 						<text v-if="item1.dot" class="u-calendar-month__days__day__select__dot"></text>
 					</view>
 				</view>
@@ -151,157 +151,176 @@ export default {
 		selectedChange() {
 			return [this.minDate, this.maxDate, this.defaultDate]
 		},
-		dayStyle(index1, index2, item) {
-			return (index1, index2, item) => {
-				const style = {}
-				let week = item.week
-				// 不进行四舍五入的形式保留2位小数
-				const dayWidth = Number(parseFloat(this.width / 7).toFixed(3).slice(0, -1))
-				// 得出每个日期的宽度
-				// #ifdef APP-NVUE
-				style.width = uni.$u.addUnit(dayWidth)
-				// #endif
-				style.height = uni.$u.addUnit(this.rowHeight)
-				if (index2 === 0) {
-					// 获取当前为星期几，如果为0，则为星期天，减一为每月第一天时，需要向左偏移的item个数
-					week = (week === 0 ? 7 : week) - 1
-					style.marginLeft = uni.$u.addUnit(week * dayWidth)
-				}
-				if (this.mode === 'range') {
-					// 之所以需要这么写，是因为DCloud公司的iOS客户端的开发者能力有限导致的bug
-					style.paddingLeft = 0
-					style.paddingRight = 0
-					style.paddingBottom = 0
-					style.paddingTop = 0
-				}
-				return style
-			}
+		// 缓存日期宽度计算
+		dayWidth() {
+			return Number(parseFloat(this.width / 7).toFixed(3).slice(0, -1))
 		},
-		daySelectStyle() {
-			return (index1, index2, item) => {
-				let date = dayjs(item.date).format("YYYY-MM-DD"),
-					style = {}
-				// 判断date是否在selected数组中，因为月份可能会需要补0，所以使用dateSame判断，而不用数组的includes判断
-				if (this.selected.some(item => this.dateSame(item, date))) {
-					style.backgroundColor = this.color
-				}
-				let radius = this.shape === 'circle' ? '100%' : '5px'
-				if (this.mode === 'single') {
-					if (date === this.selected[0]) {
-						// 因为需要对nvue的兼容，只能这么写，无法缩写，也无法通过类名控制等等
-
-						style.borderTopLeftRadius = radius
-						style.borderBottomLeftRadius = radius
-						style.borderTopRightRadius = radius
-						style.borderBottomRightRadius = radius
-					}
-				} else if (this.mode === 'range') {
-					if (this.selected.length >= 2) {
-						const len = this.selected.length - 1
-						// 第一个日期设置左上角和左下角的圆角
-						if (this.dateSame(date, this.selected[0])) {
-							style.borderTopLeftRadius = radius
-							style.borderBottomLeftRadius = radius
-						}
-						// 最后一个日期设置右上角和右下角的圆角
-						if (this.dateSame(date, this.selected[len])) {
-							style.borderTopRightRadius = radius
-							style.borderBottomRightRadius = radius
-						}
-						// 处于第一和最后一个之间的日期，背景色设置为浅色，通过将对应颜色进行等分，再取其尾部的颜色值
-						if (dayjs(date).isAfter(dayjs(this.selected[0])) && dayjs(date).isBefore(dayjs(this
-							.selected[len]))) {
-							style.backgroundColor = uni.$u.colorGradient(this.color, '#ffffff', 100)[90]
-							// 增加一个透明度，让范围区间的背景色也能看到底部的mark水印字符
-							style.opacity = 0.7
-						}
-					} else if (this.selected.length === 1) {
-						// 之所以需要这么写，是因为DCloud公司的iOS客户端的开发者能力有限导致的bug
-						// 进行还原操作，否则在nvue的iOS，uni-app有bug，会导致诡异的表现
-						style.borderTopLeftRadius = radius
-						style.borderBottomLeftRadius = radius
-					}
-				} else {
-					if (this.selected.some(item => this.dateSame(item, date))) {
-						style.borderTopLeftRadius = radius
-						style.borderBottomLeftRadius = radius
-						style.borderTopRightRadius = radius
-						style.borderBottomRightRadius = radius
-					}
-				}
-				return style
-			}
+		// 缓存圆角样式
+		radiusStyle() {
+			return this.shape === 'circle' ? '100%' : '5px'
 		},
-		// 某个日期是否被选中
-		textStyle() {
-			return (item) => {
-				const date = dayjs(item.date).format("YYYY-MM-DD"),
-					style = {}
-				// 选中的日期，提示文字设置白色
-				if (this.selected.some(item => this.dateSame(item, date))) {
-					style.color = '#ffffff'
-				}
-				if (this.mode === 'range') {
-					const len = this.selected.length - 1
-					// 如果是范围选择模式，第一个和最后一个之间的日期，文字颜色设置为高亮的主题色
-					if (dayjs(date).isAfter(dayjs(this.selected[0])) && dayjs(date).isBefore(dayjs(this
-						.selected[len]))) {
-						style.color = this.color
-					}
-				}
-				return style
-			}
+		// 缓存选中日期的Set，提升查找性能
+		selectedSet() {
+			return new Set(this.selected)
 		},
-		// 获取底部的提示文字
-		getBottomInfo() {
-			return (index1, index2, item) => {
-				const date = dayjs(item.date).format("YYYY-MM-DD")
-				const bottomInfo = item.bottomInfo
-				// 当为日期范围模式时，且选择的日期个数大于0时
-				if (this.mode === 'range' && this.selected.length > 0) {
-					if (this.selected.length === 1) {
-						// 选择了一个日期时，如果当前日期为数组中的第一个日期，则显示底部文字为“开始”
-						if (this.dateSame(date, this.selected[0])) return this.startText
-						else return bottomInfo
-					} else {
-						const len = this.selected.length - 1
-						// 如果数组中的日期大于2个时，第一个和最后一个显示为开始和结束日期
-						if (this.dateSame(date, this.selected[0]) && this.dateSame(date, this.selected[1]) &&
-							len === 1) {
-							// 如果长度为2，且第一个等于第二个日期，则提示语放在同一个item中
-							return `${this.startText}/${this.endText}`
-						} else if (this.dateSame(date, this.selected[0])) {
-							return this.startText
-						} else if (this.dateSame(date, this.selected[len])) {
-							return this.endText
-						} else {
-							return bottomInfo
-						}
-					}
-				} else {
-					return bottomInfo
+		// 缓存范围选择的开始和结束日期
+		rangeDates() {
+			if (this.mode === 'range' && this.selected.length >= 2) {
+				return {
+					start: this.selected[0],
+					end: this.selected[this.selected.length - 1]
 				}
 			}
+			return null
+		},
+		// 缓存渐变背景色
+		rangeBackgroundColor() {
+			return uni.$u.colorGradient(this.color, '#ffffff', 100)[90]
 		}
 	},
 	mounted() {
-		this.init()
+		// 初始化默认选中
+		this.$emit('monthSelected', this.selected)
 	},
 	// #ifdef VUE3
 	emits: ["monthSelected", "updateMonthTop"],
 	// #endif
 	methods: {
 		init() {
-			// 初始化默认选中
-			this.$emit('monthSelected', this.selected)
 			this.$nextTick(() => {
-				// 这里需要另一个延时，因为获取宽度后，会进行月份数据渲染，只有渲染完成之后，才有真正的高度
-				// 因为nvue下，$nextTick并不是100%可靠的
-				uni.$u.sleep(10).then(() => {
-					this.getWrapperWidth()
-					this.getMonthRect()
-				})
+				this.getWrapperWidth()
+				this.getMonthRect()
 			})
+		},
+		// 优化的日期样式计算方法
+		getDayStyle(index1, index2, item) {
+			const style = {}
+			let week = item.week
+			
+			// 使用缓存的日期宽度
+			style.height = uni.$u.addUnit(this.rowHeight)
+			
+			// #ifdef APP-NVUE
+			style.width = uni.$u.addUnit(this.dayWidth)
+			// #endif
+			
+			if (index2 === 0) {
+				// 获取当前为星期几，如果为0，则为星期天，减一为每月第一天时，需要向左偏移的item个数
+				week = (week === 0 ? 7 : week) - 1
+				style.marginLeft = uni.$u.addUnit(week * this.dayWidth)
+			}
+			
+			if (this.mode === 'range') {
+				// 之所以需要这么写，是因为DCloud公司的iOS客户端的开发者能力有限导致的bug
+				style.paddingLeft = 0
+				style.paddingRight = 0
+				style.paddingBottom = 0
+				style.paddingTop = 0
+			}
+			
+			return style
+		},
+		// 优化的日期选择样式计算方法
+		getDaySelectStyle(index1, index2, item) {
+			const date = dayjs(item.date).format("YYYY-MM-DD")
+			const style = {}
+			const radius = this.radiusStyle
+			
+			// 使用Set提升查找性能
+			if (this.selectedSet.has(date)) {
+				style.backgroundColor = this.color
+			}
+			
+			if (this.mode === 'single') {
+				if (date === this.selected[0]) {
+					style.borderTopLeftRadius = radius
+					style.borderBottomLeftRadius = radius
+					style.borderTopRightRadius = radius
+					style.borderBottomRightRadius = radius
+				}
+			} else if (this.mode === 'range') {
+				if (this.rangeDates) {
+					const { start, end } = this.rangeDates
+					
+					// 第一个日期设置左上角和左下角的圆角
+					if (this.dateSame(date, start)) {
+						style.borderTopLeftRadius = radius
+						style.borderBottomLeftRadius = radius
+					}
+					// 最后一个日期设置右上角和右下角的圆角
+					if (this.dateSame(date, end)) {
+						style.borderTopRightRadius = radius
+						style.borderBottomRightRadius = radius
+					}
+					// 处于第一和最后一个之间的日期，背景色设置为浅色
+					if (dayjs(date).isAfter(dayjs(start)) && dayjs(date).isBefore(dayjs(end))) {
+						style.backgroundColor = this.rangeBackgroundColor
+						style.opacity = 0.7
+					}
+				} else if (this.selected.length === 1) {
+					style.borderTopLeftRadius = radius
+					style.borderBottomLeftRadius = radius
+				}
+			} else {
+				if (this.selectedSet.has(date)) {
+					style.borderTopLeftRadius = radius
+					style.borderBottomLeftRadius = radius
+					style.borderTopRightRadius = radius
+					style.borderBottomRightRadius = radius
+				}
+			}
+			
+			return style
+		},
+		// 优化的文字样式计算方法
+		getTextStyle(item) {
+			const date = dayjs(item.date).format("YYYY-MM-DD")
+			const style = {}
+			
+			// 使用Set提升查找性能
+			if (this.selectedSet.has(date)) {
+				style.color = '#ffffff'
+			}
+			
+			if (this.mode === 'range' && this.rangeDates) {
+				const { start, end } = this.rangeDates
+				// 如果是范围选择模式，第一个和最后一个之间的日期，文字颜色设置为高亮的主题色
+				if (dayjs(date).isAfter(dayjs(start)) && dayjs(date).isBefore(dayjs(end))) {
+					style.color = this.color
+				}
+			}
+			
+			return style
+		},
+		// 优化的底部信息获取方法
+		getBottomInfoText(index1, index2, item) {
+			const date = dayjs(item.date).format("YYYY-MM-DD")
+			const bottomInfo = item.bottomInfo
+			
+			// 当为日期范围模式时，且选择的日期个数大于0时
+			if (this.mode === 'range' && this.selected.length > 0) {
+				if (this.selected.length === 1) {
+					// 选择了一个日期时，如果当前日期为数组中的第一个日期，则显示底部文字为"开始"
+					if (this.dateSame(date, this.selected[0])) return this.startText
+					else return bottomInfo
+				} else {
+					const len = this.selected.length - 1
+					// 如果数组中的日期大于2个时，第一个和最后一个显示为开始和结束日期
+					if (this.dateSame(date, this.selected[0]) && this.dateSame(date, this.selected[1]) &&
+						len === 1) {
+						// 如果长度为2，且第一个等于第二个日期，则提示语放在同一个item中
+						return `${this.startText}/${this.endText}`
+					} else if (this.dateSame(date, this.selected[0])) {
+						return this.startText
+					} else if (this.dateSame(date, this.selected[len])) {
+						return this.endText
+					} else {
+						return bottomInfo
+					}
+				}
+			} else {
+				return bottomInfo
+			}
 		},
 		// 判断两个日期是否相等
 		dateSame(date1, date2) {
@@ -334,6 +353,7 @@ export default {
 						topArr[i] = height
 						height += sizes[i].height
 					}
+					
 					// 由于微信下，无法通过this.months[i].top的形式(引用类型)去修改父组件的month的top值，所以使用事件形式对外发出
 					this.$emit('updateMonthTop', topArr)
 				})
@@ -362,25 +382,30 @@ export default {
 		},
 		// 点击某一个日期
 		clickHandler(index1, index2, item) {
-			if (this.readonly) {
+			if (this.readonly || item.disabled) {
 				return;
 			}
+			
 			this.item = item
 			const date = dayjs(item.date).format("YYYY-MM-DD")
-			if (item.disabled) return
+			
 			// 对上一次选择的日期数组进行深度克隆
 			let selected = uni.$u.deepClone(this.selected)
+			
 			if (this.mode === 'single') {
 				// 单选情况下，让数组中的元素为当前点击的日期
 				selected = [date]
 			} else if (this.mode === 'multiple') {
-				if (selected.some(item => this.dateSame(item, date))) {
+				// 使用Set提升查找性能
+				const selectedSet = new Set(selected)
+				if (selectedSet.has(date)) {
 					// 如果点击的日期已在数组中，则进行移除操作，也就是达到反选的效果
-					const itemIndex = selected.findIndex(item => item === date)
-					selected.splice(itemIndex, 1)
+					selected = selected.filter(item => item !== date)
 				} else {
 					// 如果点击的日期不在数组中，且已有的长度小于总可选长度时，则添加到数组中去
-					if (selected.length < this.maxCount) selected.push(date)
+					if (selected.length < this.maxCount) {
+						selected.push(date)
+					}
 				}
 			} else {
 				// 选择区间形式
@@ -390,12 +415,13 @@ export default {
 				} else if (selected.length === 1) {
 					// 如果已经选择了开始日期
 					const existsDate = selected[0]
+					
 					// 如果当前选择的日期小于上一次选择的日期，则当前的日期定为开始日期
 					if (dayjs(date).isBefore(existsDate)) {
 						selected = [date]
 					} else if (dayjs(date).isAfter(existsDate)) {
 						// 当前日期减去最大可选的日期天数，如果大于起始时间，则进行提示
-						if (dayjs(dayjs(date).subtract(this.maxRange, 'day')).isAfter(dayjs(selected[0])) && this.showRangePrompt) {
+						if (this.maxRange && dayjs(dayjs(date).subtract(this.maxRange, 'day')).isAfter(dayjs(selected[0])) && this.showRangePrompt) {
 							if (this.rangePrompt) {
 								uni.$u.toast(this.rangePrompt)
 							} else {
@@ -405,17 +431,20 @@ export default {
 						}
 						// 如果当前日期大于已有日期，将当前的添加到数组尾部
 						selected.push(date)
+						
+						// 生成日期范围数组
 						const startDate = selected[0]
 						const endDate = selected[1]
 						const arr = []
-						let i = 0
-						do {
-							// 将开始和结束日期之间的日期添加到数组中
-							arr.push(dayjs(startDate).add(i, 'day').format("YYYY-MM-DD"))
-							i++
-							// 累加的日期小于结束日期时，继续下一次的循环
-						} while (dayjs(startDate).add(i, 'day').isBefore(dayjs(endDate)))
-						// 为了一次性修改数组，避免computed中多次触发，这里才用arr变量一次性赋值的方式，同时将最后一个日期添加近来
+						let currentDate = dayjs(startDate)
+						const endDateObj = dayjs(endDate)
+						
+						// 使用while循环替代do-while，减少一次不必要的计算
+						while (currentDate.isBefore(endDateObj)) {
+							arr.push(currentDate.format("YYYY-MM-DD"))
+							currentDate = currentDate.add(1, 'day')
+						}
+						// 添加最后一个日期
 						arr.push(endDate)
 						selected = arr
 					} else {
@@ -434,9 +463,15 @@ export default {
 				const selected = [dayjs().format("YYYY-MM-DD")]
 				return this.setSelected(selected, false)
 			}
+			
 			let defaultDate = []
 			const minDate = this.minDate || dayjs().format("YYYY-MM-DD")
 			const maxDate = this.maxDate || dayjs(minDate).add(this.maxMonth - 1, 'month').format("YYYY-MM-DD")
+			
+			// 缓存日期对象，避免重复计算
+			const minDateObj = dayjs(minDate)
+			const maxDateObj = dayjs(maxDate)
+			
 			if (this.mode === 'single') {
 				// 单选模式，可以是字符串或数组，Date对象等
 				if (!uni.$u.test.array(this.defaultDate)) {
@@ -449,11 +484,13 @@ export default {
 				if (!uni.$u.test.array(this.defaultDate)) return
 				defaultDate = this.defaultDate
 			}
+			
 			// 过滤用户传递的默认数组，取出只在可允许最大值与最小值之间的元素
 			defaultDate = defaultDate.filter(item => {
-				return dayjs(item).isAfter(dayjs(minDate).subtract(1, 'day')) && dayjs(item).isBefore(dayjs(
-					maxDate).add(1, 'day'))
+				const itemDate = dayjs(item)
+				return itemDate.isAfter(minDateObj.subtract(1, 'day')) && itemDate.isBefore(maxDateObj.add(1, 'day'))
 			})
+			
 			this.setSelected(defaultDate, false)
 		},
 		setSelected(selected, event = true) {
@@ -472,7 +509,7 @@ export default {
 }
 
 .u-calendar-month {
-
+	@include flex(column);
 	&__title {
 		font-size: 14px;
 		line-height: 42px;

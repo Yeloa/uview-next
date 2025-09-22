@@ -31,8 +31,10 @@
 		</view>
 		<view class="u-steps-item__content" :class="[`u-steps-item__content--${parentData.direction}`]"
 			:style="[contentStyle]">
-			<u--text :text="title" :type="parentData.current == index ? 'main' : 'content'" lineHeight="20px"
+			<slot>
+				<u--text :text="title" :type="parentData.current == index ? 'main' : 'content'" lineHeight="20px"
 				:size="parentData.current == index ? 14 : 13"></u--text>
+			</slot>
 			<slot name="desc">
 				<u--text :text="desc" type="tips" size="12"></u--text>
 			</slot>

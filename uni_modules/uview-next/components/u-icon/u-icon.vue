@@ -160,10 +160,13 @@
 	$u-icon-error: $u-error !default;
 	$u-icon-label-line-height:1 !default;
 	
+	/* #ifndef APP-NVUE */
+	// 非nvue下加载字体
 	@font-face {
 		font-family: 'uicon-iconfont';
 		src: url('https://at.alicdn.com/t/c/font_5015490_4ujeamqc3gh.ttf') format('truetype');
 	}
+	/* #endif */
 
 	.u-icon {
 		/* #ifndef APP-NVUE */

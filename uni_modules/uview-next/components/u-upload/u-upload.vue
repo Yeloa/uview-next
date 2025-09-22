@@ -258,7 +258,7 @@
 			// #endif
 		},
 		// #ifdef VUE3
-		emits: ['update:modelValue','beforeRead', 'afterRead', 'oversize', 'delete', 'clickPreview','error'],
+		emits: ['update:modelValue','beforeRead', 'afterRead', 'oversize', 'delete', 'clickPreview','error','change'],
 		// #endif
 		methods: {
 			formatFileList(fileList) {
@@ -362,6 +362,7 @@
 				};
 			},
 			onAfterRead(file) {
+			
 				const {
 					maxSize,
 					afterRead
@@ -417,15 +418,20 @@
 				const fileListLen = this.lists.length - file.length;
 
 				for (let i = 0; i < file.length; i++) {
-					const { data } = await uni.$u.http.upload(this.action, {
-						filePath:file[i].url,
+					const response = await uni.$u.http.upload(this.action, {
+						// #ifdef H5
+						file: file[i].file,
+						// #endif
+						// #ifndef H5
+						filePath: file[i].url,
+						// #endif
 						name: fileList.name,
 						formData: this.data,
 						headers: this.headers,
 					});
 
 					let index = fileListLen + i;
-					let url = data.url || data.data.url;
+					let url = response.url || response.data.url;
 
 					if(url) {
 						this.lists[index].url = url;
@@ -435,6 +441,8 @@
 				}
 
 				this.emitUpdate();
+
+				this.$emit('change', response);
 			},
 			
 			emitUpdate() {

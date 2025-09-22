@@ -18,6 +18,7 @@
             :scrollIntoView="scrollIntoView"
         >
             <uMonth
+                ref="month"
                 :shape="shape"
                 :color="color"
                 :rowHeight="rowHeight"
@@ -36,7 +37,6 @@
                 :rangePrompt="rangePrompt"
                 :showRangePrompt="showRangePrompt"
                 :allowSameDay="allowSameDay"
-                ref="month"
                 @monthSelected="monthSelected"
                 @updateMonthTop="updateMonthTop"
             ></uMonth>
@@ -236,20 +236,24 @@
                 scrollTop: 0,
                 // 过滤处理方法
                 innerFormatter: (value) => value,
+            
             };
         },
         watch: {
             selectedChange: {
                 immediate: true,
-                handler(n) {
+                handler(newVal, oldVal) {
                     this.setMonth();
                 },
             },
             //修复vue2微信小程序报警告
             monthIndex: {
                 immediate: true,
-                handler(newVal,oldVal) {
-                    this.subtitle = `${this.months[newVal].year}年${this.months[newVal].month}月`;
+                handler(newVal, oldVal) {
+                    // 只有当月份索引真正改变时才更新副标题
+                    if (newVal !== oldVal && this.months[newVal]) {
+                        this.subtitle = `${this.months[newVal].year}年${this.months[newVal].month}月`;
+                    }
                 }
             },
         },
@@ -270,10 +274,6 @@
                 return [this.innerMinDate, this.innerMaxDate, this.defaultDate];
             },
         },
-        mounted() {
-            this.start = Date.now();
-            this.init();
-        },
         // #ifdef VUE3
         emits: ['monthSelected'],
         // #endif
@@ -287,6 +287,7 @@
                 this.$emit('monthSelected', e);
             },
             init() {
+                this.start = Date.now();
                 // 校验maxDate，不能小于minDate
                 if (
                     this.innerMaxDate &&
@@ -297,7 +298,7 @@
                     return uni.$u.error('maxDate不能小于minDate');
                 }
                 // 滚动区域的高度
-                this.listHeight = this.rowHeight * 5 - 1;
+                this.listHeight = this.rowHeight * 5 + 35
                 this.setMonth();
             },
             // 获得两个日期之间的月份数
@@ -310,6 +311,7 @@
             },
             // 设置月份数据
             setMonth() {
+               
                 // 最小日期的毫秒数
                 const minDate = this.innerMinDate || dayjs().valueOf();
                 // 如果没有指定最大日期，则往后推3个月
@@ -318,73 +320,67 @@
                     dayjs(minDate)
                         .add(this.monthNum - 1, 'month')
                         .valueOf();
+                
+                // 缓存日期格式化的结果
+                const minDateStr = dayjs(minDate).format('YYYY-MM-DD');
+                const maxDateStr = dayjs(maxDate).format('YYYY-MM-DD');
+                
                 // 最大最小月份之间的共有多少个月份，
                 const months = uni.$u.range(
                     1,
                     this.monthNum,
                     this.getMonths(minDate, maxDate),
                 );
+                
                 // 先清空数组
                 let monthsArr = [];
+                
+                // 预处理禁用日期数组
+                let disabledDates = [];
+                if (this.disabledDate) {
+                    if (uni.$u.test.string(this.disabledDate)) {
+                        disabledDates = [this.disabledDate];
+                    } else {
+                        disabledDates = this.disabledDate;
+                    }
+                }
+                
                 for (let i = 0; i < months; i++) {
+                    const currentMonth = dayjs(minDate).add(i, 'month');
+                    const monthNum = currentMonth.month() + 1;
+                    const year = currentMonth.year();
+                    const daysInMonth = currentMonth.daysInMonth();
+                    
                     monthsArr.push({
-                        date: new Array(
-                            dayjs(minDate).add(i, 'month').daysInMonth(),
-                        )
+                        date: new Array(daysInMonth)
                             .fill(1)
                             .map((item, index) => {
                                 // 日期，取值1-31
                                 let day = index + 1;
                                 // 星期，0-6，0为周日
-                                const week = dayjs(minDate)
-                                    .add(i, 'month')
-                                    .date(day)
-                                    .day();
-                                const date = dayjs(minDate)
-                                    .add(i, 'month')
-                                    .date(day)
-                                    .format('YYYY-MM-DD');
+                                const week = currentMonth.date(day).day();
+                                const date = currentMonth.date(day).format('YYYY-MM-DD');
+                                
                                 let bottomInfo = '';
                                 if (this.showLunar) {
                                     // 将日期转为农历格式
                                     const lunar = Calendar.solar2lunar(
-                                        dayjs(date).year(),
-                                        dayjs(date).month() + 1,
-                                        dayjs(date).date(),
+                                        year,
+                                        monthNum,
+                                        day,
                                     );
                                     bottomInfo = lunar.IDayCn;
                                 }
 
                                 let dateObj = new Date(date);
-                                let disabled =
-                                    dayjs(date).isBefore(
-                                        dayjs(minDate).format('YYYY-MM-DD'),
-                                    ) ||
-                                    dayjs(date).isAfter(
-                                        dayjs(maxDate).format('YYYY-MM-DD'),
-                                    );
+                                let disabled = date < minDateStr || date > maxDateStr;
 
                                 if (!disabled) {
-                                    if (this.disabledDate) {
-                                        if (
-                                            uni.$u.test.string(
-                                                this.disabledDate,
-                                            )
-                                        ) {
-                                            this.disabledDate = [
-                                                this.disabledDate,
-                                            ];
-                                        }
-
-                                        this.disabledDate.forEach((item) => {
-                                            if (
-                                                dayjs(item).format(
-                                                    'YYYY-MM-DD',
-                                                ) === date
-                                            ) {
-                                                disabled = true;
-                                            }
-                                        });
+                                    // 检查禁用日期
+                                    if (disabledDates.length > 0) {
+                                        disabled = disabledDates.some(item => 
+                                            dayjs(item).format('YYYY-MM-DD') === date
+                                        );
                                     }
 
                                     if (
@@ -410,9 +406,7 @@
                                     date: dateObj,
                                     bottomInfo,
                                     dot: false,
-                                    month:
-                                        dayjs(minDate).add(i, 'month').month() +
-                                        1,
+                                    month: monthNum,
                                 };
 
                                 const formatter =
@@ -420,13 +414,17 @@
                                 return formatter(config);
                             }),
                         // 当前所属的月份
-                        month: dayjs(minDate).add(i, 'month').month() + 1,
+                        month: monthNum,
                         // 当前年份
-                        year: dayjs(minDate).add(i, 'month').year(),
+                        year: year,
                     });
                 }
 
                 this.months = monthsArr;
+
+                if(this.$refs.month){
+                    this.$refs.month.init();
+                }
             },
             // 滚动到默认设置的月份
             scrollIntoDefaultMonth(selected) {
@@ -449,17 +447,36 @@
             },
             // scroll-view滚动监听
             onScroll(event) {
-                // 不允许小于0的滚动值，如果scroll-view到顶了，继续下拉，会出现负数值
-                const scrollTop = Math.max(0, event.detail.scrollTop);
-                // 将当前滚动条数值，除以滚动区域的高度，可以得出当前滚动到了哪一个月份的索引
-                for (let i = 0; i < this.months.length; i++) {
-                    if (scrollTop >= (this.months[i].top || this.listHeight)) {
-                        this.monthIndex = i;
+                uni.$u.debounce(()=> {
+                    // 不允许小于0的滚动值，如果scroll-view到顶了，继续下拉，会出现负数值
+                    const scrollTop = Math.max(0, event.detail.scrollTop)
+              
+                    // 使用二分查找优化月份索引查找
+                    let left = 0;
+                    let right = this.months.length - 1;
+                    let monthIndex = 0;
+                  
+                    while (left <= right) {
+                        const mid = Math.floor((left + right) / 2);
+                        const monthTop = this.months[mid].top - 20 || this.listHeight;
+                        
+                        if (scrollTop >= monthTop) {
+                            monthIndex = mid;
+                            left = mid + 1;
+                        } else {
+                            right = mid - 1;
+                        }
                     }
-                }
+                   
+                    // 只有当月份索引真正改变时才更新
+                    if (this.monthIndex !== monthIndex) {
+                        this.monthIndex = monthIndex;
+                    }
+                },16)
             },
             // 更新月份的top值
             updateMonthTop(topArr = []) {
+                
                 // 设置对应月份的top值，用于onScroll方法更新月份
                 topArr.map((item, index) => {
                     this.months[index].top = item;

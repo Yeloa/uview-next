@@ -80,6 +80,9 @@
         "router" : {
             "mode" : "hash",
             "base" : "/web/"
+        },
+        "devServer" : {
+            "https" : false
         }
     },
     "fallbackLocale" : "zh-Hans",
