@@ -88,14 +88,12 @@
 		mixins: [mpMixin, mixin, props],
 		computed: {
 			uClasses() {
-				let classes = []
-				classes.push(this.customPrefix + '-' + this.name)
-				// // uView的自定义图标类名为u-iconfont
-				// if (this.customPrefix == 'uicon') {
-				// 	classes.push('u-iconfont')
-				// } else {
-				// 	classes.push(this.customPrefix)
-				// }
+				let classes = [this.customPrefix + '-' + this.name]
+				
+				if(this.customPrefix != 'uicon') {
+					classes.push(this.customPrefix)
+				}
+				
 				// 主题色，通过类配置
 				// 阿里，头条，百度小程序通过数组绑定类名时，无法直接使用[a, b, c]的形式，否则无法识别
 				// 故需将其拆成一个字符串的形式，通过空格隔开各个类名
@@ -132,8 +130,7 @@
 			},
 			// 通过图标名，查找对应的图标
 			icon() {
-				// 如果内置的图标中找不到对应的图标，就直接返回name值，因为用户可能传入的是unicode代码
-				return icons['uicon-' + this.name] || this.name
+				return this.customPrefix == 'uicon' ? icons['uicon-' + this.name] : ''
 			}
 		},
 		// #ifdef VUE3
