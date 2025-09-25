@@ -32,7 +32,7 @@
 		</card>
 		
 		<card title="右侧控件">
-			<u-search v-model="value5" :show-action="true"></u-search>
+			<u-search v-model="value5" @change="handleChange" :show-action="showAction"></u-search>
 		</card>
 		
 		<card title="禁用输入框">
@@ -159,7 +159,8 @@
 				value12: '',
 				value13: '',
 				value14: '',
-				value15: ''
+				value15: '',
+				showAction: false
 			}
 		},
 		watch: {
@@ -168,6 +169,13 @@
 			}
 		},
 		methods: {
+			handleChange(e) {
+				if(this.value5.length > 0) {
+					this.showAction = true
+				} else {
+					this.showAction = false
+				}
+			},
 			change(e) {
 				console.log(e);
 			},

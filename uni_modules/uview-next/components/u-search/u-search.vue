@@ -29,7 +29,9 @@
 			</view>
 			<input
 			    confirm-type="search"
-			    @blur="blur"
+				placeholder-class="u-search__content__input--placeholder"
+			    class="u-search__content__input"
+			    type="text"
 				<!-- #ifdef VUE2-->
 			    :value="value"
 				<!-- #endif-->
@@ -38,15 +40,13 @@
 				<!-- #endif-->
 			    @confirm="search"
 			    @input="inputChange"
+				@focus="getFocus"
+				@blur="blur"
 			    :disabled="disabled"
-			    @focus="getFocus"
 			    :focus="focus"
 			    :maxlength="maxlength"
-			    placeholder-class="u-search__content__input--placeholder"
 			    :placeholder="placeholder"
 			    :placeholder-style="`color: ${placeholderColor}`"
-			    class="u-search__content__input"
-			    type="text"
 			    :style="[{
 					pointerEvents: disabled ? 'none' : 'auto',
 					textAlign: inputAlign,
@@ -58,7 +58,7 @@
 			<view
 			    class="u-search__content__icon u-search__content__close"
 			    v-if="keyword && clearabled"
-			    @tap="clear"
+			    @tap.stop="clear"
 			>
 				<u-icon
 				    name="close"
@@ -74,7 +74,7 @@
 		<text
 		    :style="[actionStyle]"
 		    class="u-search__action"
-		    :class="[(showActionBtn || show) && 'u-search__action--active']"
+		    :class="[showActionBtn && 'u-search__action--active']"
 		    @tap.stop.prevent="custom"
 		>{{ actionText }}</text>
 	</view>
@@ -126,10 +126,6 @@
 		data() {
 			return {
 				keyword: '',
-				showClear: false, // 是否显示右边的清除图标
-				show: false,
-				// 绑定输入框的值
-				// inputValue: this.value
 			};
 		},
 		watch: {
@@ -141,22 +137,26 @@
 				// #ifdef VUE3
 				this.$emit('update:modelValue', nVal);
 				// #endif
-
 				// 触发change事件，事件效果和v-model双向绑定的效果一样，让用户多一个选择
 				this.$emit('change', nVal);
 			},
 
 			// #ifdef VUE2
 			value: {
+				immediate: true,
+				handler(nVal) {
+					this.keyword = nVal;
+				}
+			},
 			// #endif
 			// #ifdef VUE3	
 			modelValue: {
-			// #endif
 				immediate: true,
 				handler(nVal) {
 					this.keyword = nVal;
 				}
 			}
+			// #endif
 		},
 		computed: {
 			showActionBtn() {
@@ -198,13 +198,10 @@
 			},
 			// 获取焦点
 			getFocus() {
-				// 开启右侧搜索按钮展开的动画效果
-				if (this.animation && this.showAction) this.show = true;
 				this.$emit('focus', this.keyword);
 			},
 			// 失去焦点
 			blur() {
-				this.show = false;
 				this.$emit('blur', this.keyword);
 			},
 			// 点击搜索框，只有disabled=true时才发出事件，因为禁止了输入，意味着是想跳转真正的搜索页
@@ -285,6 +282,7 @@ $u-search-action-margin-left: 5px !default;
 			align-items: center;
 			justify-content: center;
 			transform: $u-search-close-transform;
+			z-index: 10000;
 		}
 
 		&__input {

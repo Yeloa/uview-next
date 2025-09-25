@@ -306,7 +306,7 @@
 				const names = ['u-calendar-month', 'u-album', 'u-collapse-item', 'u-dropdown', 'u-index-item', 'u-index-list',
 					'u-line-progress', 'u-list-item', 'u-rate', 'u-read-more', 'u-row', 'u-row-notice', 'u-scroll-list',
 					'u-skeleton', 'u-slider', 'u-steps-item', 'u-sticky', 'u-subsection', 'u-swipe-action-item', 'u-tabbar',
-					'u-tabs', 'u-tooltip'
+					'u-tabs', 'u-tooltip','u-draggable'
 				]
 				// 历遍所有的子组件节点
 				for (let i = 0; i < children.length; i++) {

@@ -2,7 +2,7 @@
   "id": "uview-next",
   "name": "uview-next",
   "displayName": "uView Next全面适配Vue3和鸿蒙，组件库更丰富，功能更全，更稳定，更高质量的UI框架",
-  "version": "3.6.32",
+  "version": "3.6.33",
   "license": "MIT",
   "description": "基于uView UI 2.0，110+高质量组件库，支持vue2和vue3，支持鸿蒙，支持多语言，搭配便捷工具助力，让开发更得心应手",
   "keywords": [
