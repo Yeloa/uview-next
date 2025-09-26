@@ -53,6 +53,7 @@
 					:selection-end="selectionEnd"
 					:selection-start="selectionStart"
 					:password="isPassword"
+					:inputmode="inputmode"
 					:ignoreCompositionEvent="ignoreCompositionEvent"
 					@input="onInput"
 					@blur="onBlur"
@@ -145,6 +146,7 @@ import mpMixin from '../../libs/mixin/mpMixin'
  * @property {String}			backgroundColor			背景颜色
  * @property {String}			round					设置圆角值
  * @property {String}			borderColor				边框颜色
+ * @property {String}			inputmode				它提供了用户在编辑元素或其内容时可能输入的数据类型的提示
  * @example <u-input v-model="value" :password="true" suffix-icon="lock-fill" />
  */
 export default {

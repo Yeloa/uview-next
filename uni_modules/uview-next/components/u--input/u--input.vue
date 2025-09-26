@@ -43,6 +43,7 @@
 		:border="border"
 		:readonly="readonly"
 		:shape="shape"
+		:inputmode="inputmode"
 		:customStyle="customStyle"
 		:formatter="formatter"
 		:ignoreCompositionEvent="ignoreCompositionEvent"

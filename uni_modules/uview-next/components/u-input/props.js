@@ -225,5 +225,10 @@ export default defineProps('input', {
 	cursorColor: {
 		type: String,
 		default: ''
+	},
+	// 它提供了用户在编辑元素或其内容时可能输入的数据类型的提示
+	inputmode: {
+		type: String,
+		default: 'text'
 	}
 })
