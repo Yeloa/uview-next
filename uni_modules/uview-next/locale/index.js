@@ -1,10 +1,10 @@
-import enUS from './en-US.json'
+import en from './en.json'
+import es from './es.json'
+import fr from './fr.json'
 import zhCN from './zh-Hans.json'
-import zhHK from './zh-HK.json'
+import zhHK from './zh-Hant.json'
 import arSA from './ar-SA.json'
 import deDE from './de-DE.json'
-import esES from './es-ES.json'
-import frFR from './fr-FR.json'
 import jaJP from './ja-JP.json'
 import koKR from './ko-KR.json'
 import ruRU from './ru-RU.json'
@@ -29,14 +29,14 @@ function createI18n(config) {
         locale: 'zh-CN', // 默认显示语言
         fallbackLocale: 'en-US',
         messages: {
+            'en': en, //英文
+            'fr': fr, //法文
+            'es': es, //西班牙文
             'zh-Hans': zhCN, //简体中文
-            'zh-HK': zhHK, //繁体中文（香港）
-            'en-US': enUS, //英文
+            'zh-Hant': zhHK, //繁体中文（香港）
             'ja-JP': jaJP,  //日文
             'ko-KR': koKR, //韩文
-            'fr-FR': frFR, //法文
             'de-DE': deDE, //德文
-            'es-ES': esES, //西班牙文
             'ru-RU': ruRU, //俄文
             'ar-SA': arSA, //阿拉伯文
         }

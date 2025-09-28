@@ -283,6 +283,7 @@ export default {
 			animation: u-loop-animation 10s linear infinite both;
 			/* #endif */
 			@include flex(row);
+			flex-shrink: 0;
 		}
 	}
 

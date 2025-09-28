@@ -1,0 +1,91 @@
+{
+	"uAreaPicker.cancelText": "Cancel",
+	"uAreaPicker.confirmText": "Confirm",
+	"uAreaPicker.placeholder": "Please select a region",
+	
+	"uCalendar.title": "Date Selection",
+	"uCalendar.startText": "Start",
+	"uCalendar.endText": "End",
+	"uCalendar.rangePrompt": "The number of days selected exceeds the maximum number of days",
+	"uCalendar.confirmText": "Confirm",
+	"uCalendar.confirmDisabledText": "Confirm",
+	"uCalendar.weekdays": "Mon,Tue,Wed,Thu,Fri,Sat,Sun",
+
+	"uCascader.title": "Please select",
+	"uCascader.placeholder": "Please select",
+
+	"uCode.startText": "Get verification code",
+	"uCode.changeText": "Re-obtain in X seconds",
+	"uCode.endText": "Re-obtain",
+
+	"uDatetimePicker.cancelText": "Cancel",
+	"uDatetimePicker.confirmText": "Confirm",
+	"uDatetimePicker.placeholder": "Please select date and time",
+
+	"uKeyboard.cancelText": "Cancel",
+	"uKeyboard.confirmText": "Confirm",
+
+	"uLink.mpTips": "Link copied, please open in browser",
+
+	"uLoadingPage.loadingText": "Loading",
+
+	"uLoadmore.loadmoreText": "Load more",
+	"uLoadmore.loadingText": "Loading...",
+	"uLoadmore.nomoreText": "No more data",
+
+	"uModal.confirmText": "Confirm",
+	"uModal.cancelText": "Cancel",
+
+	"uNoNetwork.tips": "Oops, network signal lost",
+
+	"uPagination.prevText": "Prev",
+	"uPagination.nextText": "Next",
+
+	"uPicker.cancelText": "Cancel",
+	"uPicker.confirmText": "Confirm",
+
+	"uReadMore.closeText": "Expand to read full text",
+	"uReadMore.openText": "Collapse",
+
+	"uSearch.placeholder": "Please enter keywords",
+	"uSearch.actionText": "Search",
+
+	"uSection.subTitle": "More",
+
+	"uTable.emptyText": "No data available",
+
+	"uToolbar.cancelText": "Cancel",
+	"uToolbar.confirmText": "Confirm",
+	
+	"uSignature.title": "Please sign",
+	"uSignature.clearText": "Clear",
+	"uSignature.undoText": "Undo",
+	"uSignature.confirmText": "Confirm",
+	"uSignature.closeText": "Close",
+
+	"uSelect.placeholder": "Please select",
+	"uSelect.emptyText": "No data available",
+	
+	"uPaging.refresherDefaultText": "Continue to swipe down",
+	"uPaging.refresherPullingText": "Release to refresh",
+	"uPaging.refresherRefreshingText": "Refreshing...",
+	"uPaging.refresherCompleteText": "Refresh complete",
+	"uPaging.loadingMoreDefaultText": "Load more...",
+	"uPaging.loadingMoreNoMoreText": "No more data available",
+
+	"uColorPicker.title": "Select color",
+	"uColorPicker.confirmText": "Confirm",
+
+	"uCropper.loadImageError": "Image loading failed",
+	"uCropper.chooseImageError": "Image selection failed",
+	"uCropper.cropError": "Image cropping failed",
+	"uCropper.chooseImage": "Please select an image",
+	"uCropper.cropping": "Cropping...",
+	"uCropper.cancelText": "Cancel",
+	"uCropper.confirmText": "Confirm",
+
+	"uQrcode.expiredText": "QR code expired",
+	"uQrcode.scannedText": "Scanned",
+	"uQrcode.refreshText": "Refresh"
+
+}

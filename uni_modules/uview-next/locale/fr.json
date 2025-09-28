@@ -1,0 +1,90 @@
+{
+	"uAreaPicker.cancelText": "Annuler",
+	"uAreaPicker.confirmText": "Confirmer",
+	"uAreaPicker.placeholder": "Veuillez sélectionner une région",
+	
+	"uCalendar.title": "Sélectionner une date",
+	"uCalendar.startText": "Début",
+	"uCalendar.endText": "Fin",
+	"uCalendar.rangePrompt": "Le nombre de jours sélectionnés dépasse le nombre maximum",
+	"uCalendar.confirmText": "Confirmer",
+	"uCalendar.confirmDisabledText": "Confirmer",
+	"uCalendar.weekdays": "lun,mar,mer,jeu,ven,sam,dim",
+
+	"uCascader.title": "Veuillez sélectionner",
+	"uCascader.placeholder": "Veuillez sélectionner",
+
+	"uCode.startText": "Obtenir le code de vérification",
+	"uCode.changeText": "Récupérer à nouveau dans X secondes",
+	"uCode.endText": "Récupérer à nouveau",
+
+	"uDatetimePicker.cancelText": "Annuler",
+	"uDatetimePicker.confirmText": "Confirmer",
+	"uDatetimePicker.placeholder": "Veuillez sélectionner la date et l'heure",
+
+	"uKeyboard.cancelText": "Annuler",
+	"uKeyboard.confirmText": "Confirmer",
+
+	"uLink.mpTips": "Lien copié, veuillez l'ouvrir dans le navigateur",
+
+	"uLoadingPage.loadingText": "Chargement en cours",
+
+	"uLoadmore.loadmoreText": "Charger plus",
+	"uLoadmore.loadingText": "Chargement en cours...",
+	"uLoadmore.nomoreText": "Il n'y a plus de contenu",
+
+	"uModal.confirmText": "Confirmer",
+	"uModal.cancelText": "Annuler",
+
+	"uNoNetwork.tips": "Oups, perte du signal réseau",
+
+	"uPagination.prevText": "Page précédente",
+	"uPagination.nextText": "Page suivante",
+
+	"uPicker.cancelText": "Annuler",
+	"uPicker.confirmText": "Confirmer",
+
+	"uReadMore.closeText": "Déplier pour lire tout",
+	"uReadMore.openText": "Replier",
+
+	"uSearch.placeholder": "Veuillez entrer des mots-clés",
+	"uSearch.actionText": "Rechercher",
+
+	"uSection.subTitle": "Plus",
+
+	"uTable.emptyText": "Aucune donnée disponible",
+
+	"uToolbar.cancelText": "Annuler",
+	"uToolbar.confirmText": "Confirmer",
+	
+	"uSignature.title": "Veuillez signer",
+	"uSignature.clearText": "Effacer",
+	"uSignature.undoText": "Annuler",
+	"uSignature.confirmText": "Confirmer",
+	"uSignature.closeText": "Fermer",
+
+	"uSelect.placeholder": "Veuillez sélectionner",
+	"uSelect.emptyText": "Aucune donnée disponible",
+	
+	"uPaging.refresherDefaultText": "Continuer à glisser vers le bas",
+	"uPaging.refresherPullingText": "Relâcher pour actualiser",
+	"uPaging.refresherRefreshingText": "Actualisation en cours...",
+	"uPaging.refresherCompleteText": "Actualisation terminée",
+	"uPaging.loadingMoreDefaultText": "Charger plus...",
+	"uPaging.loadingMoreNoMoreText": "Aucune donnée disponible",
+
+	"uColorPicker.title": "Sélectionner une couleur",
+	"uColorPicker.confirmText": "Confirmer",
+
+	"uCropper.loadImageError": "Erreur de chargement de l'image",
+	"uCropper.chooseImageError": "Erreur de sélection d'image",
+	"uCropper.cropError": "Erreur de découpage",
+	"uCropper.chooseImage": "Veuillez sélectionner une image",
+	"uCropper.cropping": "Découpage en cours...",
+	"uCropper.cancelText": "Annuler",
+	"uCropper.confirmText": "Confirmer",
+
+	"uQrcode.expiredText": "QR code expiré",
+	"uQrcode.scannedText": "Scanné",
+	"uQrcode.refreshText": "Actualiser"
+}
