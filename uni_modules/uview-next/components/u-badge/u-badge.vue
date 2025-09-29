@@ -1,9 +1,14 @@
 <template>
 	<text
 		v-if="show && ((currentValue === 0 ? showZero : true) || isDot)"
-		:class="[isDot ? 'u-badge--dot' : 'u-badge--not-dot', inverted && 'u-badge--inverted', shape === 'horn' && 'u-badge--horn', `u-badge--${type}${inverted ? '--inverted' : ''}`]"
-		:style="[$u.addStyle(customStyle), badgeStyle]"
 		class="u-badge"
+		:class="[
+			isDot ? 'u-badge--dot' : 'u-badge--not-dot', 
+			inverted && 'u-badge--inverted', 
+			shape === 'horn' && 'u-badge--horn', 
+			`u-badge--${type}${inverted ? '--inverted' : ''}`
+		]"
+		:style="[$u.addStyle(customStyle), badgeStyle]"
 	>{{ isDot ? '' :showValue }}</text>
 </template>
 

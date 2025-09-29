@@ -1,19 +1,4 @@
 <template>
-	<!-- #ifdef APP-NVUE -->
-	<list
-		class="u-list"
-		:enableBackToTop="enableBackToTop"
-		:loadmoreoffset="lowerThreshold"
-		:showScrollbar="showScrollbar"
-		:style="[listStyle]"
-		:offset-accuracy="Number(offsetAccuracy)"
-		@scroll="onScroll"
-		@loadmore="scrolltolower"
-	>
-		<slot />
-	</list>
-	<!-- #endif -->
-	<!-- #ifndef APP-NVUE -->
 	<scroll-view
 		class="u-list"
 		:scroll-into-view="scrollIntoView"
@@ -33,25 +18,21 @@
 			<slot />
 		</view>
 	</scroll-view>
-	<!-- #endif -->
 </template>
 
 <script>
 	import props from './props.js';
 	import mixin from '../../libs/mixin/mixin'
 	import mpMixin from '../../libs/mixin/mpMixin';
-	// #ifdef APP-NVUE
-	const dom = uni.requireNativePlugin('dom')
-	// #endif
+	
 	/**
 	 * List 列表
 	 * @description 该组件为高性能列表组件
 	 * @tutorial https://uview.d3u.cn/components/list.html
-	 * @property {Boolean}			showScrollbar		控制是否出现滚动条，仅nvue有效 （默认 false ）
+	 * @property {Boolean}			showScrollbar		控制是否出现滚动条（默认 false ）
 	 * @property {String ｜ Number}	lowerThreshold		距底部多少时触发scrolltolower事件 （默认 50 ）
-	 * @property {String ｜ Number}	upperThreshold		距顶部多少时触发scrolltoupper事件，非nvue有效 （默认 0 ）
+	 * @property {String ｜ Number}	upperThreshold		距顶部多少时触发scrolltoupper事件 （默认 0 ）
 	 * @property {String ｜ Number}	scrollTop			设置竖向滚动条位置（默认 0 ）
-	 * @property {String ｜ Number}	offsetAccuracy		控制 onscroll 事件触发的频率，仅nvue有效（默认 10 ）
 	 * @property {Boolean}			enableFlex			启用 flexbox 布局。开启后，当前节点声明了display: flex就会成为flex container，并作用于其孩子节点，仅微信小程序有效（默认 false ）
 	 * @property {Boolean}			pagingEnabled		是否按分页模式显示List，（默认 false ）
 	 * @property {Boolean}			scrollable			是否允许List滚动（默认 true ）
@@ -68,11 +49,6 @@
 	export default {
 		name: 'u-list',
 		mixins: [mpMixin, mixin, props],
-		watch: {
-			scrollIntoView(n) {
-				this.scrollIntoViewById(n)
-			}
-		},
 		data() {
 			return {
 				// 记录内部滚动的距离
@@ -113,24 +89,9 @@
 			},
 			onScroll(e) {
 				let scrollTop = 0
-				// #ifdef APP-NVUE
-				scrollTop = e.contentOffset.y
-				// #endif
-				// #ifndef APP-NVUE
 				scrollTop = e.detail.scrollTop
-				// #endif
 				this.innerScrollTop = scrollTop
 				this.$emit('scroll', scrollTop)
-			},
-			scrollIntoViewById(id) {
-				// #ifdef APP-NVUE
-				// 根据id参数，找到所有u-list-item中匹配的节点，再通过dom模块滚动到对应的位置
-				const item = this.refs.find(item => item.$refs[id] ? true : false)
-				dom.scrollToElement(item.$refs[id], {
-					// 是否需要滚动动画
-					animated: this.scrollWithAnimation
-				})
-				// #endif
 			},
 			// 滚动到底部触发事件
 			scrolltolower(e) {
@@ -138,8 +99,7 @@
 					this.$emit('scrolltolower')
 				})
 			},
-			// #ifndef APP-NVUE
-			// 滚动到底部时触发，非nvue有效
+			// 滚动到底部时触发
 			scrolltoupper(e) {
 				uni.$u.sleep(30).then(() => {
 					this.$emit('scrolltoupper')
@@ -147,7 +107,6 @@
 					this.offset = 0
 				})
 			}
-			// #endif
 		},
 	}
 </script>

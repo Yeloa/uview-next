@@ -16,9 +16,9 @@ export default defineProps('input', {
 	},
 	// #endif
 	// 输入框类型
-	// number-数字输入键盘，app-vue下可以输入浮点数，app-nvue和小程序平台下只能输入整数
+	// number-数字输入键盘，app-vue下可以输入浮点数，小程序平台下只能输入整数
 	// idcard-身份证输入键盘，微信、支付宝、百度、QQ小程序
-	// digit-带小数点的数字键盘，App的nvue页面、微信、支付宝、百度、头条、QQ小程序
+	// digit-带小数点的数字键盘，微信、支付宝、百度、头条、QQ小程序
 	// text-文本输入键盘
 	type: {
 		type: String,
@@ -93,7 +93,7 @@ export default defineProps('input', {
 		default: false
 	},
 	// 自动获取焦点
-	// 在 H5 平台能否聚焦以及软键盘是否跟随弹出，取决于当前浏览器本身的实现。nvue 页面不支持，需使用组件的 focus()、blur() 方法控制焦点
+	// 在 H5 平台能否聚焦以及软键盘是否跟随弹出，取决于当前浏览器本身的实现。需使用组件的 focus()、blur() 方法控制焦点
 	focus: {
 		type: Boolean,
 		default: false

@@ -384,9 +384,7 @@ export default {
 
 	&__content {
 		flex: 1;
-		// #ifndef APP-NVUE
 		min-height: 0;
-		// #endif
 	}
 	
 	&__list {
@@ -406,9 +404,7 @@ export default {
 		overflow: hidden;
 		text-overflow: ellipsis;
 		font-size: 15px;
-		// #ifndef APP-NVUE
 		white-space: nowrap;
-		// #endif
 	}
 	
 	&__item-right {

@@ -54,22 +54,13 @@
 			},
 			colStyle() {
 				const style = {
-					// 这里写成"padding: 0 10px"的形式是因为nvue的需要
 					paddingLeft: uni.$u.addUnit(uni.$u.getPx(this.parentData.gutter)/2),
 					paddingRight: uni.$u.addUnit(uni.$u.getPx(this.parentData.gutter)/2),
 					alignItems: this.uAlignItem,
 					justifyContent: this.uJustify,
 					textAlign: this.textAlign,
-					// #ifndef APP-NVUE
-					// 在非nvue上，使用百分比形式
 					flex: `0 0 ${100 / this.gridNum * this.span}%`,
 					marginLeft: 100 / 12 * this.offset + '%',
-					// #endif
-					// #ifdef APP-NVUE
-					// 在nvue上，由于无法使用百分比单位，这里需要获取父组件的宽度，再计算得出该有对应的百分比尺寸
-					width: uni.$u.addUnit(Math.floor(this.width / this.gridNum * Number(this.span))),
-					marginLeft: uni.$u.addUnit(Math.floor(this.width / this.gridNum * Number(this.offset))),
-					// #endif
 				}
 				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
 			}
@@ -101,16 +92,12 @@
 
 	.u-col {
 		padding: 0;
-		/* #ifndef APP-NVUE */
 		box-sizing:border-box;
-		/* #endif */
 		/* #ifdef MP */
 		display: block;
 		/* #endif */
 	}
 
-	// nvue下百分比无效
-	/* #ifndef APP-NVUE */
 	.u-col-0 {
 		width: 0;
 	}
@@ -162,6 +149,4 @@
 	.u-col-12 {
 		width: calc(100%/12 * 12);
 	}
-
-	/* #endif */
 </style>

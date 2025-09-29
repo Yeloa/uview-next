@@ -345,9 +345,7 @@ export default {
 		@include flex;
 		align-items: center;
 		justify-content: center;
-		// #ifndef APP-NVUE
 		user-select: none;
-		// #endif
 		// #ifdef H5
 		cursor: pointer;
 		// #endif

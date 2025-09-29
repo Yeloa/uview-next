@@ -21,9 +21,6 @@
 				class="u-input__content__field-wrapper"
 				@tap="clickHandler"
 			>
-				<!-- 根据uni-app的input组件文档，H5和APP中只要声明了password参数(无论true还是false)，type均失效，此时
-					为了防止type=number时，又存在password属性，type无效，此时需要设置password为undefined
-				 -->
 				<input
 					class="u-input__content__field-wrapper__field"
 					:style="[inputStyle]"
@@ -120,7 +117,7 @@ import mpMixin from '../../libs/mixin/mpMixin'
  * @property {String}			confirmType				设置右下角按钮的文字，兼容性详见uni-app文档 （ 默认 'done' ）
  * @property {Boolean}			confirmHold				点击键盘右下角按钮时是否保持键盘不收起，H5无效 （ 默认 false ）
  * @property {Boolean}			holdKeyboard			focus时，点击页面的时候不收起键盘，微信小程序有效 （ 默认 false ）
- * @property {Boolean}			focus					自动获取焦点，在 H5 平台能否聚焦以及软键盘是否跟随弹出，取决于当前浏览器本身的实现。nvue 页面不支持，需使用组件的 focus()、blur() 方法控制焦点 （ 默认 false ）
+ * @property {Boolean}			focus					自动获取焦点，在 H5 平台能否聚焦以及软键盘是否跟随弹出，取决于当前浏览器本身的实现,需使用组件的 focus()、blur() 方法控制焦点 （ 默认 false ）
  * @property {Boolean}			autoBlur				键盘收起时，是否自动失去焦点，目前仅App3.0.0+有效 （ 默认 false ）
  * @property {Boolean}			disableDefaultPadding	是否去掉 iOS 下的默认内边距，仅微信小程序，且type=textarea时有效 （ 默认 false ）
  * @property {Boolean}			alwaysEmbed				强制 input 处于同层状态，默认 focus 时 input 会切到非同层状态 （ 默认 false ）
@@ -212,12 +209,8 @@ export default {
 				style.backgroundColor = this.backgroundColor;
 			}
 			
-			//nvue 必须分开写才有效
 			if(this.borderColor){
-				style.borderLeftColor = this.borderColor;
-				style.borderTopColor = this.borderColor;
-				style.borderRightColor = this.borderColor;
-				style.borderBottomColor = this.borderColor;
+				style.borderColor = this.borderColor;
 			}
 
 			if(this.border !== "bottom"){
@@ -330,7 +323,6 @@ export default {
 			this.showPassword = !this.showPassword;
 		},
 		/**
-		 * 在安卓nvue上，事件无法冒泡
 		 * 在某些时间，我们希望监听u-from-item的点击事件，此时会导致点击u-form-item内的u-input后
 		 * 无法触发u-form-item的点击事件，这里通过手动调用u-form-item的方法进行触发
 		 */
@@ -338,14 +330,6 @@ export default {
 			if (this.disabled || this.readonly) {
                 uni.hideKeyboard();
             }
-			// #ifdef APP-NVUE
-			if (uni.$u.os() === "android") {
-				const formItem = uni.$u.$parent.call(this, "u-form-item");
-				if (formItem) {
-					formItem.clickHandler();
-				}
-			}
-			// #endif
 		}
 	},
 };

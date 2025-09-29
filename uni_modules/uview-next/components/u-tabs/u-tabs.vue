@@ -45,39 +45,33 @@
 								customStyle="margin-left: 4px;"
 							></u-badge>
 						</view>
-						<!-- #ifdef APP-NVUE -->
-						<view
-							class="u-tabs__wrapper__nav__line"
-							ref="u-tabs__wrapper__nav__line"
-							:style="[{
+							<view
+								v-if="showLine"
+								class="u-tabs__wrapper__nav__line"
+								ref="u-tabs__wrapper__nav__line"
+								:style="[{
 									width: $u.addUnit(lineWidth),
+									transform: `translate(${lineOffsetLeft}px)`,
+									transitionDuration: `${firstTime ? 0 : duration}ms`,
 									height: $u.addUnit(lineHeight),
 									background: lineColor,
 									backgroundSize: lineBgSize,
 								}]"
-						>
-							<!-- #endif -->
-							<!-- #ifndef APP-NVUE -->
-							<view
-								class="u-tabs__wrapper__nav__line"
-								ref="u-tabs__wrapper__nav__line"
-								:style="[{
-										width: $u.addUnit(lineWidth),
-										transform: `translate(${lineOffsetLeft}px)`,
-										transitionDuration: `${firstTime ? 0 : duration}ms`,
-										height: $u.addUnit(lineHeight),
-										background: lineColor,
-										backgroundSize: lineBgSize,
-									}]"
 							>
-								<!-- #endif -->
 							</view>
 						</view>
 				</scroll-view>
 			</view>
 			<slot name="right" />
 		</view>
-		<view class="u-tabs__content" v-if="isSlot" @touchstart="onTouchStart" @touchmove="onTouchMove" @touchend="onTouchEnd" @touchcancel="onTouchEnd">
+		<view
+			v-if="isSlot" 
+			class="u-tabs__content" 
+			@touchstart="onTouchStart" 
+			@touchmove="onTouchMove" 
+			@touchend="onTouchEnd" 
+			@touchcancel="onTouchEnd"
+		>
 			<view 
 				class="u-tabs__content__body"
 				:class="[animated ? 'u-tabs__content__body--animated' : '']"
@@ -90,10 +84,6 @@
 </template>
 
 <script>
-	// #ifdef APP-NVUE
-	const animation = uni.requireNativePlugin('animation')
-	const dom = uni.requireNativePlugin('dom')
-	// #endif
 	import props from './props.js';
 	import mixin from '../../libs/mixin/mixin'
 	import mpMixin from '../../libs/mixin/mpMixin';
@@ -117,6 +107,7 @@
 	 * @property {Boolean} scrollable 菜单是否可滚动，默认 true
 	 * @property {Number|String} current 当前选中标签索引/标识，默认 0
 	 * @property {String} keyName 从 list 元素对象中读取标题的键名，默认 'name'
+	 * @property {Boolean} showLine 是否显示滑块，默认 true
 	 *
 	 * @event {Function} change 标签改变时触发，参数 { index }
 	 * @event {Function} click 点击标签时触发，参数 { index }
@@ -217,7 +208,7 @@
 					const style = {}
 					// 取当期是否激活的样式
 					const customeStyle = index === this.innerCurrent ? uni.$u.addStyle(this.activeStyle) : uni.$u.addStyle(this.inactiveStyle)
-					// 如果当前菜单被禁用，则加上对应颜色，需要在此做处理，是因为nvue下，无法在style样式中通过!import覆盖标签的内联样式
+					// 如果当前菜单被禁用，则加上对应颜色，需要在此做处理，无法在style样式中通过!import覆盖标签的内联样式
 					if (this.computedList[index].disabled) {
 						style.color = '#c8c9cc'
 					}
@@ -291,30 +282,13 @@
                 // 获取下划线的数值px表示法
 				const lineWidth = uni.$u.getPx(this.lineWidth);
 				this.lineOffsetLeft = lineOffsetLeft + (tabItem.rect.width - lineWidth) / 2
-				// #ifdef APP-NVUE
-				// 第一次移动滑块，无需过渡时间
-				this.animation(this.lineOffsetLeft, this.firstTime ? 0 : parseInt(this.duration))
-				// #endif
-
 				// 如果是第一次执行此方法，让滑块在初始化时，瞬间滑动到第一个tab item的中间
-				// 这里需要一个定时器，因为在非nvue下，是直接通过style绑定过渡时间，需要等其过渡完成后，再设置为false(非第一次移动滑块)
+				// 这里需要一个定时器，是直接通过style绑定过渡时间，需要等其过渡完成后，再设置为false(非第一次移动滑块)
 				if (this.firstTime) {
 					setTimeout(() => {
 						this.firstTime = false
 					}, 10);
 				}
-			},
-			// nvue下设置滑块的位置
-			animation(x, duration = 0) {
-				// #ifdef APP-NVUE
-				const ref = this.$refs['u-tabs__wrapper__nav__line']
-				animation.transition(ref, {
-					styles: {
-						transform: `translateX(${x}px)`
-					},
-					duration
-				})
-				// #endif
 			},
 			// 点击某一个标签
 			clickHandler(item, index) {
@@ -391,7 +365,9 @@
 						this.computedList[index].rect = item
 					})
 					// 获取了tabs的尺寸之后，设置滑块的位置
-					this.setLineLeft()
+					if(this.showLine) {
+						this.setLineLeft()
+					}
 					this.setScrollLeft()
 				})
 			},
@@ -411,25 +387,11 @@
 			},
 			// 获取各个标签的尺寸
 			queryRect(el, item) {
-				// #ifndef APP-NVUE
-				// $uGetRect为uView自带的节点查询简化方法，详见文档介绍：https://uview.d3u.cn/js/getRect.html
-				// 组件内部一般用this.$uGetRect，对外的为uni.$u.getRect，二者功能一致，名称不同
 				return new Promise(resolve => {
 					this.$uGetRect(`.${el}`).then(size => {
 						resolve(size)
 					})
 				})
-				// #endif
-
-				// #ifdef APP-NVUE
-				// nvue下，使用dom模块查询元素高度
-				// 返回一个promise，让调用此方法的主体能使用then回调
-				return new Promise(resolve => {
-					dom.getComponentRect(item ? this.$refs[el][0] : this.$refs[el], res => {
-						resolve(res.size)
-					})
-				})
-				// #endif
 			},
 			
 			// 触摸开始事件
@@ -523,9 +485,7 @@
 
 			&__scroll-view-wrapper {
 				flex: 1;
-				/* #ifndef APP-NVUE */
 				overflow: auto hidden;
-				/* #endif */
 			}
 
 			&__scroll-view {
@@ -555,9 +515,7 @@
 					&__text {
 						font-size: 15px;
 						color: $u-content-color;
-						/* #ifndef APP-NVUE */
 						white-space: nowrap;
-						/* #endif */
 						&--disabled {
 							color: #ccc;
 						}

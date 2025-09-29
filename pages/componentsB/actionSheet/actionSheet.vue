@@ -22,15 +22,13 @@
             <u-cell title="使用触发器">
                 <template v-slot:value>
 					<u-action-sheet :actions="actions0" @select="select2">
-						<template #trigger>	
-							<u-input
-								:value="value0"
-								placeholder="请选择"
-								disabled-color="#fff"
-								disabled
-								clearable
-							/>
-						</template>
+						<u-input
+							:value="value0"
+							placeholder="请选择"
+							disabled-color="#fff"
+							disabled
+							clearable
+						/>
                     </u-action-sheet>
                 </template>
 			</u-cell>

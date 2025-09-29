@@ -405,9 +405,7 @@
 		align-items: center;
 
 		&__slot {
-			/* #ifndef APP-NVUE */
 			touch-action: none;
-			/* #endif */
 		}
 
 		&__plus,
@@ -416,9 +414,7 @@
 			@include flex;
 			justify-content: center;
 			align-items: center;
-			/* #ifndef APP-NVUE */
 			touch-action: none;
-			/* #endif */
 
 			&--disabled {
 				color: $u-numberBox-disabled-color;

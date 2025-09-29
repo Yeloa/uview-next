@@ -1,7 +1,4 @@
 <template>
-	<!-- #ifdef APP-NVUE -->
-	<header>
-	<!-- #endif -->
 	<view
 	    class="u-index-anchor u-border-bottom"
 		:ref="`u-index-anchor-${text}`"
@@ -18,18 +15,13 @@
 			}"
 		>{{ text }}</text>
 	</view>
-	<!-- #ifdef APP-NVUE -->
-	</header>
-	<!-- #endif -->
 </template>
 
 <script>
 	import props from './props.js';
 	import mixin from '../../libs/mixin/mixin'
 	import mpMixin from '../../libs/mixin/mpMixin';
-	// #ifdef APP-NVUE
-	const dom = uni.requireNativePlugin('dom')
-	// #endif
+	
 	/**
 	 * IndexAnchor 列表锚点
 	 * @description 
@@ -61,14 +53,12 @@
 				// 将当前实例放入到u-index-list中
 				indexList.anchors.push(this)
 				const indexListItem = uni.$u.$parent.call(this, 'u-index-item')
-				// #ifndef APP-NVUE
-				// 只有在非nvue下，u-index-anchor才是嵌套在u-index-item中的
+				// u-index-anchor才是嵌套在u-index-item中的
 				if (!indexListItem) {
 					return uni.$u.error('u-index-anchor必须要搭配u-index-item组件使用')
 				}
-				// 设置u-index-item的id为anchor的text标识符，因为非nvue下滚动列表需要依赖scroll-view滚动到元素的特性
+				// 设置u-index-item的id为anchor的text标识符
 				indexListItem.id = this.text.charCodeAt(0)
-				// #endif
 			}
 		},
 	}

@@ -2,10 +2,10 @@
 	<view class="u-page">
 		<view class="nav-wrap">
 			<view class="nav-lang" @click="showLang = true">
-				<u--image :showLoading="true" src="/static/uview/example/lang.png" width="18px" height="18px" />
+				<u-image :showLoading="true" src="/static/uview/example/lang.png" width="18px" height="18px" />
 			</view>
 			<view class="nav-title">
-				<u--image :showLoading="true" src="/static/uview/common/logo.png" width="70px" height="70px" />
+				<u-image :showLoading="true" src="/static/uview/common/logo.png" width="70px" height="70px" />
 				<view class="nav-info">
 					<view class="nav-info__title">
 						<text class="nav-info__title__text">uView Next</text>
@@ -108,17 +108,6 @@
 			},
 			openPage(detail) {
 				const path = detail.name
-				// #ifdef APP-NVUE
-				// 目前安卓nvue下，由于overflow只能为hidden，所以布局上的原因，暂不支持steps和tooltip等组件
-				if(uni.$u.os() === 'android') {
-					const noSupportForAndroid = ['steps']
-					for(let i = 0; i < noSupportForAndroid.length; i ++) {
-						if(path.indexOf(noSupportForAndroid[i]) > -1) {
-							return uni.$u.toast('安卓nvue下暂不支持此组件')
-						}
-					}
-				}
-				// #endif
 				uni.$u.route({
 					url: path
 				})
@@ -140,9 +129,7 @@
 	}
 
 	.nav-title {
-		/* #ifndef APP-NVUE */
 		display: flex;
-		/* #endif */
 		flex-direction: row;
 		align-items: center;
 		justify-content: flex-start;
@@ -153,9 +140,7 @@
 		margin-left: 15px;
 		
 		&__title {
-			/* #ifndef APP-NVUE */
 			display: flex;
-			/* #endif */
 			flex-direction: row;
 			align-items: flex-end;
 			
@@ -168,9 +153,7 @@
 			}
 			
 			&__text {
-				/* #ifndef APP-NVUE */
 				display: flex;
-				/* #endif */
 				color: $u-main-color;
 				font-size: 25px;
 				font-weight: bold;
@@ -199,9 +182,7 @@
 	.logo {
 		width: 70px;
 		height: 70px;
-		/* #ifndef APP-NVUE */
 		height: auto;
-		/* #endif */
 	}
 
 	.nav-slogan {

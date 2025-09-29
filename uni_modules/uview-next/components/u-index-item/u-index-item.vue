@@ -1,27 +1,18 @@
 <template>
-	<!-- #ifdef APP-NVUE -->
-	<cell ref="u-index-item">
-		<!-- #endif -->
-		<view
-			class="u-index-item"
-			:id="`u-index-item-${id}`"
-			:class="[`u-index-item-${id}`]"
-		>
-			<slot />
-		</view>
-		<!-- #ifdef APP-NVUE -->
-	</cell>
-	<!-- #endif -->
+	<view
+		class="u-index-item"
+		:id="`u-index-item-${id}`"
+		:class="[`u-index-item-${id}`]"
+	>
+		<slot />
+	</view>
 </template>
 
 <script>
 	import props from './props.js';
 	import mixin from '../../libs/mixin/mixin'
 	import mpMixin from '../../libs/mixin/mpMixin';
-	// #ifdef APP-NVUE
-	// 由于weex为阿里的KPI业绩考核的产物，所以不支持百分比单位，这里需要通过dom查询组件的宽度
-	const dom = uni.requireNativePlugin('dom')
-	// #endif
+	
 	/**
 	 * IndexItem 
 	 * @description 
@@ -65,18 +56,9 @@
 			},
 			getIndexItemRect() {
 				return new Promise(resolve => {
-					// #ifndef APP-NVUE
 					this.$uGetRect('.u-index-item').then(size => {
 						resolve(size)
 					})
-					// #endif
-
-					// #ifdef APP-NVUE
-					const ref = this.$refs['u-index-item']
-					dom.getComponentRect(ref, res => {
-						resolve(res.size)
-					})
-					// #endif
 				}) 
 			}
 		},

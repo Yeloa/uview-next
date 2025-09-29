@@ -93,10 +93,8 @@ $u-loading-icon-margin-bottom: 10px !default;
         margin-top: -150px;
         justify-content: center;
         align-items: center;
-        /* #ifndef APP-NVUE */
         color: $text-color;
         font-size: $text-size;
-        /* #endif */
         @include flex(column);
 
         &__loading-icon {

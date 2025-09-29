@@ -160,9 +160,7 @@
 
 	.u-switch {
 		@include flex(row);
-		/* #ifndef APP-NVUE */
 		box-sizing: border-box;
-		/* #endif */
 		position: relative;
 		background-color: #fff;
 		border-width: 1px;

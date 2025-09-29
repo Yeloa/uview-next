@@ -1,27 +1,19 @@
 <template>
-	<!-- #ifdef APP-NVUE -->
-	<cell>
-		<!-- #endif -->
-		<view
-			class="u-list-item"
-			:ref="`u-list-item-${anchor}`"
-			:anchor="`u-list-item-${anchor}`"
-			:class="[`u-list-item-${anchor}`]"
-		>
-			<slot />
-		</view>
-		<!-- #ifdef APP-NVUE -->
-	</cell>
-	<!-- #endif -->
+	<view
+		class="u-list-item"
+		:ref="`u-list-item-${anchor}`"
+		:anchor="`u-list-item-${anchor}`"
+		:class="[`u-list-item-${anchor}`]"
+	>
+		<slot />
+	</view>
 </template>
 
 <script>
 	import props from './props.js';
 	import mixin from '../../libs/mixin/mixin'
 	import mpMixin from '../../libs/mixin/mpMixin';
-	// #ifdef APP-NVUE
-	const dom = uni.requireNativePlugin('dom')
-	// #endif
+	
 	/**
 	 * List 列表
 	 * @description 该组件为高性能列表组件
@@ -46,7 +38,6 @@
 		},
 		inject: ['uList'],
 		watch: {
-			// #ifndef APP-NVUE
 			'uList.innerScrollTop'(n) {
 				const preLoadScreen = this.uList.preLoadScreen
 				const windowHeight = this.windowInfo.windowHeight
@@ -56,7 +47,6 @@
 					this.parent.updateOffsetFromChild(this.rect.top)
 				}
 			}
-			// #endif
 		},
 		created() {
 			this.parent = {}
@@ -81,30 +71,19 @@
 					this.rect = size
 					const preLoadScreen = this.uList.preLoadScreen
 					const windowHeight = this.windowInfo.windowHeight
-					// #ifndef APP-NVUE
 					if (lastChild) {
 						this.rect.top = lastChild.rect.top + lastChild.rect.height
 					}
 					if (size.top >= this.uList.innerScrollTop + (1 + preLoadScreen) * windowHeight) this.show =
 						false
-					// #endif
 				})
 			},
 			// 查询元素尺寸
 			queryRect(el) {
 				return new Promise(resolve => {
-					// #ifndef APP-NVUE
 					this.$uGetRect(`.${el}`).then(size => {
 						resolve(size)
 					})
-					// #endif
-
-					// #ifdef APP-NVUE
-					const ref = this.$refs[el]
-					dom.getComponentRect(ref, res => {
-						resolve(res.size)
-					})
-					// #endif
 				})
 			}
 		}

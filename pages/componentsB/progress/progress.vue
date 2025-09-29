@@ -1,0 +1,138 @@
+<template>
+	<view class="u-page">
+		<card title="基础功能">
+			<u-line-progress :percentage="percentage1">
+			</u-line-progress>
+		</card>
+		
+		<card title="不显示百分比">
+			<u-line-progress
+				:showText="false"
+				:percentage="percentage2"
+			>
+			</u-line-progress>
+		</card>
+		
+		<card title="自定义高度">
+			<u-line-progress
+				height="8"
+				:showText="false"
+				:percentage="percentage3"
+			>
+			</u-line-progress>
+		</card>
+		
+		<card title="自定义颜色">
+			<u-line-progress
+				height="8"
+				:showText="false"
+				:percentage="percentage4"
+				activeColor="#3c9cff"
+				inactiveColor="#f3f4f6"
+			>
+			</u-line-progress>
+		</card>
+		
+		<card
+			title="自定义样式(不支持安卓环境的nvue)"
+			v-if="!androidNvue"
+		>
+			<u-line-progress
+				height="8"
+				:showText="false"
+				:percentage="percentage5"
+				activeColor="#3c9cff"
+				inactiveColor="#f3f4f6"
+			>
+				<text class="u-percentage-slot">{{percentage4}}%</text>
+			</u-line-progress>
+		</card>
+		
+		<card title="手动加减">
+			<u-line-progress
+				height="8"
+				:showText="false"
+				:percentage="percentage6"
+				activeColor="#3c9cff"
+				inactiveColor="#f3f4f6"
+			>
+			</u-line-progress>
+			<view class="button-group">
+				<view class="button-group__circle" hover-class="u-hover-class" @click="computedWidth('minus')">
+					<text class="button-group__circle__text">减少</text>
+				</view>
+				<view class="button-group__circle" hover-class="u-hover-class" @click="computedWidth('plus')">
+					<text class="button-group__circle__text">增加</text>
+				</view>
+			</view>
+		</card>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				androidNvue: false,
+				percentage1: 30,
+				percentage2: 40,
+				percentage3: 50,
+				percentage4: 60,
+				percentage5: 70,
+				percentage6: 50,
+			}
+		},
+		onLoad() {
+			uni.$u.sleep(2500).then(() => {
+				this.percentage1 = 120
+			})
+		},
+		methods: {
+			computedWidth(type) {
+				if(type === 'plus') {
+					this.percentage6 = uni.$u.range(0, 100, this.percentage6 + 10)
+				} else {
+					this.percentage6 = uni.$u.range(0, 100, this.percentage6 - 10)
+				}
+			}
+		},
+	}
+</script>
+
+<style lang="scss">
+	.u-page {
+		background: #fff;
+	}
+
+	.u-percentage-slot {
+		padding: 1px 5px;
+		background-color: $u-warning;
+		color: #fff;
+		border-radius: 100px;
+		font-size: 10px;
+		margin-right: -5px;
+	}
+
+
+	
+	.button-group {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		
+		&__circle {
+			width: 50px;
+			height: 50px;
+			background-color: #dbfbdb;
+			border-radius: 100px;
+			justify-content: center;
+			align-items: center;
+			margin: 30px 30px;
+		
+			&__text {
+				color: rgb(25, 190, 107);
+				font-size: 13px;
+			}
+		}
+	}
+</style>

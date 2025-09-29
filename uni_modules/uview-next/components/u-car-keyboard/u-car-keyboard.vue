@@ -255,9 +255,7 @@
 			@include flex;
 			justify-content: center;
 			flex: 1;
-			/* #ifndef APP-NVUE */
-			/* #endif */
-
+			
 			&__inner-wrapper {
 				box-shadow: $u-car-keyboard-button-inner-box-shadow;
 				margin: $u-car-keyboard-button-inner-margin;

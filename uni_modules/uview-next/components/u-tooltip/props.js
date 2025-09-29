@@ -32,7 +32,7 @@ export default defineProps('tooltip', {
         type: String,
         default: 'top',
     },
-    // 弹出提示的z-index，nvue无效
+    // 弹出提示的z-index
     zIndex: {
         type: [String, Number],
         default: 10071,

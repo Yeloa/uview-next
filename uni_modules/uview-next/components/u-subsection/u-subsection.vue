@@ -36,10 +36,6 @@
 </template>
 
 <script>
-// #ifdef APP-NVUE
-const dom = uni.requireNativePlugin('dom');
-const animation = uni.requireNativePlugin('animation');
-// #endif
 import props from './props.js';
 import mpMixin from '../../libs/mixin/mpMixin';
 import mixin from '../../libs/mixin/mixin';
@@ -90,21 +86,6 @@ export default {
 				if (n !== this.innerCurrent) {
 					this.innerCurrent = n;
 				}
-				// #ifdef APP-NVUE
-				// 在安卓nvue上，如果通过translateX进行位移，到最后一个时，会导致右侧无法绘制圆角
-				// 故用animation模块进行位移
-				const ref = this.$refs['u-subsection__bar'].ref;
-				// 不存在ref的时候(理解为第一次初始化时，需要渲染dom，进行一定延时再获取ref)，这里的100ms是经过测试得出的结果(某些安卓需要延时久一点)，勿随意修改
-				uni.$u.sleep(ref ? 0 : 100).then(() => {
-					animation.transition(this.$refs['u-subsection__bar'].ref, {
-						styles: {
-							transform: `translateX(${n * this.itemRect.width}px)`,
-							transformOrigin: 'center center'
-						},
-						duration: 300
-					});
-				});
-				// #endif
 			}
 		}
 	},
@@ -125,9 +106,7 @@ export default {
 			style.width = uni.$u.addUnit(this.itemRect.width);
 			style.height = uni.$u.addUnit(this.itemRect.height);
 			// 通过translateX移动滑块，其移动的距离为索引*item的宽度
-			// #ifndef APP-NVUE
 			style.transform = `translateX(${this.innerCurrent * this.itemRect.width}px)`;
-			// #endif
 
 			if (this.mode === 'subsection') {
 				// 在subsection模式下，需要动态设置滑块的圆角，因为移动滑块使用的是translateX，无法通过父元素设置overflow: hidden隐藏滑块的直角
@@ -226,19 +205,9 @@ export default {
 		},
 		// 获取组件的尺寸
 		getRect() {
-			// #ifndef APP-NVUE
 			this.$uGetRect('.u-subsection__item--0').then(size => {
 				this.itemRect = size;
 			});
-			// #endif
-
-			// #ifdef APP-NVUE
-			const ref = this.$refs['u-subsection__item--0'][0];
-			ref &&
-				dom.getComponentRect(ref, res => {
-					this.itemRect = res.size;
-				});
-			// #endif
 		},
 		clickHandler(index, item) {
 			if (this.disabled || (typeof item === 'object' && item.disabled)) {
@@ -259,10 +228,8 @@ export default {
 	@include flex;
 	position: relative;
 	overflow: hidden;
-	/* #ifndef APP-NVUE */
 	width: 100%;
 	box-sizing: border-box;
-	/* #endif */
 
 	&--button {
 		background-color: rgb(238, 238, 239);
@@ -294,12 +261,10 @@ export default {
 
 	&__bar {
 		position: absolute;
-		/* #ifndef APP-NVUE */
 		transition-property: transform, color;
 		transition-duration: 0.3s;
 		transition-timing-function: ease-in-out;
-		/* #endif */
-
+	
 		&--first {
 			&--square {
 				border-top-left-radius: 3px;

@@ -27,9 +27,7 @@
 	import props from './props.js';
 	import mixin from '../../libs/mixin/mixin'
 	import mpMixin from '../../libs/mixin/mpMixin';
-	// #ifdef APP-NVUE
-	const dom = uni.requireNativePlugin('dom')
-	// #endif
+	
 	/**
 	 * lineProgress 线型进度条
 	 * @description 展示操作或任务的当前进度，比如上传文件，是一个线形的进度条。
@@ -78,18 +76,7 @@
 				})
 			},
 			getProgressWidth() {
-				// #ifndef APP-NVUE
 				return this.$uGetRect('.u-line-progress__background')
-				// #endif
-
-				// #ifdef APP-NVUE
-				// 返回一个promise
-				return new Promise(resolve => {
-					dom.getComponentRect(this.$refs['u-line-progress__background'], (res) => {
-						resolve(res.size)
-					})
-				})
-				// #endif
 			},
 			resizeProgressWidth() {
 				this.getProgressWidth().then(size => {

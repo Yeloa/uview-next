@@ -39,13 +39,13 @@
                     "
                     class="u-album__row__wrapper__text"
                 >
-                    <u--text
+                    <u-text
                         :text="`+${urls.length - maxCount}`"
                         color="#fff"
                         :size="multipleSize * 0.3"
                         align="center"
                         customStyle="justify-content: center"
-                    ></u--text>
+                    ></u-text>
                 </view>
             </view>
         </view>
@@ -56,11 +56,6 @@
     import props from './props.js';
     import mixin from '../../libs/mixin/mixin';
     import mpMixin from '../../libs/mixin/mpMixin';
-
-    // #ifdef APP-NVUE
-    // 由于weex为阿里的KPI业绩考核的产物，所以不支持百分比单位，这里需要通过dom查询组件的宽度
-    const dom = uni.requireNativePlugin('dom');
-    // #endif
 
     /**
      * Album 相册
@@ -221,20 +216,9 @@
             async getComponentWidth() {
                 // 延时一定时间，以获取dom尺寸
                 await uni.$u.sleep(30);
-                // #ifndef APP-NVUE
                 this.$uGetRect('.u-album__row').then((size) => {
                     this.singleWidth = size.width * this.singlePercent;
                 });
-                // #endif
-
-                // #ifdef APP-NVUE
-                // 这里ref="u-album__row"所在的标签为通过for循环出来，导致this.$refs['u-album__row']是一个数组
-                const ref = this.$refs['u-album__row'][0];
-                ref &&
-                    dom.getComponentRect(ref, (res) => {
-                        this.singleWidth = res.size.width * this.singlePercent;
-                    });
-                // #endif
             },
         },
     };

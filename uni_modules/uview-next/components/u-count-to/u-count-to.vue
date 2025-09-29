@@ -181,9 +181,7 @@ export default {
 @import "../../libs/css/components.scss";
 
 .u-count-num {
-	/* #ifndef APP-NVUE */
 	display: inline-flex;
-	/* #endif */
 	text-align: center;
 }
 </style>

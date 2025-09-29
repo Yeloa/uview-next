@@ -53,7 +53,7 @@ import mixin from '../../libs/mixin/mixin'
  * @property {Boolean}				disabled				是否禁用（默认 false ）
  * @property {String}				disabledColor			禁用状态下的背景色（默认 '#f5f7fa' ）
  * @property {Boolean}				count					是否显示统计字数（默认 false ）
- * @property {Boolean}				focus					是否自动获取焦点，nvue不支持，H5取决于浏览器的实现（默认 false ）
+ * @property {Boolean}				focus					是否自动获取焦点，H5取决于浏览器的实现（默认 false ）
  * @property {Boolean | Function}	autoHeight				是否自动增加高度（默认 false ）
  * @property {Boolean}				fixed					如果textarea是在一个position:fixed的区域，需要显示指定属性fixed为true（默认 false ）
  * @property {Number}				cursorSpacing			指定光标与键盘的距离（默认 0 ）
@@ -78,7 +78,7 @@ import mixin from '../../libs/mixin/mixin'
  * @event {Function(e)} input					当键盘输入时，触发 input 事件
  * @event {Function(e)} confirm					点击完成时， 触发 confirm 事件
  * @event {Function(e)} keyboardheightchange	键盘高度发生变化的时候触发此事件
- * @example <u--textarea v-model="value1" placeholder="请输入内容" ></u--textarea>
+ * @example <u-textarea v-model="value1" placeholder="请输入内容" ></u-textarea>
  */
 export default {
     name: "u-textarea",
@@ -127,27 +127,12 @@ export default {
         // 组件的样式
         textareaStyle() { 
             const style = {};
-            // #ifdef APP-NVUE
-            // 由于textarea在安卓nvue上的差异性，需要额外再调整其内边距
-            if (uni.$u.os() === "android") {
-                style.paddingTop = "6px";
-                style.paddingLeft = "9px";
-                style.paddingBottom = "3px";
-                style.paddingRight = "6px";
-            }
-            // #endif
-
-
             if(this.backgroundColor){
 				style.backgroundColor = this.backgroundColor;
 			}
 			
-            //nvue 必须分开写才有效
 			if(this.borderColor){
-				style.borderLeftColor = this.borderColor;
-				style.borderTopColor = this.borderColor;
-				style.borderRightColor = this.borderColor;
-				style.borderBottomColor = this.borderColor;
+				style.bordeColor = this.borderColor;
 			}
 
             // 禁用状态下，被背景色加上对应的样式

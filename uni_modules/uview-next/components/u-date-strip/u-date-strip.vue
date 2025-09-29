@@ -20,7 +20,7 @@
                                 </view>
                                 <view class="u-date-strip__date" :style="[itemStyle('date',item)]">
                                     <text class="u-date-strip__date-text">{{ item.date }}</text>
-                                    <text v-if="showLunar && item.lunar" class="u-date-strip__lunar" :style="[itemStyle('lunar',item)]">{{ item.lunar }}</text>
+                                    <text v-if="showLunar && item.bottomInfo" class="u-date-strip__lunar" :style="[itemStyle('lunar',item)]">{{ item.bottomInfo }}</text>
                                 </view>
                             </view>
                         </view>
@@ -307,6 +307,7 @@
                 
                 // 计算农历
                 if (this.showLunar) {
+                 
                     const lunar = Calendar.solar2lunar(
                         date.year(),
                         date.month() + 1,

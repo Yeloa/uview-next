@@ -16,9 +16,7 @@
 </template>
 
 <script>
-// #ifdef APP-NVUE
-const dom = uni.requireNativePlugin('dom')
-// #endif
+
 import props from './props.js';
 import mixin from '../../libs/mixin/mixin'
 import mpMixin from '../../libs/mixin/mpMixin';
@@ -76,25 +74,9 @@ export default {
 	methods: {
 		getMeasureBox() {
 			return new Promise(resolve => {
-				// #ifndef APP-NVUE
 				this.$uGetRect('.' + this.measureId).then(res => {
 					resolve(res)
 				})
-				// #endif
-
-				// #ifdef APP-NVUE
-				const ref = this.$refs['measureBox']
-				if (ref) {
-					dom.getComponentRect(ref, (res) => {
-						resolve({
-							height: res.size.height,
-							width: res.size.width
-						})
-					})
-				} else {
-					resolve({ height: 0, width: 0 })
-				}
-				// #endif
 			})
 		},
 
@@ -241,13 +223,10 @@ export default {
 		position: absolute;
 		top: -9999px;
 		left: -9999px;
-		
-		/* #ifndef APP-NVUE */
 		white-space: normal;
 		word-wrap: break-word;
 		visibility: hidden;
 		width: 100%;
-		/* #endif */
 	}
 
 	&__content {
@@ -258,11 +237,9 @@ export default {
 	}
 
 	&__action {
-		/* #ifndef APP-NVUE */
 		flex-shrink: 0;
 		cursor: pointer;
 		user-select: none;
-		/* #endif */
 		&:hover {
 			opacity: 0.8;
 		}

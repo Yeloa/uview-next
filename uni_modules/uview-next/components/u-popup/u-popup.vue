@@ -200,7 +200,6 @@
 			contentStyle() {
 				const style = {}
 				// 通过设备信息的safeAreaInsets值来判断是否需要预留顶部状态栏和底部安全局的位置
-				// 不使用css方案，是因为nvue不支持css的iPhoneX安全区查询属性
 				const {
 					safeAreaInsets
 				} = uni.$u.window()
@@ -345,6 +344,12 @@
 	.u-popup {
 		flex: $u-popup-flex;
 
+		&__trigger {
+			@include flex;
+			align-items: center;
+			flex:1;
+		}
+
 		&__content {
 			background-color: $u-popup-content-background-color;
 			position: relative;
@@ -389,10 +394,8 @@
 				@include flex(row);
 				justify-content: center;
 				align-items: center;
-				// #ifndef APP-NVUE
 				box-sizing: border-box;
 				flex-shrink: 0;
-				// #endif
 			}
 
 			&__title {

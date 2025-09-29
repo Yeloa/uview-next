@@ -538,10 +538,7 @@
         }
 
         &__label {
-            //#ifndef APP-NVUE
             display: inline-block;
-            //#endif
-            
 			font-size: 14px;
 			border-radius: 4px;
 			padding: 2px 0px;

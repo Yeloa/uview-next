@@ -1,3 +1,10 @@
+## 3.7.0（2025-09-29）
+1. 全面删除nvue相关功能，后续将不再支持nvue
+2. 删除`u--text`，`u--form`，`u--image`，`u--input`，`u--textarea`组件
+3. 修复`date-strip`组件农历不显示的问题
+4. 新增`calendar-view`组件，废弃`u-calendar`组件`insert`属性
+5. 新增`tabs`组件`showLine`属性
+6. 其他一些细节优化
 ## 3.6.38（2025-09-28）
 1. 修复`paging`组件问题
 ## 3.6.37（2025-09-26）

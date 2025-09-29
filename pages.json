@@ -185,16 +185,12 @@
 						"navigationBarTitleText": "卡片"
 					}
 				},
-				
-				// #ifndef APP-NVUE
 				{
 					"path": "dropdown/dropdown",
 					"style": {
 						"navigationBarTitleText": "下拉菜单"
 					}
 				},
-				// #endif
-
 				{
 					"path": "actionSheet/actionSheet",
 					"style": {

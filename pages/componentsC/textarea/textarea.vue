@@ -1,0 +1,71 @@
+<template>
+	<view class="u-page">
+		<card title="基础使用">
+			<u-textarea
+				v-model="value1"
+				placeholder="请输入内容"
+			></u-textarea>
+		</card>
+		
+		<card title="字数统计">
+			<u-textarea
+				v-model="value2"
+				placeholder="请输入内容"
+				count
+			></u-textarea>
+		</card>
+		
+		<card title="自动增高">
+			<u-textarea
+				v-model="value3"
+				placeholder="请输入内容"
+				autoHeight
+			></u-textarea>
+		</card>
+		
+		<card title="禁用状态">
+			<u-textarea
+				v-model="value4"
+				placeholder="文本域已被禁用"
+				disabled
+				count
+			></u-textarea>
+		</card>
+		
+		<card title="下划线模式">
+			<u-textarea
+				v-model="value5"
+				placeholder="请输入内容"
+				border="bottom"
+			></u-textarea>
+		</card>
+		
+		<card title="自定义样式">
+			<u-textarea
+				v-model="value5"
+				placeholder="请输入内容"
+				backgroundColor="#f5f5f5"
+				border="none"
+			></u-textarea>
+		</card>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				value1: '',
+				value2: '统计字数',
+				value3: '',
+				value4: '',
+				value5: ''
+			}
+		},
+		methods: {
+			formatter(value) {
+				return value.replace(/[^0-9]/ig,"")
+			}
+		}
+	}
+</script>

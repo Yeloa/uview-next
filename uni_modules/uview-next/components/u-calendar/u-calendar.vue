@@ -1,38 +1,5 @@
 <template>
-    <uView
-        v-if="insert"
-        ref="calendarView"
-        :title="title"
-        :showTitle="showTitle"
-        :showSubtitle="showSubtitle"
-        :mode="mode"
-        :startText="startText"
-        :endText="endText"
-        :customList="customList"
-        :color="color"
-        :minDate="minDate"
-        :maxDate="maxDate"
-        :defaultDate="defaultDate"
-        :maxCount="maxCount"
-        :rowHeight="rowHeight"
-        :formatter="formatter"
-        :showLunar="showLunar"
-        :showMark="showMark"
-        :readonly="readonly"
-        :maxRange="maxRange"
-        :rangePrompt="rangePrompt"
-        :showRangePrompt="showRangePrompt"
-        :allowSameDay="allowSameDay"
-        :monthNum="monthNum"
-        :shape="shape"
-        :disabledDate="disabledDate"
-        :disabledFun="disabledFun"
-        :weekdays="weekdays"
-        @monthSelected="monthSelected"
-    />
-
     <u-popup
-        v-else
         :show="show"
         mode="bottom"
         closeable
@@ -41,7 +8,7 @@
         :round="round"
         :closeOnClickOverlay="closeOnClickOverlay"
     >
-        <uView
+        <u-calendar-view
             ref="calendarView"
             :title="title"
             :showTitle="showTitle"
@@ -69,7 +36,7 @@
             :disabledDate="disabledDate"
             :disabledFun="disabledFun"
             :weekdays="weekdays"
-            @monthSelected="monthSelected"
+            @change="change"
         />
         <slot name="footer" v-if="showConfirm">
             <view class="u-calendar__confirm">
@@ -86,10 +53,9 @@
 </template>
 
 <script>
-    import props from './props.js';
-    import mixin from '../../libs/mixin/mixin';
-    import mpMixin from '../../libs/mixin/mpMixin';
-    import uView from './view.vue';
+import props from './props.js';
+import mixin from '../../libs/mixin/mixin';
+import mpMixin from '../../libs/mixin/mpMixin';
 
     /**
 * Calendar 日历
@@ -124,13 +90,11 @@
 * @property {Boolean}				allowSameDay	    是否允许日期范围的起止时间为同一天，mode = range时有效 (默认 false )
 * @property {Number|String}	    round				圆角值，默认无圆角  (默认 0 )
 * @property {Number|String}	    monthNum			最多展示的月份数量  (默认 3 )
-* @property {Boolean}				insert			    是否插入模式  (默认 false )
 * @property {Array | String| Date} disabledDate		禁止选择的日期
 * @property {Function}				disabledFun			禁止选择的日期函数
 *
 * @event {Function()} confirm 		点击确定按钮时触发		选择日期相关的返回参数
 * @event {Function()} close 		日历关闭时触发			可定义页面关闭时的回调事件
-* @event {Function()} change 		插入模式下，选择日期时触发
 * @example <u-calendar  :defaultDate="defaultDateMultiple" :show="show" mode="multiple" @confirm="confirm">
 </u-calendar>
 * */
@@ -138,9 +102,6 @@
     export default {
         name: 'u-calendar',
         mixins: [mpMixin, mixin, props],
-        components: {
-            uView,
-        },
         data() {
             return {
                 // month组件中选择的日期数组
@@ -162,8 +123,17 @@
             },
         },
         // #ifdef VUE3
-        emits: ['confirm', 'close', 'change'],
+        emits: ['confirm', 'close'],
         // #endif
+        mounted() {
+
+            if (process.env.NODE_ENV === 'development') {
+                // 检测即将过期的功能
+                this.checkDeprecatedFeatures([
+                    { type: 'prop', name: 'insert' },
+                ],'u-calendar','https://uview.d3u.cn/components/calendarView.html')
+            }
+        },
         methods: {
             close() {
                 this.$emit('close');
@@ -180,20 +150,16 @@
                 }
             },
             // month组件内部选择日期后，通过事件通知给父组件
-            monthSelected(e) {
+            change(e) {
                 this.selected = e;
-                if (this.insert) {
-                    this.$emit('change', e);
-                } else {
-                    if (!this.showConfirm) {
-                        // 在不需要确认按钮的情况下，如果为单选，或者范围多选且已选长度大于2，则直接进行返还
-                        if (
-                            this.mode === 'multiple' ||
-                            this.mode === 'single' ||
-                            (this.mode === 'range' && this.selected.length >= 2)
-                        ) {
-                            this.$emit('confirm', this.selected);
-                        }
+                if (!this.showConfirm) {
+                    // 在不需要确认按钮的情况下，如果为单选，或者范围多选且已选长度大于2，则直接进行返还
+                    if (
+                        this.mode === 'multiple' ||
+                        this.mode === 'single' ||
+                        (this.mode === 'range' && this.selected.length >= 2)
+                    ) {
+                        this.$emit('confirm', this.selected);
                     }
                 }
             },
@@ -202,11 +168,10 @@
 </script>
 
 <style lang="scss" scoped>
-    @import '../../libs/css/components.scss';
-
-    .u-calendar {
-        &__confirm {
-            padding: 7px 18px;
-        }
+@import '../../libs/css/components.scss';
+.u-calendar {
+    &__confirm {
+        padding: 7px 18px;
     }
+}
 </style>

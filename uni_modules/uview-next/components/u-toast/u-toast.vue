@@ -104,16 +104,9 @@
 				return style
 			},
 			iconStyle() {
-				const style = {}
-				// 图标需要一个右边距，以跟右边的文字有隔开的距离
-				style.marginRight = '4px'
-				// #ifdef APP-NVUE
-				// iOSAPP下，图标有1px的向下偏移，这里进行修正
-				if (uni.$u.os() === 'ios') {
-					style.marginTop = '-1px'
+				return {
+					marginRight: '4px'
 				}
-				// #endif
-				return style
 			},
 			loadingIconColor() {
 				let color = 'rgb(255, 255, 255)'
@@ -232,9 +225,7 @@
 			background-color: $u-toast-border-background-color;
 			color: $u-toast-color;
 			align-items: center;
-			/* #ifndef APP-NVUE */
 			max-width: 300px;
-			/* #endif */
 			position: relative;
 
 			&--loading {

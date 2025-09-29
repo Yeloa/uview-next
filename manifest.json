@@ -85,8 +85,8 @@
             "https" : false
         }
     },
-    "fallbackLocale" : "zh-Hans",
-    "locale" : "zh-Hans",
+    "fallbackLocale" : "en",
+    "locale" : "auto",
     "app-harmony" : {
         "distribute" : {
             "bundleName" : "uni.app.UNI2FAFD05",

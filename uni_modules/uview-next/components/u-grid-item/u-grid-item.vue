@@ -1,5 +1,4 @@
 <template>
-	<!-- #ifndef APP-NVUE -->
 	<view
 	    class="u-grid-item"
 	    hover-class="u-grid-item--hover-class"
@@ -10,18 +9,6 @@
 	>
 		<slot />
 	</view>
-	<!-- #endif -->
-	<!-- #ifdef APP-NVUE -->
-	<view
-	    class="u-grid-item"
-	    :hover-stay-time="200"
-	    @tap="clickHandler"
-	    :class="classes"
-	    :style="[itemStyle]"
-	>
-		<slot />
-	</view>
-	<!-- #endif -->
 </template>
 
 <script>
@@ -48,9 +35,6 @@
 					col: 3, // 父组件划分的宫格数
 					border: true, // 是否显示边框，根据父组件决定
 				},
-				// #ifdef APP-NVUE
-				width: 0, // nvue下才这么计算，vue下放到computed中，否则会因为延时造成闪烁
-				// #endif
 				classes: [], // 类名集合，用于判断是否显示右边和下边框
 			};
 		},
@@ -58,12 +42,6 @@
 			this.init()
 		},
 		computed: {
-			// #ifndef APP-NVUE
-			// vue下放到computed中，否则会因为延时造成闪烁
-			width() {
-				return 100 / Number(this.parentData.col) + '%'
-			},
-			// #endif
 			itemStyle() {
 				const style = {
 					width: this.width,
@@ -88,12 +66,6 @@
 				})
 				// 父组件的实例
 				this.updateParentData()
-				// #ifdef APP-NVUE
-				// 获取元素该有的长度，nvue下要延时才准确
-				this.$nextTick(function(){
-					this.getItemWidth()
-				})
-				// #endif
 				// 发出事件，通知所有的grid-item都重新计算自己的边框
 				uni.$emit('$uGridItem')
 				this.gridItemClasses()
@@ -113,29 +85,6 @@
 				// 调用父组件方法，发出事件
 				this.parent && this.parent.childClick(name)
 				this.$emit('click', name)
-			},
-			async getItemWidth() {
-				// 如果是nvue，不能使用百分比，只能使用固定宽度
-				let width = 0
-				if(this.parent) {
-					// 获取父组件宽度后，除以栅格数，得出每个item的宽度
-					const parentWidth = await this.getParentWidth()
-					width = parentWidth / Number(this.parentData.col) + 'px'
-				}
-				this.width = width
-			},
-			// 获取父元素的尺寸
-			getParentWidth() {
-				// #ifdef APP-NVUE
-				// 返回一个promise，让调用者可以用await同步获取
-				const dom = uni.requireNativePlugin('dom')
-				return new Promise(resolve => {
-					// 调用父组件的ref
-					dom.getComponentRect(this.parent.$refs['u-grid'], res => {
-						resolve(res.size.width)
-					})
-				})
-				// #endif
 			},
 			gridItemClasses() {
 				if(this.parentData.border) {
@@ -192,10 +141,8 @@
 		justify-content: center;
 		position: relative;
 		flex-direction: column;
-		/* #ifndef APP-NVUE */
 		box-sizing: border-box;
 		display: flex;
-		/* #endif */
 
 		/* #ifdef MP */
 		position: relative;
@@ -210,18 +157,4 @@
 			opacity:$u-grid-item-hover-class-opcatiy;
 		}
 	}
-
-	/* #ifdef APP-NVUE */
-	// 由于nvue不支持组件内引入app.vue中再引入的样式，所以需要写在这里
-	.u-border-right {
-		border-right-width:$u-grid-item-border-right-width;
-		border-color: $u-grid-item-border-right-color;
-	}
-
-	.u-border-bottom {
-		border-bottom-width:$u-grid-item-border-bottom-width;
-		border-color:$u-grid-item-border-bottom-color;
-	}
-
-	/* #endif */
 </style>

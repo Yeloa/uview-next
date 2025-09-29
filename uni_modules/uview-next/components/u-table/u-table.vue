@@ -64,9 +64,6 @@
 </template>
 
 <script>
-// #ifdef APP-NVUE
-const dom = uni.requireNativePlugin('dom')
-// #endif
 import props from './props.js';
 import mixin from '../../libs/mixin/mixin'
 import mpMixin from '../../libs/mixin/mpMixin'
@@ -627,18 +624,9 @@ export default {
         // 获取下拉菜单内容的高度
         async getHeaderHeight() {
             await uni.$u.sleep(30);
-            // #ifndef APP-NVUE
             this.$uGetRect('.u-table__header').then(res => {
                 this.headerHeight = res.height;
             });
-            // #endif
-
-            // #ifdef APP-NVUE
-            const ref = this.$refs['u-table__header']
-            ref && dom.getComponentRect(ref, (res) => {
-                this.headerHeight = res.size.height
-            });
-            // #endif
         },
 
         // 获取表尾高度
@@ -649,18 +637,9 @@ export default {
             }
 
             await uni.$u.sleep(30);
-            // #ifndef APP-NVUE
             this.$uGetRect('.u-table__footer').then(res => {
                 this.footerHeight = res.height || 0;
             });
-            // #endif
-
-            // #ifdef APP-NVUE
-            const ref = this.$refs['u-table__footer']
-            ref && dom.getComponentRect(ref, (res) => {
-                this.footerHeight = res.size.height || 0
-            });
-            // #endif
         },
 
         // 表头点击事件处理

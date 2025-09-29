@@ -1,0 +1,117 @@
+<template>
+	<view >
+		<u-navbar
+			title="地区选择器"
+			safeAreaInsetTop
+			fixed
+			placeholder
+		></u-navbar>
+
+		<u-cell-group>
+			<u-cell
+				@click="showPicker(index)"
+				:title="item.title"
+				v-for="(item, index) in list"
+				:key="index"
+				isLink
+			>
+				<template #icon>
+					<image class="u-cell-icon" :src="item.iconUrl" mode="widthFix"></image>
+				</template>
+			</u-cell>
+
+			<u-cell title="默认Input">
+				<template #value>
+					<u-area-picker v-model="value4" closeOnClickOverlay showInput></u-area-picker>
+				</template>
+				<template #icon>
+					<image
+						class="u-cell-icon"
+						src="https://cdn.uviewui.com/uview/demo/picker/2.png"
+						mode="widthFix"
+					></image>
+				</template>
+				
+			</u-cell>
+			<u-cell title="使用触发器">
+				<template #value>
+					<u-area-picker v-model="value3" closeOnClickOverlay @init="init" @confirm="confirm3">
+						<u-input v-model="value1" placeholder="请选择地区" disabled-color="#fff" disabled clearable />
+					</u-area-picker>
+				</template>
+				<template #icon>
+					<image
+						class="u-cell-icon"
+						src="https://cdn.uviewui.com/uview/demo/picker/1.png"
+						mode="widthFix"
+					></image>
+				</template>
+			</u-cell>
+		</u-cell-group>
+
+		<u-area-picker :show="show1" @cancel="cancel" @confirm="confirm"></u-area-picker>
+		<u-area-picker :show="show2" v-model="value2"  @cancel="cancel" @confirm="confirm"></u-area-picker>
+		<u-area-picker :show="show3" v-model="value3" :county="false" @cancel="cancel" @confirm="confirm"></u-area-picker>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				index: 0,
+				show1: false,
+				show2: false,
+				show3: false,
+				value1: '',
+				value2: [130000, "130300", 130303],
+				value3: [],
+				value4: [],
+				list: [
+					{
+						title: '基础使用',
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/picker/2.png'
+					},
+					{
+						title: '设置默认项',
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/picker/5.png'
+					},
+					{
+						title: '只显省市',
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/picker/5.png'
+					}
+				]
+			}
+		},
+		methods: {
+			showPicker(index) {
+				this.index = index + 1
+				this[`show${index + 1}`] = true
+			},
+			close() {
+				// console.log('close');
+				this[`show${this.index}`] = false
+			},
+			init({ value}) {
+				this.value1 = value.map(item => item.label).join('/')
+				console.log('init', value);
+			},
+			confirm(e) {
+				console.log('confirm', e);
+				let text = e.value.map(item => item.label).join('/')
+				uni.$u.toast(text)
+				this[`show${this.index}`] = false
+			},
+			cancel() {
+				// console.log('cancel');
+				this[`show${this.index}`] = false
+			},
+			confirm3({ value }) {
+				let text = value.map(item => item.label).join('/')
+				let values = value.map(item => item.value)
+				this.value1 = text
+				console.log('confirm3', text,values);
+			}
+		},
+	}
+</script>

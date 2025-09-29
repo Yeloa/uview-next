@@ -23,40 +23,38 @@
 		@confirm="confirm"
 		@change="change"
 	>
-		<template v-slot:trigger>
-			<slot name="trigger">
-				<u-input 
-					v-if="showInput"
-					<!-- #ifdef VUE2 -->
-					:value="inputValue"
-					<!-- #endif -->
-					<!-- #ifdef VUE3 -->
-					:modelValue="inputValue"
-					<!-- #endif -->
-					:clearable="inputProps.clearable"
-					:placeholder="inputProps.placeholder"
-					:disabled="inputProps.disabled"
-					:border="inputProps.border"
-					:round="inputProps.round"
-					:backgroundColor="inputProps.disabled ? '' : inputProps.backgroundColor"
-					:disabledColor="inputProps.disabled ? inputProps.backgroundColor : ''"
-					:placeholderClass="inputProps.placeholderClass"
-					:placeholderStyle="inputProps.placeholderStyle"
-					:confirmType="inputProps.confirmType"
-					:focus="inputProps.focus"
-					:inputAlign="inputProps.inputAlign"
-					:fontSize="inputProps.fontSize"
-					:color="inputProps.color"
-					:borderColor="inputProps.borderColor"
-					:prefixIcon="inputProps.prefixIcon"
-					:suffixIcon="inputProps.suffixIcon"
-					:suffixIconStyle="inputProps.suffixIconStyle"
-					:prefixIconStyle="inputProps.prefixIconStyle"
-					:shape="inputProps.shape"
-					:customStyle="inputProps.customStyle"
-				 />
-			</slot>
-		</template>
+		<slot>
+			<u-input 
+				v-if="showInput"
+				<!-- #ifdef VUE2 -->
+				:value="inputValue"
+				<!-- #endif -->
+				<!-- #ifdef VUE3 -->
+				:modelValue="inputValue"
+				<!-- #endif -->
+				:clearable="inputProps.clearable"
+				:placeholder="inputProps.placeholder"
+				:disabled="inputProps.disabled"
+				:border="inputProps.border"
+				:round="inputProps.round"
+				:backgroundColor="inputProps.disabled ? '' : inputProps.backgroundColor"
+				:disabledColor="inputProps.disabled ? inputProps.backgroundColor : ''"
+				:placeholderClass="inputProps.placeholderClass"
+				:placeholderStyle="inputProps.placeholderStyle"
+				:confirmType="inputProps.confirmType"
+				:focus="inputProps.focus"
+				:inputAlign="inputProps.inputAlign"
+				:fontSize="inputProps.fontSize"
+				:color="inputProps.color"
+				:borderColor="inputProps.borderColor"
+				:prefixIcon="inputProps.prefixIcon"
+				:suffixIcon="inputProps.suffixIcon"
+				:suffixIconStyle="inputProps.suffixIconStyle"
+				:prefixIconStyle="inputProps.prefixIconStyle"
+				:shape="inputProps.shape"
+				:customStyle="inputProps.customStyle"
+			/>
+		</slot>
 	</u-picker>
 </template>
 

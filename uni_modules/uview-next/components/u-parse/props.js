@@ -1,12 +1,6 @@
 import { defineProps } from '../../libs/util/props';
 
 export default defineProps('parse', {
-    // #ifdef APP-PLUS-NVUE
-    bgColor: {
-        type: String,
-        default: ''
-    },
-    // #endif
     containerStyle: {
 		type: String,
 		default: ''

@@ -32,7 +32,7 @@ export default defineProps('link', {
         type: String,
         default: ''
     },
-    // 超链接的问题，不使用slot形式传入，是因为nvue下无法修改颜色
+    // 超链接的问题，不使用slot形式传入
     text: {
         type: [String, null],
         default: ''

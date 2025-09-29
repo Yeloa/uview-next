@@ -74,13 +74,6 @@
 					    class="u-upload__success"
 					    v-if="item.status === 'success'"
 					>
-						<!-- #ifdef APP-NVUE -->
-						<image
-						    :src="successIcon"
-						    class="u-upload__success__icon"
-						></image>
-						<!-- #endif -->
-						<!-- #ifndef APP-NVUE -->
 						<view class="u-upload__success__icon">
 							<u-icon
 							    name="checkmark"
@@ -88,7 +81,6 @@
 							    size="12"
 							></u-icon>
 						</view>
-						<!-- #endif -->
 					</view>
 				</view>
 
@@ -193,9 +185,6 @@
 		mixins: [mpMixin, mixin, mixin, props],
 		data() {
 			return {
-				// #ifdef APP-NVUE
-				successIcon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAKKADAAQAAAABAAAAKAAAAAB65masAAACP0lEQVRYCc3YXygsURwH8K/dpcWyG3LF5u/6/+dKVylSypuUl6uUPMifKMWL8oKEB1EUT1KeUPdR3uTNUsSLxb2udG/cbvInNuvf2rVnazZ/ZndmZ87snjM1Z+Z3zpzfp9+Z5mEAhlvjRtZgCKs+gnPAOcAkkMOR4jEHfItjDvgRxxSQD8cM0BuOCaAvXNCBQrigAsXgggYUiwsK0B9cwIH+4gIKlIILGFAqLiBAOTjFgXJxigJp4BQD0sIpAqSJow6kjSNAFTnRaHJwLenD6Mud52VQAcrBfTd2oyq+HtGaGGWAcnAVcXWoM3bCZrdi+ncPfaAcXE5UKVpdW/vitGPqqAtn98d0gXJwX7Qp6MmegUYVhvmTIezdmHlxJCjpHRTCFerLkRRu4k0aqdajN3sWOo0BK//msHa+xDuPC/oNFMKRhTtM4xjIX0SCNpXL4+7VIaHuyiWEp2L7ahWLf8fejfPdqPmC3mJicORZUp1CQzm+GiphvljGk+PBvWRbxii+xVTj5M6CiZ/tsDufvaXyxEUDxeLIyvu3m0iOyEFWVAkydcVYdyFrE9tQk9iMq6f/GNlvwt3LjQfh60LUrw9/cFyyMJUW/XkLSNMV4Mi6C5ML+ui4x5ClAX9sB9w0wV6wglJwJCv5fOxcr6EstgbGiEw4XcfUry4cWrcEUW8n+ARKxXEJHhw2WG43UKSvwI/TSZgvl7kh0b3XLZaLEy0QmMgLZAVH7J+ALOE+AVnDvQOyiPMAWcW5gSzjCPAV+78S5WE0GrQAAAAASUVORK5CYII=',
-				// #endif
 				lists: [],
 				changeFromInner: false,
 				showPopup: false,
@@ -629,9 +618,6 @@
 			bottom: $u-upload-success-bottom;
 			right: $u-upload-success-right;
 			@include flex;
-			// 由于weex(nvue)为阿里巴巴的KPI(部门业绩考核)的laji产物，不支持css绘制三角形
-			// 所以在nvue下使用图片，非nvue下使用css实现
-			/* #ifndef APP-NVUE */
 			border-style: $u-upload-success-border-style;
 			border-top-color: $u-upload-success-border-top-color;
 			border-left-color: $u-upload-success-border-left-color;
@@ -640,19 +626,12 @@
 			border-width: $u-upload-success-border-width;
 			align-items: center;
 			justify-content: center;
-			/* #endif */
-
+		
 			&__icon {
-				/* #ifndef APP-NVUE */
 				position: absolute;
 				transform: scale(0.7);
 				bottom: $u-upload-success-icon-bottom;
 				right: $u-upload-success-icon-right;
-				/* #endif */
-				/* #ifdef APP-NVUE */
-				width: $u-upload-icon-width;
-				height: $u-upload-icon-height;
-				/* #endif */
 			}
 		}
 
@@ -694,9 +673,7 @@
 			background-color: $u-upload-button-bgColor;
 			border-radius: $u-upload-button-border-radius;
 			margin: $u-upload-botton-margin;
-			/* #ifndef APP-NVUE */
 			box-sizing: border-box;
-			/* #endif */
 
 			&__text {
 				font-size: $u-upload-text-font-size;

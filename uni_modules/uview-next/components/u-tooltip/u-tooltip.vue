@@ -47,7 +47,7 @@
 							height: $u.addUnit(indicatorWidth),
 						}]"
 					>
-						<!-- 由于nvue不支持三角形绘制，这里就做一个四方形，再旋转45deg，得到露出的一个三角 -->
+						<!-- 这里就做一个四方形，再旋转45deg，得到露出的一个三角 -->
 					</view>
 					<view class="u-tooltip__wrapper__popup__list">
 						<view
@@ -94,9 +94,7 @@
 	import props from './props.js';
 	import mixin from '../../libs/mixin/mixin'
 	import mpMixin from '../../libs/mixin/mpMixin';
-	// #ifdef APP-NVUE 
-	const dom = uni.requireNativePlugin('dom')
-	// #endif
+	
 	/**
 	 * Tooltip 
 	 * @description 
@@ -107,7 +105,7 @@
 	 * @property {String}			color		字体颜色（默认 '#606266' ）
 	 * @property {String}			bgColor		弹出提示框时，文本的背景色（默认 'transparent' ）
 	 * @property {String}			direction	弹出提示的方向，top-上方，bottom-下方（默认 'top' ）
-	 * @property {String | Number}	zIndex		弹出提示的z-index，nvue无效（默认 10071 ）
+	 * @property {String | Number}	zIndex		弹出提示的z-index（默认 10071 ）
 	 * @property {Boolean}			showCopy	是否显示复制按钮（默认 true ）
 	 * @property {Array}			buttons		扩展的按钮组
 	 * @property {Boolean}			overlay		是否显示透明遮罩以防止触摸穿透（默认 true ）
@@ -218,25 +216,11 @@
 			},
 			// 查询内容高度
 			queryRect(ref) {
-				// #ifndef APP-NVUE
-				// $uGetRect为uView自带的节点查询简化方法，详见文档介绍：https://uview.d3u.cn/js/getRect.html
-				// 组件内部一般用this.$uGetRect，对外的为uni.$u.getRect，二者功能一致，名称不同
 				return new Promise(resolve => {
 					this.$uGetRect(`#${ref}`).then(size => {
 						resolve(size)
 					})
 				})
-				// #endif
-
-				// #ifdef APP-NVUE
-				// nvue下，使用dom模块查询元素高度
-				// 返回一个promise，让调用此方法的主体能使用then回调
-				return new Promise(resolve => {
-					dom.getComponentRect(this.$refs[ref], res => {
-						resolve(res.size)
-					})
-				})
-				// #endif
 			},
 			// 元素尺寸
 			getElRect() {
@@ -287,9 +271,7 @@
 		&__wrapper {
 			@include flex;
 			justify-content: center;
-			/* #ifndef APP-NVUE */
 			white-space: nowrap;
-			/* #endif */
 
 			&__text {
 				font-size: 14px;

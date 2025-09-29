@@ -1,7 +1,7 @@
 import { defineProps } from '../../libs/util/props';
 
 export default defineProps('list', {
-    // 控制是否出现滚动条，仅nvue有效
+    // 控制是否出现滚动条
     showScrollbar: {
         type: Boolean,
         default: false
@@ -11,7 +11,7 @@ export default defineProps('list', {
         type: [String, Number],
         default: 50
     },
-    // 距顶部多少时触发scrolltoupper事件，非nvue有效
+    // 距顶部多少时触发scrolltoupper事件
     upperThreshold: {
         type: [String, Number],
         default: 0
@@ -20,11 +20,6 @@ export default defineProps('list', {
     scrollTop: {
         type: [String, Number],
         default: 0
-    },
-    // 控制 onscroll 事件触发的频率，仅nvue有效
-    offsetAccuracy: {
-        type: [String, Number],
-        default: 10
     },
     // 启用 flexbox 布局。开启后，当前节点声明了display: flex就会成为flex container，并作用于其孩子节点，仅微信小程序有效
     enableFlex: {

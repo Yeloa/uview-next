@@ -53,7 +53,7 @@
 	 * @property {String}						icon			图标
 	 * @property {String | Number}				iconSize		图标的大小，单位px
 	 * @property {String}						iconColor		图标颜色
-	 * @property {String | Number}				label			label提示文字，因为nvue下，直接slot进来的文字，由于特殊的结构，无法修改样式
+	 * @property {String | Number}				label			label提示文字
 	 * @property {String}						labelColor 		label的颜色
 	 * @property {String}						activeLabelColor	选中状态下的label颜色
 	 * @property {String | Number}				labelSize		label的字体大小，px单位
@@ -106,7 +106,6 @@
 					false;
 			},
 			elIcon() {
-				
 				if(this.indeterminate){
 					return 'minus'
 				}
@@ -371,9 +370,7 @@
 	$u-checkbox-button-padding:8px 15px !default;
 
 	.u-checkbox {
-		/* #ifndef APP-NVUE */
 		@include flex(row);
-		/* #endif */
 		overflow: hidden;
 		flex-direction: row;
 		align-items: center;
@@ -388,12 +385,9 @@
 		}
 
 		&__icon-wrap {
-			/* #ifndef APP-NVUE */
 			box-sizing: border-box;
-			// nvue下，border-color过渡有问题
 			transition-property: border-color, background-color, color;
 			transition-duration: 0.2s;
-			/* #endif */
 			color: $u-content-color;
 			@include flex;
 			align-items: center;
@@ -455,9 +449,7 @@
 		}
 
 		&__label {
-			/* #ifndef APP-NVUE */
 			word-wrap: break-word;
-			/* #endif */
 			margin-left: $u-checkbox-label-margin-left;
 			margin-right: $u-checkbox-label-margin-right;
 			color: $u-checkbox-label-color;

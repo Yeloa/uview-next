@@ -1,0 +1,209 @@
+<template>
+	<view class="u-page">
+		<card title="基础使用">
+			<view class="album">
+				<view class="album__avatar">
+					<image
+						src="/static/uview/common/logo.png"
+						mode=""
+						style="width: 32px;height: 32px;"
+					></image>
+				</view>
+				<view class="album__content">
+					<u-text
+						text="uView UI"
+						type="primary"
+						bold
+						size="17"
+					></u-text>
+					<u-text
+						margin="0 0 8px 0"
+						text="全面的组件和便捷的工具会让您信手拈来，如鱼得水"
+					></u-text>
+					<u-album
+						:urls="urls1"
+						keyName="src2"
+						singleSize="100px"
+					></u-album>
+				</view>
+			</view>
+		</card>
+		
+		<card title="多图模式">
+			<view class="album">
+				<view class="album__avatar">
+					<image
+						src="/static/uview/common/logo.png"
+						mode=""
+						style="width: 32px;height: 32px;"
+					></image>
+				</view>
+				<view class="album__content">
+					<u-text
+						text="uView UI"
+						type="primary"
+						bold
+						size="17"
+					></u-text>
+					<u-text
+						margin="0 0 8px 0"
+						text="全面的组件和便捷的工具会让您信手拈来，如鱼得水"
+					></u-text>
+					<u-album :urls="urls2"></u-album>
+				</view>
+			</view>
+		</card>
+		
+		<card title="图文对齐">
+			<view class="album">
+				<view class="album__avatar">
+					<image
+						src="/static/uview/common/logo.png"
+						mode=""
+						style="width: 32px;height: 32px;"
+					></image>
+				</view>
+				<view class="album__content">
+					<u-text
+						text="uView UI"
+						type="primary"
+						bold
+						size="17"
+					></u-text>
+					<view :style="{
+						marginBottom: '8px',
+						width: albumWidth + 'px'
+					}">
+						<u-text
+							text="全面的组件和便捷的工具会让您信手拈来，如鱼得水"
+							:customStyle="{
+								width: albumWidth + 'px'
+							}"
+						></u-text>
+					</view>
+					<u-album
+						:urls="urls2"
+						@albumWidth="width => albumWidth = width"
+						multipleSize="68"
+					></u-album>
+				</view>
+			</view>
+		</card>
+		
+		<card title="更改裁剪模式">
+			<view class="album">
+				<view class="album__avatar">
+					<image
+						src="/static/uview/common/logo.png"
+						mode=""
+						style="width: 32px;height: 32px;"
+					></image>
+				</view>
+				<view class="album__content">
+					<u-text
+						text="uView UI"
+						type="primary"
+						bold
+						size="17"
+					></u-text>
+					<u-text
+						margin="0 0 8px 0"
+						text="全面的组件和便捷的工具会让您信手拈来，如鱼得水"
+					></u-text>
+					<u-album
+						:urls="urls3"
+						rowCount="2"
+						maxCount="4"
+						multipleMode="scaleToFill"
+					></u-album>
+				</view>
+			</view>
+		</card>
+		
+		<card title="更改图片大小">
+			<view class="album">
+				<view class="album__avatar">
+					<image
+						src="/static/uview/common/logo.png"
+						mode=""
+						style="width: 32px;height: 32px;"
+					></image>
+				</view>
+				<view class="album__content">
+					<u-text
+						text="uView UI"
+						type="primary"
+						bold
+						size="17"
+					></u-text>
+					<u-text
+						margin="0 0 8px 0"
+						text="全面的组件和便捷的工具会让您信手拈来，如鱼得水"
+					></u-text>
+					<u-album
+						:urls="urls4"
+						rowCount="2"
+						maxCount="4"
+						multipleSize="50"
+					></u-album>
+				</view>
+			</view>
+		</card>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				albumWidth: 0,
+				urls1: [{
+					src2: 'http://uview.d3u.cn/web/static/uview/album/1.jpg',
+				}],
+				urls2: [
+					'http://uview.d3u.cn/web/static/uview/album/1.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/2.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/3.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/4.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/5.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/6.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/7.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/8.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/9.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/10.jpg',
+				],
+				urls3: [
+					'http://uview.d3u.cn/web/static/uview/album/5.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/6.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/7.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/8.jpg',
+				],
+				urls4: [
+					'http://uview.d3u.cn/web/static/uview/album/7.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/8.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/9.jpg',
+					'http://uview.d3u.cn/web/static/uview/album/10.jpg',
+				]
+			}
+		}
+	}
+</script>
+
+<style lang="scss">
+	.album {
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start;
+
+		&__avatar {
+			background-color: $u-bg-color;
+			padding: 5px;
+			border-radius: 3px;
+		}
+
+		&__content {
+			margin-left: 10px;
+			flex: 1;
+		}
+	}
+</style>

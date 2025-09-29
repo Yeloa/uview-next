@@ -1,67 +1,67 @@
 <template>
-	<view>
-		<view v-if="$slots.trigger || $slots.$trigger || $slots.default || $slots.$default	" class="u-picker-trigger" @click="openPicker">
-			<slot name="trigger"></slot>
-			<slot></slot>
-		</view>
-		<u-popup 
-			:show="showPopup"
-			:round="round" 
-			:closeable="false"
-			:closeOnClickOverlay="closeOnClickOverlay"
-			@close="closeHandler"
-		>
-			<view class="u-picker">
-				<u-toolbar
-					v-if="showToolbar"
-					:cancelColor="cancelColor"
-					:confirmColor="confirmColor"
-					:cancelText="cancelText"
-					:confirmText="confirmText"
-					:title="title"
-					@cancel="cancel"
-					@confirm="confirm"
-				></u-toolbar>
-				<picker-view
-					class="u-picker__view"
-					indicator-class="u-picker__indicator"
-					:indicatorStyle="`height: ${$u.addUnit(itemHeight)};background-color: #f5f5f5;z-index: 0;`"
-					:value="innerIndex"
-					:immediateChange="immediateChange"
-					:style="{
-						height: `${$u.addUnit(visibleItemCount * $u.getPx(itemHeight))}`
-					}"
-					@change="changeHandler"
-				>
-					<picker-view-column
-						v-for="(item, index) in innerColumns"
-						:key="index"
-						class="u-picker__view__column"
-					>
-						<view
-							v-if="$u.test.array(item)"
-							class="u-picker__view__column__item u-line-1"
-							v-for="(item1, index1) in item"
-							:key="index1"
-						>
-							<text :style="{
-								height: $u.addUnit(itemHeight),
-								lineHeight: $u.addUnit(itemHeight),
-								fontWeight: index1 === innerIndex[index] ? 'bold' : 'normal',
-								display: 'block'
-							}">{{ getItemText(item1) }}</text>
-						</view>
-					</picker-view-column>
-				</picker-view>
-				<view
-					v-if="loading"
-					class="u-picker--loading"
-				>
-					<u-loading-icon mode="semicircle" timingFunction="linear"></u-loading-icon>
-				</view>
+	<u-popup 
+		:show="showPopup"
+		:round="round" 
+		:closeable="false"
+		:closeOnClickOverlay="closeOnClickOverlay"
+		@close="closeHandler"
+	>
+		<template #trigger>
+			<view v-if="$slots.default || $slots.$default" class="u-picker-trigger" @click="openPicker">
+				<slot></slot>
 			</view>
-		</u-popup>
-	</view>
+		</template>
+		<view class="u-picker">
+			<u-toolbar
+				v-if="showToolbar"
+				:cancelColor="cancelColor"
+				:confirmColor="confirmColor"
+				:cancelText="cancelText"
+				:confirmText="confirmText"
+				:title="title"
+				@cancel="cancel"
+				@confirm="confirm"
+			></u-toolbar>
+			<picker-view
+				class="u-picker__view"
+				indicator-class="u-picker__indicator"
+				:indicatorStyle="`height: ${$u.addUnit(itemHeight)};background-color: #f5f5f5;z-index: 0;`"
+				:value="innerIndex"
+				:immediateChange="immediateChange"
+				:style="{
+					height: `${$u.addUnit(visibleItemCount * $u.getPx(itemHeight))}`
+				}"
+				@change="changeHandler"
+			>
+				<picker-view-column
+					v-for="(item, index) in innerColumns"
+					:key="index"
+					class="u-picker__view__column"
+				>
+					<view
+						v-if="$u.test.array(item)"
+						class="u-picker__view__column__item u-line-1"
+						v-for="(item1, index1) in item"
+						:key="index1"
+					>
+						<text :style="{
+							height: $u.addUnit(itemHeight),
+							lineHeight: $u.addUnit(itemHeight),
+							fontWeight: index1 === innerIndex[index] ? 'bold' : 'normal',
+							display: 'block'
+						}">{{ getItemText(item1) }}</text>
+					</view>
+				</picker-view-column>
+			</picker-view>
+			<view
+				v-if="loading"
+				class="u-picker--loading"
+			>
+				<u-loading-icon mode="semicircle" timingFunction="linear"></u-loading-icon>
+			</view>
+		</view>
+	</u-popup>
+	
 </template>
 
 <script>
@@ -338,6 +338,12 @@ export default {
 	.u-picker {
 		position: relative;
 
+		&-trigger {
+			@include flex;
+			align-items: center;
+			flex:1;
+		}
+
 		&__view {
 
 			&__column {
@@ -351,15 +357,11 @@ export default {
 					align-items: center;
 					font-size: 16px;
 					text-align: center;
-					/* #ifndef APP-NVUE */
 					display: block;
-					/* #endif */
 					color: $u-main-color;
 
 					&--disabled {
-						/* #ifndef APP-NVUE */
 						cursor: not-allowed;
-						/* #endif */
 						opacity: 0.35;
 					}
 				}
@@ -381,11 +383,9 @@ export default {
 	}
 
 	.u-picker__indicator {
-		// #ifndef APP-NVUE
 		&::before,
 		&::after {
 			display: none;
 		}
-		// #endif
 	}
 </style>

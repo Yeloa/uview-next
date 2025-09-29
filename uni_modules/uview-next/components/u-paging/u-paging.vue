@@ -333,9 +333,7 @@ export default {
 		&__container{
 			position: relative;
 			@include flex(column);
-			/* #ifndef APP-NVUE */
 			overflow: hidden;
-			/* #endif */
 		}
 
 		&__full {

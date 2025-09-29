@@ -20,10 +20,6 @@
 import props from './props.js';
 import mixin from '../../libs/mixin/mixin'
 import mpMixin from '../../libs/mixin/mpMixin';
-// #ifdef APP-NVUE
-const animation = uni.requireNativePlugin('animation')
-const dom = uni.requireNativePlugin('dom')
-// #endif
 /**
  * RowNotice 滚动通知中的水平滚动模式
  * @description 水平滚动
@@ -47,9 +43,6 @@ export default {
 		return {
 			animationDuration: '0', // 动画执行时间
 			animationPlayState: 'paused', // 动画的开始和结束执行
-			// nvue下，内容发生变化，导致滚动宽度也变化，需要标志为是否需要重新计算宽度
-			// 不能在内容变化时直接重新计算，因为nvue的animation模块上一次的滚动不是刚好结束，会有影响
-			nvueInit: true,
 			show: true
 		};
 	},
@@ -57,33 +50,17 @@ export default {
 		text: {
 			immediate: true,
 			handler(newValue, oldValue) {
-				// #ifdef APP-NVUE
-				this.nvueInit = true
-				// #endif
-				// #ifndef APP-NVUE
 				this.vue()
-				// #endif
-
 				if (!uni.$u.test.string(newValue)) {
 					uni.$u.error('noticebar组件direction为row时，要求text参数为字符串形式')
 				}
 			}
 		},
 		fontSize() {
-			// #ifdef APP-NVUE
-			this.nvueInit = true
-			// #endif
-			// #ifndef APP-NVUE
 			this.vue()
-			// #endif
 		},
 		speed() {
-			// #ifdef APP-NVUE
-			this.nvueInit = true
-			// #endif
-			// #ifndef APP-NVUE
 			this.vue()
-			// #endif
 		}
 	},
 	computed: {
@@ -116,7 +93,7 @@ export default {
 	},
 	mounted() {
 		// #ifdef APP-PLUS
-		// 在APP上(含nvue)，监听当前webview是否处于隐藏状态(进入下一页时即为hide状态)
+		// 在APP上，监听当前webview是否处于隐藏状态(进入下一页时即为hide状态)
 		// 如果webivew隐藏了，为了节省性能的损耗，应停止动画的执行，同时也是为了保持进入下一页返回后，滚动位置保持不变
 		var pages = getCurrentPages()
 		var page = pages[pages.length - 1]
@@ -136,21 +113,12 @@ export default {
 	// #endif
 	methods: {
 		init() {
-			// #ifdef APP-NVUE
-			this.nvue()
-			// #endif
-
-			// #ifndef APP-NVUE
 			this.vue()
-			// #endif
-
 			if (!uni.$u.test.string(this.text)) {
 				uni.$u.error('noticebar组件direction为row时，要求text参数为字符串形式')
 			}
 		},
-		// vue版处理
 		async vue() {
-			// #ifndef APP-NVUE
 			let boxWidth = 0,
 				textWidth = 0
 			// 进行一定的延时
@@ -166,69 +134,6 @@ export default {
 			setTimeout(() => {
 				this.animationPlayState = 'running'
 			}, 10)
-			// #endif
-		},
-		// nvue版处理
-		async nvue() {
-			// #ifdef APP-NVUE
-			this.nvueInit = false
-			let boxWidth = 0,
-				textWidth = 0
-			// 进行一定的延时
-			await uni.$u.sleep()
-			// 查询盒子和文字的宽度
-			textWidth = (await this.getNvueRect('u-notice__content__text')).width
-			boxWidth = (await this.getNvueRect('u-notice__content')).width
-			// 将文字移动到盒子的右边沿，之所以需要这么做，是因为nvue不支持100%单位，否则可以通过css设置
-			animation.transition(this.$refs['u-notice__content__text'], {
-				styles: {
-					transform: `translateX(${boxWidth}px)`
-				},
-			}, () => {
-				// 如果非禁止动画，则开始滚动
-				!this.stopAnimation && this.loopAnimation(textWidth, boxWidth)
-			});
-			// #endif
-		},
-		loopAnimation(textWidth, boxWidth) {
-			// #ifdef APP-NVUE
-			animation.transition(this.$refs['u-notice__content__text'], {
-				styles: {
-					// 目标移动终点为-textWidth，也即当文字的最右边贴到盒子的左边框的位置
-					transform: `translateX(-${textWidth}px)`
-				},
-				// 滚动时间的计算为，时间 = 路程(boxWidth + textWidth) / 速度，最后转为毫秒
-				duration: (boxWidth + textWidth) / uni.$u.getPx(this.speed) * 1000,
-				delay: 10
-			}, () => {
-				animation.transition(this.$refs['u-notice__content__text'], {
-					styles: {
-						// 重新将文字移动到盒子的右边沿
-						transform: `translateX(${this.stopAnimation ? 0 : boxWidth}px)`
-					},
-				}, () => {
-					// 如果非禁止动画，则继续下一轮滚动
-					if (!this.stopAnimation) {
-						// 判断是否需要初始化计算尺寸
-						if (this.nvueInit) {
-							this.nvue()
-						} else {
-							this.loopAnimation(textWidth, boxWidth)
-						}
-					}
-				});
-			})
-			// #endif
-		},
-		getNvueRect(el) {
-			// #ifdef APP-NVUE
-			// 返回一个promise
-			return new Promise(resolve => {
-				dom.getComponentRect(this.$refs[el], (res) => {
-					resolve(res.size)
-				})
-			})
-			// #endif
 		},
 		// 点击通告栏
 		clickHandler(index) {
@@ -238,12 +143,7 @@ export default {
 		close() {
 			this.$emit('close')
 		}
-	},
-	// #ifdef APP-NVUE && VUE2
-	beforeDestroy() {
-		this.stopAnimation = true
-	},
-	// #endif
+	}
 };
 </script>
 
@@ -275,20 +175,17 @@ export default {
 		&__text {
 			font-size: 14px;
 			color: $u-warning;
-			/* #ifndef APP-NVUE */
 			// 这一句很重要，为了能让滚动左右连接起来
 			padding-left: 100%;
 			word-break: keep-all;
 			white-space: nowrap;
 			animation: u-loop-animation 10s linear infinite both;
-			/* #endif */
 			@include flex(row);
 			flex-shrink: 0;
 		}
 	}
 
 }
-/* #ifndef APP-NVUE */
 @keyframes u-loop-animation {
 	0% {
 		transform: translate3d(0, 0, 0);
@@ -297,5 +194,4 @@ export default {
 		transform: translate3d(-100%, 0, 0);
 	}
 }
-/* #endif */
 </style>

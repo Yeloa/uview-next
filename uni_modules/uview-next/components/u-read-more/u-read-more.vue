@@ -25,13 +25,13 @@
 				    class="u-read-more__toggle__text"
 				    @tap="toggleReadMore"
 				>
-					<u--text
+					<u-text
 					    :text="status === 'close' ? closeText : openText"
 					    :color="color"
 					    :size="fontSize"
 					    :lineHeight="fontSize"
 					    margin="0 5px 0 0"
-					></u--text>
+					></u-text>
 					<view class="u-read-more__toggle__icon">
 						<u-icon
 						    :color="color"
@@ -46,9 +46,6 @@
 </template>
 
 <script>
-	// #ifdef APP-NVUE
-	const dom = uni.requireNativePlugin('dom')
-	// #endif
 	import props from './props.js';
 	import mixin from '../../libs/mixin/mixin'
 	import mpMixin from '../../libs/mixin/mpMixin';
@@ -107,18 +104,9 @@
 				// 延时一定时间再获取节点
 				await uni.$u.sleep(30)
 				return new Promise(resolve => {
-					// #ifndef APP-NVUE
 					this.$uGetRect('.' + this.elId).then(res => {
 						resolve(res.height)
 					})
-					// #endif
-
-					// #ifdef APP-NVUE
-					const ref = this.$refs['u-read-more__content__inner']
-					dom.getComponentRect(ref, (res) => {
-						resolve(res.size.height)
-					})
-					// #endif
 				})
 			},
 			// 展开或者收起

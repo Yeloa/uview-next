@@ -36,9 +36,7 @@
 </template>
 
 <script>
-// #ifdef APP-NVUE
-const dom = uni.requireNativePlugin('dom')
-// #endif
+
 import props from './props.js';
 import mixin from '../../libs/mixin/mixin'
 import mpMixin from '../../libs/mixin/mpMixin';
@@ -181,16 +179,9 @@ export default {
 		
 			// 获取触发器尺寸
 			try {
-				// #ifndef APP-NVUE
 				const triggerInfo = await this.$uGetRect('.u-fab__trigger-wrapper')
 				this.fabSize.width = triggerInfo.width || 56
 				this.fabSize.height = triggerInfo.height || 56
-				// #endif
-				
-				// #ifdef APP-NVUE
-				this.fabSize.width = 56
-				this.fabSize.height = 56
-				// #endif
 			} catch (error) {
 				console.log('获取触发器尺寸失败:', error)
 			}

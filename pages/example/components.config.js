@@ -210,14 +210,12 @@ export default [{
         title: '金融数字',
         title_en: 'Amount'
     },
-    // #ifndef APP-NVUE 
     {
     	path: '/pages/componentsC/table/table',
     	icon: 'table',
     	title: '表格',
     	title_en: 'Table',
     },
-    // #endif
     {
         path: '/pages/componentsB/countDown/countDown',
         icon: 'countDown',
@@ -304,14 +302,12 @@ export default [{
         title: '横向滚动',
         title_en: 'ScrollList'
     }, 
-    // #ifndef APP-NVUE 
     {
         path: '/pages/componentsB/card/card',
         icon: 'card',
         title: '卡片',
         title_en: 'Card'
     }, 
-    // #endif
     {
         path: '/pages/componentsA/line/line',
         icon: 'line',
@@ -352,14 +348,12 @@ export default [{
         title: '吸顶',
         title_en: 'Sticky'
     },
-    // #ifndef APP-NVUE 
     {
         path: '/pages/componentsB/waterfall/waterfall',
         icon: 'waterfall',
         title: '瀑布流',
         title_en: 'Waterfall',
     },
-    // #endif
     {
         path: '/pages/componentsA/divider/divider',
         icon: 'divider',
@@ -522,14 +516,12 @@ export default [{
         title: '文本省略',
         title_en: 'Ellipsis'
     },
-    // #ifndef APP-NVUE
     {
     	path: '/pages/componentsA/lazyLoad/lazyLoad',
     	icon: 'lazyLoad',
     	title: '懒加载',
     	title_en: 'LazyLoad',
     },
-    // #endif
     {
         path: '/pages/componentsA/gap/gap',
         icon: 'gap',

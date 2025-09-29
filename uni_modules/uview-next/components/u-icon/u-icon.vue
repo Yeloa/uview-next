@@ -35,22 +35,11 @@
 </template>
 
 <script>
-	
 	// 引入图标名称，已经对应的unicode
 	import icons from './icons'
 	import props from './props.js';
 	import mixin from '../../libs/mixin/mixin'
 	import mpMixin from '../../libs/mixin/mpMixin';
-
-	// #ifdef APP-NVUE
-	// nvue通过weex的dom模块引入字体，相关文档地址如下：
-	// https://weex.apache.org/zh/docs/modules/dom.html#addrule
-	const domModule = weex.requireModule('dom')
-	domModule.addRule('fontFace', {
-		"fontFamily": "uicon-iconfont",
-		"src": "url('https://at.alicdn.com/t/c/font_5015490_4ujeamqc3gh.ttf')"
-	})
-	// #endif
 
 	/**
 	 * icon 图标
@@ -157,18 +146,13 @@
 	$u-icon-error: $u-error !default;
 	$u-icon-label-line-height:1 !default;
 	
-	/* #ifndef APP-NVUE */
-	// 非nvue下加载字体
 	@font-face {
 		font-family: 'uicon-iconfont';
 		src: url('https://at.alicdn.com/t/c/font_5015490_4ujeamqc3gh.ttf') format('truetype');
 	}
-	/* #endif */
-
+	
 	.u-icon {
-		/* #ifndef APP-NVUE */
 		display: flex;
-		/* #endif */
 		align-items: center;
 
 		&--left {
@@ -199,16 +183,12 @@
 		}
 
 		&__img {
-			/* #ifndef APP-NVUE */
 			height: auto;
 			will-change: transform;
-			/* #endif */
 		}
 
 		&__label {
-			/* #ifndef APP-NVUE */
 			line-height: $u-icon-label-line-height;
-			/* #endif */
 		}
 	}
 </style>

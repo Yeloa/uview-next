@@ -4,12 +4,12 @@ import theme from '../../libs/config/theme.js';
 export default defineProps('icon', {
     // 图标类名
     name: {
-        type: String,
+        type: [String, null],
         default: ''
     },
     // 图标颜色，可接受主题色
     color: {
-        type: String,
+        type: [String, null],
         default: theme.mainColor
     },
     // 字体大小，单位px

@@ -103,10 +103,10 @@ import mpMixin from '../../libs/mixin/mpMixin'
  * @property {String} 					align		文本对齐方式，可选值left|center|right（默认 'left' ）
  * @property {String} 					wordWrap	文字换行，可选值break-word|normal|anywhere（默认 'normal' ）
  * @event {Function} click  点击触发事件
- * @example <u--text text="我用十年青春,赴你最后之约"></u--text>
+ * @example <u-text text="我用十年青春,赴你最后之约"></u-text>
  */
 export default {
-    name: 'u--text',
+    name: 'u-text',
     
     mixins: [
         mpMixin, 
@@ -127,18 +127,8 @@ export default {
                 fontSize: uni.$u.addUnit(this.size)
             }
             !this.type && (style.color = this.color)
-            this.isNvue && this.lines && (style.lines = this.lines)
-            this.lineHeight &&
-                (style.lineHeight = uni.$u.addUnit(this.lineHeight))
-            !this.isNvue && this.block && (style.display = 'block')
+            this.lineHeight && (style.lineHeight = uni.$u.addUnit(this.lineHeight))
             return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
-        },
-        isNvue() {
-            let nvue = false
-            // #ifdef APP-NVUE
-            nvue = true
-            // #endif
-            return nvue
         },
         isMp() {
             let mp = false
@@ -176,9 +166,7 @@ export default {
     align-items: center;
     flex-wrap: nowrap;
     flex: 1;
-	/* #ifndef APP-NVUE */
 	width: 100%;
-	/* #endif */
 
     &__price {
         font-size: 14px;

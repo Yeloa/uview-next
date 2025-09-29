@@ -143,7 +143,6 @@ export default defineProps('button', {
         default: 200
     },
     // 按钮文字，之所以通过props传入，是因为slot传入的话
-    // nvue中无法控制文字的样式
     text: {
         type: [String, Number],
         default: ''

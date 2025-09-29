@@ -1,8 +1,5 @@
 <template>
-	<view
-	    class="u-radio-group"
-	    :class="bemClass"
-	>
+	<view class="u-radio-group" :class="[`u-radio-group--${placement}`]">
 		<slot></slot>
 	</view>
 </template>
@@ -65,11 +62,7 @@
 					this.iconPlacement,
 					this.plain,
 				]
-			},
-			bemClass() {
-				// this.bem为一个computed变量，在mixin中
-				return this.bem('radio-group', ['placement'])
-			},
+			}
 		},
 		watch: {
 			// 当父组件需要子组件需要共享的参数发生了变化，手动通知子组件

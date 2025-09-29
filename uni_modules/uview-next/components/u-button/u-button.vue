@@ -1,10 +1,9 @@
 <template>
-    <!-- #ifndef APP-NVUE -->
     <button 
         class="u-button u-reset-button"
-        :hover-class="!disabled && !loading ? 'u-button--active' : ''" 
+        :hover-class="hoverClass" 
         :style="[baseColor, $u.addStyle(customStyle)]" 
-        :class="bemClass"
+        :class="buttonClass"
         :hover-start-time="Number(hoverStartTime)" 
         :hover-stay-time="Number(hoverStayTime)" 
         :form-type="formType"
@@ -28,44 +27,16 @@
         @tap="clickHandler" 
     >
         <template v-if="loading">
-            <u-loading-icon :mode="loadingMode" :size="loadingSize * 1.15" :color="elLoadingColor"></u-loading-icon>
+            <u-loading-icon :mode="loadingMode" :size="loadingSize * 1.15" :color="loadingColor"></u-loading-icon>
             <text class="u-button__loading-text" :style="[textStyle]">{{ loadingText || text}}</text>
         </template>
         <template v-else>
-            <u-icon v-if="icon" :name="icon" :color="elIconColor" :size="textSize * 1.35"></u-icon>
+            <u-icon v-if="icon" :name="icon" :color="iconColorCom" :size="textSize * 1.35"></u-icon>
             <slot>
                 <text class="u-button__text" :style="[textStyle]">{{ text }}</text>
             </slot>
         </template>
     </button>
-    <!-- #endif -->
-    <!-- #ifdef APP-NVUE -->
-    <view 
-        class="u-button"
-        :class="bemClass" 
-        :style="[baseColor, $u.addStyle(customStyle)]"
-        :hover-start-time="Number(hoverStartTime)" 
-        :hover-stay-time="Number(hoverStayTime)" 
-        :hover-class="!disabled && !loading && !color && (plain || type === 'info')
-                ? 'u-button--active--plain'
-                : !disabled && !loading && !plain
-                    ? 'u-button--active'
-                    : ''
-                " 
-        @tap="clickHandler" 
-        >
-        <template v-if="loading">
-            <u-loading-icon :mode="loadingMode" :size="loadingSize * 1.15" :color="elLoadingColor"></u-loading-icon>
-            <text class="u-button__loading-text" :style="[textStyle]"
-                :class="[plain && `u-button__text--plain--${type}`]">{{ loadingText || text }}</text>
-        </template>
-        <template v-else>
-            <u-icon v-if="icon" :name="icon" :color="elIconColor" :size="textSize * 1.35"></u-icon>
-            <text class="u-button__text" :class="[plain && `u-button__text--plain--${type}`]" 
-            :style="[textStyle]">{{ text }}</text>
-        </template>
-    </view>
-    <!-- #endif -->
 </template>
 
 <script>
@@ -86,7 +57,7 @@ import mpMixin from '../../libs/mixin/mpMixin'
  * @property {String}			shape					按钮形状，circle（两边为半圆），square（带圆角） （默认 'square' ）
  * @property {Boolean}			plain					按钮是否镂空，背景色透明 （默认 false）
  * @property {Boolean}			disabled				是否禁用 （默认 false）
- * @property {Boolean}			loading					按钮名称前是否带 loading 图标(App-nvue 平台，在 ios 上为雪花，Android上为圆圈) （默认 false）
+ * @property {Boolean}			loading					按钮名称前是否带 loading 图标（默认 false）
  * @property {String | Number}	loadingText				加载中提示文字
  * @property {String}			loadingMode				加载状态图标类型 （默认 'spinner' ）
  * @property {String | Number}	loadingSize				加载图标大小 （默认 15 ）
@@ -104,7 +75,7 @@ import mpMixin from '../../libs/mixin/mpMixin'
  * @property {String | Number}	throttleTime			节流，一定时间内只能触发一次 （默认 0 )
  * @property {String | Number}	hoverStartTime			按住后多久出现点击态，单位毫秒 （默认 0 )
  * @property {String | Number}	hoverStayTime			手指松开后点击态保留时间，单位毫秒 （默认 200 )
- * @property {String | Number}	text					按钮文字，之所以通过props传入，是因为slot传入的话（注：nvue中无法控制文字的样式）
+ * @property {String | Number}	text					按钮文字，之所以通过props传入，是因为slot传入的话
  * @property {String}			icon					按钮图标
  * @property {String}			iconColor				按钮图标颜色
  * @property {String}			color					按钮颜色，支持传入linear-gradient渐变色
@@ -131,32 +102,52 @@ export default {
         openType
         // #endif
     ],
-    data() {
-        return {
-            elLoadingColor:'',
-            elIconColor:''
-        };
-    },
     computed: {
-        // 生成bem风格的类名
-        bemClass() {
-            // this.bem为一个computed变量，在mixin中
-            if (!this.color) {
-                return this.bem(
-                    "button",
-                    ["type", "shape", "size"],
-                    ["disabled", "plain", "hairline"]
-                );
+        hoverClass() {
+            return this.disabled || this.loading ? '' : 'u-button--active';
+        },
+        buttonClass() {
+            let classes = [
+                'u-button--' + this.type,
+                'u-button--' + this.shape, 
+                'u-button--' + this.size
+            ]
+       
+            if (this.disabled) {
+                classes.push('u-button--disabled')
+            }
+            if (this.plain) {
+                classes.push('u-button--plain')
+            }
+            if (this.hairline) {
+                classes.push('u-button--hairline')
+            }
+            // 支付宝，头条小程序无法动态绑定一个数组类名，否则解析出来的结果会带有","，而导致失效
+            // #ifdef MP-ALIPAY || MP-TOUTIAO
+            classes = classes.join(' ')
+            // #endif
+            return classes
+        },
+        loadingColor() {
+            if (this.plain) {
+                // 如果有设置color值，则用color值，否则使用type主题颜色
+                return this.color ? this.color : this.$u.theme[this.type];
+            }
+            if (this.type === "info") {
+                return "#c9c9c9";
+            }
+            return "rgb(200, 200, 200)";
+        },
+        iconColorCom() {
+            // 如果是镂空状态，设置了color就用color值，否则使用主题颜色，
+            // u-icon的color能接受一个主题颜色的值
+			if (this.iconColor) return this.iconColor;
+			if (this.plain) {
+                return this.color ? this.color : this.type;
             } else {
-                // 由于nvue的原因，在有color参数时，不需要传入type，否则会生成type相关的类型，影响最终的样式
-                return this.bem(
-                    "button",
-                    ["shape", "size"],
-                    ["disabled", "plain", "hairline"]
-                );
+                return this.type === "info" ? "#000000" : "#ffffff";
             }
         },
-        
         baseColor() {
             let style = {};
             if (this.color) {
@@ -167,32 +158,18 @@ export default {
                     style["background-color"] = this.color;
                 }
                 if (this.color.indexOf("gradient") !== -1) {
-                    // 如果自定义的颜色为渐变色，不显示边框，以及通过backgroundImage设置渐变色
-                    // weex文档说明可以写borderWidth的形式，为什么这里需要分开写？
-                    // 因为weex是阿里巴巴为了部门业绩考核而做的你懂的东西，所以需要这么写才有效
-                    style.borderTopWidth = 0;
-                    style.borderRightWidth = 0;
-                    style.borderBottomWidth = 0;
-                    style.borderLeftWidth = 0;
+                    style.borderWidth = 0;
                     if (!this.plain) {
                         style.backgroundImage = this.color;
                     }
                 } else {
-                    // 非渐变色，则设置边框相关的属性
-                    style.borderColor = this.color;
-                    style.borderWidth = "1px";
-                    style.borderStyle = "solid";
+                    style.border = '1px solid ' + this.color;
                 }
             }
 
-            // 为了兼容安卓nvue，只能这么分开写
             let radius = this.shape == 'circle' ? 100 : this.round
             if(radius) {
-                radius = uni.$u.addUnit(radius)
-                style.borderTopLeftRadius = radius
-				style.borderTopRightRadius = radius
-				style.borderBottomLeftRadius = radius
-				style.borderBottomRightRadius = radius
+                style.borderRadius = uni.$u.addUnit(radius)
             }
 
             if(this.icon && this.iconPosition === 'right'){
@@ -201,7 +178,6 @@ export default {
 
             return style;
         },
-        // nvue版本按钮的字体不会继承父组件的颜色，需要对每一个text组件进行单独的设置
         textStyle() {
             let style = {};
             style.fontSize = uni.$u.addUnit(this.textSize);
@@ -213,16 +189,6 @@ export default {
                     style.marginRight = uni.$u.addUnit(2);
                 }
             }
-
-            //#ifdef APP-NVUE
-            // 针对自定义了color颜色的情况，镂空状态下，就是用自定义的颜色
-            if (this.type === "info") {
-                style.color = this.$u.theme.mainColor;
-            }
-            if (this.color) {
-                style.color = this.plain ? this.color : "white";
-            }
-            // #endif
             
             return style;
         },
@@ -237,45 +203,11 @@ export default {
             return fontSize;
         },
     },
-    watch: {
-        color: {
-			immediate: true,
-			handler(newVal) {
-                this.iconColorCom()
-				this.loadingColorCom()
-			}
-		},
-		iconColor: {
-			immediate: true,
-			handler(newVal) {
-				this.iconColorCom()
-			}
-		}
-	},
+  
     // #ifdef VUE3
     emits: ['click', 'error', 'launchapp', 'opensetting', 'getuserinfo', 'getphonenumber', 'agreeprivacyauthorization', 'chooseavatar'],
     // #endif
     methods: {
-        iconColorCom() {
-            // 如果是镂空状态，设置了color就用color值，否则使用主题颜色，
-            // u-icon的color能接受一个主题颜色的值
-            if (this.iconColor) this.elIconColor = this.iconColor;
-            if (this.plain) {
-                this.elIconColor = this.color ? this.color : this.type;
-            } else {
-                this.elIconColor = this.type === "info" ? "#000000" : "#ffffff";
-            }
-        },
-        loadingColorCom() {
-            if (this.plain) {
-                // 如果有设置color值，则用color值，否则使用type主题颜色
-                this.elLoadingColor =  this.color ? this.color : this.$u.theme[this.type];
-            }
-            if (this.type === "info") {
-                this.elLoadingColor = "#c9c9c9";
-            }
-            this.elLoadingColor = "rgb(200, 200, 200)";
-        },
         clickHandler(e) {
             // 非禁止并且非加载中，才能点击
             if (!this.disabled && !this.loading) {
@@ -314,13 +246,20 @@ export default {
 <style lang="scss" scoped>
 @import "../../libs/css/components.scss";
 
-/* #ifndef APP-NVUE */
-@import "./vue.scss";
-/* #endif */
-
-/* #ifdef APP-NVUE */
-@import "./nvue.scss";
-/* #endif */
+$u-button-before-top:50% !default;
+$u-button-before-left:50% !default;
+$u-button-before-width:100% !default;
+$u-button-before-height:100% !default;
+$u-button-before-transform:translate(-50%, -50%) !default;
+$u-button-before-opacity:0 !default;
+$u-button-before-background-color:#000 !default;
+$u-button-before-border-color:#000 !default;
+$u-button-active-before-opacity:.15 !default;
+$u-button-icon-margin-left:4px !default;
+$u-button-plain-u-button-info-color:$u-info;
+$u-button-plain-u-button-success-color:$u-success;
+$u-button-plain-u-button-error-color:$u-error;
+$u-button-plain-u-button-warning-color:$u-error;
 
 $u-button-u-button-height: 40px !default;
 $u-button-text-font-size: 15px !default;
@@ -375,13 +314,70 @@ $u-button-hairline-border-width: 0.5px !default;
     align-items: center;
     justify-content: center;
     @include flex;
-    /* #ifndef APP-NVUE */
     box-sizing: border-box;
-    /* #endif */
     flex-direction: row;
+    width: 100%;
+    
+    &:before {
+        position: absolute;
+        top:$u-button-before-top;
+        left:$u-button-before-left;
+        width:$u-button-before-width;
+        height:$u-button-before-height;
+        border: inherit;
+        border-radius: inherit;
+        transform:$u-button-before-transform;
+        opacity:$u-button-before-opacity;
+        content: " ";
+        background-color:$u-button-before-background-color;
+        border-color:$u-button-before-border-color;
+    }
+    
+    &--active {
+        &:before {
+            opacity: .15
+        }
+    }
+    
+    &__icon+&__text:not(:empty),
+    &__loading-text {
+        margin-left:$u-button-icon-margin-left;
+    }
+    
+    &--plain {
+        &.u-button--primary {
+            color: $u-primary;
+        }
+    }
+    
+    &--plain {
+        &.u-button--info {
+            color:$u-button-plain-u-button-info-color;
+        }
+    }
+    
+    &--plain {
+        &.u-button--success {
+            color:$u-button-plain-u-button-success-color;
+        }
+    }
+    
+    &--plain {
+        &.u-button--error {
+            color:$u-button-plain-u-button-error-color;
+        }
+    }
+    
+    &--plain {
+        &.u-button--warning {
+            color:$u-button-plain-u-button-warning-color;
+        }
+    }
 
     &__text {
         font-size: $u-button-text-font-size;
+        white-space: nowrap;
+        line-height: 1;
     }
 
     &__loading-text {
@@ -390,9 +386,7 @@ $u-button-hairline-border-width: 0.5px !default;
     }
 
     &--large {
-        /* #ifndef APP-NVUE */
         width: $u-button-large-width;
-        /* #endif */
         height: $u-button-large-height;
         padding: $u-button-large-padding;
     }
@@ -404,9 +398,7 @@ $u-button-hairline-border-width: 0.5px !default;
     }
 
     &--small {
-        /* #ifndef APP-NVUE */
         min-width: $u-button-small-min-width;
-        /* #endif */
         height: $u-button-small-height;
         padding: $u-button-small-padding;
         font-size: $u-button-small-font-size;
@@ -415,9 +407,7 @@ $u-button-hairline-border-width: 0.5px !default;
     &--mini {
         height: $u-button-mini-height;
         font-size: $u-button-mini-font-size;
-        /* #ifndef APP-NVUE */
         min-width: $u-button-mini-min-width;
-        /* #endif */
         padding: $u-button-mini-padding;
     }
 
@@ -479,11 +469,9 @@ $u-button-hairline-border-width: 0.5px !default;
     }
 
     &__icon {
-        /* #ifndef APP-NVUE */
         min-width: $u-button-icon-min-width;
         line-height: inherit !important;
         vertical-align: top;
-        /* #endif */
     }
 
     &--plain {

@@ -27,9 +27,6 @@
 	import props from './props.js';
 	import mixin from '../../libs/mixin/mixin'
 	import mpMixin from '../../libs/mixin/mpMixin';	
-	// #ifdef APP-NVUE
-	const dom = weex.requireModule('dom')
-	// #endif
 	/**
 	 * backTop 返回顶部
 	 * @description 本组件一个用于长页面，滑动一定距离后，出现返回顶部按钮，方便快速返回顶部的场景。
@@ -69,19 +66,9 @@
 				return uni.$u.getPx(this.scrollTop) > uni.$u.getPx(this.top)
 			},
 			contentStyle() {
-				const style = {}
-				let radius = 0
-				// 是否圆形
-				if(this.mode === 'circle') {
-					radius = '100px'
-				} else {
-					radius = '4px'
+				const style = {
+					borderRadius: this.mode === 'circle' ? '100px' : '4px'
 				}
-				// 为了兼容安卓nvue，只能这么分开写
-				style.borderTopLeftRadius = radius
-				style.borderTopRightRadius = radius
-				style.borderBottomLeftRadius = radius
-				style.borderBottomRightRadius = radius
 				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
 			}
 		},
@@ -90,21 +77,10 @@
 		// #endif
 		methods: {
 			backToTop() {
-				// #ifdef APP-NVUE
-				if (!this.$parent.$refs['u-back-top']) {
-					uni.$u.error(`nvue页面需要给页面最外层元素设置"ref='u-back-top'`)
-				}
-				dom.scrollToElement(this.$parent.$refs['u-back-top'], {
-					offset: 0
-				})
-				// #endif
-				
-				// #ifndef APP-NVUE
 				uni.pageScrollTo({
 					scrollTop: 0,
 					duration: this.duration
 				});
-				// #endif
 				this.$emit('click')
 			}
 		}

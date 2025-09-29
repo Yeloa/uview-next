@@ -2,8 +2,7 @@
 	<view class="u-wrap" :style="{
 		opacity: Number(opacity),
 		borderRadius: $u.addUnit(round),
-		transition: `opacity ${time / 1000}s ease-in-out`
-	}" :class="'u-lazy-item-' + elIndex">
+		transition: `opacity ${time / 1000}s ease-in-out`}" :class="'u-lazy-item-' + elIndex">
 		<view :class="'u-lazy-item-' + elIndex">
 			<image :style="imgStyle" v-if="!isError" class="u-lazy-item"
 				:src="isShow ? image : loadingImg" :mode="mode" @load="imgLoaded" @error="loadError" @tap="clickImg">
@@ -213,8 +212,6 @@ export default {
 	transform: transition3d(0, 0, 0);
 	// 防止图片加载"闪一下"
 	will-change: transform;
-	/* #ifndef APP-NVUE */
 	display: block;
-	/* #endif */
 }
 </style>

@@ -78,10 +78,8 @@ const install = (Vue, Params) => {
 	Vue.prototype.$t = uni.$u.$t;
 
 	// 同时挂载到uni和Vue.prototype中
-	// #ifndef APP-NVUE
 	Vue.prototype.$u = $u;
 	Vue.mixin(mixin);
-	// #endif
 	// #endif
 
 	// 同时挂载到uni和app.config.globalProperties中
@@ -89,10 +87,7 @@ const install = (Vue, Params) => {
 	Vue.config.globalProperties.$timeFormat = (timestamp, format) => uni.$u.timeFormat(timestamp, format);
 	Vue.config.globalProperties.$date = (timestamp, format) => uni.$u.timeFormat(timestamp, format);
 	Vue.config.globalProperties.$timeFrom = (timestamp, format) => uni.$u.timeFrom(timestamp, format);
-	// #ifndef APP-NVUE
-	
 	Vue.mixin(mixin);
-	// #endif
 	// #endif
 
 	if (Params) {

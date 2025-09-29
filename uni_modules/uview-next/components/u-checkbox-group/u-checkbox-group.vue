@@ -1,5 +1,5 @@
 <template>
-	<view class="u-checkbox-group" :class="bemClass">
+	<view class="u-checkbox-group" :class="[`u-checkbox-group--${placement}`]">
 		<slot></slot>
 	</view>
 </template>
@@ -60,11 +60,7 @@ export default {
 				this.activeLabelColor,
 				this.plain
 			]
-		},
-		bemClass() {
-			// this.bem为一个computed变量，在mixin中
-			return this.bem('checkbox-group', ['placement'])
-		},
+		}
 	},
 	watch: {
 		// 当父组件需要子组件需要共享的参数发生了变化，手动通知子组件

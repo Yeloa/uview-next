@@ -40,9 +40,7 @@
 	flex-direction: column-reverse;
 }
 
-/* #ifndef APP-NVUE */
-// 此处为vue版本的简写，因为nvue不支持同时作用于两个类名的样式写法
-// nvue下只能写成class="u-flex-x u-flex-x-reverse的形式"
+// 此处为vue版本的简写
 .u-flex.u-flex-reverse,
 .u-flex-row.u-flex-reverse,
 .u-flex-x.u-flex-reverse {
@@ -91,8 +89,6 @@
 	margin-top: auto !important;
 	margin-bottom: auto !important
 }
-/* #endif */
-
 // 换行
 .u-flex-wrap {
 	flex-wrap: wrap;

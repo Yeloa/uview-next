@@ -21,10 +21,6 @@ import MarkdownIt from './markdown/markdown-it.min.js'
 import hljs from './highlight/uni-highlight.min.js'
 import './highlight/atom-one-dark.css'
 
-// #ifdef APP-NVUE
-import parseHtml from './parser.js'
-// #endif
-
 export default {
 	name: "u-markdown",
 	mixins: [mpMixin, mixin, props],
@@ -145,14 +141,7 @@ export default {
 				htmlString = this.markdown.render(value)
 			}
 		
-			// #ifndef APP-NVUE
 			return htmlString
-			// #endif
-
-			// 将htmlString转成htmlArray，反之使用rich-text解析
-			// #ifdef APP-NVUE
-			return parseHtml(htmlString)
-			// #endif
 		},
 		handleItemClick(e) {
 			let { attrs } = e.detail.node

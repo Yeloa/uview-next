@@ -20,7 +20,6 @@
 				>
 					<!-- 为了块对齐 -->
 					<view class="u-form-item__body__left__content">
-						<!-- nvue不支持伪元素before -->
 						<text
 							v-if="required"
 							class="u-form-item__body__left__content__required"

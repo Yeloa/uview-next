@@ -47,9 +47,7 @@
 </template>
 
 <script>
-// #ifdef APP-NVUE
-const dom = weex.requireModule('dom');
-// #endif
+
 import props from './props.js';
 import mixin from '../../libs/mixin/mixin';
 import mpMixin from '../../libs/mixin/mpMixin';
@@ -112,9 +110,6 @@ export default {
 		},
 		areaStyles() {
 			return {
-				// #ifdef APP-NVUE
-				width: this.$u.addUnit(this.containerWidth),
-				// #endif
 				height: this.$u.addUnit((this.rows) * this.height)
 			};
 		}
@@ -192,31 +187,16 @@ export default {
 
 		getContainerRect() {
 			return new Promise(resolve => {
-				// #ifndef APP-NVUE
 				this.$uGetRect('.u-draggable').then(res => {
 					resolve(res);
 				});
-				// #endif
-
-				// #ifdef APP-NVUE
-				const ref = this.$refs['uDraggable'];
-				if (ref) {
-					dom.getComponentRect(ref, (res) => {
-						resolve({
-							height: res.size.height,
-							width: res.size.width
-						});
-					});
-				} else {
-					resolve({ height: 0, width: 0 });
-				}
-				// #endif
 			});
 		},
 
 		handleTouchStart(event, index) {
 
 			const { handle } = event.target.dataset || {}
+			console.log(handle);
 			if(this.handle && !handle) {
 				return;
 			}
@@ -263,14 +243,8 @@ export default {
 		},
 
 		handleLongPress(event, index) {
-			// 标记长按已开始
 			this.longPressStarted = true;
-			// 触发拖拽开始
 			this.handleTouchStart(event, index);
-			// 震动反馈（如果支持）
-			if (uni.vibrateShort) {
-				uni.vibrateShort();
-			}
 		},
 
 		handleTouchEnd(event) {
@@ -509,20 +483,10 @@ export default {
 <style lang="scss" scoped>
 .u-draggable {
 	overflow: hidden;
-	/* #ifdef APP-NVUE */
-	flex: 1;
-	/*  #endif */
-	/* #ifndef APP-NVUE */
 	width: 100%;
-	/*  #endif */
 
 	&__area {
-		/* #ifdef APP-NVUE */
-		flex: 1;
-		/*  #endif */
-		/* #ifndef APP-NVUE */
 		width: 100%;
-		/*  #endif */
 	}
 
 	&__handle {
@@ -581,9 +545,7 @@ export default {
 	&__disabled {
 		opacity: 0.5;
 		cursor: not-allowed;
-		/* #ifndef APP-NVUE */
 		pointer-events: none;
-		/*  #endif */
 	}
 
 }

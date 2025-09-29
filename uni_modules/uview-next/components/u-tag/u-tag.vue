@@ -108,7 +108,6 @@
 
 				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
 			},
-			// nvue下，文本颜色无法继承父元素
 			textColor() {
 				const style = {}
 				if (this.color) {
@@ -344,12 +343,7 @@
 				z-index: 999;
 				top: 0px;
 				right: 0px;
-				/* #ifndef APP-NVUE */
 				transform: scale(0.6) translate(80%, -80%);
-				/* #endif */
-				/* #ifdef APP-NVUE */
-				transform: scale(0.6) translate(50%, -50%);
-				/* #endif */
 			}
 
 			&--mini {

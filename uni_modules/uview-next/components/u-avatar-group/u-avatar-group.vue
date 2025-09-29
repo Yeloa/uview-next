@@ -19,13 +19,13 @@
 			    v-if="showMore && index === showUrl.length - 1 && (urls.length > maxCount || extraValue > 0)"
 				@tap="clickHandler"
 			>
-				<u--text
+				<u-text
 				    color="#ffffff"
 				    :size="size * 0.4"
 				    :text="`+${extraValue || urls.length - showUrl.length}`"
 					align="center"
 					customStyle="justify-content: center"
-				></u--text>
+				></u-text>
 			</view>
 		</view>
 	</view>
@@ -87,7 +87,6 @@
 			position: relative;
 
 			&--no-indent {
-				// 如果你想质疑作者不会使用:first-child，说明你太年轻，因为nvue不支持
 				margin-left: 0;
 			}
 

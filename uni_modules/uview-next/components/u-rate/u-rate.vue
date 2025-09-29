@@ -79,10 +79,6 @@
 	import props from './props.js';
 	import mixin from '../../libs/mixin/mixin'
 	import mpMixin from '../../libs/mixin/mpMixin';
-
-	// #ifdef APP-NVUE
-	const dom = weex.requireModule("dom");
-	// #endif
 	/**
 	 * rate 评分
 	 * @description 该组件一般用于满意度调查，星型评分的场景
@@ -151,34 +147,15 @@
 			// 获取评分组件盒子的布局信息
 			async getRateItemRect() {
 				await uni.$u.sleep();
-				// uView封装的获取节点的方法，详见文档
-				// #ifndef APP-NVUE
 				this.$uGetRect("#" + this.elId).then((res) => {
 					this.rateBoxLeft = res.left;
 				});
-				// #endif
-				// #ifdef APP-NVUE
-				dom.getComponentRect(this.$refs["u-rate"], (res) => {
-					this.rateBoxLeft = res.size.left;
-				});
-				// #endif
 			},
 			// 获取单个星星的尺寸
 			getRateIconWrapRect() {
-				// uView封装的获取节点的方法，详见文档
-				// #ifndef APP-NVUE
 				this.$uGetRect("." + this.elClass).then((res) => {
 					this.rateWidth = res.width;
 				});
-				// #endif
-				// #ifdef APP-NVUE
-				dom.getComponentRect(
-					this.$refs["u-rate__content__item__icon-wrap"][0],
-					(res) => {
-						this.rateWidth = res.size.width;
-					}
-				);
-				// #endif
 			},
 			// 手指滑动
 			touchMove(e) {
@@ -208,14 +185,7 @@
 				}
 				this.preventEvent(e);
 				let x = 0;
-				// 点击时，在nvue上，无法获得点击的坐标，所以无法实现点击半星选择
-				// #ifndef APP-NVUE
 				x = e.changedTouches[0].pageX;
-				// #endif
-				// #ifdef APP-NVUE
-				// nvue下，无法通过点击获得坐标信息，这里通过元素的位置尺寸值模拟坐标
-				x = index * this.rateWidth + this.rateBoxLeft;
-				// #endif
 				this.getActiveIndex(x,true);
 			},
 			// 发出事件
@@ -301,9 +271,7 @@ $u-rate-item-icon-wrap-half-left: 0 !default;
     align-items: center;
     margin: $u-rate-margin;
     padding: $u-rate-padding;
-    /* #ifndef APP-NVUE */
     touch-action: none;
-    /* #endif */
 
     &__content {
         @include flex;
@@ -324,8 +292,6 @@ $u-rate-item-icon-wrap-half-left: 0 !default;
 }
 
 .u-icon {
-    /* #ifndef APP-NVUE */
     box-sizing: border-box;
-    /* #endif */
 }
 </style>

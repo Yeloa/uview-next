@@ -1,0 +1,108 @@
+<template>
+	<view class="u-page">
+		<card title="基础功能" :padding="false">
+			<u-cell-group>
+				<u-cell title="uView UI" value="内容" :isLink="true"></u-cell>
+				<u-cell title="利剑出鞘,一统江湖" value="内容" label="挣脱束缚,向往自由"></u-cell>
+			</u-cell-group>
+		</card>
+
+		<card title="自定义图标/图片" :padding="false">
+			<u-cell-group>
+				<u-cell title="单元格" icon="lock-fill"></u-cell>
+				<u-cell title="单元格" icon="https://cdn.uviewui.com/uview/example/tag.png"></u-cell>
+			</u-cell-group>
+		</card>
+
+		<card title="自定义大小" :padding="false">
+			<u-cell-group>
+				<u-cell size="large" title="单元格" value="内容" isLink></u-cell>
+				<u-cell size="large" title="单元格" value="内容" label="描述信息"></u-cell>
+			</u-cell-group>
+		</card>
+
+		<card title="显示右箭头" :padding="false">
+			<u-cell-group>
+				<u-cell required title="单元格" value="组件" isLink></u-cell>
+				<u-cell title="单元格" value="工具" arrow-direction="up" isLink></u-cell>
+				<u-cell title="单元格" value="模板" arrow-direction="down" isLink></u-cell>
+			</u-cell-group>
+		</card>
+
+		<card title="跳转页面" :padding="false">
+			<u-cell-group>
+				<u-cell title="打开标签页" isLink url="/pages/componentsB/tag/tag"></u-cell>
+				<u-cell title="打开徽标页" isLink url="/pages/componentsB/badge/badge"></u-cell>
+			</u-cell-group>
+		</card>
+
+		<card title="右侧内容垂直居中" :padding="false">
+			<u-cell-group>
+				<u-cell title="单元格" value="内容" label="描述信息" center></u-cell>
+			</u-cell-group>
+		</card>
+
+		<card title="自定义插槽">
+			<u-cell-group>
+				<u-cell value="内容">
+					<template #title>
+						<view class="u-slot-title">
+							<text class="u-cell-text">单元格</text>
+							<u-tag text="标签" plain size="mini" type="warning">
+							</u-tag>
+						</view>
+					</template>
+				</u-cell>
+				<u-cell title="单元格" isLink>
+					<template #value>
+						<view class="u-slot-title">
+							<text class="u-slot-value">99</text>
+						</view>
+					</template>
+				</u-cell>
+			</u-cell-group>
+		</card>
+	</view>
+</template>
+<script>
+export default {
+	data() {
+		return {}
+	},
+	methods: {
+		click() {
+			console.log('Cell is clicked.');
+		}
+	}
+}
+</script>
+
+<style lang="scss">
+.u-page {
+	padding: 0;
+}
+
+.u-slot-title {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.u-cell-text {
+	font-size: 15px;
+	line-height: 22px;
+	color: #303133;
+	margin-right: 5px;
+}
+
+.u-slot-value {
+	line-height: 17px;
+	text-align: center;
+	font-size: 10px;
+	padding: 0 5px;
+	height: 17px;
+	color: #FFFFFF;
+	border-radius: 100px;
+	background-color: #f56c6c;
+}
+</style>

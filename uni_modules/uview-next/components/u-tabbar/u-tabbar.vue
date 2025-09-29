@@ -28,9 +28,7 @@
 	import props from './props.js';
 	import mixin from '../../libs/mixin/mixin'
 	import mpMixin from '../../libs/mixin/mpMixin';
-	// #ifdef APP-NVUE
-	const dom = uni.requireNativePlugin('dom')
-	// #endif
+	
 	/**
 	 * Tabbar 底部导航栏
 	 * @description 此组件提供了自定义tabbar的能力。
@@ -121,25 +119,13 @@
 				if (!this.fixed || !this.placeholder) return
 				// 延时一定时间
 				await uni.$u.sleep(20)
-				// #ifndef APP-NVUE
 				this.$uGetRect('.u-tabbar__content').then(({height = 50}) => {
 					// 修复IOS safearea bottom 未填充高度
 					this.placeholderHeight = height
 				})
-				// #endif
-
-				// #ifdef APP-NVUE
-				dom.getComponentRect(this.$refs['u-tabbar__content'], (res) => {
-					const {
-						size
-					} = res
-					this.placeholderHeight = size.height
-				})
-				// #endif
 			},
 			getRect(){
 				let ref = this.tabbarId;
-				// #ifndef APP-NVUE
 				// $uGetRect为uView自带的节点查询简化方法，详见文档介绍：https://uview.d3u.cn/js/getRect.html
 				// 组件内部一般用this.$uGetRect，对外的为uni.$u.getRect，二者功能一致，名称不同
 				return new Promise(resolve => {
@@ -147,17 +133,6 @@
 						resolve(size)
 					})
 				})
-				// #endif
-
-				// #ifdef APP-NVUE
-				// nvue下，使用dom模块查询元素高度
-				// 返回一个promise，让调用此方法的主体能使用then回调
-				return new Promise(resolve => {
-					dom.getComponentRect(this.$refs[ref], res => {
-						resolve(res.size)
-					})
-				})
-				// #endif
 			}
 		}
 	}

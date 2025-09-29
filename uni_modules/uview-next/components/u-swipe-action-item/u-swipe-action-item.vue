@@ -42,13 +42,6 @@
 			<slot />
 		</view>
 		<!-- #endif -->
-
-		<!-- #ifdef APP-NVUE -->
-		<view class="u-swipe-action-item__content" ref="u-swipe-action-item__content" @panstart="onTouchstart"
-			@tap="clickHandler">
-			<slot></slot>
-		</view>
-		<!-- #endif -->
 	</view>
 </template>
 <!-- #ifdef APP-VUE || MP-WEIXIN || H5 || MP-QQ -->
@@ -62,9 +55,6 @@
 	import props from './props.js';
 	import mixin from '../../libs/mixin/mixin'
 	import mpMixin from '../../libs/mixin/mpMixin';
-	// #ifdef APP-NVUE
-	import nvue from './nvue.js';
-	// #endif
 	
 	/**
 	 * SwipeActionItem 滑动单元格子组件
@@ -87,9 +77,6 @@
 			mpMixin, 
 			mixin, 
 			props, 
-			// #ifdef APP-NVUE
-			nvue,
-			// #endif
 		],
 		data() {
 			return {
@@ -134,17 +121,14 @@
 			init() {
 				// 初始化父组件数据
 				this.updateParentData()
-				// #ifndef APP-NVUE
 				uni.$u.sleep().then(() => {
 					this.queryRect()
 				})
-				// #endif
 			},
 			updateParentData() {
 				// 此方法在mixin中
 				this.getParentData('u-swipe-action')
 			},
-			// #ifndef APP-NVUE
 			// 查询节点
 			queryRect() {
 				// #ifdef MP-ALIPAY
@@ -172,7 +156,6 @@
 				})
 				// #endif
 			},
-			// #endif
 
 			// #ifdef APP-VUE || MP-WEIXIN || MP-ALIPAY || H5 || MP-QQ
 			closeHandler() {
@@ -279,9 +262,7 @@
 	.u-swipe-action-item {
 		position: relative;
 		overflow: hidden;
-		/* #ifndef APP-NVUE || MP-WEIXIN */
 		touch-action: pan-y;
-		/* #endif */
 
 		&__content {
 			transform: translateX(0px);

@@ -1,0 +1,275 @@
+<template>
+	<view class="">
+		<u-cell-group :border="true">
+			<u-cell
+			    :border="true"
+			    title="基础用法"
+			>
+				<template #right-icon>
+					<u-number-box
+						v-model="value1"
+						step="1"
+						@change="change"
+					>
+				</u-number-box>
+				</template>
+			</u-cell>
+			<u-cell
+			    :border="true"
+			    title="步长设置"
+			>
+				<template #right-icon>
+					<u-number-box
+						v-model="value2"
+						:step="step1"
+						@change="change"
+					>
+					</u-number-box>
+				</template>
+			</u-cell>
+			<u-cell
+			    :border="true"
+			    title="限制输入范围"
+			>
+				<template #right-icon>
+					<u-number-box
+						v-model="value3"
+						step="1"
+						:min="min1"
+						:max="max1"
+						@change="change"
+					>
+					</u-number-box>
+				</template>
+			</u-cell>
+			<u-cell
+			    :border="true"
+			    title="限制输入整数"
+			>
+				<template #right-icon>
+					<u-number-box
+					    v-model="value4"
+					    step="1"
+					    integer
+					    @change="change"
+					>
+					</u-number-box>
+				</template>
+			</u-cell>
+			<u-cell
+			    :border="true"
+			    title="禁用状态"
+			>
+				<template #right-icon>
+					<u-number-box
+					    v-model="value5"
+					    step="1"
+					    :disabled="true"
+					    @change="change"
+					</u-number-box>
+				</template>
+			</u-cell>
+			<u-cell
+			    :border="true"
+			    title="禁用输入框"
+			>	
+				<template #right-icon>
+					<u-number-box
+					    v-model="value6"
+					    step="1"
+					    :disabledInput="true"
+					    @change="change"
+					>
+					</u-number-box>
+				</template>
+			</u-cell>
+			<u-cell
+			    :border="true"
+			    title="禁用长按"
+			>
+				<template #right-icon>
+					<u-number-box
+					    v-model="value7"
+					    step="1"
+					    :longPress="false"
+					    @change="change"
+					>
+					</u-number-box>
+				</template>
+			</u-cell>
+			<u-cell
+			    :border="true"
+			    title="固定小数位数"
+			>
+				<template #right-icon>
+					<u-number-box
+					    v-model="value8"
+					    step="0.2"
+					    decimalLength="1"
+					    @change="change"
+					>
+					</u-number-box>
+				</template>
+			</u-cell>
+			<u-cell
+			    :border="true"
+			    title="异步变更"
+			>
+				<template #right-icon>
+					<u-number-box
+					    v-model="value9"
+					    step="1"
+					    :asyncChange="asyncChange"
+					    @change="myAsyncChange"
+					>
+					</u-number-box>
+				</template>
+			</u-cell>
+			<u-cell
+			    :border="true"
+			    title="自定义大小颜色样式"
+			>
+				<template #right-icon>
+					<u-number-box
+					    v-model="value10"
+					    step="1"
+					    :color="color"
+					    :buttonSize="buttonSize"
+					    :bgColor="bgColor"
+				    	@change="change"
+				    	iconStyle="color: #fff"
+					>
+					</u-number-box>
+				</template>
+			</u-cell>
+			<u-cell
+			    :border="true"
+			    title="自定义样式"
+			>
+				<template #right-icon>
+					<u-number-box
+					    v-model="value10"
+					    step="1"
+					    :buttonSize="30"
+						inputBgColor="transparent"
+						:buttonRound="100"
+				    	@change="change"
+					>
+					</u-number-box>
+				</template>
+			</u-cell>
+			<u-cell
+			    :border="true"
+			    title="自定义(为0时减少按钮会消失)"
+			>
+				<template #right-icon>
+					<u-number-box
+					    v-model="value11"
+					    step="1"
+					    :min="0"
+					    :showMinus="value11 > 0"
+					>
+						<view
+							slot="minus"
+							class="minus"
+						>
+							<u-icon
+								name="minus"
+								size="12"
+							></u-icon>
+						</view>
+						<text
+							slot="input"
+							style="width: 50px;text-align: center;"
+							class="input"
+						>{{value11}}</text>
+						<view
+							slot="plus"
+							class="plus"
+						>
+							<u-icon
+								name="plus"
+								color="#FFFFFF"
+								size="12"
+							></u-icon>
+						</view>
+					</u-number-box>
+				</template>
+			</u-cell>
+		</u-cell-group>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				value1: 3,
+				value2: 3,
+				value3: 3,
+				value4: 3,
+				value5: 3,
+				value6: 3,
+				value7: 3,
+				value8: 3.1,
+				value9: 3,
+				value10: 3,
+				value11: 3,
+				step1: 2,
+				min1: 5,
+				max1: 8,
+				asyncChange: true,
+				color: '#FFFFFF',
+				buttonSize: 36,
+				bgColor: '#2979ff'
+			}
+		},
+		methods: {
+			change(e) {
+				console.log('change', e);
+			},
+			myAsyncChange(e) {
+				this.asyncChange = false
+				uni.showLoading({
+					title: '正在加载'
+				})
+				setTimeout(() => {
+					uni.hideLoading()
+					this.value9 = e.value
+					this.asyncChange = true
+				}, 3000)
+			}
+		}
+	}
+</script>
+
+<style lang="scss">
+	.minus {
+		width: 22px;
+		height: 22px;
+		border-width: 1px;
+		border-color: #E6E6E6;
+		border-top-left-radius: 100px;
+		border-top-right-radius: 100px;
+		border-bottom-left-radius: 100px;
+		border-bottom-right-radius: 100px;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.input {
+		padding: 0 10px;
+	}
+
+	.plus {
+		width: 22px;
+		height: 22px;
+		background-color: #FF0000;
+		border-radius: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+</style>

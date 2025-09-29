@@ -141,9 +141,7 @@ export default {
 .u-card {
 	position: relative;
 	overflow: hidden;
-	/* #ifndef APP-NVUE */
     box-sizing: border-box;
-    /* #endif */
 	background-color: #ffffff;
 	
 	&-full {
@@ -173,13 +171,11 @@ export default {
 			}
 			
 			&__title {
-				/* #ifndef APP-NVUE */
 				white-space: nowrap;
 				overflow: hidden;
 				text-overflow: ellipsis;
 				flex: 1;
 				min-width: 0;
-    			/* #endif */
 			}
 		}
 

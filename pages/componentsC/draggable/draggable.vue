@@ -48,7 +48,7 @@
 								<text class="vertical-desc">{{item.desc}}</text>
 							</view>
 							<view class="vertical-handle">
-								<text class="handle-text" data-handle="true">⋮⋮</text>
+								<text class="handle-text" :data-handle="true">⋮⋮</text>
 							</view>
 						</view>
 					</template>

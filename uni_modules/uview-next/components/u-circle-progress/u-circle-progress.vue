@@ -4,15 +4,8 @@
 			backgroundColor: bgColor
 		}">
 		<!-- 支付宝小程序不支持canvas-id属性，必须用id属性 -->
-		<!-- #ifndef APP-NVUE -->
 		<canvas class="u-canvas-bg" :canvas-id="elBgId" :id="elBgId" :style="progressStyle"></canvas>
 		<canvas class="u-canvas" :canvas-id="elId" :id="elId" :style="progressStyle"></canvas>
-		<!-- #endif -->
-		
-		<!-- #ifdef APP-NVUE -->
-		<gcanvas class="u-canvas-bg" :ref="elBgId" :style="progressStyle"></gcanvas>
-		<gcanvas class="u-canvas" :ref="elId" :style="progressStyle"></gcanvas>
-		<!-- #endif -->
 		<slot></slot>
 	</view>
 </template>
@@ -22,9 +15,6 @@ import props from './props.js'
 import mixin from '../../libs/mixin/mixin'
 import mpMixin from '../../libs/mixin/mpMixin'
 
-// #ifdef APP-NVUE
-import { enable, WeexBridge } from '../../libs/gcanvas/index.js';
-// #endif
 
 /**
  * circleProgress 环形进度条
@@ -106,22 +96,11 @@ export default {
 	},
 	methods: {
 		drawProgressBg() {
-
-			// #ifdef APP-NVUE
-			let ganvas = this.$refs[this.elBgId];
-			let canvasObj = enable(ganvas, {bridge: WeexBridge});
-			let ctx = canvasObj.getContext('2d');
-			// #endif
-
-			// #ifndef APP-NVUE
-
 			// #ifdef MP-ALIPAY
 			let ctx = uni.createCanvasContext(this.elBgId);
 			// #endif
 			// #ifndef MP-ALIPAY
 			let ctx = uni.createCanvasContext(this.elBgId, this);
-			// #endif
-			
 			// #endif
 
 			ctx.setLineWidth(this.borderWidthPx); // 设置圆环宽度
@@ -138,14 +117,6 @@ export default {
 			// 第一次操作进度环时将上下文保存到了this.data中，直接使用即可
 			let ctx = this.progressContext;
 			if (!ctx) {
-
-				// #ifdef APP-NVUE
-				let ganvas = this.$refs[this.elId];
-				let canvasObj = enable(ganvas, {bridge: WeexBridge});
-				ctx = canvasObj.getContext('2d');
-				// #endif
-
-				// #ifndef APP-NVUE
 				
 				// #ifdef MP-ALIPAY
 				ctx = uni.createCanvasContext(this.elId);
@@ -154,7 +125,6 @@ export default {
 				ctx = uni.createCanvasContext(this.elId, this);
 				// #endif
 
-				// #endif
 				this.progressContext = ctx;
 			}
 
@@ -199,9 +169,7 @@ export default {
 
 .u-circle-progress {
 	position: relative;
-	/* #ifndef APP-NVUE */
 	display: inline-flex;		
-	/* #endif */
 	align-items: center;
 	justify-content: center;
 }

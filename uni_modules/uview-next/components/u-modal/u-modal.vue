@@ -296,9 +296,7 @@
 		overflow: hidden;
 
 		&__title {
-			/* #ifndef APP-NVUE */
 			display: block;
-			/* #endif */
 			font-size: 16px;
 			font-weight: bold;
 			color: $u-content-color;

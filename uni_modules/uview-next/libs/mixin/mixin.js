@@ -38,19 +38,13 @@ export default {
     computed: {
         // 在2.x版本中，将会把$u挂载到uni对象下，导致在模板中无法使用uni.$u.xxx形式
         // 所以这里通过computed计算属性将其附加到this.$u上，就可以在模板或者js中使用uni.$u.xxx
-        // 只在nvue环境通过此方式引入完整的$u，其他平台会出现性能问题，非nvue则按需引入（主要原因是props过大）
         $u() {
-            // #ifndef APP-NVUE
-            // 在非nvue端，移除props，http，mixin等对象，避免在小程序setData时数据过大影响性能
+            // 移除props，http，mixin等对象，避免在小程序setData时数据过大影响性能
             return uni.$u.deepMerge(uni.$u, {
                 props: undefined,
                 http: undefined,
                 mixin: undefined
             })
-            // #endif
-            // #ifdef APP-NVUE
-            return uni.$u;
-            // #endif
         },
         $uColor() {
             return (propName) => {
@@ -59,39 +53,6 @@ export default {
                 }
                 return this[propName];
             };
-        },
-        /**
-         * 生成bem规则类名
-         * 由于微信小程序，H5，nvue之间绑定class的差异，无法通过:class="[bem()]"的形式进行同用
-         * 故采用如下折中做法，最后返回的是数组（一般平台）或字符串（支付宝和字节跳动平台），类似['a', 'b', 'c']或'a b c'的形式
-         * @param {String} name 组件名称
-         * @param {Array} fixed 一直会存在的类名
-         * @param {Array} change 会根据变量值为true或者false而出现或者隐藏的类名
-         * @returns {Array|string}
-         */
-        bem() {
-            return function (name, fixed, change) {
-                // 类名前缀
-                const prefix = `u-${name}--`;
-                const classes = {};
-                if (fixed) {
-                    fixed.map((item) => {
-                        // 这里的类名，会一直存在
-                        classes[prefix + this[item]] = true;
-                    });
-                }
-                if (change) {
-                    change.map((item) => {
-                        // 这里的类名，会根据this[item]的值为true或者false，而进行添加或者移除某一个类
-                        this[item] ? (classes[prefix + item] = this[item]) : (delete classes[prefix + item]);
-                    });
-                }
-                return Object.keys(classes)
-                    // 支付宝，头条小程序无法动态绑定一个数组类名，否则解析出来的结果会带有","，而导致失效
-                    // #ifdef MP-ALIPAY || MP-TOUTIAO || MP-LARK
-                    .join(' ');
-                    // #endif
-            }
         }
     },
     methods: {

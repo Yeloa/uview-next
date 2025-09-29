@@ -28,7 +28,6 @@
 				style.margin = this.margin
 				// 如果是水平线条，边框高度为1px，再通过transform缩小一半，就是0.5px了
 				if (this.direction === 'row') {
-					// 此处采用兼容分开写，兼容nvue的写法
 					style.borderBottomWidth = '1px'
 					style.borderBottomStyle = this.dashed ? 'dashed' : 'solid'
 					style.width = uni.$u.addUnit(this.length)
@@ -52,8 +51,6 @@
 	@import "../../libs/css/components.scss";
 
 	.u-line {
-		/* #ifndef APP-NVUE */
 		vertical-align: middle;
-		/* #endif */
 	}
 </style>

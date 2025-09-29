@@ -15,7 +15,7 @@
 			:displayMultipleItems="displayMultipleItems" :easingFunction="easingFunction">
 			<swiper-item class="u-swiper__wrapper__item" v-for="(item, index) in list" :key="index">
 				<view class="u-swiper__wrapper__item__wrapper" :style="[itemStyle(index)]">
-					<!-- 在nvue中，image图片的宽度默认为屏幕宽度，需要通过flex:1撑开，另外必须设置高度才能显示图片 -->
+					<!-- image图片的宽度默认为屏幕宽度，需要通过flex:1撑开，另外必须设置高度才能显示图片 -->
 					<image class="u-swiper__wrapper__item__wrapper__image" v-if="getItemType(item) === 'image'"
 						:src="getSource(item)" :mode="imgMode" @tap="clickHandler(index)" :style="{
 							height: $u.addUnit(height),
@@ -62,10 +62,10 @@ import props from './props.js';
  * @property {String | Number}	interval				滑块自动切换时间间隔（ms）（默认 3000 ）
  * @property {String | Number}	duration				滑块切换过程所需时间（ms）（默认 300 ）
  * @property {Boolean}			circular				播放到末尾后是否重新回到开头（默认 false ）
- * @property {String | Number}	previousMargin			前边距，可用于露出前一项的一小部分，nvue和支付宝不支持（默认 0 ）
- * @property {String | Number}	nextMargin				后边距，可用于露出后一项的一小部分，nvue和支付宝不支持（默认 0 ）
+ * @property {String | Number}	previousMargin			前边距，可用于露出前一项的一小部分，支付宝不支持（默认 0 ）
+ * @property {String | Number}	nextMargin				后边距，可用于露出后一项的一小部分，支付宝不支持（默认 0 ）
  * @property {Boolean}			acceleration			当开启时，会根据滑动速度，连续滑动多屏，支付宝不支持（默认 false ）
- * @property {Number}			displayMultipleItems	同时显示的滑块数量，nvue、支付宝小程序不支持（默认 1 ）
+ * @property {Number}			displayMultipleItems	同时显示的滑块数量，支付宝小程序不支持（默认 1 ）
  * @property {String}			easingFunction			指定swiper切换缓动动画类型， 只对微信小程序有效（默认 'default' ）
  * @property {String}			keyName					list数组中指定对象的目标属性名（默认 'url' ）
  * @property {String}			imgMode					图片的裁剪模式（默认 'aspectFill' ）
@@ -96,8 +96,8 @@ export default {
 		itemStyle() {
 			return index => {
 				const style = {}
-				// #ifndef APP-NVUE || MP-TOUTIAO
-				// 左右流出空间的写法不支持nvue和头条
+				// #ifndef MP-TOUTIAO
+				// 左右流出空间的写法不支持头条
 				// 只有配置了此二值，才加上对应的圆角，以及缩放
 				if (this.nextMargin && this.previousMargin) {
 					style.borderRadius = uni.$u.addUnit(this.radius)

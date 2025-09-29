@@ -62,12 +62,12 @@ export default defineProps('swiper', {
         type: Boolean,
         default: false
     },
-    // 前边距，可用于露出前一项的一小部分，nvue和支付宝不支持
+    // 前边距，可用于露出前一项的一小部分支付宝不支持
     previousMargin: {
         type: [String, Number],
         default: 0
     },
-    // 后边距，可用于露出后一项的一小部分，nvue和支付宝不支持
+    // 后边距，可用于露出后一项的一小部分和支付宝不支持
     nextMargin: {
         type: [String, Number],
         default: 0
@@ -77,7 +77,7 @@ export default defineProps('swiper', {
         type: Boolean,
         default: false
     },
-    // 同时显示的滑块数量，nvue、支付宝小程序不支持
+    // 同时显示的滑块数量，支付宝小程序不支持
     displayMultipleItems: {
         type: Number,
         default: 1

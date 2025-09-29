@@ -32,11 +32,11 @@
 		<view class="u-steps-item__content" :class="[`u-steps-item__content--${parentData.direction}`]"
 			:style="[contentStyle]">
 			<slot>
-				<u--text :text="title" :type="parentData.current == index ? 'main' : 'content'" lineHeight="20px"
-				:size="parentData.current == index ? 14 : 13"></u--text>
+				<u-text :text="title" :type="parentData.current == index ? 'main' : 'content'" lineHeight="20px"
+				:size="parentData.current == index ? 14 : 13"></u-text>
 			</slot>
 			<slot name="desc">
-				<u--text :text="desc" type="tips" size="12"></u--text>
+				<u-text :text="desc" type="tips" size="12"></u-text>
 			</slot>
 		</view>
 		<!-- <view
@@ -52,9 +52,7 @@
 	import props from './props.js';
 	import mixin from '../../libs/mixin/mixin'
 	import mpMixin from '../../libs/mixin/mpMixin';
-	// #ifdef APP-NVUE
-	const dom = uni.requireNativePlugin('dom')
-	// #endif
+	
 	/**
 	 * StepsItem 步骤条的子组件
 	 * @description 本组件需要和u-steps配合使用
@@ -188,20 +186,9 @@
 			},
 			// 获取组件的尺寸，用于设置横线的位置
 			getStepsItemRect() {
-				// #ifndef APP-NVUE
 				this.$uGetRect('.u-steps-item').then(size => {
 					this.size = size
 				})
-				// #endif
-
-				// #ifdef APP-NVUE
-				dom.getComponentRect(this.$refs['u-steps-item'], res => {
-					const {
-						size
-					} = res
-					this.size = size
-				})
-				// #endif
 			}
 		}
 	}
@@ -257,10 +244,8 @@
 			&__circle {
 				width: 20px;
 				height: 20px;
-				/* #ifndef APP-NVUE */
 				box-sizing: border-box;
 				flex-shrink: 0;
-				/* #endif */
 				border-radius: 100px;
 				border-width: 1px;
 				border-color: $u-tips-color;

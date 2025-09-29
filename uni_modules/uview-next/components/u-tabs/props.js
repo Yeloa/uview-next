@@ -82,5 +82,10 @@ export default defineProps('tabs', {
     keyName: {
         type: String,
         default: 'name',
+    },
+    // 是否显示滑块
+    showLine: {
+        type: Boolean,
+        default: true,
     }
 });

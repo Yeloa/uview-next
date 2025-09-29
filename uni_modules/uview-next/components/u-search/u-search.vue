@@ -305,9 +305,7 @@ $u-search-action-margin-left: 5px !default;
 		overflow: hidden;
 		transition-property: width;
 		transition-duration: 0.3s;
-		/* #ifndef APP-NVUE */
 		white-space: nowrap;
-		/* #endif */
 		text-align: center;
 
 		&--active {

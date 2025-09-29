@@ -1,0 +1,176 @@
+<template>
+	<view class="u-page">
+		<card title="基础演示">
+			<u-avatar :src="src1"></u-avatar>
+		</card>
+
+		<card title="头像形状">
+			<view class="avatar-row">
+				<view class="u-avatar-item">
+					<u-avatar
+						:src="src2"
+						shape="circle"
+						@click="click"
+					></u-avatar>
+				</view>
+				<view class="u-avatar-item">
+					<u-avatar
+						:src="src3"
+						shape="square"
+					></u-avatar>
+				</view>
+			</view>
+		</card>
+
+		<card title="头像尺寸">
+			<view class="avatar-row">
+				<view class="u-avatar-item">
+					<u-avatar
+						:src="src4"
+						size="30"
+					></u-avatar>
+				</view>
+				<view class="u-avatar-item">
+					<u-avatar
+						:src="src5"
+						size="40"
+					></u-avatar>
+				</view>
+				<view class="u-avatar-item">
+					<u-avatar
+						:src="src6"
+						size="50"
+					></u-avatar>
+				</view>
+			</view>
+		</card>
+
+		<card title="图标头像">
+			<view class="avatar-row">
+				<view class="u-avatar-item">
+					<u-avatar
+						icon="red-packet-fill"
+						fontSize="22"
+					></u-avatar>
+				</view>
+				<view class="u-avatar-item">
+					<u-avatar
+						icon="star-fill"
+						fontSize="22"
+					></u-avatar>
+				</view>
+			</view>
+		</card>
+
+		<card title="文字头像(自动背景色)">
+			<view class="avatar-row">
+				<view class="u-avatar-item">
+					<u-avatar
+						text="U"
+						fontSize="20"
+						randomBgColor
+						:colorIndex="0"
+					></u-avatar>
+				</view>
+				<view class="u-avatar-item">
+					<u-avatar
+						text="邓"
+						fontSize="18"
+						randomBgColor
+					></u-avatar>
+				</view>
+				<view class="u-avatar-item">
+					<u-avatar
+						text="张"
+						fontSize="18"
+						randomBgColor
+					></u-avatar>
+				</view>
+				<view class="u-avatar-item">
+					<u-avatar
+						text="王"
+						fontSize="18"
+						randomBgColor
+					></u-avatar>
+				</view>
+			</view>
+		</card>
+
+		<card title="图片加载失败(显示默认头像)">
+			<u-avatar :src="src7"></u-avatar>
+		</card>
+
+		<!-- #ifdef MP-WEIXIN || MP-QQ || MP-BAIDU -->
+		<card title="小程序开放能力">
+			<view class="avatar-row">
+				<view class="u-avatar-item">
+					<u-avatar
+						mpAvatar
+						size="60"
+					></u-avatar>
+				</view>
+			</view>
+		</card>
+		<!-- #endif -->
+
+		<card title="头像组">
+			<u-avatar-group
+				:urls="urls"
+				size="35"
+				gap="0.4"
+			></u-avatar-group>
+			<view style="margin-top: 20px">
+				<u-avatar-group
+					:urls="urls"
+					size="35"
+					gap="0.6"
+				></u-avatar-group>
+			</view>
+		</card>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				src1: 'https://cdn.uviewui.com/uview/album/1.jpg',
+				src2: 'https://cdn.uviewui.com/uview/album/2.jpg',
+				src3: 'https://cdn.uviewui.com/uview/album/3.jpg',
+				src4: 'https://cdn.uviewui.com/uview/album/4.jpg',
+				src5: 'https://cdn.uviewui.com/uview/album/5.jpg',
+				src6: 'https://cdn.uviewui.com/uview/album/6.jpg',
+				src7: 'https://cdn.uviewui.com/uview/album/noExist.jpg',
+				urls: [
+					'https://cdn.uviewui.com/uview/album/1.jpg',
+					'https://cdn.uviewui.com/uview/album/2.jpg',
+					'https://cdn.uviewui.com/uview/album/3.jpg',
+					'https://cdn.uviewui.com/uview/album/4.jpg',
+					'https://cdn.uviewui.com/uview/album/7.jpg',
+					'https://cdn.uviewui.com/uview/album/6.jpg',
+					'https://cdn.uviewui.com/uview/album/5.jpg'
+				]
+			}
+		},
+		onLoad() {
+
+		},
+		methods: {
+			click(name) {
+				console.log('click', name);
+			}
+		},
+	}
+</script>
+
+<style lang="scss">
+	.avatar-row {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+
+	.u-avatar-item {
+		margin-right: 30px;
+	}
+</style>

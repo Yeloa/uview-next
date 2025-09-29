@@ -88,53 +88,39 @@
 		data() {
 			return {
 				show: true,
-				iconColor:'',
-				iconName:'',
-			}
-		},
-		watch: {
-			effect: {
-				immediate: true,
-				handler(newVal) {
-					this.getIconColor()
-				}
-			},
-			type: {
-				immediate: true,
-				handler(newVal) {
-					this.getIconName()
-				}
 			}
 		},
 		// #ifdef VUE3
 		emits: ["click", "close"],
 		// #endif
-		methods: {
-			getIconColor() {
-				this.iconColor = this.effect === 'light' ? this.type : '#fff'
+		computed: {
+			iconColor() {
+				return this.effect === 'light' ? this.type : '#fff'
 			},
 			// 不同主题对应不同的图标
-			getIconName() {
+			iconName() {
 				switch (this.type) {
 					case 'success':
-						this.iconName = 'checkmark-circle-fill';
+						return 'checkmark-circle-fill';
 						break;
 					case 'error':
-						this.iconName = 'close-circle-fill';
+						return 'close-circle-fill';
 						break;
 					case 'warning':
-						this.iconName = 'error-circle-fill';
+						return 'error-circle-fill';
 						break;
 					case 'info':
-						this.iconName = 'info-circle-fill';
+						return 'info-circle-fill';
 						break;
 					case 'primary':
-						this.iconName = 'more-circle-fill';
+						return 'more-circle-fill';
 						break;
 					default: 
-						this.iconName = 'error-circle-fill';
+						return 'error-circle-fill';
 				}
-			},
+			}
+		},
+		methods: {
 			// 点击内容
 			clickHandler(e) {
 				this.$emit('click', e)

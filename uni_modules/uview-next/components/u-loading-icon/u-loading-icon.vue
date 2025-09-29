@@ -23,27 +23,12 @@
 			}"
 		>
 			<block v-if="mode === 'spinner'">
-				<!-- #ifndef APP-NVUE -->
 				<view
 					v-for="(item, index) in array12"
 					:key="index"
 					class="u-loading-icon__dot"
 				>
 				</view>
-				<!-- #endif -->
-				<!-- #ifdef APP-NVUE -->
-				<!-- 此组件内部图标部分无法设置宽高，即使通过width和height配置了也无效 -->
-				<loading-indicator
-					v-if="!webviewHide"
-					class="u-loading-indicator"
-					:animating="true"
-					:style="{
-						color: $uColor('color'),
-						width: $u.addUnit(size),
-						height: $u.addUnit(size)
-					}"
-				/>
-				<!-- #endif -->
 			</block>
 		</view>
 		<text
@@ -61,9 +46,7 @@
 	import props from './props.js';
 	import mixin from '../../libs/mixin/mixin'
 	import mpMixin from '../../libs/mixin/mpMixin';
-	// #ifdef APP-NVUE
-	const animation = weex.requireModule('animation');
-	// #endif
+	
 	/**
 	 * loading 加载动画
 	 * @description 警此组件为一个小动画，目前用在uView的loadmore加载更多和switch开关等组件的正在加载状态场景。
@@ -92,11 +75,7 @@
 				array12: Array.from({
 					length: 12
 				}),
-				// 这里需要设置默认值为360，否则在安卓nvue上，会延迟一个duration周期后才执行
-				// 在iOS nvue上，则会一开始默认执行两个周期的动画
-				aniAngel: 360, // 动画旋转角度
 				webviewHide: false, // 监听webview的状态，如果隐藏了页面，则停止动画，以免性能消耗
-				loading: false, // 是否运行中，针对nvue使用
 			}
 		},
 		computed: {
@@ -113,27 +92,12 @@
 				// return this.mode === 'circle' ? this.inactiveColor ? this.inactiveColor : lightColor : 'transparent'
 			}
 		},
-		watch: {
-			show(n) {
-				// nvue中，show为true，且为非loading状态，就重新执行动画模块
-				// #ifdef APP-NVUE
-				if (n && !this.loading) {
-					setTimeout(() => {
-						this.startAnimate()
-					}, 30)
-				}
-				// #endif
-			}
-		},
 		mounted() {
 			this.init()
 		},
 		methods: {
 			init() {
 				setTimeout(() => {
-					// #ifdef APP-NVUE
-					this.show && this.nvueAnimate()
-					// #endif
 					// #ifdef APP-PLUS 
 					this.show && this.addEventListenerToWebview()
 					// #endif
@@ -154,36 +118,7 @@
 				currentWebview.addEventListener('show', () => {
 					this.webviewHide = false
 				})
-			},
-			// #ifdef APP-NVUE
-			nvueAnimate() {
-				// nvue下，非spinner类型时才需要旋转，因为nvue的spinner类型，使用了weex的
-				// loading-indicator组件，自带旋转功能
-				this.mode !== 'spinner' && this.startAnimate()
-			},
-			// 执行nvue的animate模块动画
-			startAnimate() {
-				this.loading = true
-				const ani = this.$refs.ani
-				if (!ani) return
-				animation.transition(ani, {
-					// 进行角度旋转
-					styles: {
-						transform: `rotate(${this.aniAngel}deg)`,
-						transformOrigin: 'center center'
-					},
-					duration: this.duration,
-					timingFunction: this.timingFunction,
-					// delay: 10
-				}, () => {
-					// 每次增加360deg，为了让其重新旋转一周
-					this.aniAngel += 360
-					// 动画结束后，继续循环执行动画，需要同时判断webviewHide变量
-					// nvue安卓，页面隐藏后依然会继续执行startAnimate方法
-					this.show && !this.webviewHide ? this.startAnimate() : this.loading = false
-				})
 			}
-			// #endif
 		}
 	}
 </script>
@@ -247,12 +182,10 @@
 			width: $u-loading-width;
 			height: $u-loading-height;
 			position: relative;
-			/* #ifndef APP-NVUE */
 			box-sizing: border-box;
 			max-width: $u-loading-max-width;
 			max-height: $u-loading-max-height;
 			animation: u-rotate 1s linear infinite;
-			/* #endif */
 		}
 
 		&__spinner--semicircle {
@@ -283,7 +216,7 @@
 		}
 	}
 
-	/* #ifndef APP-NVUE */
+	
 	:host {
 		font-size: $u-loading-icon-host-font-size;
 		line-height: $u-loading-icon-host-line-height;
@@ -338,6 +271,4 @@
 			transform: rotate(1turn)
 		}
 	}
-
-	/* #endif */
 </style>

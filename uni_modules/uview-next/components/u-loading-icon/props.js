@@ -9,7 +9,7 @@ export default defineProps('loadingIcon', {
     },
     // 颜色
     color: {
-        type: String,
+        type: [String, null],
         default: theme.tipsColor
     },
     // 提示文字颜色

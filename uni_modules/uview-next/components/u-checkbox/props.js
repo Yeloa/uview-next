@@ -55,7 +55,7 @@ export default defineProps('checkbox', {
         type: String,
         default: ''
     },
-    // label提示文字，因为nvue下，直接slot进来的文字，由于特殊的结构，无法修改样式
+    // label提示文字
     label: {
         type: [String, Number],
         default: ''

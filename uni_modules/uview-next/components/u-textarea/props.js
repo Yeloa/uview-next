@@ -54,7 +54,7 @@ export default defineProps('textarea', {
 		type: Boolean,
 		default: false
     },
-	// 是否自动获取焦点，nvue不支持，H5取决于浏览器的实现
+	// 是否自动获取焦点，H5取决于浏览器的实现
 	focus: {
 		type: Boolean,
 		default: false

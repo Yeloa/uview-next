@@ -1,77 +1,77 @@
 <template>
-    <view>
-        <view v-if="$slots.trigger || $slots.$trigger" class="u-action-sheet-trigger" @click="open(true)">
-            <slot name="trigger"></slot>
-        </view>
-        <u-popup :show="showPopup"
-            mode="bottom" 
-            :title="tmpConfig.title" 
-            :round="tmpConfig.round"
-            :closeable="closeable"
-            :titleStyle="titleStyles"
-            :safeAreaInsetBottom="tmpConfig.safeAreaInsetBottom" 
-            @close="cancel" 
-        >
-            <view class="u-action-sheet">
-                <text class="u-action-sheet__description" :style="[{
-                    marginTop: `${tmpConfig.title && tmpConfig.description ? 0 : '18px'}`
-                }]" v-if="tmpConfig.description">{{ tmpConfig.description }}</text>
-                <slot>
-                    <u-line v-if="tmpConfig.description"></u-line>
-                    <scroll-view class="u-action-sheet__item-wrap" :scroll-y="tmpConfig.height !='' || tmpConfig.height > 0" :style="[{ maxHeight: $u.addUnit(tmpConfig.height) }]">
-                        <view v-for="(item, index) in tmpConfig.actions" :key="index">
-                            <!-- #ifdef MP -->
-                            <button 
-                                class="u-reset-button" 
-                                :key="index" 
-                                :openType="item.openType"
-                                :lang="lang" 
-                                :session-from="sessionFrom"
-                                :send-message-title="sendMessageTitle" 
-                                :send-message-path="sendMessagePath"
-                                :send-message-img="sendMessageImg" 
-                                :show-message-card="showMessageCard"
-                                :app-parameter="appParameter" 
-                                @tap="selectHandler(index)"
-                                @getuserinfo="onGetUserInfo" 
-                                @contact="onContact" 
-                                @getphonenumber="onGetPhoneNumber"
-                                @error="onError" 
-                                @launchapp="onLaunchApp" 
-                                @opensetting="onOpenSetting"
-                                @chooseavatar="onChooseAvatar" 
-                                :hover-class="!item.disabled && !item.loading ? 'u-action-sheet--hover' : ''"
-                            >
-                                <!-- #endif -->
-                                <view class="u-action-sheet__item-wrap__item" @tap.stop="selectHandler(index)"
-                                    :hover-class="!item.disabled && !item.loading ? 'u-action-sheet--hover' : ''"
-                                    :hover-stay-time="150">
-                                    <template v-if="!item.loading">
-                                        <text class="u-action-sheet__item-wrap__item__name" :style="[itemStyle(index)]">{{
-                                            item.name }}</text>
-                                        <text v-if="item.subname" class="u-action-sheet__item-wrap__item__subname">{{
-                                            item.subname }}</text>
-                                    </template>
-                                    <u-loading-icon v-else custom-class="van-action-sheet__loading" size="18" mode="circle" />
-                                </view>
-                                <!-- #ifdef MP -->
-                            </button>
-                            <!-- #endif -->
-                            <u-line v-if="index !== tmpConfig.actions.length - 1"></u-line>
-                        </view>
-                    </scroll-view>
-                </slot>
-                <u-gap bgColor="#eaeaec" height="6" v-if="tmpConfig.cancelText"></u-gap>
-                <view class="u-action-sheet__cancel-text-wrap" hover-class="u-action-sheet--hover" v-if="tmpConfig.cancelText" @tap="cancel">
-                    <text 
-                        @touchmove.stop.prevent 
-                        :hover-stay-time="150" 
-                        class="u-action-sheet__cancel-text"
-                    >{{ tmpConfig.cancelText }}</text>
-                </view>
+    <u-popup :show="showPopup"
+        mode="bottom" 
+        :title="tmpConfig.title" 
+        :round="tmpConfig.round"
+        :closeable="closeable"
+        :titleStyle="titleStyles"
+        :safeAreaInsetBottom="tmpConfig.safeAreaInsetBottom" 
+        @close="cancel" 
+    >
+        <template #trigger>
+            <view v-if="$slots.default || $slots.$default" class="u-action-sheet-trigger" @click="open(true)">
+                <slot></slot>
             </view>
-        </u-popup>
-    </view>
+        </template>
+        <view class="u-action-sheet">
+            <text class="u-action-sheet__description" :style="[{
+                marginTop: `${tmpConfig.title && tmpConfig.description ? 0 : '18px'}`
+            }]" v-if="tmpConfig.description">{{ tmpConfig.description }}</text>
+            <slot>
+                <u-line v-if="tmpConfig.description"></u-line>
+                <scroll-view class="u-action-sheet__item-wrap" :scroll-y="tmpConfig.height !='' || tmpConfig.height > 0" :style="[{ maxHeight: $u.addUnit(tmpConfig.height) }]">
+                    <view v-for="(item, index) in tmpConfig.actions" :key="index">
+                        <!-- #ifdef MP -->
+                        <button 
+                            class="u-reset-button" 
+                            :key="index" 
+                            :openType="item.openType"
+                            :lang="lang" 
+                            :session-from="sessionFrom"
+                            :send-message-title="sendMessageTitle" 
+                            :send-message-path="sendMessagePath"
+                            :send-message-img="sendMessageImg" 
+                            :show-message-card="showMessageCard"
+                            :app-parameter="appParameter" 
+                            @tap="selectHandler(index)"
+                            @getuserinfo="onGetUserInfo" 
+                            @contact="onContact" 
+                            @getphonenumber="onGetPhoneNumber"
+                            @error="onError" 
+                            @launchapp="onLaunchApp" 
+                            @opensetting="onOpenSetting"
+                            @chooseavatar="onChooseAvatar" 
+                            :hover-class="!item.disabled && !item.loading ? 'u-action-sheet--hover' : ''"
+                        >
+                            <!-- #endif -->
+                            <view class="u-action-sheet__item-wrap__item" @tap.stop="selectHandler(index)"
+                                :hover-class="!item.disabled && !item.loading ? 'u-action-sheet--hover' : ''"
+                                :hover-stay-time="150">
+                                <template v-if="!item.loading">
+                                    <text class="u-action-sheet__item-wrap__item__name" :style="[itemStyle(index)]">{{
+                                        item.name }}</text>
+                                    <text v-if="item.subname" class="u-action-sheet__item-wrap__item__subname">{{
+                                        item.subname }}</text>
+                                </template>
+                                <u-loading-icon v-else custom-class="van-action-sheet__loading" size="18" mode="circle" />
+                            </view>
+                            <!-- #ifdef MP -->
+                        </button>
+                        <!-- #endif -->
+                        <u-line v-if="index !== tmpConfig.actions.length - 1"></u-line>
+                    </view>
+                </scroll-view>
+            </slot>
+            <u-gap bgColor="#eaeaec" height="6" v-if="tmpConfig.cancelText"></u-gap>
+            <view class="u-action-sheet__cancel-text-wrap" hover-class="u-action-sheet--hover" v-if="tmpConfig.cancelText" @tap="cancel">
+                <text 
+                    @touchmove.stop.prevent 
+                    :hover-stay-time="150" 
+                    class="u-action-sheet__cancel-text"
+                >{{ tmpConfig.cancelText }}</text>
+            </view>
+        </view>
+    </u-popup>
 </template>
 
 <script>
@@ -274,6 +274,13 @@ $u-action-sheet-cancel-text-hover-background-color: rgb(242, 243, 245) !default;
 .u-action-sheet {
     text-align: center;
     @include flex(column);
+
+    &-trigger {
+        @include flex;
+        align-items: center;
+        flex:1;
+    }
+
     &__description {
         font-size: $u-action-sheet-description-font-size;
         color: $u-tips-color;

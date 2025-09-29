@@ -1,29 +1,5 @@
 <template>
 	<view class="u-index-list">
-		<!-- #ifdef APP-NVUE -->
-		<list
-			:scrollTop="scrollTop"
-			enable-back-to-top
-			:offset-accuracy="1"
-			:style="{
-				maxHeight: $u.addUnit(scrollViewHeight)
-			}"
-			@scroll="scrollHandler"
-			ref="uList"
-		>
-			<cell
-				v-if="$slots.header"
-				ref="header"
-			>
-				<slot name="header" />
-			</cell>
-			<slot />
-			<cell v-if="$slots.footer">
-				<slot name="footer" />
-			</cell>
-		</list>
-		<!-- #endif -->
-		<!-- #ifndef APP-NVUE -->
 		<scroll-view
 			:scrollTop="scrollTop"
 			:scrollIntoView="scrollIntoView"
@@ -43,7 +19,6 @@
 				<slot name="footer" />
 			</view>
 		</scroll-view>
-		<!-- #endif -->
 		<view
 			class="u-index-list__letter"
 			ref="u-index-list__letter"
@@ -103,10 +78,7 @@
 	import props from './props.js';
 	import mixin from '../../libs/mixin/mixin'
 	import mpMixin from '../../libs/mixin/mpMixin';
-	// #ifdef APP-NVUE
-	// 由于weex为阿里的KPI业绩考核的产物，所以不支持百分比单位，这里需要通过dom查询组件的宽度
-	const dom = uni.requireNativePlugin('dom')
-	// #endif
+	
 	/**
 	 * IndexList 索引列表
 	 * @description  通过折叠面板收纳内容区域
@@ -237,18 +209,9 @@
 			getIndexListLetterRect() {
 				return new Promise(resolve => {
 					// 延时一定时间，以获取dom尺寸
-					// #ifndef APP-NVUE
 					this.$uGetRect('.u-index-list__letter').then(size => {
 						resolve(size)
 					})
-					// #endif
-
-					// #ifdef APP-NVUE
-					const ref = this.$refs['u-index-list__letter']
-					dom.getComponentRect(ref, res => {
-						resolve(res.size)
-					})
-					// #endif
 				})
 			},
 			// 设置indexList索引的尺寸信息
@@ -308,23 +271,13 @@
 				if (currentIndex === this.activeIndex) return
 				this.activeIndex = currentIndex
 				this.$emit('select', this.uIndexList[currentIndex])
-				// #ifndef APP-NVUE || MP-WEIXIN
-				// 在非nvue中，由于anchor和item都在u-index-item中，所以需要对index-item进行偏移
+				// 由于anchor和item都在u-index-item中，所以需要对index-item进行偏移
 				this.scrollIntoView = `u-index-item-${this.uIndexList[currentIndex].charCodeAt(0)}`
-				// #endif
 				// #ifdef MP-WEIXIN
 				// 微信小程序下，scroll-view的scroll-into-view属性无法对slot中的内容的id生效，只能通过设置scrollTop的形式去移动滚动条
 				if(this.children[currentIndex].top){
 					this.scrollTop = this.children[currentIndex].top - uni.$u.getPx(this.customNavHeight)
 				}
-				// #endif
-				// #ifdef APP-NVUE
-				// 在nvue中，由于cell和header为同级元素，所以实际是需要对header(anchor)进行偏移
-				const anchor = `u-index-anchor-${this.uIndexList[currentIndex]}`
-				dom.scrollToElement(this.anchors[currentIndex].$refs[anchor], {
-					offset: 0,
-					animated: false
-				})
 				// #endif
 			},
 			getHeaderRect() {
@@ -347,28 +300,9 @@
 				const len = this.children.length
 				let children = this.children
 				const anchors = this.anchors
-				// #ifdef APP-NVUE
-				// nvue下获取的滚动条偏移为负数，需要转为正数
-				scrollTop = Math.abs(e.contentOffset.y)
-				// 获取header slot的尺寸信息
-				const header = await this.getHeaderRect()
-				// item的top值，在nvue下，模拟出的anchor的top，类似非nvue下的index-item的top
-				let top = header.height
-				// 由于list组件无法获取cell的top值，这里通过header slot和各个item之间的height，模拟出类似非nvue下的位置信息
-				children = this.children.map((item, index) => {
-					const child = {
-						height: item.height,
-						top
-					}
-					// 进行累加，给下一个item提供计算依据
-					top += item.height + anchors[index].height
-					return child
-				})
-				// #endif
-				// #ifndef APP-NVUE
-				// 非nvue通过detail获取滚动条位移
+				// 通过detail获取滚动条位移
 				scrollTop = e.detail.scrollTop
-				// #endif
+			
 				for (let i = 0; i < len; i++) {
 					const item = children[i],
 						nextItem = children[i + 1]

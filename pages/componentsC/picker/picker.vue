@@ -1,0 +1,252 @@
+<template>
+	<view >
+		<u-navbar
+			title="选择器"
+			@leftClick="navigateBack"
+			safeAreaInsetTop
+			fixed
+			placeholder
+		></u-navbar>
+		<u-cell-group>
+			<u-cell
+				@click="showPicker(index)"
+				:title="item.title"
+				v-for="(item, index) in list"
+				:key="index"
+				isLink
+			>
+				<template #icon>
+					<image
+						class="u-cell-icon"
+						:src="item.iconUrl"
+						mode="widthFix"
+					></image>
+				</template>
+			</u-cell>
+			<u-cell title="使用触发器">
+				<template #icon>
+					<image
+						class="u-cell-icon"
+						src="https://cdn.uviewui.com/uview/demo/picker/2.png"
+						mode="widthFix"
+					></image>
+				</template>
+				<template #value>
+					<u-picker :columns="columns6" closeOnClickOverlay @confirm="confirm8">
+						<u-input :value="value8" placeholder="请输入内容" disabled-color="#fff" disabled clearable />
+					</u-picker>
+				</template>
+			</u-cell>
+		</u-cell-group>
+		<u-picker
+			:show="show1"
+			:columns="columns1"
+			@change="change"
+			@cancel="cancel"
+			@confirm="confirm"
+		></u-picker>
+		<u-picker
+			:show="show2"
+			:columns="columns2"
+			:defaultIndex="[1]"
+			@cancel="cancel"
+			@confirm="confirm"
+			@change="change"
+		></u-picker>
+		<u-picker
+			:show="show7"
+			:columns="columns7"
+			v-model="value7"
+			@cancel="cancel"
+			@confirm="confirm"
+			@change="change"
+		></u-picker>
+		<u-picker
+			:show="show3"
+			:columns="columns3"
+			ref="uPicker3"
+			@cancel="cancel"
+			@confirm="confirm"
+			@change="changeHandler1"
+		></u-picker>
+		<u-picker
+			:show="show4"
+			:columns="columns4"
+			@cancel="cancel"
+			@confirm="confirm"
+			:loading="loading"
+			@change="changeHandler2"
+			ref="uPicker4"
+		></u-picker>
+		<u-picker
+			:show="show5"
+			:columns="columns5"
+			title="标题太长就会显示省略号"
+			@cancel="cancel"
+			@confirm="confirm"
+			@change="change"
+		></u-picker>
+		<u-picker
+			:show="show6"
+			:columns="columns6"
+			closeOnClickOverlay
+			@cancel="cancel"
+			@confirm="confirm"
+			@close="close"
+			@change="change"
+		></u-picker>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				index: 0,
+				loading: false,
+				columnData: [
+					['深圳', '厦门', '上海', '拉萨'],
+					['得州', '华盛顿', '纽约', '阿拉斯加']
+				],
+				columns1: [
+					['中国', '美国', '日本']
+				],
+				columns2: [
+					['中国', '美国', '日本']
+				],
+				columns3: [
+					['中国', '美国'],
+					['深圳', '厦门', '上海', '拉萨']
+				],
+				columns4: [
+					['中国', '美国'],
+					['深圳', '厦门', '上海', '拉萨']
+				],
+				columns5: [
+					['中国', '美国', '日本']
+				],
+				columns6: [
+					['中国', '美国', '日本']
+				],
+				columns7: [
+					[{
+						text: '中国',
+						value: 1
+					}, {
+						text: '美国',
+						value: 2
+					}, {
+						text: '日本',
+						value: 3
+					}]
+				],
+				columns8: [
+					['中国', '美国', '日本']
+				],
+				show1: false,
+				show2: false,
+				show3: false,
+				show4: false,
+				show5: false,
+				show6: false,
+				show7: false,
+				show8: false,
+				value7: 2,
+				value8: '',
+				list: [{
+						title: '基础使用',
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/picker/2.png'
+					},
+					{
+						title: '设置默认项',
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/picker/5.png'
+					},
+					{
+						title: '多列联动',
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/picker/1.png'
+					},
+					{
+						title: '加载中状态(切换第一列)',
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/picker/3.png'
+					},
+					{
+						title: '设置标题',
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/picker/4.png'
+					}, {
+						title: '允许点击遮罩关闭',
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/picker/6.png'
+					},
+					{
+						title: '设置默认值',
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/picker/5.png'
+					},
+				]
+			}
+		},
+		methods: {
+			changeHandler1(e) {
+				this.change(e)
+				const {
+					columnIndex,
+					value,
+					values,
+					index,
+					// 微信小程序无法将picker实例传出来，只能通过ref操作
+					picker = this.$refs.uPicker3
+				} = e
+				if (columnIndex === 0) {
+					picker.setColumnValues(1, this.columnData[index])
+				}
+			},
+			changeHandler2(e) {
+				this.change(e)
+				const {
+					columnIndex,
+					value,
+					values,
+					index,
+					// 微信小程序无法将picker实例传出来，只能通过ref操作
+					picker = this.$refs.uPicker4
+				} = e
+				if (columnIndex === 0) {
+					this.loading = true
+					uni.$u.sleep(1500).then(() => {
+						picker.setColumnValues(1, this.columnData[index])
+						this.loading = false
+					})
+				}
+			},
+			navigateBack() {
+				uni.navigateBack()
+			},
+			change(e) {
+			//	console.log('change', e);
+			},
+			confirm8(e) {
+				this.value8 = e.value.join('')
+			},
+			showPicker(index) {
+				this.index = index + 1
+				this[`show${index + 1}`] = true
+			},
+			close() {
+				// console.log('close');
+				this[`show${this.index}`] = false
+			},
+			confirm(e) {
+				console.log('confirm', e);
+				this[`show${this.index}`] = false
+			},
+			cancel() {
+				// console.log('cancel');
+				this[`show${this.index}`] = false
+			}
+		},
+	}
+</script>
+
+<style lang="scss">
+	.u-page {
+		padding: 0;
+	}
+</style>

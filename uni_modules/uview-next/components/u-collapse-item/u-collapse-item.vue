@@ -49,10 +49,7 @@
 	import props from './props.js';
 	import mixin from '../../libs/mixin/mixin'
 	import mpMixin from '../../libs/mixin/mpMixin';
-	// #ifdef APP-NVUE
-	const animation = uni.requireNativePlugin('animation')
-	const dom = uni.requireNativePlugin('dom')
-	// #endif
+	
 	/**
 	 * collapseItem 折叠面板Item
 	 * @description 通过折叠面板收纳内容区域（搭配u-collapse使用）
@@ -144,22 +141,6 @@
 				const rect = await this.queryRect()
 				const height = this.expanded ? rect.height : 0
 				this.animating = true
-				// #ifdef APP-NVUE
-				const ref = this.$refs['animation'].ref
-				animation.transition(ref, {
-					styles: {
-						height: height + 'px'
-					},
-					duration: this.duration,
-					// 必须设置为true，否则会到面板收起或展开时，页面其他元素不会随之调整它们的布局
-					needLayout: true,
-					timingFunction: 'ease-in-out',
-				}, () => {
-					this.animating = false
-				})
-				// #endif
-
-				// #ifndef APP-NVUE
 				const animation = uni.createAnimation({
 					timingFunction: 'ease-in-out',
 				});
@@ -176,7 +157,6 @@
 				uni.$u.sleep(this.duration).then(() => {
 					this.animating = false
 				})
-				// #endif
 			},
 			// 点击collapsehead头部
 			clickHandler() {
@@ -186,7 +166,6 @@
 			},
 			// 查询内容高度
 			queryRect() {
-				// #ifndef APP-NVUE
 				// $uGetRect为uView自带的节点查询简化方法，详见文档介绍：https://uview.d3u.cn/js/getRect.html
 				// 组件内部一般用this.$uGetRect，对外的为uni.$u.getRect，二者功能一致，名称不同
 				return new Promise(resolve => {
@@ -194,17 +173,6 @@
 						resolve(size)
 					})
 				})
-				// #endif
-
-				// #ifdef APP-NVUE
-				// nvue下，使用dom模块查询元素高度
-				// 返回一个promise，让调用此方法的主体能使用then回调
-				return new Promise(resolve => {
-					dom.getComponentRect(this.$refs[this.elId], res => {
-						resolve(res.size)
-					})
-				})
-				// #endif
 			}
 		},
 	};

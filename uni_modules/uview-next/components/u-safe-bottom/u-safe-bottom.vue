@@ -1,10 +1,5 @@
 <template>
-	<view
-		class="u-safe-bottom"
-		:style="[style]"
-		:class="[!isNvue && 'u-safe-area-inset-bottom']"
-	>
-	</view>
+	<view class="u-safe-bottom u-safe-area-inset-bottom" :style="[$u.addStyle(this.customStyle)]"></view>
 </template>
 
 <script>
@@ -24,35 +19,11 @@
 	export default {
 		name: "u-safe-bottom",
 		mixins: [mpMixin, mixin, props],
-		data() {
-			return {
-				safeAreaBottomHeight: 0,
-				isNvue: false,
-			};
-		},
-		computed: {
-			style() {
-				const style = {};
-				// #ifdef APP-NVUE
-				// nvue下，高度使用js计算填充
-				style.height = uni.$u.addUnit(uni.$u.window().safeAreaInsets.bottom, 'px');
-				// #endif
-				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle));
-			},
-		},
-		mounted() {
-			// #ifdef APP-NVUE
-			// 标识为是否nvue
-			this.isNvue = true;
-			// #endif
-		},
 	};
 </script>
 
 <style lang="scss" scoped>
-	.u-safe-bottom {
-		/* #ifndef APP-NVUE */
-		width: 100%;
-		/* #endif */
-	}
+.u-safe-bottom {
+	width: 100%;
+}
 </style>

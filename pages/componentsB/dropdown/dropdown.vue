@@ -143,10 +143,8 @@
 	}
 </script>
 <style>
-/* #ifndef APP-NVUE */
 page {
 	background-color: #f5f5f5;
 	padding: 0;
 }
-/* #endif */
 </style>

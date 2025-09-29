@@ -58,13 +58,7 @@
 						style.height = this.fixed ? this.height + 'px' : 'auto'
 					}
 				} else {
-					// 无需吸顶时，设置会默认的relative(nvue)和非nvue的static静态模式即可
-					// #ifdef APP-NVUE
-					style.position = 'relative'
-					// #endif
-					// #ifndef APP-NVUE
 					style.position = 'static'
-					// #endif
 				}
 				style.backgroundColor = this.bgColor
 				return uni.$u.deepMerge(uni.$u.addStyle(this.customStyle), style)
@@ -160,11 +154,6 @@
 				if (uni.$u.os() === 'ios') {
 					this.cssSticky = true
 				}
-
-				// nvue，是支持css sticky的
-				// #ifdef APP-NVUE
-				this.cssSticky = true
-				// #endif
 			},
 			// 在APP和微信小程序上，通过uni.createSelectorQuery可以判断是否支持css sticky
 			checkComputedStyle() {

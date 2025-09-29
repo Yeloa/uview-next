@@ -18,9 +18,7 @@
 		margin-bottom:10px;
 	}
 	&__flex{
-		/* #ifndef APP-NVUE */
 		display: flex;
-		/* #endif */
 	}
 }
 
@@ -37,9 +35,7 @@
 	margin-bottom: 23px;
 	
 	&__content {
-		/* #ifndef APP-NVUE */
 		display: flex;
-		/* #endif */
 		flex-direction: column;
 	}
 	
@@ -47,9 +43,7 @@
 		font-size: 14px;
 		color: rgb(143, 156, 162);
 		margin-bottom: 8px;
-		/* #ifndef APP-NVUE */
 		display: flex;
-		/* #endif */
 		flex-direction: row;
 	}
 }
