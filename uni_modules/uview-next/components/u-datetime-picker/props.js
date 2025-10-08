@@ -120,8 +120,12 @@ export default defineProps('datetimePicker', {
     // 各列的默认索引
     defaultIndex: {
         type: Array,
-       default: () => [],
+		default: () => [],
     },
+	defaultValue: {
+		type: [String, Number],
+		default: () => '',
+	},
     immediateChange: {
         type: Boolean,
         default: false,

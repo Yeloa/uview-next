@@ -418,20 +418,20 @@
 						formData: this.data,
 						headers: this.headers,
 					});
-
-					let index = fileListLen + i;
-					let url = response.url || response.data.url;
-
-					if(url) {
-						this.lists[index].url = url;
-						this.lists[index].message = '';
-						this.lists[index].status = 'success';
+					
+					if(response.statusCode == 200){
+						let index = fileListLen + i;
+						let url = response.data.url || response.data.data.url;
+						if(url) {
+							this.lists[index].url = url;
+							this.lists[index].message = '';
+							this.lists[index].status = 'success';
+							this.$emit('change', response);
+						}
 					}
 				}
 
 				this.emitUpdate();
-
-				this.$emit('change', response);
 			},
 			
 			emitUpdate() {

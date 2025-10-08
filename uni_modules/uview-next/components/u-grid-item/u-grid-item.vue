@@ -42,6 +42,9 @@
 			this.init()
 		},
 		computed: {
+			width() {
+				return 100 / Number(this.parentData.col) + '%'
+			},
 			itemStyle() {
 				const style = {
 					width: this.width,

@@ -73,10 +73,6 @@ function window() {
 	// #ifdef MP-WEIXIN || APP || H5
 	return uni.getWindowInfo();
 	// #endif
-
-	// #ifndef MP-WEIXIN || APP || H5
-	return sys();
-	// #endif
 }
 
 /**

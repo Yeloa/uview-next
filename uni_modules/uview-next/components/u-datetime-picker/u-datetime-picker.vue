@@ -7,7 +7,7 @@
 		:itemHeight="itemHeight"
 		:showToolbar="showToolbar"
 		:visibleItemCount="visibleItemCount"
-		:defaultIndex="innerDefaultIndex" 
+		:defaultIndex="innerDefaultIndex"
 		:cancelText="cancelText" 
 		:confirmText="confirmText"
 		:cancelColor="cancelColor"
@@ -86,6 +86,7 @@ import dayjs from '../../libs/util/dayjs.js';
  * @property {String | Number}	visibleItemCount	每列中可见选项的数量  ( 默认 5 )
  * @property {Boolean}			closeOnClickOverlay	是否允许点击遮罩关闭选择器  ( 默认 false )
  * @property {Array}			defaultIndex		各列的默认索引
+ * @property {Array}			defaultValue		默认值
  * @property {String | Number}  round				是否显示圆角 
  * @event {Function} close 关闭选择器时触发
  * @event {Function} confirm 点击确定按钮，返回当前选择的值
@@ -127,7 +128,7 @@ export default {
 	computed: {
 		// 如果以下这些变量发生了变化，意味着需要重新初始化各列的值
 		propsChange() {
-			return [this.mode, this.maxDate, this.minDate, this.minHour, this.maxHour, this.minMinute, this.maxMinute, this.filter, this.value,]
+			return [this.mode, this.maxDate, this.minDate, this.minHour, this.maxHour, this.minMinute, this.maxMinute, this.filter]
 		}
 	},
 	mounted() {
@@ -142,10 +143,10 @@ export default {
 		init() {
 			let value = ''
 			// #ifdef VUE2
-			value = this.value;
+			value = this.value || this.defaultValue;
 			// #endif
 			// #ifdef VUE3
-			value = this.modelValue;
+			value = this.modelValue || this.defaultValue;
 			// #endif
 
 			value = this.$u.os() === 'ios' && this.mode === 'datetime' ? value.toString().replace(/-/g, "/") : value
