@@ -224,6 +224,7 @@ export default {
         // 隐藏ActionSheet
         close() {
             this.showPopup = false;
+			this.$emit('close');
         },
         selectHandler(index) {
             const item = this.tmpConfig.actions[index];

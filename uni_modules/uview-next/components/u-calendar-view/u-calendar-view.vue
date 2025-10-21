@@ -37,7 +37,7 @@
                 :rangePrompt="rangePrompt"
                 :showRangePrompt="showRangePrompt"
                 :allowSameDay="allowSameDay"
-                @change="monthChange"
+                @monthSelected="monthChange"
                 @updateMonthTop="updateMonthTop"
             ></uMonth>
         </scroll-view>

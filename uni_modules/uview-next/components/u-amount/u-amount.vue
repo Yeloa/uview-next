@@ -166,7 +166,6 @@
 			value: {
 				immediate: true,
 				handler(newVal) {
-					if(!newVal) return;
 					if (this.transition) {
 						this.startAnimation(newVal);
 					} else {

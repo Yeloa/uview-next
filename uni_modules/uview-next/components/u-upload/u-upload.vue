@@ -416,7 +416,7 @@
 						// #endif
 						name: fileList.name,
 						formData: this.data,
-						headers: this.headers,
+						header: this.headers,
 					});
 					
 					if(response.statusCode == 200){
