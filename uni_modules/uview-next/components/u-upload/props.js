@@ -57,7 +57,7 @@ export default defineProps('upload', {
             compressedWidth: 1000
         })
     },
-    // 当accept为video时生效，可选值为back或front
+    // 当accept为video、media、image时生效，可选值为back或front
     camera: {
         type: String,
         default: 'back'
