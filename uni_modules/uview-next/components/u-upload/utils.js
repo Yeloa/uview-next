@@ -227,6 +227,7 @@ export function chooseFile({
     return new Promise((resolve, reject) => {
         switch (accept) {
 			case 'image':
+				// #ifdef H5 || MP-ALIPAY || MP-BAIDU || MP-QQ || MP-KUAISHOU
 				uni.chooseImage({
 					count: multiple ? maxCount : 1,
 					sourceType: capture,
@@ -234,11 +235,22 @@ export function chooseFile({
 					success: (res) => resolve(compressImages(compressImage,formatImage(res))),
 					fail: reject
 				})
+				// #endif
+				// #ifndef H5 || MP-ALIPAY || MP-BAIDU || MP-QQ || MP-KUAISHOU
+				uni.chooseMedia({
+					count: multiple ? maxCount : 1,
+					mediaType: ['image'],
+					sourceType: capture,
+					sizeType,
+					camera,
+					success: (res) => resolve(compressImages(compressImage,formatImage(res))),
+					fail: reject
+				})
+				// #endif
 				break
-				// #ifdef MP-WEIXIN
-				// 只有微信小程序才支持chooseMedia接口
+				// #ifdef MP-WEIXIN || APP || MP-TOUTIAO || MP-LARK || MP-JD || MP-XHS
 			case 'media':
-				wx.chooseMedia({
+                uni.chooseMedia({
 					count: multiple ? maxCount : 1,
 					sourceType: capture,
 					maxDuration,
