@@ -14,6 +14,7 @@
 				:mode="mode"
 				:step="step"
 				:icon="icon"
+				:iconColor="iconColor"
 				:disable-touch="disableTouch"
 				:fontSize="fontSize"
 				:duration="duration"
@@ -32,6 +33,7 @@
 				:url="url"
 				:linkType="linkType"
 				:icon="icon"
+				:iconColor="iconColor"
 				@close="close"
 				@click="click"
 			></u-row-notice>

@@ -22,7 +22,7 @@
                     ref="form1"
                  
                 >
-                    <u-form-item label="姓名" prop="userInfo.name" ref="item1">
+                    <u-form-item label="姓名" prop="userInfo.name" ref="item1" required>
                         <u-input
                             v-model="model1.userInfo.name"
                             border="none"

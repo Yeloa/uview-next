@@ -17,7 +17,7 @@
 				v-model="fileList12"
 				@afterRead="afterRead1"
 				name="file"
-				multiple
+				:multiple="false"
 				:maxCount="2"
 			></u-upload>
 

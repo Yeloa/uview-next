@@ -42,6 +42,7 @@
                 <template v-slot:value>
 					<u-datetime-picker
                         mode="datetime"
+						defaultValue="2025-12-05 11:25"
                         closeOnClickOverlay
                         @confirm="confirm10"
                     >

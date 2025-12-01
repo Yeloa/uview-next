@@ -42,6 +42,7 @@
 		<card title="自定义样式">
 			<u-notice-bar
 			    :text="text1"
+				iconColor="#ffffff"
 				color="#ffffff"
 				bgColor="#f56c6c"
 			></u-notice-bar>

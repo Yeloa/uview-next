@@ -231,10 +231,12 @@
 				immediate: true,
 				deep: true,
 				handler(newVal) {
-					if(!this.multiple && newVal) {
+					if(!this.multiple && newVal.length > 0) {
 						newVal = [newVal];
 					}
+					
 					if(newVal.length > 0){
+					
 						if(this.changeFromInner){
 							this.changeFromInner = false;
 							return;

@@ -11,6 +11,11 @@ export default defineProps('rowNotice', {
         type: String,
         default: 'volume'
     },
+    // 是否显示左侧的音量图标
+    iconColor: {
+        type: String,
+        default: '#f9ae3d'
+    },
     // 通告模式，link-显示右箭头，closable-显示右侧关闭图标
     mode: {
         type: String,

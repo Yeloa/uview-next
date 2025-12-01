@@ -30,6 +30,25 @@
 			</view>
 		</view>
 
+
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">长按拖拽</text>
+			<view class="u-demo-block__content">
+				<u-draggable 
+					:list="longpressList" 
+					:column="2"
+					longpress
+				>
+					<template #item="{oindex, item, active}">
+						<view class="grid-item" :class="{active}">
+							<text class="grid-text">{{item.text}}</text>
+							<text class="grid-hint">长按拖拽</text>
+						</view>
+					</template>
+				</u-draggable>
+			</view>
+		</view>
+		
 		<view class="u-demo-block">
 			<text class="u-demo-block__title">垂直排序 - 手柄拖拽</text>
 			<view class="u-demo-block__content">
@@ -50,24 +69,6 @@
 							<view class="vertical-handle">
 								<text class="handle-text" :data-handle="true">⋮⋮</text>
 							</view>
-						</view>
-					</template>
-				</u-draggable>
-			</view>
-		</view>
-
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">长按拖拽</text>
-			<view class="u-demo-block__content">
-				<u-draggable 
-					:list="longpressList" 
-					:column="2"
-					longpress
-				>
-					<template #item="{oindex, item, active}">
-						<view class="grid-item" :class="{active}">
-							<text class="grid-text">{{item.text}}</text>
-							<text class="grid-hint">长按拖拽</text>
 						</view>
 					</template>
 				</u-draggable>
@@ -110,7 +111,13 @@ export default {
 				{ id: 3, icon: "🔒", title: "隐私安全", desc: "隐私和安全设置" },
 				{ id: 4, icon: "💾", title: "存储空间", desc: "管理设备存储" },
 				{ id: 5, icon: "🔋", title: "电池管理", desc: "电池使用情况" },
-				{ id: 6, icon: "📶", title: "网络设置", desc: "WiFi和移动网络" }
+				{ id: 6, icon: "📶", title: "网络设置", desc: "WiFi和移动网络" },
+				{ id: 7, icon: "🔧", title: "系统设置", desc: "系统和设备设置" },
+				{ id: 8, icon: "📱", title: "显示设置", desc: "屏幕和显示设置" },
+				{ id: 9, icon: "🔊", title: "音量设置", desc: "管理音量和音效" },
+				{ id: 10, icon: "🔍", title: "搜索设置", desc: "搜索功能设置" },
+				{ id: 11, icon: "🕒", title: "日期时间设置", desc: "管理日期和时间" },
+				{ id: 12, icon: "🔒", title: "隐私安全", desc: "隐私和安全设置" },
 			],
 			itemCounter: 9,
 			deleteList: [
@@ -120,9 +127,10 @@ export default {
 				{ id: 4, text: "项目4" },
 				{ id: 5, text: "项目5" }
 			],
-			deletePosition: 'top-right'
+			deletePosition: 'top-right',
 		}
 	},
+
 	methods: {
 		onListUpdate(newList) {
 			console.log('基础列表更新:', newList)

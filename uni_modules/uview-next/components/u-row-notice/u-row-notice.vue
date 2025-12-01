@@ -2,7 +2,7 @@
 	<view class="u-notice" @tap="clickHandler">
 		<slot name="icon">
 			<view class="u-notice__left-icon" v-if="icon">
-				<u-icon :name="icon" :color="color" size="19"></u-icon>
+				<u-icon :name="icon" :color="iconColor" size="19"></u-icon>
 			</view>
 		</slot>
 		<view class="u-notice__content" ref="u-notice__content">

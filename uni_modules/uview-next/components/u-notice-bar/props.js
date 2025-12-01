@@ -22,6 +22,11 @@ export default defineProps('noticeBar', {
         type: String,
         default: 'volume'
     },
+    // 是否显示左侧的音量图标
+    iconColor: {
+        type: String,
+        default: theme.warning
+    },
     // 通告模式，link-显示右箭头，closable-显示右侧关闭图标
     mode: {
         type: String,

@@ -127,8 +127,9 @@ export default {
                 this.ellipsis,
                 this.cellStyle,
                 this.selectedRowKeys,
+                this.selectedRowBgColor,
                 this.toggleRowSelection,
-                this.mergeInfo
+                this.mergeInfo,
             ]
         },
         // 排序后的数据

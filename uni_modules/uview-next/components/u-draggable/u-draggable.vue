@@ -196,7 +196,7 @@ export default {
 		handleTouchStart(event, index) {
 
 			const { handle } = event.target.dataset || {}
-			console.log(handle);
+			
 			if(this.handle && !handle) {
 				return;
 			}
@@ -287,6 +287,7 @@ export default {
 					// 即使位置没有变化，也需要重置激活状态
 					this.activeIndex = -1;
 				}
+
 			});
 		},
 		

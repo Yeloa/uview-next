@@ -61,9 +61,11 @@ export default {
                 ellipsis: true,
                 cellStyle: {},
                 selectedRowKeys: [],
+                selectedRowBgColor: '',
                 toggleRowSelection: null,
                 mergeInfo: {}
             },
+            isSelected: false,
             sortDirection: 0,
             innerFormatter: (value) => value
         };
@@ -118,6 +120,10 @@ export default {
 
                 if (this.parentData.rowHeight) {
                     style.height = this.$u.addUnit(this.parentData.rowHeight) ;
+                }
+                
+                if(this.isSelectionSelected(row)) {
+                    style.backgroundColor = this.parentData.selectedRowBgColor;
                 }
 
                 // 处理合并单元格样式
@@ -263,6 +269,8 @@ export default {
                 columnIndex: this.getColumnIndex(),
                 value: this.getCellValue(row)
             };
+
+            this.isSelected = !this.isSelected
 
             this.$emit('cellClick', cellData);
 

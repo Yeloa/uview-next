@@ -10,7 +10,7 @@
 			>
 				<u-icon
 					:name="icon"
-					:color="color"
+					:color="iconColor"
 					size="19"
 				></u-icon>
 			</view>

@@ -1,4 +1,4 @@
-var barElement = ownerInstance<template>
+<template>
 	<view class="u-scroll-list" ref="u-scroll-list">
 		<!-- #ifdef MP-WEIXIN || APP-VUE || H5 || MP-QQ -->
 		<scroll-view

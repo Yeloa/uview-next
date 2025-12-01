@@ -240,6 +240,10 @@
 			},
 			// 点击确定按钮
 			confirmHandler() {
+				if(this.loading){
+					return
+				}
+			
 				// 如果配置了异步关闭，将按钮值为loading状态
 				if (this.tmpConfig.asyncClose) {
 					this.loading = true;
