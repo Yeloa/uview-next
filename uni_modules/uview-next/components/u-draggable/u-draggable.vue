@@ -225,7 +225,6 @@ export default {
 		},
 
 		handleTouchMove(event, index) {
-			
 			// 如果不在拖拽状态，直接返回
 			if (!this.isDrag) return;
 
@@ -294,7 +293,7 @@ export default {
 		detectCollision(centerX, centerY, activeIndex) {
 			// 如果全局禁用，直接返回
 			if (this.disabled) return;
-			
+			console.log(centerX, centerY);
 			// 快速边界检查
 			if (centerX < 0 || centerY < 0 || 
 				centerX > this.containerWidth || 
@@ -539,7 +538,7 @@ export default {
 
 	&__active {
 		z-index: 9999;
-		transition: transform 100ms ease;
+		transition: transform 0ms ease;
 	}
 
 		

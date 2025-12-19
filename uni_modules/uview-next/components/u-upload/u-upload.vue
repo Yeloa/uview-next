@@ -154,7 +154,7 @@
 	 * @property {String | Array}	capture				图片或视频拾取模式，当accept为image类型时设置capture可选额外camera可以直接调起摄像头（默认 ['album', 'camera'] ）
 	 * @property {Boolean}			compressed			当accept为video时生效，是否压缩视频，默认为true（默认 true ）
 	 * @property {Boolean | Objcet} compressImage		当accept为image时生效，图片压缩参数，值为false不压缩
-	 * @property {String}			camera				当accept为video时生效，可选值为back或front（默认 'back' ）
+	 * @property {String}			camera				当accept为video、media、image时生效，可选值为back或front（默认 'back' ）
 	 * @property {Number}			maxDuration			当accept为video时生效，拍摄视频最长拍摄时间，单位秒（默认 60 ）
 	 * @property {String}			uploadIcon			上传区域的图标，只能内置图标（默认 'camera-fill' ）
 	 * @property {String}			uploadIconColor		上传区域的图标的字体颜色，只能内置图标（默认 #D3D4D6 ）
@@ -231,12 +231,10 @@
 				immediate: true,
 				deep: true,
 				handler(newVal) {
-					if(!this.multiple && newVal.length > 0) {
+					if(!this.multiple && newVal) {
 						newVal = [newVal];
 					}
-					
 					if(newVal.length > 0){
-					
 						if(this.changeFromInner){
 							this.changeFromInner = false;
 							return;

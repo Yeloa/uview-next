@@ -5,9 +5,14 @@ export default {
         accept: {
             immediate: true,
             handler(val) {
+                // #ifdef H5
+                if (val === 'media') {
+                    uni.$u.error('H5不能把accept配置为media')
+                }
+                // #endif
                 // #ifndef MP-WEIXIN
-                if (val === 'all' || val === 'media') {
-                    uni.$u.error('只有微信小程序才支持把accept配置为all、media之一')
+                if (val === 'all') {
+                    uni.$u.error('只有微信小程序才支持把accept配置为all')
                 }
                 // #endif
                 // #ifndef H5 || MP-WEIXIN

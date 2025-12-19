@@ -1,7 +1,11 @@
 <template>
 	<view class="u-page">
-		<!-- 2.0.19支持autoBack，默认为false -->
-		<u-navbar title="导航栏" safeAreaInsetTop fixed placeholder :autoBack="true">
+
+		<u-navbar title="导航栏" bgColor="none" :customStyle="{
+			backgroundImage:'url(https://uview.d3u.cn/web/static/uview/album/1.jpg)',
+			backgroundSize: '100% auto',
+			backgroundPosition: 'center'
+		}" safeAreaInsetTop fixed placeholder :autoBack="true">
 		</u-navbar>
 		<view class="u-page__item">
 			<text class="u-page__item__title">基础功能</text>
