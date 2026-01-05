@@ -81,5 +81,10 @@ export default defineProps('navbar', {
 	titleStyle: {
 		type: [String, Object],
 		default: ''
+	},
+	// 自定义样式，对象形式
+	customStyle: {
+	    type: Object,
+	    default: () => ({})
 	}
 })

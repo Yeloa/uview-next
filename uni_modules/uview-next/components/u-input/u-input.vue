@@ -384,7 +384,7 @@ export default {
 			justify-content: center;
 			transform: scale(0.82);
 			margin-left: 4px;
-			z-index: 10000;
+			z-index: 100;
 		}
 
 		&__eye {
@@ -394,17 +394,17 @@ export default {
 			align-items: center;
 			justify-content: center;
 			margin-left: 4px;
-			z-index: 10000;
+			z-index: 100;
 		}
 
 		&__subfix-icon {
 			margin-left: 4px;
-			z-index: 10000;
+			z-index: 100;
 		}
 
 		&__prefix-icon {
 			margin-right: 4px;
-			z-index: 10000;
+			z-index: 100;
 		}
 	}
 }

@@ -20,14 +20,10 @@
 		@change="change"
 	>
 		<slot>
+			<!-- #ifdef VUE2 -->
 			<u-input 
 				v-if="showInput"
-				<!-- #ifdef VUE2 -->
 				:value="inputValue"
-				<!-- #endif -->
-				<!-- #ifdef VUE3 -->
-				:modelValue="inputValue"
-				<!-- #endif -->
 				:clearable="inputProps.clearable"
 				:placeholder="inputProps.placeholder"
 				:disabled="inputProps.disabled"
@@ -50,6 +46,34 @@
 				:shape="inputProps.shape"
 				:customStyle="inputProps.customStyle"
 			/>
+			<!-- #endif -->
+			<!-- #ifdef VUE3 -->
+			<u-input
+				v-if="showInput"
+				:modelValue="inputValue"
+				:clearable="inputProps.clearable"
+				:placeholder="inputProps.placeholder"
+				:disabled="inputProps.disabled"
+				:border="inputProps.border"
+				:round="inputProps.round"
+				:backgroundColor="inputProps.disabled ? '' : inputProps.backgroundColor"
+				:disabledColor="inputProps.disabled ? inputProps.backgroundColor : ''"
+				:placeholderClass="inputProps.placeholderClass"
+				:placeholderStyle="inputProps.placeholderStyle"
+				:confirmType="inputProps.confirmType"
+				:focus="inputProps.focus"
+				:inputAlign="inputProps.inputAlign"
+				:fontSize="inputProps.fontSize"
+				:color="inputProps.color"
+				:borderColor="inputProps.borderColor"
+				:prefixIcon="inputProps.prefixIcon"
+				:suffixIcon="inputProps.suffixIcon"
+				:suffixIconStyle="inputProps.suffixIconStyle"
+				:prefixIconStyle="inputProps.prefixIconStyle"
+				:shape="inputProps.shape"
+				:customStyle="inputProps.customStyle"
+			/>
+			<!-- #endif -->
 		</slot>
 	</u-picker>
 </template>

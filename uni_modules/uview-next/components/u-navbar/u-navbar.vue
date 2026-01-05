@@ -13,10 +13,7 @@
 			<view
 				class="u-navbar__content"
 				:class="[border && 'u-border-bottom']"
-				:style="{
-					height: $u.addUnit(height),
-					backgroundColor: bgColor,
-				}"
+				:style="contentStyle"
 			>
 				<view
 					class="u-navbar__content__left"
@@ -107,6 +104,18 @@
 			}
 		},
 		computed: {
+			contentStyle(){
+				let style = {
+					height: uni.$u.addUnit(this.height)
+				}
+				
+				if(this.bgColor || this.bgColor != 'none'){
+					style.backgroundColor = this.bgColor
+				}
+				
+				style = uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle));
+				return style
+			},
 			navBarStyle() {
 				let style = {}
 				const { statusBarHeight } = this.$u.window()
@@ -152,9 +161,9 @@
 			@include flex(row);
 			align-items: center;
 			height: 44px;
-			background-color: #9acafc;
 			position: relative;
 			justify-content: center;
+
 
 			&__left,
 			&__right {

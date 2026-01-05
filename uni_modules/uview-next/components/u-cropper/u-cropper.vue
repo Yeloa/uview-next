@@ -1,5 +1,5 @@
 <template>
-    <view class="u-cropper">
+    <view class="u-cropper" :style="[cropperStyle]">
         <view class="u-cropper__container" 
             @touchstart.prevent="handleTouchStart"
             @touchmove.prevent="handleTouchMove"
@@ -116,7 +116,11 @@ export default {
         };
     },
     computed: {
-        
+        cropperStyle() {
+            return {
+                zIndex: this.zIndex
+            }
+        },
         // 图片样式 - 从原始数据计算
         imageStyle() {
             const imageData = this.viewData.imageData;
@@ -379,7 +383,7 @@ export default {
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 999;
+    z-index: 11000;
     background: #000;
    
 

@@ -66,6 +66,10 @@ export default defineProps('cropper', {
         type: String,
         default: ''
     },
+    zIndex: {
+        type: [Number, String],
+        default: ''
+    },
     // 水印文字
     watermark: {
         type: Object,

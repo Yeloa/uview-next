@@ -70,6 +70,10 @@ export default defineProps('table', {
         type: String,
         default: 'id'
     },
+    selectedRowBgColor: {
+        type: String,
+        default: '#f3f4f6'
+    },  
     // 默认选中的行
     defaultSelection: {
         type: Array,

@@ -50,5 +50,10 @@ export default defineProps('draggable', {
 	closeable: {
 		type: Boolean,
 		default: false
+	},
+	// 是否启用边缘滚动
+	autoScroll: {
+		type: Boolean,
+		default: false
 	}
 })

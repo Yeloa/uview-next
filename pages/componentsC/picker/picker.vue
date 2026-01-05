@@ -235,6 +235,7 @@
 			},
 			confirm(e) {
 				console.log('confirm', e);
+				console.log('confirm', e.value);
 				this[`show${this.index}`] = false
 			},
 			cancel() {

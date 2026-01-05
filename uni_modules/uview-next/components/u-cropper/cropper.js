@@ -284,7 +284,6 @@ export default class ImageCropper {
         if (!this.imageLoaded) return;
         
         this.imgData.angle += angle;
-        this.imgData.angle = this.imgData.angle % 360;
         
         // 旋转后应用边界约束
         this.applyBoundaryConstraints();

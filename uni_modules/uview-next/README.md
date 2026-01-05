@@ -15,7 +15,12 @@
 
 ## 📖 简介
 
-uView Next 支持 Vue2 和 Vue3，支持国际化，是[uni-app](http://uniapp.dcloud.io/)全面兼容 nvue 的 uni-app 生态框架，提供了更丰富的组件和便捷的工具，让开发更得心应手。
+uView Next 支持 Vue2 和 Vue3，支持国际化，是[uni-app](http://uniapp.dcloud.io/)全面兼容 uni-app 生态框架，提供了更丰富的组件和便捷的工具，让开发更得心应手。
+
+## 📚 Uview Next 4.0 支持 uniapp x
+使用vue3 + uts + 组合式API进行了全面的重构，同时支持uniapp、uniapp x、鸿蒙、小程序，全端兼容
+
+[📄 **点击查看** https://ext.dcloud.net.cn/plugin?name=uview-unix](https://ext.dcloud.net.cn/plugin?name=uview-unix)
 
 ## 📚 文档
 

@@ -19,7 +19,7 @@
             }]" v-if="tmpConfig.description">{{ tmpConfig.description }}</text>
             <slot>
                 <u-line v-if="tmpConfig.description"></u-line>
-                <scroll-view class="u-action-sheet__item-wrap" :scroll-y="tmpConfig.height !='' || tmpConfig.height > 0" :style="[{ maxHeight: $u.addUnit(tmpConfig.height) }]">
+                <scroll-view class="u-action-sheet__item-wrap" :scroll-y="tmpConfig.height !='' || tmpConfig.height > 0" :style="[{ height: $u.addUnit(tmpConfig.height) }]">
                     <view v-for="(item, index) in tmpConfig.actions" :key="index">
                         <!-- #ifdef MP -->
                         <button 
