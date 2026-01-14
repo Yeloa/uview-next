@@ -31,18 +31,19 @@
 								:style="[textStyle(index)]"
 							>{{ item[keyName] }}</text>
 							<u-badge
-								:show="!!(item.badge && (item.badge.show || item.badge.isDot || item.badge.value))"
+								:show="(item.badge && (item.badge.show || item.badge.isDot || item.badge.value))"
 								:isDot="item.badge && item.badge.isDot"
 								:value="item.badge && item.badge.value "
 								:max="item.badge && item.badge.max"
 								:showZero="item.badge && item.badge.showZero"
-								:type="(item.badge && item.badge.type) || ''"
-								:bgColor="(item.badge && item.badge.bgColor) || ''"
-								:color="(item.badge && item.badge.color) || ''"
-								:shape="(item.badge && item.badge.shape) || ''"
-								:numberType="(item.badge && item.badge.numberType) || ''"
+								:type="(item.badge && item.badge.type)"
+								:bgColor="(item.badge && item.badge.bgColor)"
+								:color="(item.badge && item.badge.color)"
+								:shape="(item.badge && item.badge.shape)"
+								:numberType="(item.badge && item.badge.numberType)"
 								:inverted="item.badge && item.badge.inverted"
-								customStyle="margin-left: 4px;"
+								:offset="(item.offset && item.badge.offset) || [10,5]"
+								:absolute="true"
 							></u-badge>
 						</view>
 							<view
@@ -498,6 +499,7 @@
 				position: relative;
 
 				&__item {
+					position: relative;
 					padding: 0 11px;
 					@include flex(row);
 					align-items: center;

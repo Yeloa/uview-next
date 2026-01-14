@@ -221,11 +221,13 @@ export default defineProps('input', {
 		type: String,
 		default: ''
 	},
+	
 	// 指定focus时光标颜色
 	cursorColor: {
 		type: String,
-		default: ''
+		default: '#000000'
 	},
+	
 	// 它提供了用户在编辑元素或其内容时可能输入的数据类型的提示
 	inputmode: {
 		type: String,

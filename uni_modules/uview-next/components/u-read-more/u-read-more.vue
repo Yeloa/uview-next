@@ -125,7 +125,12 @@
 @import "../../libs/css/components.scss";
 
 .u-read-more {
-
+	display: flex;
+	flex-direction: column;
+	flex-shrink: 0;
+	flex-grow: 0;
+	flex-basis: auto;
+	align-items: stretch;
 	&__content {
 		overflow: hidden;
 		color: $u-content-color;
