@@ -214,7 +214,7 @@ export default class Painter {
                 let lines = 0;
                 const linesArray = [];
                 for (let i = 0; i < textArray.length; ++i) {
-                    const textLength = this.ctx.measureText(textArray[i]).width;
+                    const textLength = this._measureTextWidth(textArray[i], view.style);
                     const minWidth = view.style.fontSize + paddings[1] + paddings[3];
                     let partWidth = view.style.width ? view.style.width - paddings[1] - paddings[3] : textLength;
                     if (partWidth < minWidth) {
@@ -521,7 +521,7 @@ export default class Painter {
         if (view.id) {
             let textWidth = 0;
             for (let i = 0; i < textArray.length; ++i) {
-                const _w = this.ctx.measureText(textArray[i]).width;
+                const _w = this._measureTextWidth(textArray[i], view.style);
                 textWidth = _w > textWidth ? _w : textWidth;
             }
 
@@ -538,7 +538,7 @@ export default class Painter {
                 }
                 alreadyCount = preLineLength;
                 let text = textArray[j].substr(start, alreadyCount);
-                let measuredWith = this.ctx.measureText(text).width;
+                let measuredWith = this._measureTextWidth(text, view.style);
                 // 如果测量大小小于width一个字符的大小，则进行补齐，如果测量大小超出 width，则进行减除
                 // 如果已经到文本末尾，也不要进行该循环
                 while (start + alreadyCount <= textArray[j].length && (width - measuredWith > view.style.fontSize || measuredWith - width > view.style.fontSize)) {
@@ -552,12 +552,12 @@ export default class Painter {
                         text = textArray[j].substr(start, --alreadyCount);
                         // break;
                     }
-                    measuredWith = this.ctx.measureText(text).width;
+                    measuredWith = this._measureTextWidth(text, view.style);
                 }
                 start += text.length;
                 // 如果是最后一行了，发现还有未绘制完的内容，则加...
                 if (lineIndex === lines - 1 && (j < textArray.length - 1 || start < textArray[j].length)) {
-                    while (this.ctx.measureText(`${text}...`).width > width) {
+                    while (this._measureTextWidth(`${text}...`, view.style) > width) {
                         if (text.length <= 1) {
                             // 如果只有一个字符时，直接跳出循环
                             break;
@@ -565,7 +565,7 @@ export default class Painter {
                         text = text.substring(0, text.length - 1);
                     }
                     text += '...';
-                    measuredWith = this.ctx.measureText(text).width;
+                    measuredWith = this._measureTextWidth(text, view.style);
                 }
                 this.ctx.textAlign = view.style.textAlign ? view.style.textAlign : 'left';
                 let x;
@@ -670,5 +670,31 @@ export default class Painter {
     }
     _getAngle(angle) {
         return (Number(angle) * Math.PI) / 180;
+    }
+    _measureTextWidth(text, style) {
+        style = style || {}
+        const fontSize = parseInt(`${style.fontSize}`) || 15
+        let width = 0;
+        if (!text) {
+            return width;
+        }
+        if (this.ctx.measureText && typeof this.ctx.measureText === 'function') {
+            width = this.ctx.measureText(text).width
+        }
+        // 兼容没有 measureText 方法或者有 measureText 方法但 width 始终返回 0 的情况
+        if (width === 0 && text.length > 0) {
+            const charWidthRatio = 0.65
+            width = 0
+            for (let i = 0; i < text.length; i++) {
+                const char = text.charAt(i)
+                // 中文字符宽度 = 字体大小，英文字符 = 字体大小 * 系数
+                if (/[\u4e00-\u9fa5]/.test(char)) {
+                    width += fontSize
+                } else {
+                    width += fontSize * charWidthRatio
+                }
+            }
+        }
+        return Math.ceil(width)
     }
 }
